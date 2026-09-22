@@ -1,0 +1,65 @@
+name: migrate
+
+# ---------------------------------------------------------------------------
+# Applies database migrations. workflow_dispatch ONLY — never on a schedule and
+# never on push.
+#
+# SETUP-PLATFORM.md §6 wants migrations applied by CI rather than by hand in the
+# SQL editor. It does not want them applied automatically: a schema change landing
+# unattended, on a push, during the leave window is exactly the class of quiet risk
+# SPEC.md §3.3 exists to prevent. So this runs from CI, on purpose, when a person
+# presses the button.
+#
+# This workflow holds SUPABASE_DB_URL, which is why it cannot be folded into
+# test.yml (C-S.7 — that workflow must have no secrets at all). See SPEC.md §5.
+#
+# `dry_run` defaults to true: the safe thing happens if you press the button
+# without reading the form.
+# ---------------------------------------------------------------------------
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "List pending migrations without applying them"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: migrate
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up uv and Python
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "0.12.17"
+          python-version-file: ".python-version"
+          enable-cache: true
+
+      - name: Install from the locked, hashed dependency set
+        run: uv sync --locked
+
+      - name: Apply migrations
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        # src/migrate.py logs the connection target with the password redacted and
+        # never echoes the DSN itself (SPEC.md §15 — these logs are world-readable).
+        run: |
+          uv run python -m src.migrate ${{ inputs.dry_run && '--dry-run' || '' }}
+
+      - name: Verify the RLS baseline holds
+        if: ${{ !inputs.dry_run }}
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        # The live half of SETUP-PLATFORM.md §7's check. test.yml runs the static
+        # half against the migration SQL; this one asks the database itself.
+        run: uv run python -m src.check_schema
