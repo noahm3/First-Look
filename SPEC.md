@@ -852,24 +852,42 @@ means hourly postings silently never match.
 → `structured`; Ashby `compensationTiers` parsed with the original kept verbatim →
 `structured` or `parsed`; nothing disclosed → `none`.
 
-**Measured 2026-09-22 on 5,893 live postings across 157 mapped companies**
+**Measured 2026-09-22 on 8,760 live postings across 255 mapped companies**
 (`spikes/iteration7_live_postings_spike.py`), and it changes what "disclosed" means:
 
 | Where the number was published | Postings | Share |
 |---|---|---|
-| Provider's structured field | 838 | 14.2% |
-| Description body only | 1,420 | 24.1% |
-| **Either** | **2,258** | **38.3%** |
+| Provider's structured field | 1,583 | 18.1% |
+| Description body only | 3,020 | 34.5% |
+| **Either** | **4,603** | **52.5%** |
 
-**Greenhouse disclosed nothing structurally at all** — 0 of 3,713 postings carried
-`pay_input_ranges` — while 24.6% of its postings published a range in the description
-body. Lever and Ashby structured disclosure sits at 35.0% and 39.1%.
+*(An earlier revision of this section reported 14.2% / 38.3% from a 5,893-posting run.
+Those figures were an undercount — the extraction was splitting Greenhouse's pay-range
+block away from its own label and then discarding it. Corrected after a hand-labelled
+sample; see below. Recorded rather than silently overwritten, since the first pair of
+numbers was committed to this file.)*
 
-**The structured fields therefore see roughly a third of the compensation actually
+**Greenhouse disclosed nothing structurally at all** — 0 of 5,243 postings carried
+`pay_input_ranges` — while roughly a quarter of its postings published a range in the
+description body. Lever and Ashby carry most of the structured disclosure.
+
+**The structured fields therefore see about a third of the compensation actually
 published.** An adapter reading only `payInputRanges` / `salaryRange` /
-`compensationTiers` reports 14.2% where the real figure is 38.3%, and reports *zero* for
+`compensationTiers` reports 18.1% where the real figure is 52.5%, and reports *zero* for
 Greenhouse, the largest provider in the mapped set. Reading the description costs no
 extra requests — all three providers return it in a response the poller already makes.
+
+**How good the description extraction is, measured rather than asserted.** A
+reproducible hand-labelled sample (seed 20260922) of 60 counted snippets found 59 to be
+genuine role compensation; the single miss was a `$300 per month` commuter benefit.
+Residual false negatives run at roughly 17% of a small reject pool, about 1% of all
+postings — mostly pay bands embedded in requirements lists, of the form
+`Level II ($101,000-$146,500): Bachelor's degree...`. **Proximity must be judged against
+a bounded window of surrounding text, not the line the amount sits on**: Greenhouse
+renders the amount on its own line, with the "Salary Range" label on the preceding one.
+The correctly-rejected cases are consistently funding rounds, valuations, revenue and
+market-size claims — "raised $42M", "valued at $15 billion", "$900 billion U.S. trucking
+industry".
 
 **This is not licence to parse prose into a number.** Keeping the matched line verbatim
 in `comp_raw_summary` is cheap and safe; deriving integers from it is the part that needs
@@ -1380,7 +1398,7 @@ numbers from `--dump-facets` and the mapping table:
 |---|---|---|
 | 1 | Cascade coverage: % reaching `verified` or `probable` | Whether company-first discovery works at all, and therefore whether Built In national (§7.4) is a 10x win or 90k unmappable rows |
 | 2 | `mapping_failure_reason` distribution | Which adapter, if any, to build next |
-| 3 | Comp disclosure rate on live postings | The ceiling on the whole time-saving claim. ~~Not engineerable — if the employer published no number, no parser recovers it~~ **Partly engineerable after all (2026-09-22): most published comp sits in the description body rather than the structured field — 14.2% structured against 38.3% including description text. See §11.** What stays un-engineerable is only the remainder where no number was published anywhere |
+| 3 | Comp disclosure rate on live postings | The ceiling on the whole time-saving claim. ~~Not engineerable — if the employer published no number, no parser recovers it~~ **Partly engineerable after all (2026-09-22): most published comp sits in the description body rather than the structured field — 18.1% structured against 52.5% including description text, measured on 8,760 live postings. See §11.** What stays un-engineerable is only the remainder where no number was published anywhere |
 | 4 | `location_class = 'unknown'` share | Whether remote filtering is usable. Unlike #3 this *is* engineerable: the information is present in `location_raw` and the rules grow from real facet output |
 
 **#3 is a fact about the world; #4 is a parsing problem.** Do not conflate them when
