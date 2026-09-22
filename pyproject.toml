@@ -56,3 +56,6 @@ select = ["E", "F", "W", "I", "UP", "B", "SIM", "TID"]
 
 [tool.ruff.lint.per-file-ignores]
 "src/http.py" = ["TID251"]  # the one module allowed to import httpx
+# The chokepoint's own tests need httpx.MockTransport to fake the network at the
+# transport layer. Narrow on purpose: this single file, not tests/ generally.
+"tests/test_http.py" = ["TID251"]
