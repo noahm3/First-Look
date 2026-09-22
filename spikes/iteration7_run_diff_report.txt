@@ -1,0 +1,24 @@
+before : 2026-09-22T16:31:03.653896+00:00  242 companies ok, 8760 postings
+after  : 2026-09-22T16:39:27.885416+00:00  268 companies ok, 9441 postings
+companies ok in both (the only ones compared): 239
+  only in before: 0   only in after: 25   <- pool churn, excluded
+
+postings on shared companies: 8545 before, 8544 after
+  id present in both runs : 8542
+  id only in after (new)  : 2
+  id only in before (gone): 3
+  churn as % of before    : 0.06%
+
+field drift on the 8542 postings whose ats_job_id was stable:
+  none - every compared field identical on every stable posting
+
+sample of newly-appeared postings:
+  ashby      coderabbit         Account Executive, Mid- Market - SF          posted_at=2026-09-21T16:47:52.335000+00:00
+  greenhouse coinbase           Senior Software Engineer, Backend (Instituti posted_at=2026-09-11T00:20:55+00:00
+
+sample of disappeared postings:
+  ashby      coderabbit         Account Executive, South Korea               posted_at=2026-04-02T23:56:24.202000+00:00
+  ashby      coderabbit         Account Executive, Japan                     posted_at=2026-04-02T23:53:39.407000+00:00
+  ashby      coderabbit         Account Executive, Mid-Market - London       posted_at=2026-04-03T00:11:28.427000+00:00
+
+a naive whole-run diff would have reported +681 postings; restricted to shared companies the real movement is 2 opened / 3 closed
