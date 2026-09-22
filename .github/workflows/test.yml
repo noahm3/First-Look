@@ -1,0 +1,68 @@
+name: test
+
+# ---------------------------------------------------------------------------
+# THIS WORKFLOW MUST NEVER HAVE A SECRET IN SCOPE.
+#
+# It is the secrets-free half of the split SECURITY.md §S2 requires, and C-S.7
+# is the criterion that says so. Do not add `secrets.*` to any step here; if
+# something needs a credential, it belongs in monitor.yml, discover.yml, or
+# migrate.yml instead.
+#
+# Triggers are `push` and `workflow_dispatch` only. C-S.6 forbids any workflow
+# in this repo from triggering on `pull_request` or `pull_request_target`, and
+# BUILD.md §0.3 rejected pull requests as a workflow in favour of committing
+# straight to main — so a PR trigger would be dead configuration that only
+# widened the surface C-S.6 exists to keep at zero. See SPEC.md §5.
+# ---------------------------------------------------------------------------
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # Every third-party action is pinned to a full commit SHA, not a tag: a
+      # mutable tag can be repointed at code that reads secrets (C-S.8,
+      # SECURITY.md §S2). Tag names in the trailing comments are for humans.
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # check_criteria.py diffs CRITERIA.md against HEAD~1.
+          fetch-depth: 2
+
+      - name: Set up uv and Python
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "0.12.17"
+          python-version-file: ".python-version"
+          enable-cache: true
+
+      - name: Install from the locked, hashed dependency set
+        # --locked fails rather than re-resolving, so CI installs exactly what
+        # uv.lock records, hashes included (C-S.13, SECURITY.md §S5).
+        run: uv sync --locked --all-groups
+
+      - name: Lint
+        run: uv run ruff check .
+
+      - name: Format
+        run: uv run ruff format --check .
+
+      - name: Tests
+        # tests/conftest.py blocks sockets, so this cannot reach the network.
+        run: uv run pytest
+
+      - name: CRITERIA.md line-preservation check
+        run: uv run python tools/check_criteria.py
+
+      - name: RLS baseline check (static)
+        run: uv run python tools/check_rls.py

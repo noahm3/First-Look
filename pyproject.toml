@@ -1,0 +1,58 @@
+[project]
+name = "first-look"
+version = "0.0.0"
+description = "Company discovery, ATS mapping, and job-posting monitoring pipeline."
+readme = "README.md"
+# Pinned to one minor version deliberately. SPEC.md §14: pin everything, so an
+# unattended run cannot drift onto a new interpreter while nobody is watching.
+requires-python = "==3.13.*"
+dependencies = [
+    # CLAUDE.md non-negotiables: stdlib + httpx + pytest; justify anything else.
+    "httpx>=0.28",
+    # Postgres client for SPEC.md §6. psycopg 3 (sync) over asyncpg: the pipeline is
+    # sequential per provider, so an async runtime buys nothing here. [binary] avoids
+    # needing libpq present on the runner.
+    "psycopg[binary]>=3.2",
+    # config/*.yml — watchlist, collision words, aliases (SPEC.md §7.1, §8.2, §12.4).
+    "pyyaml>=6.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "ruff>=0.14",
+]
+
+[tool.uv]
+# Not a distributable package — an application run from the repo root.
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Repo root on the path, never src/ itself: src/http.py would otherwise shadow the
+# stdlib `http` package that httpx imports. Always import as `src.http`.
+pythonpath = ["."]
+addopts = "-ra --strict-markers"
+markers = [
+    "allow_network: test is permitted real socket access (see tests/conftest.py)",
+]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+# archive/ is superseded documents kept verbatim for history and is never edited
+# (BUILD.md §0.1). spikes/ is exploratory throwaway code driven interactively; holding
+# it to the pipeline's lint rules would mean rewriting someone's in-flight experiment
+# to satisfy a formatter. Nothing in either directory is imported by src/.
+extend-exclude = ["archive", "spikes"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "TID"]
+
+[tool.ruff.lint.flake8-tidy-imports.banned-api]
+# CLAUDE.md: "Every network call goes through src/http.py. Nothing calls httpx
+# directly." Enforced in CI rather than by review — src/http.py is exempted below.
+"httpx".msg = "Every network call goes through src/http.py. Import from src.http instead."
+
+[tool.ruff.lint.per-file-ignores]
+"src/http.py" = ["TID251"]  # the one module allowed to import httpx
