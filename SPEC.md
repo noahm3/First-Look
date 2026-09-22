@@ -364,6 +364,13 @@ too — see §9 — but `posted_at` stays informational regardless, because Leve
 runs years stale on live postings)**. The UI says **"Found 6h ago"**, which is what the
 number means.
 
+A live example of why this column exists, caught 2026-09-22 between two runs eight
+minutes apart: a Greenhouse posting with `first_published` of 2026-09-10 appeared on its
+board for the first time in the later run, `updated_at` two minutes earlier. Sorted by
+`posted_at` it lands twelve days deep and is never seen; sorted by `first_seen_at` it is
+correctly the newest thing on the board. The whole "be early in the applicant pool"
+premise (§2) depends on this specific choice.
+
 **Do not add a table for observed compensation history.** It is derivable from `postings`
 and `posting_comp_tiers` by company (`SPEC-REVISION-01` §R4). Store raw, derive on read —
 see §11.
@@ -821,6 +828,15 @@ Getro postings following the same steps with `source_path = 'getro'`, deduped ag
 rows. That entire branch is gone along with the `source_path` column (§6) — every posting
 row is ATS-sourced.
 
+**`ats_job_id` stability is the assumption everything above rests on, and it now has a
+measurement behind it.** Across two runs (`spikes/iteration7_run_diff.py`), 8,542 of
+8,545 postings on the same companies kept their id, and **not one** of the compared
+fields drifted on any of them — title, department, location, workplace type, url,
+`posted_at`, or compensation. The three that vanished were confirmed as real closures by
+re-fetching that board three more times rather than assumed to be. Worth re-running
+whenever a provider changes shape: if ids churn, step 2 inserts postings that are not
+new and step 4 closes postings that never closed, both silently and both at once.
+
 **Seed mode:** an explicit flag populates without producing new-posting output or sending
 any email. Without it, the first run emails thousands of postings.
 
@@ -1228,6 +1244,18 @@ into an email for free. **A database connection failure is now part of this same
 (`SETUP-PLATFORM.md` §8): with Postgres in place (§6), a DB outage must exit non-zero,
 not retry silently forever — this is what makes it a loud failure per §3.3 rather than a
 new silent one.
+
+**The run-over-run comparison must hold the company set fixed.** Measured 2026-09-22 on
+two runs eight minutes apart (`spikes/iteration7_run_diff.py`): comparing run totals
+reported **+681 postings**, while the real movement across the companies present in both
+runs was **2 opened and 3 closed**. Every one of the 681 was a newly-*mapped company*,
+not a newly-*opened posting*. Mapping runs monthly on the cold path (§8.5) and discovery
+adds companies in batches, so the totals this rule watches move for reasons that have
+nothing to do with any board. Compute the ±25% against the intersection of companies
+polled successfully in both runs, and report companies added or dropped as a separate
+number. Otherwise the check fires on a discovery batch, or — worse, and the reason this
+is here rather than in `BUILD.md` — a genuine 25% collapse hides behind a pool that grew
+by 30% the same week, during the exact unattended window this section exists for.
 
 **Readable run summary as the final output of every run.** GitHub's failure email is a
 fixed template linking to the run log, so the last twenty lines must answer "what's
