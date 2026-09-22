@@ -1,0 +1,366 @@
+[
+  {
+    "investor": "Just Climate",
+    "website": "https://www.justclimate.com/",
+    "jobs_url": "https://www.justclimate.com/careers/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Katapult VC",
+    "website": "https://katapult.vc/",
+    "jobs_url": "https://katapult.vc/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "KdT Ventures",
+    "website": "https://www.kdtvc.com",
+    "jobs_url": "https://jobs.kdtvc.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Keiki Capital",
+    "website": "https://keikicapital.com",
+    "jobs_url": "https://keikicapital.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Keyframe Capital Partners",
+    "website": "https://www.keyframecapital.com/",
+    "result": "homepage fetch failed (429)"
+  },
+  {
+    "investor": "Khosla Ventures",
+    "website": "http://www.khoslaventures.com",
+    "jobs_url": "http://jobs.khoslaventures.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Kiko Ventures",
+    "website": "https://kiko.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Kinnevik",
+    "website": "http://www.kinnevik.com",
+    "jobs_url": "http://www.kinnevik.com/working-at-kinnevik/career/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Kleiner Perkins",
+    "website": "https://www.kleinerperkins.com/",
+    "jobs_url": "https://jobs.kleinerperkins.com",
+    "how_found": "path/subdomain guess",
+    "platform": "consider"
+  },
+  {
+    "investor": "KOMPAS",
+    "website": "http://www.kompas.vc/",
+    "jobs_url": "http://www.kompas.vc/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Kopa Ventures",
+    "website": "https://www.kopa.vc/",
+    "result": "homepage fetch failed (429)"
+  },
+  {
+    "investor": "Korys",
+    "website": "http://www.korys.be/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Leap Forward Ventures",
+    "website": "https://leapforward.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "LeapFrog Investments",
+    "website": "https://leapfroginvest.com/",
+    "jobs_url": "https://leapfroginvest.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Leaps by Bayer",
+    "website": "https://leaps.bayer.com/",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "Lightrock",
+    "website": "https://www.lightrock.com",
+    "jobs_url": "https://www.lightrock.com/careers/",
+    "how_found": "homepage link",
+    "platform": "consider"
+  },
+  {
+    "investor": "Link Capital",
+    "website": "https://www.linkcapital.no/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Longrun Capital",
+    "website": "https://www.longruncapital.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Lowercarbon Capital",
+    "website": "https://lowercarbon.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "M12 - Microsoft's Venture Fund",
+    "website": "https://m12.vc/",
+    "jobs_url": "https://m12.vc/careers",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "MacKinnon, Bennett & Co. (MKB)",
+    "website": "http://mkbandco.com/",
+    "jobs_url": "https://www.mkbandco.com/careers/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Maersk Growth",
+    "website": "https://www.maersk.com/growth",
+    "jobs_url": "https://careers.maersk.com",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Main Sequence Ventures",
+    "website": "https://www.mseq.vc/",
+    "jobs_url": "https://jobs.mseq.vc",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Maniv Mobility",
+    "website": "https://www.maniv.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "MassMutual Ventures",
+    "website": "https://massmutualventures.com/",
+    "jobs_url": "https://jobs.massmutualventures.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Material Impact",
+    "website": "https://materialimpact.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "MCJ Collective",
+    "website": "https://www.mcjcollective.com/capital",
+    "jobs_url": "https://jobs.mcj.vc/jobs",
+    "how_found": "homepage link",
+    "platform": "consider"
+  },
+  {
+    "investor": "Micelio Fund",
+    "website": "https://micelio.com/micelio-funds/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Modern Energy",
+    "website": "https://modern.energy/",
+    "jobs_url": "https://modern.energy/index.php/careers",
+    "how_found": "homepage link",
+    "platform": "lever (direct)"
+  },
+  {
+    "investor": "Moxxie Ventures",
+    "website": "https://www.moxxie.vc/",
+    "jobs_url": "https://careers.moxxie.vc",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Munich Venture Partners",
+    "website": "http://www.munichvp.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "MUUS Climate Partners",
+    "website": "https://www.muus.com/",
+    "jobs_url": "https://jobs.muus.com",
+    "how_found": "path/subdomain guess",
+    "platform": "consider"
+  },
+  {
+    "investor": "National Grid Partners",
+    "website": "https://ngpartners.com/",
+    "jobs_url": "https://ngpartners.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "next.js, unconfirmed vendor"
+  },
+  {
+    "investor": "New Enterprise Associates (NEA)",
+    "website": "http://www.nea.com",
+    "jobs_url": "http://careers.nea.com",
+    "how_found": "path/subdomain guess",
+    "platform": "consider"
+  },
+  {
+    "investor": "New System Ventures",
+    "website": "https://www.newsystemventures.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Next47",
+    "website": "https://next47.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "NGIF Capital",
+    "website": "https://www.ngif.ca/ngif-capital/",
+    "jobs_url": "https://www.ngif.ca/careers/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "NGP Energy Capital Management",
+    "website": "https://ngpenergycapital.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "noa",
+    "website": "https://www.noavc.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Nomadic Venture Partners",
+    "website": "https://www.nomadicvp.com/",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "NordicNinja",
+    "website": "https://nordicninja.vc/",
+    "jobs_url": "https://nordicninja.com/careers/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Nor'Easter Ventures",
+    "website": "https://www.noreaster.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Norrsken VC",
+    "website": "https://www.norrsken.vc/",
+    "jobs_url": "https://careers.norrsken.vc",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Nucleus Capital",
+    "website": "http://www.nucleus-capital.com/",
+    "jobs_url": "https://careers.nucleus-capital.com/jobs",
+    "how_found": "homepage link",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Nysn\u00f8",
+    "website": "https://www.nysnoinvest.no/en/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Obvious Ventures",
+    "website": "http://www.obvious.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Octopus Ventures",
+    "website": "http://www.octopusventures.com",
+    "jobs_url": "https://octopusgroup.com/careers/listings/?search=&#038;department=octopus-ventures",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Omnivore",
+    "website": "http://omnivore.vc/",
+    "jobs_url": "http://jobs.omnivore.vc",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Orbia Ventures",
+    "website": "https://www.orbia.com/ventures/",
+    "jobs_url": "https://careers.orbia.com",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Orion Industrial Ventures",
+    "website": "https://oiv.orionrp.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Orion Infrastructure Capital",
+    "website": "https://oic.com/",
+    "jobs_url": "https://oic.com/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Overture VC",
+    "website": "https://www.overture.vc/",
+    "jobs_url": "https://www.overture.vc/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Overview",
+    "website": "https://www.overview.earth",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Oxy Low Carbon Ventures",
+    "website": "https://www.oxylowcarbon.com/",
+    "jobs_url": "https://www.oxylowcarbon.com/careers/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Pale Blue Dot",
+    "website": "https://www.paleblue.vc/",
+    "result": "homepage fetch failed (429)"
+  },
+  {
+    "investor": "Partech",
+    "website": "https://partechpartners.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Peak Sustainability Ventures",
+    "website": "https://www.peakventures.in/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Picus Capital",
+    "website": "https://www.picuscap.com",
+    "jobs_url": "https://jobs.picuscap.com",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Piva Capital",
+    "website": "http://www.piva.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Planeteer Capital",
+    "website": "https://planeteercapital.com/",
+    "result": "no jobs page found (link or guess)"
+  }
+]

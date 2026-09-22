@@ -34,7 +34,7 @@ PORTFOLIO_HREF_PATTERN = re.compile(
     r'href="([^"?#]*/(?:portfolio|our-portfolio|companies|our-companies|portfolio-companies)(?:/[^"?#]*)?(?:\?[^"]*)?)"',
     re.I,
 )
-ASSET_EXTENSIONS = (".css", ".js", ".png", ".jpg", ".jpeg", ".svg", ".ico", ".webp", ".woff", ".woff2", ".pdf")
+ASSET_EXTENSIONS = (".css", ".js", ".png", ".jpg", ".jpeg", ".svg", ".ico", ".webp", ".woff", ".woff2", ".pdf", ".webmanifest", ".json", ".xml")
 
 FALLBACK_PATHS = ["/portfolio", "/our-portfolio", "/companies", "/our-companies", "/portfolio-companies"]
 
@@ -59,6 +59,32 @@ JUNK_DOMAIN_SUBSTRINGS = (
     # portfolio companies. Found on Azolla Ventures (fundpanel.io) and Axon
     # Partners Group (efrontcloud.com).
     "fundpanel.io", "efrontcloud.com", "dynamosoftware.com",
+    # Press-mention / "as seen in" logos on company detail pages, and
+    # analytics/tracking domains that leak through as <a href> (not just the
+    # <link preconnect> case already fixed above). Found at scale on
+    # Lowercarbon Capital, DCVC, Congruent Ventures, Cerulean Ventures once
+    # the second-hop detail-page crawl started visiting real company pages -
+    # these are citations, not portfolio companies.
+    "techcrunch.com", "cnbc.com", "reuters.com", "bloomberg.com", "wsj.com",
+    "forbes.com", "nytimes.com", "washingtonpost.com", "cnn.com",
+    "theguardian.com", "businesswire.com", "prnewswire.com",
+    "globenewswire.com", "businessinsider.com", "fiercebiotech.com",
+    "newyorker.com", "axios.com", "finance.yahoo.com",
+    "eu-startups.com", "cphi-online.com", "mckinsey.com", "about.bnef.com",
+    "carbonbrief.org", "climate.gov", "news.mit.edu",
+    # NOT bare "ft.com" - that substring also matches microsoft.com,
+    # shift.com, lyft.com, treeswift.com, salesloft.com, triplelift.com, etc.
+    # Real bug: wiped out real portfolio companies on the first pass. Use the
+    # exact Financial Times subdomain instead.
+    "markets.ft.com", "bridgeportft.com",
+    # Government/regulator citations from legal/compliance footer text, not
+    # companies. Found on Equinor Ventures, Future Energy Ventures,
+    # Transition Ventures.
+    "sec.gov", "bafin.de", "ico.org.uk", "whitehouse.gov",
+    "js-eu1.hs-analytics.net", "hs-analytics.net", "usemessages.com",
+    "hsadspixel.net", "hs-banner.com", "hscollectedforms.net",
+    "hsforms.net", "hs-scripts.com", "doubleclick.net",
+    "airtable.com", "heraldnet.com", "zoom.us",
 )
 
 
@@ -104,7 +130,11 @@ def fallback_candidates(website: str) -> list[str]:
     return [f"{scheme}://{root}{path}" for path in FALLBACK_PATHS]
 
 
-ALL_HREF_PATTERN = re.compile(r'href="([^"#]+)"', re.I)
+# Only <a ...href="...">, not <link>/<area> - a <link rel="preconnect" href=...>
+# performance hint pointed at analytics domains (js-eu1.hs-analytics.net,
+# matomo.*, etc.) was matching the old href="..." pattern and getting counted
+# as an "outbound company" on Verve Ventures. Real bug, found at scale.
+ALL_HREF_PATTERN = re.compile(r'<a\s[^>]*href="([^"#]*)"', re.I)
 
 
 def extract_outbound_domains(page_url: str, html: str, own_root: str) -> list[str]:
@@ -112,7 +142,15 @@ def extract_outbound_domains(page_url: str, html: str, own_root: str) -> list[st
     domains = []
     seen = set()
     for href in hrefs:
-        if href.startswith(("mailto:", "tel:", "javascript:", "#")):
+        href = href.strip()
+        if not href or href.startswith(("mailto:", "tel:", "javascript:", "#")):
+            continue
+        # A handful of sites leak un-rendered JS template code as a raw href
+        # value (client-side string concatenation, e.g. ".../portfolio/' +
+        # text + '") - confirms the page is genuinely client-rendered rather
+        # than something worth following. Found on gener8tor, Link Capital,
+        # Version One Ventures.
+        if any(c in href for c in ("'", '"', "+", "(", ")")):
             continue
         if href.lower().split("?")[0].endswith(ASSET_EXTENSIONS):
             continue

@@ -1,0 +1,358 @@
+[
+  {
+    "investor": "Planet First Partners",
+    "website": "http://www.planetfirst.partners/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Playground Global",
+    "website": "https://playground.vc/",
+    "jobs_url": "https://careers.playground.global/jobs",
+    "how_found": "homepage link",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Plug and Play Ventures",
+    "website": "https://www.plugandplaytechcenter.com",
+    "jobs_url": "https://plugandplaytechcenter.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Ponderosa Ventures",
+    "website": "https://www.ponderosavc.com/",
+    "jobs_url": "https://ponderosavc.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Porsche Ventures",
+    "website": "https://www.porsche.ventures",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Powerhouse Ventures",
+    "website": "https://powerhouse.fund/ventures",
+    "jobs_url": "https://powerhouse.fund/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Power Sustainable",
+    "website": "https://powersustainable.com/en/",
+    "jobs_url": "https://powersustainable.com/careers",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Prelude Ventures",
+    "website": "http://www.preludeventures.com",
+    "jobs_url": "http://jobs.preludeventures.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Presidio Ventures",
+    "website": "http://www.presidio-ventures.com",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "Prime Impact Fund",
+    "website": "https://www.primeimpactfund.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Prime Movers Lab",
+    "website": "http://www.primemoverslab.com/",
+    "jobs_url": "http://www.primemoverslab.com/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Princeville Capital",
+    "website": "https://www.princeville-capital.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Propeller",
+    "website": "https://www.propellervc.com/",
+    "result": "homepage fetch failed (404)"
+  },
+  {
+    "investor": "Pulse Fund",
+    "website": "https://www.pulsefund.com",
+    "jobs_url": "https://careers.pulsefund.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Quantum Energy Partners",
+    "website": "http://quantumep.com",
+    "jobs_url": "http://quantumep.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Quantum Innovation Fund",
+    "website": "https://www.qif.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "RA Capital Management",
+    "website": "https://www.racap.com/planetary-health",
+    "jobs_url": "https://www.racap.com/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Refactor Capital",
+    "website": "http://www.refactor.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Regeneration.vc",
+    "website": "https://www.regeneration.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "ReGen Ventures",
+    "website": "https://www.regen.vc/",
+    "jobs_url": "https://jobs.regen.vc",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Revent",
+    "website": "https://www.revent.vc/",
+    "jobs_url": "https://www.linkedin.com/company/revent-vc/jobs",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Rhapsody Venture Partners",
+    "website": "https://rhapsodyvp.com/",
+    "jobs_url": "https://rhapsodyvp.com/jobs",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Riverstone Ventures",
+    "website": "https://www.riverstone.ventures/",
+    "jobs_url": "https://riverstone.ventures/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Rubio Impact Ventures",
+    "website": "https://www.rubio.vc",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "S2G Investments",
+    "website": "https://www.s2ginvestments.com/",
+    "jobs_url": "https://www.s2ginvestments.com/team/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Safar Partners",
+    "website": "https://safar.partners/",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "Sandbox Industries",
+    "website": "https://sandboxindustries.com",
+    "jobs_url": "https://jobs.sandboxindustries.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Sandwater",
+    "website": "https://sandwater.com/",
+    "jobs_url": "https://sandwater.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Satgana",
+    "website": "https://www.satgana.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Savia Ventures",
+    "website": "https://saviaventures.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Seaya Andromeda",
+    "website": "https://seaya.vc/seaya-andromeda/",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "SE Ventures",
+    "website": "https://www.seventures.com/home.jsp",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "Shell Ventures",
+    "website": "https://www.shell.com/energy-and-innovation/new-energies/shell-ventures.html",
+    "jobs_url": "https://jobs.shell.com",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "SHIFT Invest",
+    "website": "https://www.shiftinvest.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Shorewind Capital",
+    "website": "https://www.shorewindcapital.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Silence VC",
+    "website": "https://silencevc.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "SJF Ventures",
+    "website": "http://www.sjfventures.com",
+    "jobs_url": "http://jobs.sjfventures.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Skyview Ventures",
+    "website": "https://skyviewventures.com/",
+    "jobs_url": "https://jobs.skyviewventures.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Social Impact Capital",
+    "website": "http://social-impact-capital.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Softbank Vision Fund",
+    "website": "https://visionfund.com/",
+    "jobs_url": "https://careers.visionfund.com",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "SOSV",
+    "website": "https://sosv.com/",
+    "jobs_url": "https://techjobs.sosv.com/jobs",
+    "how_found": "homepage link",
+    "platform": "consider"
+  },
+  {
+    "investor": "Speedinvest",
+    "website": "http://speedinvest.com",
+    "jobs_url": "https://careers.speedinvest.com/jobs",
+    "how_found": "homepage link",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Spero Ventures",
+    "website": "https://spero.vc/",
+    "jobs_url": "https://spero.vc/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Spring Lane Capital",
+    "website": "https://www.springlanecapital.com",
+    "jobs_url": "https://www.springlanecapital.com/careers/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Starlight Ventures",
+    "website": "http://www.starlight.vc",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "Starshot Capital",
+    "website": "https://starshotcapital.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Statkraft Ventures",
+    "website": "http://www.statkraftventures.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Stray Dog Capital",
+    "website": "https://straydogcapital.com/",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "Susquehanna Sustainable Investments (SSI)",
+    "website": "https://www.sig-ssi.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Sustainable Development Capital",
+    "website": "https://www.sdclgroup.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Sustainable Future Ventures",
+    "website": "https://www.sfv.vc",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Syensqo Ventures",
+    "website": "https://www.solvay.com/en/innovation/solvay-ventures",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "Syngenta Ventures",
+    "website": "https://www.syngentagroupventures.com/",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "SYSTEMIQ",
+    "website": "https://www.systemiq.earth/",
+    "jobs_url": "https://www.systemiq.earth/careers/",
+    "how_found": "homepage link",
+    "platform": "greenhouse (direct)"
+  },
+  {
+    "investor": "Talis Capital",
+    "website": "http://www.taliscapital.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Tao Capital Partners",
+    "website": "http://www.taocap.com",
+    "result": "homepage fetch failed (401)"
+  },
+  {
+    "investor": "TDK Ventures",
+    "website": "http://www.tdk-ventures.com/",
+    "jobs_url": "https://tdk-ventures.com/careers/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Techstars",
+    "website": "https://www.techstars.com",
+    "jobs_url": "https://www.techstars.com/careers",
+    "how_found": "homepage link",
+    "platform": "greenhouse (direct)"
+  },
+  {
+    "investor": "Tekfen Ventures",
+    "website": "http://tekfenventures.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "TELUS Pollinator Fund for Good",
+    "website": "https://www.telus.com/en/pollinatorfund",
+    "result": "homepage fetch failed (403)"
+  }
+]

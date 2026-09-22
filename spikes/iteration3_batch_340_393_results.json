@@ -1,0 +1,317 @@
+[
+  {
+    "investor": "Temasek",
+    "website": "http://www.temasek.com.sg/",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "Tenacious Ventures",
+    "website": "https://tenacious.ventures/",
+    "jobs_url": "https://tenacious.ventures/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Terra Venture Partners",
+    "website": "https://www.terravp.com/",
+    "jobs_url": "https://terravp.com/careers",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "The Westly Group",
+    "website": "http://www.westlygroup.com/",
+    "jobs_url": "http://jobs.westlygroup.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "The Yield Lab",
+    "website": "https://www.theyieldlab.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Thin Line Capital",
+    "website": "https://www.thinlinecapital.com/",
+    "result": "homepage fetch failed (429)"
+  },
+  {
+    "investor": "Third Sphere",
+    "website": "https://thirdsphere.com",
+    "jobs_url": "https://jobs.thirdsphere.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Tin Shed Ventures",
+    "website": "http://www.tinshedventures.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "TO VC",
+    "website": "http://to.vc/",
+    "jobs_url": "http://to.vc/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Toyota Ventures",
+    "website": "https://toyota.ventures",
+    "jobs_url": "https://jobs.toyota.ventures",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "TPG Rise Climate",
+    "website": "https://www.tpg.com/platforms/impact/rise-climate",
+    "jobs_url": "https://www.tpg.com/careers",
+    "how_found": "homepage link",
+    "platform": "greenhouse (direct)"
+  },
+  {
+    "investor": "Trailhead Capital",
+    "website": "https://trailheadcap.com/",
+    "jobs_url": "https://trailheadcap.getro.com/jobs",
+    "how_found": "homepage link",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Transition Venture Capital",
+    "website": "https://transitionventurecapital.com/",
+    "jobs_url": "https://transitionventurecapital.com/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Transition Ventures",
+    "website": "https://transition.vc",
+    "jobs_url": "https://jobs.transition.vc/jobs",
+    "how_found": "homepage link",
+    "platform": "consider"
+  },
+  {
+    "investor": "TreeArc Investment Group",
+    "website": "https://treearcgroup.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "TRIREC",
+    "website": "http://www.trirec.co/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "T. Rowe Price",
+    "website": "http://www.troweprice.com",
+    "jobs_url": "http://www.troweprice.com/en/us/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Trucks Venture Capital",
+    "website": "http://trucks.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "True Ventures",
+    "website": "http://www.trueventures.com",
+    "jobs_url": "http://jobs.trueventures.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Twynam",
+    "website": "https://www.twynam.com/vc",
+    "jobs_url": "https://twynam.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "\u00dcbermorgen Ventures",
+    "website": "https://www.uebermorgen.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Ultra Capital",
+    "website": "http://ultracapital.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Undivided VC",
+    "website": "https://www.undivided.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Union Labs Ventures",
+    "website": "http://unionlabs.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Union Square Ventures",
+    "website": "http://www.usv.com",
+    "jobs_url": "http://jobs.usv.com",
+    "how_found": "path/subdomain guess",
+    "platform": "consider"
+  },
+  {
+    "investor": "Unovis",
+    "website": "https://unovis.vc/",
+    "jobs_url": "https://unovis.vc/careers/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Unruly Capital",
+    "website": "https://www.unrulycap.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "UP.Partners",
+    "website": "https://up.partners/",
+    "jobs_url": "https://careers.up.partners/jobs",
+    "how_found": "homepage link",
+    "platform": "consider"
+  },
+  {
+    "investor": "UVC Partners",
+    "website": "https://www.uvcpartners.com/",
+    "jobs_url": "https://uvcpartners.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Vale Ventures",
+    "website": "https://vale.com/vale-ventures",
+    "jobs_url": "https://vale.com/careers",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Valor Equity Partners",
+    "website": "http://www.valorep.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Valo Ventures",
+    "website": "https://valoventures.org",
+    "jobs_url": "https://valoventures.getro.com/jobs",
+    "how_found": "homepage link",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Verdane",
+    "website": "https://verdane.com",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "Version One Ventures",
+    "website": "http://versionone.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Verve Ventures",
+    "website": "https://www.verve.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Virescent Ventures",
+    "website": "https://www.virescent.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Vision Ridge Partners",
+    "website": "https://vision-ridge.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "VisVires New Protein",
+    "website": "http://visviresnewprotein.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Vitamin C",
+    "website": "https://www.vitaminc.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Volkswagen Group",
+    "website": "https://www.volkswagenag.com/",
+    "result": "homepage fetch failed (0)"
+  },
+  {
+    "investor": "VoLo Earth Ventures",
+    "website": "https://www.voloearth.com/",
+    "jobs_url": "https://www.voloearth.com/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Volta Energy Technologies",
+    "website": "https://volta.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "VOX Capital",
+    "website": "https://voxcapital.com.br/en/homepage/",
+    "result": "homepage fetch failed (404)"
+  },
+  {
+    "investor": "Voyager Ventures",
+    "website": "https://www.voyagervc.com/",
+    "jobs_url": "https://careers.voyagervc.com/jobs",
+    "how_found": "homepage link",
+    "platform": "consider"
+  },
+  {
+    "investor": "WAVE Equity Partners",
+    "website": "https://waveep.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Wellington Management",
+    "website": "http://wellington.com",
+    "jobs_url": "http://wellington.com/en/about-us/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Wireframe Ventures",
+    "website": "http://www.wireframevc.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Wi Venture",
+    "website": "https://wiventure.de/",
+    "result": "homepage fetch failed (0)"
+  },
+  {
+    "investor": "World Fund",
+    "website": "https://www.worldfund.vc/",
+    "jobs_url": "https://www.worldfund.vc/career",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Y Combinator",
+    "website": "http://www.ycombinator.com",
+    "jobs_url": "http://www.ycombinator.com/jobs",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Zacua Ventures",
+    "website": "https://zacuaventures.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Zero Carbon Capital",
+    "website": "https://www.zerocarbon.vc",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Zouk Capital",
+    "website": "http://www.zouk.com",
+    "jobs_url": "http://www.zouk.com/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  }
+]
