@@ -250,6 +250,10 @@ COMP_KEYWORD_RE = re.compile(
     r"compensat|salary|salaries|pay range|pay rate|base pay|hourly|per hour|"
     r"annualized|wage", re.I)
 TAG_RE = re.compile(r"<[^>]+>")
+SPLIT_RE = re.compile("[\\n\u2022]+")
+CURRENCY_NOISE_RE = re.compile(
+    r"(?i)\b(usd|cad|eur|gbp|aud|per|hour|hourly|hr|year|yr|annual|annually|"
+    r"month|monthly|mo|week|weekly|to|and|or|up|base|k)\b")
 BLOCK_TAG_RE = re.compile(
     r"(?i)<\s*(?:br|/p|/div|/li|/ul|/ol|/tr|/h[1-6]|/blockquote)[^>]*>")
 WS_RE = re.compile(r"[ \t ]+")
@@ -272,6 +276,15 @@ def strip_html(text):
     return html.unescape(t)
 
 
+def is_standalone_money(line):
+    """True when the line carries a money amount and essentially nothing
+    else - e.g. "$120,000 - $170,000 USD"."""
+    if len(line) > 80:
+        return False
+    residue = CURRENCY_NOISE_RE.sub("", MONEY_RE.sub("", line))
+    return len(re.sub(r"[^A-Za-z0-9]", "", residue)) <= 3
+
+
 def extract_comp_snippets(*texts):
     """Return short windows around any dollar amount. Raw text, windowed,
     capped and deduped; no interpretation of the numbers."""
@@ -281,13 +294,27 @@ def extract_comp_snippets(*texts):
         if not text:
             continue
         flat = strip_html(text).replace("\r", "\n")
-        for chunk in re.split(r"[\n•]+", flat):
+        offset = 0
+        for chunk in re.split(r"([\n•]+)", flat):
+            if not chunk:
+                continue
+            chunk_start = offset
+            offset += len(chunk)
+            if SPLIT_RE.fullmatch(chunk):
+                continue
             line = WS_RE.sub(" ", chunk).strip()
             if not line:
                 continue
             match = MONEY_RE.search(line)
             if not match:
                 continue
+            # Proximity is judged against the surrounding text, not this one
+            # line. Greenhouse renders its pay-range block with the amount on
+            # its own line, so the "Salary Range" label lands in the PREVIOUS
+            # line and a line-local keyword test rejects a real range. Bounded
+            # window, so a keyword elsewhere in a long description still
+            # cannot vote.
+            context = flat[max(0, chunk_start - 220):chunk_start + len(chunk) + 80]
             # Window around the money mention rather than the head of the
             # chunk, so a long unsplit block cannot smuggle the description
             # body into the output.
@@ -303,7 +330,11 @@ def extract_comp_snippets(*texts):
             snippets.append({
                 "snippet": window,
                 "money_mentions": len(MONEY_RE.findall(window)),
-                "near_comp_keyword": bool(COMP_KEYWORD_RE.search(window)),
+                "near_comp_keyword": bool(COMP_KEYWORD_RE.search(context)),
+                # A line that is nothing but a money range and a currency is
+                # a pay-range field on its own evidence - it is what
+                # Greenhouse's structured range block renders as.
+                "standalone_money_line": is_standalone_money(line),
             })
             if len(snippets) >= SNIPPET_MAX_COUNT:
                 return snippets
@@ -315,7 +346,8 @@ def attach_description_comp(posting, *texts):
     posting["comp_description_snippets"] = snippets or None
     posting["comp_in_description"] = bool(snippets)
     posting["comp_in_description_confident"] = any(
-        s["near_comp_keyword"] and s["money_mentions"] >= 1 for s in snippets)
+        (s["near_comp_keyword"] or s["standalone_money_line"])
+        and s["money_mentions"] >= 1 for s in snippets)
 
 
 # --------------------------------------------------------------------------
