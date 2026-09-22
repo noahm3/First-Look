@@ -343,12 +343,45 @@ def classify_and_map(domain: str, website: str) -> dict:
         result["careers_page_url"] = careers["url"] or ""
         result["ats_provider"] = careers_provider
         result["ats_token"] = token
+
+        # A token scraped off a careers page is NOT self-validating, even
+        # though the page is the company's own. It can name a board that has
+        # since been renamed or closed, embed a third-party widget carrying
+        # somebody else's token, or hand the regex a wrong substring.
+        #
+        # Measured 2026-09-22 by iteration 7, which fetched all 584 mapped
+        # boards: **all 30 dead tokens came from this stage and zero from
+        # stage 1** - a perfectly clean split, because stage 1 has always
+        # called the provider and this branch never did. ~5% of the mapped
+        # set was pointing at boards that do not exist, at "verified".
+        # SPEC.md 3.8: an unmapped company is a known gap, a wrongly-mapped
+        # one is invisible bad data nobody catches for two months.
+        api_result = PROVIDER_CHECKS[careers_provider](token)
+        if api_result is None:
+            result["mapping_failure_reason"] = "weak_only"
+            result["mapping_method"] = "careers_page_regex"
+            result["notes"] = (
+                f"careers page names token {token!r} on {careers_provider}, "
+                f"but that board does not resolve"
+            )
+            return result
+
         if not needs_verified:
-            # The company's own careers page naming its own ATS token is
-            # itself the independent-source bar SPEC.md 8.2 sets for
-            # "verified" - no further corroboration needed here.
+            # The company's own careers page naming its own ATS token, AND
+            # that board resolving live, are the two independent sources
+            # SPEC.md 8.2 asks for. The second half of that was missing until
+            # 2026-09-22; the page alone was being treated as sufficient.
             result["mapping_confidence"] = "verified"
             result["mapping_method"] = "careers_page_regex"
+            if careers_provider == "greenhouse" and not fuzzy_name_match(
+                    label, api_result.get("name")):
+                # Not disqualifying - a rebrand that kept the old slug is
+                # real and correct (voltacharging.com -> lever "joltcharge").
+                # Recorded so the review pass can eyeball it.
+                result["notes"] = (
+                    f"board resolves but its name "
+                    f"{api_result.get('name')!r} does not match {label!r}"
+                )
         else:
             result["mapping_failure_reason"] = "weak_only"
             result["mapping_method"] = "careers_page_regex"
