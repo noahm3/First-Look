@@ -1,0 +1,352 @@
+[
+  {
+    "investor": "Climactic VC",
+    "website": "https://www.climactic.vc/",
+    "jobs_url": "https://jobs.climactic.vc/jobs",
+    "how_found": "homepage link",
+    "platform": "consider"
+  },
+  {
+    "investor": "Climate Adaptive Infrastructure",
+    "website": "https://www.climateadaptiveinfra.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Climate Capital",
+    "website": "http://climatecapital.co/",
+    "jobs_url": "http://climatecapital.co/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Climate Innovation Capital",
+    "website": "https://climateic.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Climate Investment (OGCI)",
+    "website": "https://www.climateinvestment.com",
+    "jobs_url": "https://jobs.climateinvestment.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Climate VC",
+    "website": "https://www.climate.vc/",
+    "result": "homepage fetch failed (404)"
+  },
+  {
+    "investor": "Climentum Capital",
+    "website": "https://www.climentum.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Closed Loop Partners",
+    "website": "http://www.closedlooppartners.com/",
+    "jobs_url": "https://www.closedlooppartners.com/about-us/careers/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Coatue",
+    "website": "http://coatue.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Collaborative Fund",
+    "website": "http://www.collaborativefund.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Congruent Ventures",
+    "website": "http://www.congruentvc.com",
+    "jobs_url": "https://jobs.congruentvc.com/jobs",
+    "how_found": "homepage link",
+    "platform": "consider"
+  },
+  {
+    "investor": "Constellation Technology Ventures",
+    "website": "http://technologyventures.constellation.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Continental Grain Company",
+    "website": "https://continentalgrain.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Convective Capital",
+    "website": "https://www.convectivecapital.com/",
+    "jobs_url": "https://jobs.convectivecapital.com/jobs",
+    "how_found": "homepage link",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Copec WIND Ventures",
+    "website": "https://www.windventures.vc",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Counteract",
+    "website": "https://counteract.vc",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Creative Ventures",
+    "website": "http://www.creativeventures.vc",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Cycle Capital",
+    "website": "http://www.cyclecapital.com",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "Day One Ventures",
+    "website": "http://dayoneventures.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "DBL Partners",
+    "website": "http://www.dblinvestors.com",
+    "jobs_url": "http://dblinvestors.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "DCVC",
+    "website": "http://www.dcvc.com",
+    "jobs_url": "https://www.dcvc.com/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Decarbonization Partners",
+    "website": "https://www.decarbpartners.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Doral Energy-Tech Ventures",
+    "website": "https://doral-tech.com",
+    "jobs_url": "https://doral-energy.com/en/career/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Drawdown Fund",
+    "website": "https://www.drawdownfund.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "E12 Ventures",
+    "website": "https://www.e12.ventures/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Earthshot Ventures",
+    "website": "https://www.earthshot.vc",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Earth Venture Capital",
+    "website": "https://www.earth.vc/",
+    "result": "homepage fetch failed (429)"
+  },
+  {
+    "investor": "eCAPITAL ENTREPRENEURIAL PARTNERS",
+    "website": "https://ecapital.vc",
+    "jobs_url": "https://ecapital.vc/jobs/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Ecosystem Integrity Fund",
+    "website": "https://eif.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "EDP Ventures",
+    "website": "https://www.edp.com/en/innovation/edp-ventures#portfolio",
+    "jobs_url": "https://www.edp.com/en/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Eka Ventures",
+    "website": "https://ekavc.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Elbow Beach Capital",
+    "website": "https://elbowbeachcapital.com/",
+    "result": "homepage fetch failed (0)"
+  },
+  {
+    "investor": "Elemental Impact",
+    "website": "http://elementalexcelerator.com/",
+    "jobs_url": "https://elementalimpact.com/jobs/",
+    "how_found": "homepage link",
+    "platform": "greenhouse (direct)"
+  },
+  {
+    "investor": "Ember Infrastructure",
+    "website": "https://ember-infra.com/",
+    "jobs_url": "https://ember-infra.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Emerald Technology Ventures",
+    "website": "https://emerald.vc",
+    "jobs_url": "https://emerald.vc/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Emerson Collective",
+    "website": "http://emersoncollective.com",
+    "jobs_url": "http://emersoncollective.com/careers",
+    "how_found": "path/subdomain guess",
+    "platform": "next.js, unconfirmed vendor"
+  },
+  {
+    "investor": "Eneco Ventures",
+    "website": "https://www.eneco.com/what-we-do/ventures/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Energize Capital",
+    "website": "https://www.energizecap.com/",
+    "jobs_url": "https://jobs.energizecap.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Energy Foundry",
+    "website": "http://www.energyfoundry.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Energy Impact Partners",
+    "website": "http://energyimpactpartners.com",
+    "jobs_url": "http://jobs.energyimpactpartners.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Energy Innovation Capital",
+    "website": "http://energyinnovationcapital.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Energy Revolution Ventures",
+    "website": "https://er-v.io/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Energy Transition Ventures",
+    "website": "https://energytransitionventures.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "ENGIE New Ventures",
+    "website": "http://www.engieventures.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Engine Ventures",
+    "website": "https://engineventures.com/",
+    "jobs_url": "https://engine.xyz/careers",
+    "how_found": "homepage link",
+    "platform": "greenhouse (direct)"
+  },
+  {
+    "investor": "Eni Next",
+    "website": "https://www.eni.com/en_IT/home.page",
+    "jobs_url": "https://www.eni.com/en-IT/careers/recruitment-process.html",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Envisioning Partners",
+    "website": "https://envisioning.partners/",
+    "jobs_url": "https://envisioning.partners/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "EQT Ventures",
+    "website": "https://eqtventures.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Equal Ventures",
+    "website": "https://www.equal.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Equator",
+    "website": "https://equator.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Equinor Ventures",
+    "website": "https://www.equinor.com/energy/ventures",
+    "jobs_url": "https://www.equinor.com/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "ETF Partners",
+    "website": "http://www.etfpartners.capital/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "European Circular Bioeconomy Fund (ECBF)",
+    "website": "https://www.ecbf.vc",
+    "jobs_url": "https://ecbf.vc/careers/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Evergreen Climate Innovations",
+    "website": "https://evergreeninno.org/",
+    "jobs_url": "https://evergreeninno.org/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Evergy Ventures",
+    "website": "http://www.evergyventures.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Ev\u014dk Innovations (Evok Innovations)",
+    "website": "http://www.evokinnovations.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Fall Line Capital",
+    "website": "http://fall-line-capital.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Fifth Wall",
+    "website": "http://fifthwall.com/",
+    "jobs_url": "http://fifthwall.com/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Fifty Years",
+    "website": "http://fiftyyears.com/",
+    "jobs_url": "https://jobs.fiftyyears.com/jobs",
+    "how_found": "homepage link",
+    "platform": "consider"
+  },
+  {
+    "investor": "Fine Structure Ventures",
+    "website": "https://finestructure.vc/",
+    "result": "no jobs page found (link or guess)"
+  }
+]

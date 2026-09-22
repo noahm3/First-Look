@@ -1,0 +1,368 @@
+[
+  {
+    "investor": "First Imagine! Ventures",
+    "website": "http://www.firstimagine.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Firstminute Capital",
+    "website": "https://firstminute.capital/",
+    "jobs_url": "https://jobs.firstminute.capital/jobs",
+    "how_found": "homepage link",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "First Star Ventures",
+    "website": "http://www.firststar.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Fontinalis Partners",
+    "website": "http://fontinalis.com",
+    "jobs_url": "http://fontinalis.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "FootPrint Coalition",
+    "website": "https://www.footprintcoalition.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "FTW Ventures",
+    "website": "http://www.ftw.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "FullCycle Climate Partners",
+    "website": "https://www.fullcycle.com/",
+    "result": "homepage fetch failed (0)"
+  },
+  {
+    "investor": "Future Energy Ventures",
+    "website": "https://fev.vc",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Futureland Ventures",
+    "website": "https://www.futurelandventures.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Future Positive Capital",
+    "website": "http://www.futurepositivecapital.com",
+    "jobs_url": "http://futurepositivecapital.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Future Ventures",
+    "website": "https://future.ventures/",
+    "jobs_url": "https://jobs.future.ventures",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "G2 Venture Partners (G2VP)",
+    "website": "https://www.g2vp.com/",
+    "jobs_url": "https://jobs.g2vp.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Galway Sustainable Capital",
+    "website": "https://galwaysustainable.com/",
+    "jobs_url": "https://galwaysustainable.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "GEF Capital",
+    "website": "https://gefcapital.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "gener8tor",
+    "website": "http://www.gener8tor.com",
+    "jobs_url": "http://www.gener8tor.com/careers",
+    "how_found": "homepage link",
+    "platform": "greenhouse (direct)"
+  },
+  {
+    "investor": "General Atlantic BeyondNetZero",
+    "website": "https://beyond-net-zero.com/",
+    "jobs_url": "https://www.generalatlantic.com/careers/",
+    "how_found": "homepage link",
+    "platform": "greenhouse (direct)"
+  },
+  {
+    "investor": "General Catalyst",
+    "website": "http://www.generalcatalyst.com",
+    "jobs_url": "http://jobs.generalcatalyst.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Generate Capital",
+    "website": "https://generatecapital.com",
+    "jobs_url": "https://generatecapital.com/careers/",
+    "how_found": "homepage link",
+    "platform": "ashby (direct)"
+  },
+  {
+    "investor": "Generation Investment Management",
+    "website": "https://www.generationim.com/",
+    "jobs_url": "https://www.generationim.com/careers/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "GET Fund",
+    "website": "https://getfund.eu/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Giant Ventures",
+    "website": "https://www.giant.vc/",
+    "jobs_url": "https://giant.vc/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Gigascale Capital",
+    "website": "https://gigascale.com/",
+    "jobs_url": "https://careers.gigascale.com/jobs",
+    "how_found": "homepage link",
+    "platform": "consider"
+  },
+  {
+    "investor": "Global Cleantech Capital",
+    "website": "http://www.gccfund.com/",
+    "result": "homepage fetch failed (429)"
+  },
+  {
+    "investor": "Global Founders Capital",
+    "website": "https://www.globalfounderscapital.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "GM Ventures",
+    "website": "https://www.gmventures.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Goldman Sachs Asset Management",
+    "website": "https://www.gsam.com/content/gsam/global/en/homepage.html",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Grantham Foundation",
+    "website": "https://www.granthamfoundation.org/",
+    "jobs_url": "https://jobs.granthamfoundation.org",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Great Wave Ventures",
+    "website": "https://www.greatwave.vc/",
+    "result": "homepage fetch failed (429)"
+  },
+  {
+    "investor": "Greenbacker",
+    "website": "https://greenbackercapital.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Greencode Ventures",
+    "website": "https://greencode.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Green Frontier Capital",
+    "website": "https://www.greenfrontiercapital.com/",
+    "jobs_url": "https://www.greenfrontiercapital.com/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Green Generation Fund",
+    "website": "https://www.greengenerationfund.com/",
+    "jobs_url": "https://greengenerationfund.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "GreenSoil Investments",
+    "website": "https://www.gspv.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "GS Futures",
+    "website": "https://www.gsfutures.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "GV (Google Venture)",
+    "website": "http://www.gv.com",
+    "jobs_url": "http://jobs.gv.com",
+    "how_found": "path/subdomain guess",
+    "platform": "consider"
+  },
+  {
+    "investor": "Hannon Armstrong Sustainable Infrastructure Capital (HASI)",
+    "website": "https://www.hasi.com/",
+    "jobs_url": "https://www.hasi.com/careers",
+    "how_found": "homepage link",
+    "platform": "lever (direct)"
+  },
+  {
+    "investor": "Hartree Partners",
+    "website": "http://www.hartreepartners.com/",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "Hatch Blue",
+    "website": "https://www.hatch.blue/",
+    "jobs_url": "https://www.hatch.blue/jobs",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Hawktail",
+    "website": "https://hawktail.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Helios Climate Ventures",
+    "website": "https://helioscv.com/",
+    "jobs_url": "https://helioscv.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Henkel Ventures",
+    "website": "https://www.henkeldxventures.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "HG Ventures",
+    "website": "http://www.hgventures.com/",
+    "jobs_url": "https://portcojobs.hgventures.com/jobs",
+    "how_found": "homepage link",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "High-Tech Gr\u00fcnderfonds (HTGF)",
+    "website": "https://www.htgf.de/en/",
+    "jobs_url": "https://www.htgf.de/de/career/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Hitachi Ventures",
+    "website": "https://www.hitachi-ventures.com",
+    "jobs_url": "https://jobs.hitachi-ventures.com/jobs/hitachi-ventures",
+    "how_found": "homepage link",
+    "platform": "consider"
+  },
+  {
+    "investor": "Homecoming Capital",
+    "website": "https://www.homecomingcapital.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Horizons Ventures",
+    "website": "http://horizonsventures.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "HSBC Asset Management",
+    "website": "https://www.assetmanagement.us.hsbc.com/en",
+    "jobs_url": "https://assetmanagement.us.hsbc.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "ICOS Capital Management",
+    "website": "http://www.icoscapital.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Impact Engine",
+    "website": "http://www.theimpactengine.com",
+    "jobs_url": "http://www.theimpactengine.com/jobs",
+    "how_found": "homepage link",
+    "platform": "greenhouse (direct)"
+  },
+  {
+    "investor": "Impact Science Ventures",
+    "website": "https://www.impactscience.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "InMotion Ventures",
+    "website": "https://www.inmotionventures.com",
+    "jobs_url": "https://www.inmotionventures.com/career/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Innovation Endeavors",
+    "website": "http://www.innovationendeavors.com/",
+    "jobs_url": "http://jobs.innovationendeavors.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Insight Partners",
+    "website": "http://www.insightpartners.com",
+    "jobs_url": "https://jobs.insightpartners.com/jobs",
+    "how_found": "homepage link",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Invest FWD",
+    "website": "https://about.bestseller.com/news/investment-boost-benefits-bestseller",
+    "jobs_url": "https://about.bestseller.com/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Investible",
+    "website": "https://www.investible.com/",
+    "jobs_url": "https://investible.com/careers",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Japan Energy Fund",
+    "website": "https://www.japanenergyfund-ventures.com/",
+    "jobs_url": "https://www.japanenergyfund-ventures.com/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "JetBlue Ventures",
+    "website": "http://www.jetblueventures.com/",
+    "jobs_url": "https://careers.sky-vc.com/jobs",
+    "how_found": "homepage link",
+    "platform": "consider"
+  },
+  {
+    "investor": "Jetstream",
+    "website": "https://www.jetstream.io",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "J.P. Morgan Asset Management",
+    "website": "https://am.jpmorgan.com/us/en/asset-management/adv/",
+    "jobs_url": "https://am.jpmorgan.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Junction Growth Investors",
+    "website": "https://junctiongrowthinvestors.com/",
+    "result": "no jobs page found (link or guess)"
+  }
+]

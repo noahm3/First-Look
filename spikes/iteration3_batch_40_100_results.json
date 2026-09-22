@@ -1,0 +1,356 @@
+[
+  {
+    "investor": "Ascension",
+    "website": "https://www.ascension.vc",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Astanor Ventures",
+    "website": "https://www.astanor.com/",
+    "jobs_url": "https://astanor.com/connect/careers/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Asterion Ventures",
+    "website": "https://www.asterionventures.com/",
+    "jobs_url": "https://www.asterionventures.com/en/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "At One Ventures",
+    "website": "https://www.atoneventures.com/",
+    "jobs_url": "https://jobs.atoneventures.com/jobs",
+    "how_found": "homepage link",
+    "platform": "consider"
+  },
+  {
+    "investor": "Audacy Ventures",
+    "website": "https://www.audacyventures.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Autodesk Foundation",
+    "website": "http://www.autodesk.org",
+    "jobs_url": "http://autodesk.org/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Automotive Ventures",
+    "website": "https://www.automotiveventures.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Avaana Capital",
+    "website": "https://avaanacapital.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Avesta Fund",
+    "website": "https://www.avesta.fund/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Axon Partners Group",
+    "website": "https://axonpartnersgroup.com/",
+    "jobs_url": "https://axonpartnersgroup.com/careers/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Azimuth Capital Management",
+    "website": "http://www.azimut-group.com/",
+    "result": "homepage fetch failed (0)"
+  },
+  {
+    "investor": "Azolla Ventures",
+    "website": "https://www.azollaventures.com/",
+    "jobs_url": "https://jobs.azollaventures.com/jobs",
+    "how_found": "homepage link",
+    "platform": "consider"
+  },
+  {
+    "investor": "Barclays Climate Ventures",
+    "website": "https://home.barclays/our-sustainability-/barclays-climate-strategy/barclays-climate-ventures/",
+    "jobs_url": "https://home.barclays/careers/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Baruch Future Ventures",
+    "website": "http://baruch.vc",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "BASF Venture Capital",
+    "website": "https://www.basf.com/us/en",
+    "jobs_url": "https://www.basf.com/us/en/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Batteries Included Fund",
+    "website": "https://batteriesincludedfund.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "BayWa r.e. Energy Ventures",
+    "website": "https://energy-ventures.baywa-re.com/",
+    "result": "homepage fetch failed (530)"
+  },
+  {
+    "investor": "B Capital Group",
+    "website": "http://b.capital",
+    "jobs_url": "https://b.capital/about/careers/",
+    "how_found": "homepage link",
+    "platform": "greenhouse (direct)"
+  },
+  {
+    "investor": "Bessemer Venture Partners",
+    "website": "http://www.bvp.com",
+    "jobs_url": "https://jobs.bvp.com/jobs",
+    "how_found": "homepage link",
+    "platform": "consider"
+  },
+  {
+    "investor": "Better Bite Ventures",
+    "website": "https://www.betterbite.vc/",
+    "jobs_url": "https://betterbite.vc/careers",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Better Ventures",
+    "website": "http://better.vc",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Beyond Impact VC",
+    "website": "https://www.beyondimpact.vc",
+    "jobs_url": "https://beyondimpact.vc/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "BHP Ventures",
+    "website": "https://www.bhp.com/about/our-businesses/ventures",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "Bidra Innovation Ventures",
+    "website": "https://www.bidra.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Blackhorn Ventures",
+    "website": "http://www.blackhornvc.com",
+    "jobs_url": "http://careers.blackhornvc.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Blue Ashva Capital",
+    "website": "https://www.blueashvacapital.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Blue Bear Capital",
+    "website": "http://www.bluebearcap.com/",
+    "jobs_url": "https://jobs.bluebearcap.com/jobs",
+    "how_found": "homepage link",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Blue Earth Capital",
+    "website": "https://blueearth.capital/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "BlueScopeX",
+    "website": "https://bluescopex.io/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "BMW i Ventures",
+    "website": "http://www.bmwiventures.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "BoxGroup",
+    "website": "http://www.boxgroup.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "bp Ventures",
+    "website": "https://www.bp.com/en/global/ventures.html",
+    "result": "homepage fetch failed (404)"
+  },
+  {
+    "investor": "Braemar Energy Ventures",
+    "website": "http://www.braemarenergy.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Breakthrough Energy Catalyst",
+    "website": "https://www.breakthroughenergy.org/programs",
+    "jobs_url": "https://breakthroughenergy.org/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Breakthrough Energy Ventures",
+    "website": "https://www.breakthroughenergy.org",
+    "jobs_url": "https://breakthroughenergy.org/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Breyer Capital",
+    "website": "http://breyercapital.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Builders Vision",
+    "website": "https://www.buildersvision.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Building Ventures",
+    "website": "https://www.buildingventures.com/",
+    "jobs_url": "https://jobs.buildingventures.com/jobs",
+    "how_found": "homepage link",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Buoyant Ventures",
+    "website": "https://www.buoyant.vc/",
+    "jobs_url": "https://careers.buoyant.vc/jobs",
+    "how_found": "homepage link",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Burnt Island Ventures",
+    "website": "https://www.burntislandventures.com/",
+    "jobs_url": "https://jobs.burntislandventures.com",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Business Development Bank of Canada (BDC)",
+    "website": "https://www.bdc.ca/",
+    "jobs_url": "https://www.bdc.ca/en/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Cantos",
+    "website": "http://cantos.vc/",
+    "jobs_url": "https://jobs.cantos.vc/jobs",
+    "how_found": "homepage link",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Capital Nature",
+    "website": "http://capitalnature.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Capricorn Investment Group",
+    "website": "http://www.capricornllc.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Capricorn Partners",
+    "website": "https://capricorn.be/en",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Carbon Direct",
+    "website": "https://carbon-direct.com/",
+    "jobs_url": "https://carbon-direct.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "greenhouse (direct)"
+  },
+  {
+    "investor": "Carbon Removal Partners",
+    "website": "https://carbonremoval.partners",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Caterpillar Ventures",
+    "website": "https://www.caterpillar.com/en/company/innovation/caterpillar-ventures.html",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "Cavallo Ventures",
+    "website": "https://cavallovc.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Cemex Ventures",
+    "website": "https://www.cemexventures.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Cerulean Ventures",
+    "website": "https://cerulean.vc",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Cherry Ventures",
+    "website": "http://www.cherry.vc",
+    "jobs_url": "https://talent.cherry.vc/jobs",
+    "how_found": "homepage link",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Chevron Technology Ventures",
+    "website": "https://www.chevron.com/technology/technology-ventures",
+    "jobs_url": "https://www.chevron.com/who-we-are/contact/jobs",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Citi Impact Fund",
+    "website": "https://www.citigroup.com/citi/communities/citi-impact-fund.html",
+    "jobs_url": "https://careers.citigroup.com",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "City Light Capital",
+    "website": "http://www.citylight.vc",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "Clean Energy Ventures",
+    "website": "https://cleanenergyventures.com/",
+    "jobs_url": "https://cleanenergyventures.com/careers",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Clean Growth Fund",
+    "website": "https://www.cleangrowthfund.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Cleanhill Partners",
+    "website": "https://cleanhillpartners.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "ClearSky",
+    "website": "http://www.clear-sky.com/",
+    "jobs_url": "https://www.clear-sky.com/about/careers/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Clearvision Ventures",
+    "website": "https://www.clearvisionventures.com/",
+    "result": "no jobs page found (link or guess)"
+  }
+]

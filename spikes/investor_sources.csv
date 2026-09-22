@@ -1,0 +1,233 @@
+name,website,investor_types,jobs_board_url,jobs_board_platform,jobs_board_how_found,portfolio_page_url,portfolio_extraction_method,portfolio_company_count,last_crawled_at,notes
+2150,https://2150.vc,Pre-seed / Seed;Early-stage;Late-stage,https://2150.getro.com/jobs,getro (likely),homepage link,,,,2026-09-22T03:03:06.328067+00:00,no portfolio page found (link or guess)
+360 Capital,https://www.360cap.vc/,Pre-seed / Seed;Early-stage,https://jobs.360cap.vc,consider,path/subdomain guess,https://www.360cap.vc/portfolio,homepage link,,2026-09-22T03:03:07.452144+00:00,page found but no outbound company links extracted
+4impact Capital,https://www.4impact.vc/,Pre-seed / Seed;Early-stage,https://jobs.4impact.vc,unknown,path/subdomain guess,https://www.4impact.vc/portfolio,homepage link,24,2026-09-22T03:03:08.410541+00:00,
+8090 Industries,https://www.8090industries.com/,Pre-seed / Seed;Early-stage;Late-stage,,,,https://8090industries.com/portfolio,path guess,2,2026-09-22T03:03:10.747508+00:00,no jobs page found (link or guess)
+ABB Ventures,https://global.abb/group/en/technology/ventures,Corporate VC,,,,,,,2026-09-22T03:03:14.288303+00:00,no portfolio page found (link or guess)
+Acario Innovation,https://acarioinnovation.com,Corporate VC,,,,,,,2026-09-22T03:03:19.145535+00:00,no portfolio page found (link or guess)
+Accelr8,https://www.accelr8.com/,Pre-seed / Seed;Early-stage,,,,https://www.accelr8.com/companies,homepage link,,2026-09-22T03:03:20.143537+00:00,page found but no outbound company links extracted
+Acre Venture Partners,http://acre.vc/,Early-stage;Late-stage,,,,,,,2026-09-22T03:03:22.163037+00:00,no portfolio page found (link or guess)
+Activate Capital Partners,https://activatecp.com/,Early-stage;Late-stage;Growth,,,,https://activatecp.com/portfolio,homepage link,33,2026-09-22T03:03:25.061843+00:00,no jobs page found (link or guess)
+Active Impact Investments,https://www.activeimpactinvestments.com,Pre-seed / Seed;Early-stage,,,,https://www.activeimpactinvestments.com/our-portfolio,homepage link,,2026-09-22T03:03:26.963380+00:00,page found but no outbound company links extracted
+ADB Ventures,https://ventures.adb.org,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:03:29.401187+00:00,homepage fetch failed (403)
+ADM Ventures,https://www.adm.com/products-services/admventures,Corporate VC,,,,,,,2026-09-22T03:03:30.235997+00:00,homepage fetch failed (404)
+AENU,https://www.aenu.com,Pre-seed / Seed;Early-stage,https://jobs.aenu.com/jobs,getro (likely),homepage link,https://www.aenu.com/portfolio/,homepage link,2,2026-09-22T03:03:31.782669+00:00,
+Aera VC,https://www.aera.vc,Pre-seed / Seed;Early-stage,,,,https://www.aera.vc/our-portfolio/,homepage link,25,2026-09-22T03:03:41.334228+00:00,no jobs page found (link or guess)
+AgFunder,http://agfunder.com,Pre-seed / Seed;Early-stage,https://agfunder.com/careers/,wordpress (wp job manager) - check for RSS feed,homepage link,https://agfunder.com/portfolio/,homepage link,2,2026-09-22T03:03:42.667823+00:00,
+Ahren Innovation Capital,http://www.ahreninnovationcapital.com/,Pre-seed / Seed;Early-stage;Late-stage,,,,https://www.ahreninnovationcapital.com/companies/,homepage link,2,2026-09-22T03:03:49.014308+00:00,no jobs page found (link or guess)
+AiiM Partners,https://www.aiimpartners.com/,Early-stage,,,,,,,2026-09-22T03:03:54.806375+00:00,no portfolio page found (link or guess)
+Airbus Ventures,http://www.airbusventures.vc/,Corporate VC,http://jobs.airbusventures.vc,consider,path/subdomain guess,http://www.airbusventures.vc/portfolio,homepage link,1,2026-09-22T03:03:55.879233+00:00,
+Ajax Strategies,https://www.ajaxinvestmentstrategies.com/,Early-stage;Late-stage,,,,https://www.ajaxinvestmentstrategies.com/portfolio,homepage link,30,2026-09-22T03:03:56.876704+00:00,no jobs page found (link or guess)
+Alante Capital,https://www.alantecapital.com/,Pre-seed / Seed;Early-stage,,,,https://www.alantecapital.com/portfolio,homepage link,18,2026-09-22T03:03:58.370988+00:00,no jobs page found (link or guess)
+Alexandria Venture Investments,http://www.are.com/venture-investments.html,Corporate VC,http://are.com/jobs,empty/blocked response,path/subdomain guess,http://are.com/portfolio,path guess,,2026-09-22T03:03:59.939942+00:00,page found but no outbound company links extracted
+Aligned Climate Capital,https://www.alignedclimatecapital.com/,Pre-seed / Seed;Early-stage;Emerging Infrastructure,https://alignedclimatecapital.com/careers/,unknown,homepage link,https://www.alignedclimatecapital.com/portfolio,homepage link,1,2026-09-22T03:04:04.604502+00:00,
+Aliment Capital,https://www.alimentcap.com,Early-stage;Late-stage;Growth,https://alimentcap.com/careers,unknown,path/subdomain guess,https://www.alimentcap.com/portfolio,homepage link,1,2026-09-22T03:04:10.552331+00:00,
+Alliance Ventures,https://alliancernm.com/home-alliance/alliance-ventures/,Corporate VC,,,,https://alliancernm.com/home-alliance/alliance-ventures/portfolio/,homepage link,13,2026-09-22T03:04:11.937362+00:00,no jobs page found (link or guess)
+Almi Invest,https://www.almi.se/en/venture-capital/,Pre-seed / Seed;Early-stage,https://www.almi.se/en/om-almi/Career/,unknown,homepage link,,,,2026-09-22T03:04:15.008870+00:00,no portfolio page found (link or guess)
+Alpha Future Funds,https://alphafuturefunds.com/,Early-stage;Late-stage,,,,,,,2026-09-22T03:04:16.116367+00:00,homepage fetch failed (403)
+Amasia,https://www.amasia.vc,Pre-seed / Seed;Early-stage,,,,https://www.amasia.vc/portfolio,homepage link,,2026-09-22T03:04:17.149516+00:00,page found but no outbound company links extracted
+Amazon Climate Pledge Fund,https://www.theclimatepledge.com/us/en,Corporate VC,,,,,,,2026-09-22T03:04:21.373574+00:00,no portfolio page found (link or guess)
+American Century Investments,https://www.americancentury.com,Early-stage,https://www.americancentury.com/about/careers/,unknown,homepage link,,,,2026-09-22T03:04:29.181387+00:00,no portfolio page found (link or guess)
+American Family Insurance,https://www.amfam.com/,,https://careers.amfam.com,unknown,path/subdomain guess,https://amfam.com/portfolio,path guess,,2026-09-22T03:04:30.780471+00:00,next.js / client-rendered (no __NEXT_DATA__ parse attempted)
+Angeleno Group,http://www.angelenogroup.com,Growth,,,,http://angelenogroup.com/portfolio,path guess,1,2026-09-22T03:04:33.672047+00:00,no jobs page found (link or guess)
+Anglo American Decarbonisation Ventures,https://www.angloamerican.com/products/marketing-materials-solutions-for-our-customers/decarbonisation-ventures,Corporate VC,,,,,,,2026-09-22T03:04:35.340912+00:00,homepage fetch failed (404)
+Anzu Partners,https://www.anzupartners.com,Pre-seed / Seed;Early-stage,,,,https://www.anzupartners.com/portfolio/,homepage link,17,2026-09-22T03:04:37.308608+00:00,no jobs page found (link or guess)
+Applied Ventures,http://appliedventures.com/,Corporate VC,,,,,,,2026-09-22T03:04:38.591088+00:00,homepage fetch failed (403)
+AP Ventures,https://apventures.com/,Early-stage,,,,https://apventures.com/portfolio,homepage link,28,2026-09-22T03:04:40.787095+00:00,no jobs page found (link or guess)
+Aramco Ventures,https://aramcoventures.com,Corporate VC,https://aramcoventures.com/careers,unknown,path/subdomain guess,https://aramcoventures.com/portfolio/,homepage link,70,2026-09-22T03:04:44.080505+00:00,
+Arborview Capital,http://www.arborviewcapital.com,Late-stage;Growth,,,,http://www.arborviewcapital.com/portfolio,homepage link,20,2026-09-22T03:04:46.328188+00:00,no jobs page found (link or guess)
+ArcelorMittal XCarb,https://corporate.arcelormittal.com/media/press-releases/arcelormittal-launches-xcarb-innovation-fund,Corporate VC,,,,,,,2026-09-22T03:04:47.357191+00:00,homepage fetch failed (403)
+ArcLight,https://www.arclight.com/,,,,,https://arclight.com/portfolio,path guess,5,2026-09-22T03:04:50.370513+00:00,no jobs page found (link or guess)
+ArcTern Ventures,http://www.arcternventures.com,Early-stage;Late-stage,http://careers.arcternventures.com,getro (likely),path/subdomain guess,https://www.arcternventures.com/portfolio/,homepage link,1,2026-09-22T03:04:51.561425+00:00,
+Ascension,https://www.ascension.vc,Pre-seed / Seed;Early-stage,,,,https://www.ascension.vc/portfolio,homepage link,,2026-09-22T03:24:31.270121+00:00,no jobs page found (link or guess)
+Astanor Ventures,https://www.astanor.com/,Early-stage;Late-stage,https://astanor.com/connect/careers/,unknown,homepage link,https://astanor.com/portfolio/,homepage link,11,2026-09-22T03:24:34.154202+00:00,
+Asterion Ventures,https://www.asterionventures.com/,Pre-seed / Seed,https://www.asterionventures.com/en/careers,unknown,homepage link,https://www.asterionventures.com/en/portfolio,homepage link,,2026-09-22T03:24:35.253776+00:00,page found but no outbound company links extracted
+At One Ventures,https://www.atoneventures.com/,Pre-seed / Seed;Early-stage,https://jobs.atoneventures.com/jobs,consider,homepage link,https://www.atoneventures.com/portfolio,homepage link,2,2026-09-22T03:24:36.705931+00:00,
+Audacy Ventures,https://www.audacyventures.com/,Early-stage,,,,https://audacyventures.com/portfolio,path guess,13,2026-09-22T03:24:39.683293+00:00,no jobs page found (link or guess)
+Autodesk Foundation,http://www.autodesk.org,Early-stage,http://autodesk.org/jobs,unknown,path/subdomain guess,https://www.autodesk.org/portfolio,homepage link,17,2026-09-22T03:24:41.674652+00:00,
+Automotive Ventures,https://www.automotiveventures.com,Pre-seed / Seed,,,,https://www.automotiveventures.com/portfolio,homepage link,,2026-09-22T03:24:43.508233+00:00,no jobs page found (link or guess)
+Avaana Capital,https://avaanacapital.com/,Pre-seed / Seed;Early-stage,,,,https://avaanacapital.com/pages/portfolio,homepage link,1,2026-09-22T03:24:45.689013+00:00,no jobs page found (link or guess)
+Avesta Fund,https://www.avesta.fund/,Pre-seed / Seed;Early-stage,,,,https://www.avesta.fund/portfolio,homepage link,25,2026-09-22T03:24:48.544522+00:00,no jobs page found (link or guess)
+Axon Partners Group,https://axonpartnersgroup.com/,Growth,https://axonpartnersgroup.com/careers/,unknown,homepage link,https://axonpartnersgroup.com/portfolio/,homepage link,65,2026-09-22T03:24:53.370887+00:00,
+Azimuth Capital Management,http://www.azimut-group.com/,Growth,,,,,,,2026-09-22T03:24:58.856988+00:00,homepage fetch failed (0)
+Azolla Ventures,https://www.azollaventures.com/,Pre-seed / Seed;Early-stage,https://jobs.azollaventures.com/jobs,consider,homepage link,https://azollaventures.com/our-portfolio/,homepage link,31,2026-09-22T03:25:00.569832+00:00,
+Barclays Climate Ventures,https://home.barclays/our-sustainability-/barclays-climate-strategy/barclays-climate-ventures/,Early-stage;Corporate VC,https://home.barclays/careers/,unknown,homepage link,,,,2026-09-22T03:25:02.082183+00:00,no portfolio page found (link or guess)
+Baruch Future Ventures,http://baruch.vc,Pre-seed / Seed;Early-stage,,,,https://www.baruch.vc/portfolio/,homepage link,1,2026-09-22T03:25:05.940685+00:00,no jobs page found (link or guess)
+BASF Venture Capital,https://www.basf.com/us/en,Corporate VC,https://www.basf.com/us/en/careers,unknown,homepage link,https://basf.com/portfolio,path guess,1,2026-09-22T03:25:07.257012+00:00,
+Batteries Included Fund,https://batteriesincludedfund.com,Early-stage,,,,,,,2026-09-22T03:25:11.244192+00:00,no jobs page found (link or guess)
+BayWa r.e. Energy Ventures,https://energy-ventures.baywa-re.com/,Corporate VC,,,,,,,2026-09-22T03:25:11.981047+00:00,homepage fetch failed (530)
+B Capital Group,http://b.capital,Pre-seed / Seed;Early-stage;Late-stage;Growth,https://b.capital/about/careers/,greenhouse (direct),homepage link,https://b.capital/portfolio/,homepage link,1,2026-09-22T03:25:13.886680+00:00,
+Bessemer Venture Partners,http://www.bvp.com,Pre-seed / Seed;Early-stage;Late-stage;Growth,https://jobs.bvp.com/jobs,consider,homepage link,http://www.bvp.com/portfolio,homepage link,2,2026-09-22T03:25:16.917474+00:00,
+Better Bite Ventures,https://www.betterbite.vc/,Pre-seed / Seed,https://betterbite.vc/careers,unknown,path/subdomain guess,,,,2026-09-22T03:25:18.521763+00:00,no portfolio page found (link or guess)
+Better Ventures,http://better.vc,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:25:23.628655+00:00,no jobs page found (link or guess)
+Beyond Impact VC,https://www.beyondimpact.vc,Early-stage,https://beyondimpact.vc/jobs,unknown,path/subdomain guess,,,,2026-09-22T03:25:24.912962+00:00,
+BHP Ventures,https://www.bhp.com/about/our-businesses/ventures,Pre-seed / Seed;Early-stage;Late-stage;Corporate VC,,,,,,,2026-09-22T03:25:25.673338+00:00,homepage fetch failed (403)
+Bidra Innovation Ventures,https://www.bidra.vc/,Early-stage;Late-stage,,,,,,,2026-09-22T03:25:28.566434+00:00,no jobs page found (link or guess)
+Blackhorn Ventures,http://www.blackhornvc.com,Pre-seed / Seed;Early-stage,http://careers.blackhornvc.com,getro (likely),path/subdomain guess,,,,2026-09-22T03:25:30.189534+00:00,
+Blue Ashva Capital,https://www.blueashvacapital.com/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:25:32.004002+00:00,no jobs page found (link or guess)
+Blue Bear Capital,http://www.bluebearcap.com/,Early-stage;Late-stage,https://jobs.bluebearcap.com/jobs,getro (likely),homepage link,,,,2026-09-22T03:25:33.840535+00:00,
+Blue Earth Capital,https://blueearth.capital/,Growth,,,,,,,2026-09-22T03:25:37.613659+00:00,no jobs page found (link or guess)
+BlueScopeX,https://bluescopex.io/,Corporate VC,,,,,,,2026-09-22T03:25:50.596699+00:00,no jobs page found (link or guess)
+BMW i Ventures,http://www.bmwiventures.com,Corporate VC,,,,,,,2026-09-22T03:25:54.336674+00:00,no jobs page found (link or guess)
+BoxGroup,http://www.boxgroup.com,Pre-seed / Seed;Early-stage;Growth,,,,,,,2026-09-22T03:25:57.449910+00:00,no jobs page found (link or guess)
+bp Ventures,https://www.bp.com/en/global/ventures.html,Corporate VC,,,,,,,2026-09-22T03:25:59.081596+00:00,homepage fetch failed (404)
+Braemar Energy Ventures,http://www.braemarenergy.com,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:26:01.468913+00:00,no jobs page found (link or guess)
+Breakthrough Energy Catalyst,https://www.breakthroughenergy.org/programs,Emerging Infrastructure,https://breakthroughenergy.org/jobs,unknown,path/subdomain guess,,,,2026-09-22T03:26:03.948893+00:00,
+Breakthrough Energy Ventures,https://www.breakthroughenergy.org,Pre-seed / Seed;Early-stage;Late-stage,https://breakthroughenergy.org/jobs,unknown,path/subdomain guess,,,,2026-09-22T03:26:05.532115+00:00,
+Breyer Capital,http://breyercapital.com,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:26:08.613636+00:00,no jobs page found (link or guess)
+Builders Vision,https://www.buildersvision.com,Early-stage,,,,,,,2026-09-22T03:26:12.406534+00:00,no jobs page found (link or guess)
+Building Ventures,https://www.buildingventures.com/,Pre-seed / Seed;Early-stage;Late-stage,https://jobs.buildingventures.com/jobs,getro (likely),homepage link,,,,2026-09-22T03:26:14.454742+00:00,
+Buoyant Ventures,https://www.buoyant.vc/,Early-stage,https://careers.buoyant.vc/jobs,getro (likely),homepage link,,,,2026-09-22T03:26:16.086836+00:00,
+Burnt Island Ventures,https://www.burntislandventures.com/,Pre-seed / Seed;Early-stage,https://jobs.burntislandventures.com,unknown,path/subdomain guess,,,,2026-09-22T03:26:17.245845+00:00,
+Business Development Bank of Canada (BDC),https://www.bdc.ca/,Early-stage;Late-stage;Growth,https://www.bdc.ca/en/careers,unknown,homepage link,,,,2026-09-22T03:26:18.512478+00:00,
+Cantos,http://cantos.vc/,Pre-seed / Seed;Early-stage,https://jobs.cantos.vc/jobs,getro (likely),homepage link,,,,2026-09-22T03:26:21.097637+00:00,
+Capital Nature,http://capitalnature.com/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:26:31.788172+00:00,no jobs page found (link or guess)
+Capricorn Investment Group,http://www.capricornllc.com/,Early-stage;Late-stage;Growth,,,,,,,2026-09-22T03:26:36.689804+00:00,no jobs page found (link or guess)
+Capricorn Partners,https://capricorn.be/en,Early-stage;Late-stage;Growth,,,,,,,2026-09-22T03:26:42.926516+00:00,no jobs page found (link or guess)
+Carbon Direct,https://carbon-direct.com/,,https://carbon-direct.com/jobs,greenhouse (direct),path/subdomain guess,,,,2026-09-22T03:26:44.371942+00:00,
+Carbon Removal Partners,https://carbonremoval.partners,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:26:47.730677+00:00,no jobs page found (link or guess)
+Caterpillar Ventures,https://www.caterpillar.com/en/company/innovation/caterpillar-ventures.html,Corporate VC,,,,,,,2026-09-22T03:26:48.470039+00:00,homepage fetch failed (403)
+Cavallo Ventures,https://cavallovc.com,Corporate VC,,,,,,,2026-09-22T03:26:53.572063+00:00,no jobs page found (link or guess)
+Cemex Ventures,https://www.cemexventures.com/,Corporate VC,,,,,,,2026-09-22T03:27:10.217885+00:00,no jobs page found (link or guess)
+Cerulean Ventures,https://cerulean.vc,Pre-seed / Seed,,,,,,,2026-09-22T03:27:12.367292+00:00,no jobs page found (link or guess)
+Cherry Ventures,http://www.cherry.vc,Pre-seed / Seed;Early-stage,https://talent.cherry.vc/jobs,getro (likely),homepage link,,,,2026-09-22T03:27:14.200928+00:00,
+Chevron Technology Ventures,https://www.chevron.com/technology/technology-ventures,Corporate VC,https://www.chevron.com/who-we-are/contact/jobs,unknown,homepage link,,,,2026-09-22T03:27:16.856481+00:00,
+Citi Impact Fund,https://www.citigroup.com/citi/communities/citi-impact-fund.html,Corporate VC,https://careers.citigroup.com,unknown,path/subdomain guess,,,,2026-09-22T03:27:19.318154+00:00,
+City Light Capital,http://www.citylight.vc,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:27:20.085010+00:00,homepage fetch failed (403)
+Clean Energy Ventures,https://cleanenergyventures.com/,Early-stage,https://cleanenergyventures.com/careers,unknown,homepage link,,,,2026-09-22T03:27:20.831016+00:00,
+Clean Growth Fund,https://www.cleangrowthfund.com/,Pre-seed / Seed;Early-stage;Late-stage,,,,,,,2026-09-22T03:27:42.650800+00:00,no jobs page found (link or guess)
+Cleanhill Partners,https://cleanhillpartners.com,,,,,,,,2026-09-22T03:27:51.656339+00:00,no jobs page found (link or guess)
+ClearSky,http://www.clear-sky.com/,Pre-seed / Seed;Early-stage;Late-stage;Growth,https://www.clear-sky.com/about/careers/,unknown,homepage link,,,,2026-09-22T03:27:53.273863+00:00,
+Clearvision Ventures,https://www.clearvisionventures.com/,Pre-seed / Seed;Early-stage;Late-stage;Growth,,,,,,,2026-09-22T03:27:55.772318+00:00,no jobs page found (link or guess)
+Climactic VC,https://www.climactic.vc/,Pre-seed / Seed;Early-stage,https://jobs.climactic.vc/jobs,consider,homepage link,,,,2026-09-22T03:28:02.159634+00:00,
+Climate Adaptive Infrastructure,https://www.climateadaptiveinfra.com/,Growth Infrastructure,,,,,,,2026-09-22T03:28:05.556777+00:00,no jobs page found (link or guess)
+Climate Capital,http://climatecapital.co/,Pre-seed / Seed;Early-stage,http://climatecapital.co/jobs,unknown,path/subdomain guess,,,,2026-09-22T03:28:07.043060+00:00,
+Climate Innovation Capital,https://climateic.com,Late-stage;Growth,,,,,,,2026-09-22T03:28:10.694983+00:00,no jobs page found (link or guess)
+Climate Investment (OGCI),https://www.climateinvestment.com,Growth,https://jobs.climateinvestment.com,getro (likely),path/subdomain guess,,,,2026-09-22T03:28:13.174574+00:00,
+Climate VC,https://www.climate.vc/,Pre-seed / Seed,,,,,,,2026-09-22T03:28:14.017956+00:00,homepage fetch failed (404)
+Climentum Capital,https://www.climentum.com,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:28:16.040475+00:00,no jobs page found (link or guess)
+Closed Loop Partners,http://www.closedlooppartners.com/,Pre-seed / Seed;Early-stage;Late-stage;Growth,https://www.closedlooppartners.com/about-us/careers/,unknown,homepage link,,,,2026-09-22T03:28:17.318611+00:00,
+Coatue,http://coatue.com,Pre-seed / Seed;Early-stage;Late-stage;Growth,,,,,,,2026-09-22T03:28:20.445978+00:00,no jobs page found (link or guess)
+Collaborative Fund,http://www.collaborativefund.com,Pre-seed / Seed;Early-stage;Late-stage,,,,,,,2026-09-22T03:28:39.801706+00:00,no jobs page found (link or guess)
+Congruent Ventures,http://www.congruentvc.com,Pre-seed / Seed;Early-stage;Late-stage,https://jobs.congruentvc.com/jobs,consider,homepage link,,,,2026-09-22T03:28:41.129416+00:00,
+Constellation Technology Ventures,http://technologyventures.constellation.com,Corporate VC,,,,,,,2026-09-22T03:28:42.231744+00:00,no jobs page found (link or guess)
+Continental Grain Company,https://continentalgrain.com,,,,,,,,2026-09-22T03:28:46.515444+00:00,no jobs page found (link or guess)
+Convective Capital,https://www.convectivecapital.com/,Pre-seed / Seed;Early-stage,https://jobs.convectivecapital.com/jobs,getro (likely),homepage link,,,,2026-09-22T03:28:49.530825+00:00,
+Copec WIND Ventures,https://www.windventures.vc,Corporate VC,,,,,,,2026-09-22T03:28:52.988604+00:00,no jobs page found (link or guess)
+Counteract,https://counteract.vc,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:28:57.471555+00:00,no jobs page found (link or guess)
+Creative Ventures,http://www.creativeventures.vc,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:29:05.272693+00:00,no jobs page found (link or guess)
+Cycle Capital,http://www.cyclecapital.com,Early-stage;Late-stage,,,,,,,2026-09-22T03:29:05.916165+00:00,homepage fetch failed (403)
+Day One Ventures,http://dayoneventures.com/,Pre-seed / Seed,,,,,,,2026-09-22T03:29:08.486294+00:00,no jobs page found (link or guess)
+DBL Partners,http://www.dblinvestors.com,Early-stage;Late-stage,http://dblinvestors.com/jobs,unknown,path/subdomain guess,,,,2026-09-22T03:29:11.033211+00:00,
+DCVC,http://www.dcvc.com,Pre-seed / Seed;Early-stage;Late-stage,https://www.dcvc.com/careers,unknown,homepage link,,,,2026-09-22T03:29:12.382672+00:00,
+Decarbonization Partners,https://www.decarbpartners.com/,Late-stage;Growth,,,,,,,2026-09-22T03:29:14.676202+00:00,no jobs page found (link or guess)
+Doral Energy-Tech Ventures,https://doral-tech.com,Corporate VC,https://doral-energy.com/en/career/,unknown,homepage link,,,,2026-09-22T03:29:21.372281+00:00,
+Drawdown Fund,https://www.drawdownfund.com/,Early-stage;Late-stage,,,,,,,2026-09-22T03:29:24.098220+00:00,no jobs page found (link or guess)
+E12 Ventures,https://www.e12.ventures/,Early-stage,,,,,,,2026-09-22T03:29:26.762108+00:00,no jobs page found (link or guess)
+Earthshot Ventures,https://www.earthshot.vc,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:29:28.622170+00:00,no jobs page found (link or guess)
+Earth Venture Capital,https://www.earth.vc/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:29:29.422059+00:00,homepage fetch failed (429)
+eCAPITAL ENTREPRENEURIAL PARTNERS,https://ecapital.vc,Early-stage,https://ecapital.vc/jobs/,unknown,homepage link,,,,2026-09-22T03:29:32.443410+00:00,
+Ecosystem Integrity Fund,https://eif.vc/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:29:37.954158+00:00,no jobs page found (link or guess)
+EDP Ventures,https://www.edp.com/en/innovation/edp-ventures#portfolio,Corporate VC,https://www.edp.com/en/careers,unknown,homepage link,,,,2026-09-22T03:29:41.104007+00:00,
+Eka Ventures,https://ekavc.com/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:29:43.722391+00:00,no jobs page found (link or guess)
+Elbow Beach Capital,https://elbowbeachcapital.com/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:29:56.336984+00:00,homepage fetch failed (0)
+Elemental Impact,http://elementalexcelerator.com/,Early-stage;Late-stage,https://elementalimpact.com/jobs/,greenhouse (direct),homepage link,,,,2026-09-22T03:29:57.511477+00:00,
+Ember Infrastructure,https://ember-infra.com/,Growth Infrastructure,https://ember-infra.com/jobs,unknown,path/subdomain guess,,,,2026-09-22T03:30:00.877590+00:00,
+Emerald Technology Ventures,https://emerald.vc,Early-stage;Late-stage,https://emerald.vc/careers,unknown,homepage link,,,,2026-09-22T03:30:02.942000+00:00,
+Emerson Collective,http://emersoncollective.com,Early-stage;Late-stage,http://emersoncollective.com/careers,"next.js, unconfirmed vendor",path/subdomain guess,,,,2026-09-22T03:30:04.932374+00:00,
+Eneco Ventures,https://www.eneco.com/what-we-do/ventures/,Corporate VC,,,,,,,2026-09-22T03:30:08.406109+00:00,no jobs page found (link or guess)
+Energize Capital,https://www.energizecap.com/,Early-stage;Late-stage;Growth,https://jobs.energizecap.com,getro (likely),path/subdomain guess,,,,2026-09-22T03:30:10.399867+00:00,
+Energy Foundry,http://www.energyfoundry.com,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:30:15.034413+00:00,no jobs page found (link or guess)
+Energy Impact Partners,http://energyimpactpartners.com,Pre-seed / Seed;Early-stage;Late-stage,http://jobs.energyimpactpartners.com,getro (likely),path/subdomain guess,,,,2026-09-22T03:30:16.891725+00:00,
+Energy Innovation Capital,http://energyinnovationcapital.com/,Early-stage;Late-stage,,,,,,,2026-09-22T03:30:18.226026+00:00,no jobs page found (link or guess)
+Energy Revolution Ventures,https://er-v.io/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:30:21.505791+00:00,no jobs page found (link or guess)
+Energy Transition Ventures,https://energytransitionventures.com/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:30:27.602365+00:00,no jobs page found (link or guess)
+ENGIE New Ventures,http://www.engieventures.com,Corporate VC,,,,,,,2026-09-22T03:30:36.195345+00:00,no jobs page found (link or guess)
+Engine Ventures,https://engineventures.com/,Pre-seed / Seed;Early-stage;Late-stage;Growth,https://engine.xyz/careers,greenhouse (direct),homepage link,,,,2026-09-22T03:30:40.098445+00:00,
+Eni Next,https://www.eni.com/en_IT/home.page,Corporate VC,https://www.eni.com/en-IT/careers/recruitment-process.html,unknown,homepage link,,,,2026-09-22T03:30:41.866008+00:00,
+Envisioning Partners,https://envisioning.partners/,Early-stage,https://envisioning.partners/jobs,unknown,path/subdomain guess,,,,2026-09-22T03:30:43.134994+00:00,
+EQT Ventures,https://eqtventures.com,Pre-seed / Seed;Early-stage;Late-stage,,,,,,,2026-09-22T03:30:51.836167+00:00,no jobs page found (link or guess)
+Equal Ventures,https://www.equal.vc/,Pre-seed / Seed,,,,,,,2026-09-22T03:30:55.285448+00:00,no jobs page found (link or guess)
+Equator,https://equator.vc/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:30:58.428069+00:00,no jobs page found (link or guess)
+Equinor Ventures,https://www.equinor.com/energy/ventures,Corporate VC,https://www.equinor.com/careers,unknown,homepage link,,,,2026-09-22T03:31:00.929197+00:00,
+ETF Partners,http://www.etfpartners.capital/,Early-stage;Late-stage,,,,,,,2026-09-22T03:31:05.568321+00:00,no jobs page found (link or guess)
+European Circular Bioeconomy Fund (ECBF),https://www.ecbf.vc,Early-stage;Late-stage;Growth,https://ecbf.vc/careers/,unknown,homepage link,,,,2026-09-22T03:31:08.131148+00:00,
+Evergreen Climate Innovations,https://evergreeninno.org/,Pre-seed / Seed,https://evergreeninno.org/careers,unknown,homepage link,,,,2026-09-22T03:31:09.779998+00:00,
+Evergy Ventures,http://www.evergyventures.com/,Corporate VC,,,,,,,2026-09-22T03:31:13.997582+00:00,no jobs page found (link or guess)
+Evōk Innovations (Evok Innovations),http://www.evokinnovations.com/,Early-stage,,,,,,,2026-09-22T03:31:16.983628+00:00,no jobs page found (link or guess)
+Fall Line Capital,http://fall-line-capital.com/,Pre-seed / Seed;Early-stage;Late-stage,,,,,,,2026-09-22T03:31:19.581709+00:00,no jobs page found (link or guess)
+Fifth Wall,http://fifthwall.com/,Early-stage;Late-stage,http://fifthwall.com/careers,unknown,homepage link,,,,2026-09-22T03:31:20.948585+00:00,
+Fifty Years,http://fiftyyears.com/,Pre-seed / Seed,https://jobs.fiftyyears.com/jobs,consider,homepage link,,,,2026-09-22T03:31:22.379905+00:00,
+Fine Structure Ventures,https://finestructure.vc/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:31:24.800464+00:00,no jobs page found (link or guess)
+First Imagine! Ventures,http://www.firstimagine.com/,Early-stage;Late-stage,,,,,,,2026-09-22T03:31:40.742903+00:00,no jobs page found (link or guess)
+Firstminute Capital,https://firstminute.capital/,Pre-seed / Seed,https://jobs.firstminute.capital/jobs,getro (likely),homepage link,,,,2026-09-22T03:31:42.810925+00:00,
+First Star Ventures,http://www.firststar.vc/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:31:45.873491+00:00,no jobs page found (link or guess)
+Fontinalis Partners,http://fontinalis.com,Pre-seed / Seed;Early-stage;Late-stage,http://fontinalis.com/jobs,unknown,path/subdomain guess,,,,2026-09-22T03:31:47.963971+00:00,
+FootPrint Coalition,https://www.footprintcoalition.com/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:31:51.287483+00:00,no jobs page found (link or guess)
+FTW Ventures,http://www.ftw.vc/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:31:53.786263+00:00,no jobs page found (link or guess)
+FullCycle Climate Partners,https://www.fullcycle.com/,Emerging Infrastructure,,,,,,,2026-09-22T03:31:54.567555+00:00,homepage fetch failed (0)
+Future Energy Ventures,https://fev.vc,Early-stage,,,,,,,2026-09-22T03:32:04.169394+00:00,no jobs page found (link or guess)
+Futureland Ventures,https://www.futurelandventures.com/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:32:06.754868+00:00,no jobs page found (link or guess)
+Future Positive Capital,http://www.futurepositivecapital.com,Pre-seed / Seed;Early-stage,http://futurepositivecapital.com/jobs,unknown,path/subdomain guess,,,,2026-09-22T03:32:11.131714+00:00,
+Future Ventures,https://future.ventures/,Pre-seed / Seed;Early-stage,https://jobs.future.ventures,getro (likely),path/subdomain guess,,,,2026-09-22T03:32:12.557955+00:00,
+G2 Venture Partners (G2VP),https://www.g2vp.com/,Early-stage;Late-stage;Growth,https://jobs.g2vp.com,getro (likely),path/subdomain guess,,,,2026-09-22T03:32:14.007795+00:00,
+Galway Sustainable Capital,https://galwaysustainable.com/,Growth Infrastructure,https://galwaysustainable.com/jobs,unknown,path/subdomain guess,,,,2026-09-22T03:32:16.454868+00:00,
+GEF Capital,https://gefcapital.com/,,,,,,,,2026-09-22T03:32:20.081351+00:00,no jobs page found (link or guess)
+gener8tor,http://www.gener8tor.com,Pre-seed / Seed,http://www.gener8tor.com/careers,greenhouse (direct),homepage link,,,,2026-09-22T03:32:21.381537+00:00,
+General Atlantic BeyondNetZero,https://beyond-net-zero.com/,Growth,https://www.generalatlantic.com/careers/,greenhouse (direct),homepage link,,,,2026-09-22T03:32:22.508710+00:00,
+General Catalyst,http://www.generalcatalyst.com,Pre-seed / Seed;Early-stage;Late-stage,http://jobs.generalcatalyst.com,getro (likely),path/subdomain guess,,,,2026-09-22T03:32:29.046859+00:00,
+Generate Capital,https://generatecapital.com,Growth Infrastructure,https://generatecapital.com/careers/,ashby (direct),homepage link,,,,2026-09-22T03:32:30.584550+00:00,
+Generation Investment Management,https://www.generationim.com/,Growth,https://www.generationim.com/careers/,unknown,homepage link,,,,2026-09-22T03:32:32.113407+00:00,
+GET Fund,https://getfund.eu/,Early-stage;Growth,,,,,,,2026-09-22T03:32:43.692638+00:00,no jobs page found (link or guess)
+Giant Ventures,https://www.giant.vc/,Pre-seed / Seed;Early-stage,https://giant.vc/jobs,unknown,path/subdomain guess,,,,2026-09-22T03:32:45.708628+00:00,
+Gigascale Capital,https://gigascale.com/,Pre-seed / Seed;Early-stage;Late-stage;Growth,https://careers.gigascale.com/jobs,consider,homepage link,,,,2026-09-22T03:32:47.045933+00:00,
+Global Cleantech Capital,http://www.gccfund.com/,Late-stage;Growth,,,,,,,2026-09-22T03:32:48.021029+00:00,homepage fetch failed (429)
+Global Founders Capital,https://www.globalfounderscapital.com,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:32:50.930575+00:00,no jobs page found (link or guess)
+GM Ventures,https://www.gmventures.com/,Corporate VC,,,,,,,2026-09-22T03:32:53.095880+00:00,no jobs page found (link or guess)
+Goldman Sachs Asset Management,https://www.gsam.com/content/gsam/global/en/homepage.html,Growth,,,,,,,2026-09-22T03:32:58.019096+00:00,no jobs page found (link or guess)
+Grantham Foundation,https://www.granthamfoundation.org/,Pre-seed / Seed;Early-stage,https://jobs.granthamfoundation.org,unknown,path/subdomain guess,,,,2026-09-22T03:32:59.543677+00:00,
+Great Wave Ventures,https://www.greatwave.vc/,Pre-seed / Seed,,,,,,,2026-09-22T03:33:00.369016+00:00,homepage fetch failed (429)
+Greenbacker,https://greenbackercapital.com/,,,,,,,,2026-09-22T03:33:03.239503+00:00,no jobs page found (link or guess)
+Greencode Ventures,https://greencode.vc/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:33:06.171726+00:00,no jobs page found (link or guess)
+Green Frontier Capital,https://www.greenfrontiercapital.com/,Pre-seed / Seed;Early-stage,https://www.greenfrontiercapital.com/careers,unknown,homepage link,,,,2026-09-22T03:33:07.113823+00:00,
+Green Generation Fund,https://www.greengenerationfund.com/,Pre-seed / Seed;Early-stage,https://greengenerationfund.com/jobs,unknown,path/subdomain guess,,,,2026-09-22T03:33:08.780507+00:00,
+GreenSoil Investments,https://www.gspv.vc/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:33:11.920627+00:00,no jobs page found (link or guess)
+GS Futures,https://www.gsfutures.vc/,Early-stage;Corporate VC,,,,,,,2026-09-22T03:33:14.839008+00:00,no jobs page found (link or guess)
+GV (Google Venture),http://www.gv.com,Pre-seed / Seed;Early-stage;Late-stage;Growth,http://jobs.gv.com,consider,path/subdomain guess,,,,2026-09-22T03:33:17.433622+00:00,
+Hannon Armstrong Sustainable Infrastructure Capital (HASI),https://www.hasi.com/,Emerging Infrastructure;Growth Infrastructure,https://www.hasi.com/careers,lever (direct),homepage link,,,,2026-09-22T03:33:18.195927+00:00,
+Hartree Partners,http://www.hartreepartners.com/,,,,,,,,2026-09-22T03:33:18.948954+00:00,homepage fetch failed (403)
+Hatch Blue,https://www.hatch.blue/,Pre-seed / Seed;Early-stage,https://www.hatch.blue/jobs,unknown,homepage link,,,,2026-09-22T03:33:19.839183+00:00,
+Hawktail,https://hawktail.com/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:33:24.117757+00:00,no jobs page found (link or guess)
+Helios Climate Ventures,https://helioscv.com/,Early-stage;Growth Infrastructure,https://helioscv.com/jobs,unknown,path/subdomain guess,,,,2026-09-22T03:33:27.428539+00:00,
+Henkel Ventures,https://www.henkeldxventures.com/,Early-stage;Corporate VC,,,,,,,2026-09-22T03:33:33.345530+00:00,no jobs page found (link or guess)
+HG Ventures,http://www.hgventures.com/,Corporate VC,https://portcojobs.hgventures.com/jobs,getro (likely),homepage link,,,,2026-09-22T03:33:37.402047+00:00,
+High-Tech Gründerfonds (HTGF),https://www.htgf.de/en/,Pre-seed / Seed;Early-stage,https://www.htgf.de/de/career/,unknown,homepage link,,,,2026-09-22T03:33:40.535409+00:00,
+Hitachi Ventures,https://www.hitachi-ventures.com,Corporate VC,https://jobs.hitachi-ventures.com/jobs/hitachi-ventures,consider,homepage link,,,,2026-09-22T03:33:42.930672+00:00,
+Homecoming Capital,https://www.homecomingcapital.com/,Emerging Infrastructure,,,,,,,2026-09-22T03:33:46.412321+00:00,no jobs page found (link or guess)
+Horizons Ventures,http://horizonsventures.com,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:33:49.431430+00:00,no jobs page found (link or guess)
+HSBC Asset Management,https://www.assetmanagement.us.hsbc.com/en,Early-stage,https://assetmanagement.us.hsbc.com/jobs,unknown,path/subdomain guess,,,,2026-09-22T03:33:51.416830+00:00,
+ICOS Capital Management,http://www.icoscapital.com/,Early-stage,,,,,,,2026-09-22T03:34:10.534815+00:00,no jobs page found (link or guess)
+Impact Engine,http://www.theimpactengine.com,Pre-seed / Seed;Early-stage,http://www.theimpactengine.com/jobs,greenhouse (direct),homepage link,,,,2026-09-22T03:34:11.863341+00:00,
+Impact Science Ventures,https://www.impactscience.vc/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:34:15.866501+00:00,no jobs page found (link or guess)
+InMotion Ventures,https://www.inmotionventures.com,Corporate VC,https://www.inmotionventures.com/career/,unknown,homepage link,,,,2026-09-22T03:34:18.100364+00:00,
+Innovation Endeavors,http://www.innovationendeavors.com/,Pre-seed / Seed;Early-stage;Late-stage,http://jobs.innovationendeavors.com,getro (likely),path/subdomain guess,,,,2026-09-22T03:34:20.025177+00:00,
+Insight Partners,http://www.insightpartners.com,Pre-seed / Seed;Early-stage;Late-stage;Growth,https://jobs.insightpartners.com/jobs,getro (likely),homepage link,,,,2026-09-22T03:34:21.679743+00:00,
+Invest FWD,https://about.bestseller.com/news/investment-boost-benefits-bestseller,Early-stage,https://about.bestseller.com/careers,unknown,homepage link,,,,2026-09-22T03:34:24.620923+00:00,
+Investible,https://www.investible.com/,Early-stage,https://investible.com/careers,unknown,path/subdomain guess,,,,2026-09-22T03:34:27.890513+00:00,
+Japan Energy Fund,https://www.japanenergyfund-ventures.com/,Late-stage,https://www.japanenergyfund-ventures.com/careers,unknown,homepage link,,,,2026-09-22T03:34:31.932405+00:00,
+JetBlue Ventures,http://www.jetblueventures.com/,Corporate VC,https://careers.sky-vc.com/jobs,consider,homepage link,,,,2026-09-22T03:34:33.611742+00:00,
+Jetstream,https://www.jetstream.io,Pre-seed / Seed,,,,,,,2026-09-22T03:34:36.425593+00:00,no jobs page found (link or guess)
+J.P. Morgan Asset Management,https://am.jpmorgan.com/us/en/asset-management/adv/,Growth,https://am.jpmorgan.com/jobs,unknown,path/subdomain guess,,,,2026-09-22T03:34:37.813744+00:00,
+Junction Growth Investors,https://junctiongrowthinvestors.com/,Growth,,,,,,,2026-09-22T03:34:42.970756+00:00,no jobs page found (link or guess)
+Just Climate,https://www.justclimate.com/,Pre-seed / Seed;Early-stage;Late-stage;Growth;Emerging Infrastructure,https://www.justclimate.com/careers/,unknown,homepage link,,,,2026-09-22T03:34:47.740147+00:00,
+Katapult VC,https://katapult.vc/,Pre-seed / Seed;Early-stage,https://katapult.vc/jobs,unknown,path/subdomain guess,,,,2026-09-22T03:34:48.911153+00:00,
+KdT Ventures,https://www.kdtvc.com,Pre-seed / Seed;Early-stage,https://jobs.kdtvc.com,getro (likely),path/subdomain guess,,,,2026-09-22T03:34:50.227634+00:00,
+Keiki Capital,https://keikicapital.com,Pre-seed / Seed;Early-stage,https://keikicapital.com/jobs,unknown,path/subdomain guess,,,,2026-09-22T03:34:51.640253+00:00,
+Keyframe Capital Partners,https://www.keyframecapital.com/,Early-stage;Late-stage;Emerging Infrastructure,,,,,,,2026-09-22T03:34:52.466676+00:00,homepage fetch failed (429)
+Khosla Ventures,http://www.khoslaventures.com,Early-stage;Late-stage;Growth,http://jobs.khoslaventures.com,getro (likely),path/subdomain guess,,,,2026-09-22T03:34:54.414322+00:00,
+Kiko Ventures,https://kiko.vc/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:34:57.407536+00:00,no jobs page found (link or guess)
+Kinnevik,http://www.kinnevik.com,Early-stage;Late-stage;Growth,http://www.kinnevik.com/working-at-kinnevik/career/,unknown,homepage link,,,,2026-09-22T03:34:59.469113+00:00,
+Kleiner Perkins,https://www.kleinerperkins.com/,Early-stage;Late-stage,https://jobs.kleinerperkins.com,consider,path/subdomain guess,,,,2026-09-22T03:35:01.086333+00:00,
+KOMPAS,http://www.kompas.vc/,Pre-seed / Seed;Early-stage,http://www.kompas.vc/careers,unknown,homepage link,,,,2026-09-22T03:35:02.258522+00:00,
+Kopa Ventures,https://www.kopa.vc/,Pre-seed / Seed;Early-stage,,,,,,,2026-09-22T03:35:03.151996+00:00,homepage fetch failed (429)
+Korys,http://www.korys.be/,Early-stage;Late-stage;Growth;Emerging Infrastructure,,,,,,,2026-09-22T03:35:08.935007+00:00,no jobs page found (link or guess)

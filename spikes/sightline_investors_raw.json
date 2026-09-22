@@ -1,0 +1,4662 @@
+[
+  {
+    "id": 1696,
+    "name": "2150",
+    "website": "https://2150.vc",
+    "overview": "2150 invests in tech entrepreneurs who are reimagining and innovating the Urban Stack",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/2150.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Copenhagen, Denmark"
+  },
+  {
+    "id": 880,
+    "name": "360 Capital",
+    "website": "https://www.360cap.vc/",
+    "overview": "360 Capital is a venture capital firm with a Pan-European focus",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/360_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Paris, France"
+  },
+  {
+    "id": 3409,
+    "name": "4impact Capital",
+    "website": "https://www.4impact.vc/",
+    "overview": "4impact is a seed-stage impact investing firm focusing on investments in early-stage startups in industries such as healthcare, education, and sustainability",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/4impact.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "The Hague, Netherlands"
+  },
+  {
+    "id": 7381,
+    "name": "8090 Industries",
+    "website": "https://www.8090industries.com/",
+    "overview": "8090 Industries invests in the decarbonization, aerospace, and deep tech sectors",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/8090_Industries.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 232,
+    "name": "ABB Ventures",
+    "website": "https://global.abb/group/en/technology/ventures",
+    "overview": "ABB corporate venture capital arm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/ABB_Technology_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Z\u00fcrich, Switzerland"
+  },
+  {
+    "id": 12986,
+    "name": "Acario Innovation",
+    "website": "https://acarioinnovation.com",
+    "overview": "identifies and funds mobility startups",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Acario.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Menlo Park, California"
+  },
+  {
+    "id": 968,
+    "name": "Accelr8",
+    "website": "https://www.accelr8.com/",
+    "overview": "ACCELR8 is an impact fund investing to accelerate the reduction and sequestration of greenhouse gases",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/AccelR8.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Boston, Massachusetts"
+  },
+  {
+    "id": 140,
+    "name": "Acre Venture Partners",
+    "website": "http://acre.vc/",
+    "overview": "Acre Venture Partners invests in companies creating fundamental change in food and agriculture in order to address large scale problems in human and environmental health",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Acre_Venture_Partners.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Santa Monica, California"
+  },
+  {
+    "id": 111,
+    "name": "Activate Capital Partners",
+    "website": "https://activatecp.com/",
+    "overview": "invests in growth-stage technology",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Activate_Capital_Partners.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 494,
+    "name": "Active Impact Investments",
+    "website": "https://www.activeimpactinvestments.com",
+    "overview": "Active Impact Investments supports the growth of early-stage climate tech ventures in clean energy, transportation, smart infrastructure, food, water, and circular economy",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Active_Impact_Investments.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "North Vancouver, Canada"
+  },
+  {
+    "id": 2147,
+    "name": "ADB Ventures",
+    "website": "https://ventures.adb.org",
+    "overview": "ADB Ventures invests in Asia-Pacific based climate companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/ADB_Ventures_JVBKAbO.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Mandaluyong, Philippines"
+  },
+  {
+    "id": 605,
+    "name": "ADM Ventures",
+    "website": "https://www.adm.com/products-services/admventures",
+    "overview": "ADM Ventures invests in cutting edge startups with disruptive technologies across key areas and develops projects through its business incubator",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/ADM_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Chicago, Illinois"
+  },
+  {
+    "id": 3279,
+    "name": "AENU",
+    "website": "https://www.aenu.com",
+    "overview": "Climate and impact-focused venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/AENU.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Berlin, Germany"
+  },
+  {
+    "id": 124,
+    "name": "Aera VC",
+    "website": "https://www.aera.vc",
+    "overview": "Aera VC is an early-growth fund that invests in deeptech ventures which aim to accelerate the world towards a sustainable future",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Aera_VC.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Auckland, New Zealand"
+  },
+  {
+    "id": 204,
+    "name": "AgFunder",
+    "website": "http://agfunder.com",
+    "overview": "VC firm that invests in technologies to rapidly transform our food and agriculture system",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/AgFunder_35XSGNQ.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 1947,
+    "name": "Ahren Innovation Capital",
+    "website": "http://www.ahreninnovationcapital.com/",
+    "overview": "Ahren Innovation Capital makes global investments in transformational companies that operate at the intersection of deep tech and deep science",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Ahren_Innovation.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 947,
+    "name": "AiiM Partners",
+    "website": "https://www.aiimpartners.com/",
+    "overview": "AiiM Partners invests in climate technology companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/AiiM_Partners.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 212,
+    "name": "Airbus Ventures",
+    "website": "http://www.airbusventures.vc/",
+    "overview": "Airbus Ventures invests in autonomous mobility, electrification, next-generation computing, and advanced materials",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Airbus_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Menlo Park, California"
+  },
+  {
+    "id": 245,
+    "name": "Ajax Strategies",
+    "website": "https://www.ajaxinvestmentstrategies.com/",
+    "overview": "Ajax Strategies is investing in next-generation tech to solve climate change",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Ajax_Strategies.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "St. Louis, Missouri"
+  },
+  {
+    "id": 1892,
+    "name": "Alante Capital",
+    "website": "https://www.alantecapital.com/",
+    "overview": "Alante Capital is a venture capital fund that invests in technology aimed at promoting a sustainable and resilient future for apparel production and retail",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Alante_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Santa Barbara, California"
+  },
+  {
+    "id": 207,
+    "name": "Alexandria Venture Investments",
+    "website": "http://www.are.com/venture-investments.html",
+    "overview": "Alexandria Venture Investments invests in disruptive life science, agrifoodtech, climate innovation, and technology companies advancing transformative new modalities and platforms to meaningfully improve human health",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Alexandria_Venture_Investments.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Pasadena, California"
+  },
+  {
+    "id": 1014,
+    "name": "Aligned Climate Capital",
+    "website": "https://www.alignedclimatecapital.com/",
+    "overview": "Aligned Climate Capital invests across both climate tech assets and companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Aligned_Climate_Capital_.jpeg",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Emerging Infrastructure"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 3895,
+    "name": "Aliment Capital",
+    "website": "https://www.alimentcap.com",
+    "overview": "AgTech growth capital investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Aliment_Logo.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Los Angeles, California"
+  },
+  {
+    "id": 237,
+    "name": "Alliance Ventures",
+    "website": "https://alliancernm.com/home-alliance/alliance-ventures/",
+    "overview": "Alliance Ventures invests in new mobility, autonomous driving, connected services, EV and energy and enterprise 20",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Alliance_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Amsterdam, Netherlands"
+  },
+  {
+    "id": 3785,
+    "name": "Almi Invest",
+    "website": "https://www.almi.se/en/venture-capital/",
+    "overview": "Swedish venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/almi-invest-7b10da426e308cf8.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Stockholm, Sweden"
+  },
+  {
+    "id": 11576,
+    "name": "Alpha Future Funds",
+    "website": "https://alphafuturefunds.com/",
+    "overview": "Alpha Future Funds invests across robotics, sustainability, and energy",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Alpha_Future_Funds.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Luxembourg, Luxembourg"
+  },
+  {
+    "id": 1900,
+    "name": "Amasia",
+    "website": "https://www.amasia.vc",
+    "overview": "Amasia invests in companies that inspire behavior change to save our planet, guided by a thesis-driven approach",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Amasia.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Burlingame, California"
+  },
+  {
+    "id": 507,
+    "name": "Amazon Climate Pledge Fund",
+    "website": "https://www.theclimatepledge.com/us/en",
+    "overview": "Amazon Climate Pledge Fund invests in sustainable and decarbonizing technologies & services",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/The_Climate_Pledge_Final.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Seattle, Washington"
+  },
+  {
+    "id": 16470,
+    "name": "American Century Investments",
+    "website": "https://www.americancentury.com",
+    "overview": "Asset management firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/American_Century_Investments.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Kansas City, Missouri"
+  },
+  {
+    "id": 3454,
+    "name": "American Family Insurance",
+    "website": "https://www.amfam.com/",
+    "overview": "Insurance services provider",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Amfam.png",
+    "investor_types": [],
+    "city_display_name": "Madison, Wisconsin"
+  },
+  {
+    "id": 2523,
+    "name": "Angeleno Group",
+    "website": "http://www.angelenogroup.com",
+    "overview": "Climate and clean energy investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Angeleno_Group_5QkxfQc.webp",
+    "investor_types": [
+      "Growth"
+    ],
+    "city_display_name": "Century City, California"
+  },
+  {
+    "id": 9168,
+    "name": "Anglo American Decarbonisation Ventures",
+    "website": "https://www.angloamerican.com/products/marketing-materials-solutions-for-our-customers/decarbonisation-ventures",
+    "overview": "Anglo American Decarbonization Ventures in early-stage transformational technologies across sustainable materials, clean energy, methane & agriculture, and carbon & nature",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Anglo_American_Decarb_Partners.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 2614,
+    "name": "Anzu Partners",
+    "website": "https://www.anzupartners.com",
+    "overview": "Anzu Partners is an investment firm that invests in industrial and life science technology companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Anzu_Partners.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Washington D.C., District of Columbia"
+  },
+  {
+    "id": 923,
+    "name": "Applied Ventures",
+    "website": "http://appliedventures.com/",
+    "overview": "Applied Ventures is the venture capital fund of Applied Materials, the global leader in nanomanufacturing technology",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Applied_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Santa Clara, California"
+  },
+  {
+    "id": 654,
+    "name": "AP Ventures",
+    "website": "https://apventures.com/",
+    "overview": "Hydrogen Technology Investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/AP_Ventures.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 1190,
+    "name": "Aramco Ventures",
+    "website": "https://aramcoventures.com",
+    "overview": "Corporate venturing arm of Aramco",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Aramco_Ventures_Logo.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Dhahran, Saudi Arabia"
+  },
+  {
+    "id": 165,
+    "name": "Arborview Capital",
+    "website": "http://www.arborviewcapital.com",
+    "overview": "Growth-stage sustainability-focused private equity firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Arborview_Capital.webp",
+    "investor_types": [
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Chevy Chase, Maryland"
+  },
+  {
+    "id": 2830,
+    "name": "ArcelorMittal XCarb",
+    "website": "https://corporate.arcelormittal.com/media/press-releases/arcelormittal-launches-xcarb-innovation-fund",
+    "overview": "Invest in startups and technologies that help accelerate decarbonisation of the steel industry.",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/XCarb_tm_recycle_et_produit_de_maniere_durable_-_Sections.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Luxembourg, Luxembourg"
+  },
+  {
+    "id": 2997,
+    "name": "ArcLight",
+    "website": "https://www.arclight.com/",
+    "overview": "ArcLight is a private equity firm focused on energy, infrastructure and energy transition with over $27bn invested",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Arclight.webp",
+    "investor_types": [],
+    "city_display_name": "Boston, Massachusetts"
+  },
+  {
+    "id": 651,
+    "name": "ArcTern Ventures",
+    "website": "http://www.arcternventures.com",
+    "overview": "Global climate technology venture capital",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/ArcTern_Ventures.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Toronto, Canada"
+  },
+  {
+    "id": 3057,
+    "name": "Ascension",
+    "website": "https://www.ascension.vc",
+    "overview": "Impact-focused venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Ascension_SS6Ovyz.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 497,
+    "name": "Astanor Ventures",
+    "website": "https://www.astanor.com/",
+    "overview": "Astanor Ventures is a venture capital firm focusing on agrifoodtech innovations",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Astanor_Ventures.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Brussels, Belgium"
+  },
+  {
+    "id": 7766,
+    "name": "Asterion Ventures",
+    "website": "https://www.asterionventures.com/",
+    "overview": "Impact-focused European early-stage VC.",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Asterion_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "Paris, France"
+  },
+  {
+    "id": 937,
+    "name": "At One Ventures",
+    "website": "https://www.atoneventures.com/",
+    "overview": "At One Ventures finds, funds, and grows teams to catalyze a world where humanity is a net positive to nature",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/At_One_Ventures_BKcvFND.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 1050,
+    "name": "Audacy Ventures",
+    "website": "https://www.audacyventures.com/",
+    "overview": "Audacy ventures invests in early-stage climate tech companies working on decarbonization technologies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/AudacyVentures_logo.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Central, Hong Kong"
+  },
+  {
+    "id": 2832,
+    "name": "Autodesk Foundation",
+    "website": "http://www.autodesk.org",
+    "overview": "The Autodesk Foundation supports companies working on solving environmental and social challenges",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Autodesk_FOundation.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 3774,
+    "name": "Automotive Ventures",
+    "website": "https://www.automotiveventures.com",
+    "overview": "Automotive Ventures invests in transportation technology",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Automotive_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "Atlanta, Georgia"
+  },
+  {
+    "id": 3486,
+    "name": "Avaana Capital",
+    "website": "https://avaanacapital.com/",
+    "overview": "Climate-focused venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Avaana_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Mumbai, India"
+  },
+  {
+    "id": 1031,
+    "name": "Avesta Fund",
+    "website": "https://www.avesta.fund/",
+    "overview": "Impact-driven climate tech venture capital.",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Avesta_Fund.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Denver, Colorado"
+  },
+  {
+    "id": 10581,
+    "name": "Axon Partners Group",
+    "website": "https://axonpartnersgroup.com/",
+    "overview": "Axon Partners Group provides growth equity to Southern Europe companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Axon_Partners_Group.webp",
+    "investor_types": [
+      "Growth"
+    ],
+    "city_display_name": "Madrid, Spain"
+  },
+  {
+    "id": 3152,
+    "name": "Azimuth Capital Management",
+    "website": "http://www.azimut-group.com/",
+    "overview": "Azimuth Capital Management is a private equity firm investing in the energy transition",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Azimuth_Capital_Management.webp",
+    "investor_types": [
+      "Growth"
+    ],
+    "city_display_name": "Calgary, Canada"
+  },
+  {
+    "id": 2142,
+    "name": "Azolla Ventures",
+    "website": "https://www.azollaventures.com/",
+    "overview": "Early stage climate VC",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Azolla_Ventures_okntpyS.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Cambridge, Massachusetts"
+  },
+  {
+    "id": 1007,
+    "name": "Barclays Climate Ventures",
+    "website": "https://home.barclays/our-sustainability-/barclays-climate-strategy/barclays-climate-ventures/",
+    "overview": "Climate-focused venture investment",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Barclays_Climate_Ventures.webp",
+    "investor_types": [
+      "Early-stage",
+      "Corporate VC"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 121,
+    "name": "Baruch Future Ventures",
+    "website": "http://baruch.vc",
+    "overview": "Baruch Future Ventures is a seed-stage VC firm that invests in climate tech startups poised for market disruption",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Baruch_Future_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 136,
+    "name": "BASF Venture Capital",
+    "website": "https://www.basf.com/us/en",
+    "overview": "Corporate venture capital arm of the BASF Group",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/BASF_Venture_Capital.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Ludwigshafen am Rhein, Germany"
+  },
+  {
+    "id": 64666,
+    "name": "Batteries Included Fund",
+    "website": "https://batteriesincludedfund.com",
+    "overview": "Invests early in clever energy",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Batteries-Included-Fund_Logo.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "New Orleans, Louisiana"
+  },
+  {
+    "id": 3836,
+    "name": "BayWa r.e. Energy Ventures",
+    "website": "https://energy-ventures.baywa-re.com/",
+    "overview": "BayWa r.e. Energy Ventures is focused on early stage climate and energy tech opportunities",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/BayWa_r.e._Energy_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Munich, Germany"
+  },
+  {
+    "id": 4241,
+    "name": "B Capital Group",
+    "website": "http://b.capital",
+    "overview": "Global multi-stage venture investment firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/bcapgroup.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 91,
+    "name": "Bessemer Venture Partners",
+    "website": "http://www.bvp.com",
+    "overview": "Bessemer Venture Partners is a company that partners with visionary companies that aim to change the way we live, work, and do business",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Bessemer_Venture_Partners.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Redwood City, California"
+  },
+  {
+    "id": 1457,
+    "name": "Better Bite Ventures",
+    "website": "https://www.betterbite.vc/",
+    "overview": "Better Bite Ventures invests in early-stage food tech companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Better_Bite_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "Christchurch, New Zealand"
+  },
+  {
+    "id": 20,
+    "name": "Better Ventures",
+    "website": "http://better.vc",
+    "overview": "Better Ventures backs founders who leverage scientific breakthroughs and emerging tech to serve the UN's Sustainable Development Goals",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Better_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Oakland, California"
+  },
+  {
+    "id": 2687,
+    "name": "Beyond Impact VC",
+    "website": "https://www.beyondimpact.vc",
+    "overview": "Beyond Impact VC is a venture capital firm investing in vegan foods and plant-based alternatives",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Beyond_Impact_VC.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Lausanne, Switzerland"
+  },
+  {
+    "id": 1206,
+    "name": "BHP Ventures",
+    "website": "https://www.bhp.com/about/our-businesses/ventures",
+    "overview": "Venture arm of BHP mining.",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/BHP_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Corporate VC"
+    ],
+    "city_display_name": "Melbourne, Australia"
+  },
+  {
+    "id": 6614,
+    "name": "Bidra Innovation Ventures",
+    "website": "https://www.bidra.vc/",
+    "overview": "Climate-focused venture investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Bidra_Innovation_Ventures.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 75,
+    "name": "Blackhorn Ventures",
+    "website": "http://www.blackhornvc.com",
+    "overview": "Blackhorn Ventures invests in companies that are redefining industrial resource efficiency",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Blackhorn_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Boulder, Colorado"
+  },
+  {
+    "id": 2100,
+    "name": "Blue Ashva Capital",
+    "website": "https://www.blueashvacapital.com/",
+    "overview": "Sustainable investment fund",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Blue_Ashva_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Mumbai, India"
+  },
+  {
+    "id": 125,
+    "name": "Blue Bear Capital",
+    "website": "http://www.bluebearcap.com/",
+    "overview": "Early-stage industrial climate technology investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Blue_Bear_Capital.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Jackson, Wyoming"
+  },
+  {
+    "id": 2836,
+    "name": "Blue Earth Capital",
+    "website": "https://blueearth.capital/",
+    "overview": "Growth-stage social & environmental investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Blue_Earth_Capital.webp",
+    "investor_types": [
+      "Growth"
+    ],
+    "city_display_name": "Baar, Switzerland"
+  },
+  {
+    "id": 15789,
+    "name": "BlueScopeX",
+    "website": "https://bluescopex.io/",
+    "overview": "BlueScopeX is the corporate venture arm of steel producer BlueScope",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/BlueScopeX.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Melbourne, Australia"
+  },
+  {
+    "id": 76,
+    "name": "BMW i Ventures",
+    "website": "http://www.bmwiventures.com",
+    "overview": "BMW i Ventures invests in manufacturing and transportation hardware, software, and sustainability",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/BMW_i_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Mountain View, California"
+  },
+  {
+    "id": 5,
+    "name": "BoxGroup",
+    "website": "http://www.boxgroup.com",
+    "overview": "Early-stage investment in tech",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/BoxGroup.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Growth"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 29,
+    "name": "bp Ventures",
+    "website": "https://www.bp.com/en/global/ventures.html",
+    "overview": "Strategic corporate venture capital arm.",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/bp_ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 49,
+    "name": "Braemar Energy Ventures",
+    "website": "http://www.braemarenergy.com",
+    "overview": "Braemar Energy Ventures makes early, ahead-of-the-curve bets in transformative energy-tech companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Braemar_Energy_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 13239,
+    "name": "Breakthrough Energy Catalyst",
+    "website": "https://www.breakthroughenergy.org/programs",
+    "overview": "FOAK subsidiary of Breakthrough Energy",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Breakthrough_Energy_Catalyst.webp",
+    "investor_types": [
+      "Emerging Infrastructure"
+    ],
+    "city_display_name": "Kirkland, Washington"
+  },
+  {
+    "id": 6,
+    "name": "Breakthrough Energy Ventures",
+    "website": "https://www.breakthroughenergy.org",
+    "overview": "Invests in clean energy solutions",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Breakthrough_Energy_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Kirkland, Washington"
+  },
+  {
+    "id": 2482,
+    "name": "Breyer Capital",
+    "website": "http://breyercapital.com",
+    "overview": "Breyer Capital catalyzes high-impact entrepreneurs in the United States, China, and in emerging markets like Africa and MENA",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Breyer_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Menlo Park, California"
+  },
+  {
+    "id": 4523,
+    "name": "Builders Vision",
+    "website": "https://www.buildersvision.com",
+    "overview": "Builders Vision is an impact platform that invests across oceans, food and agriculture, and energy.",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Builders_Vision.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Sacramento, California"
+  },
+  {
+    "id": 26,
+    "name": "Building Ventures",
+    "website": "https://www.buildingventures.com/",
+    "overview": "Building Ventures invests in companies that are reshaping the way we design, build, operate, and experience our built environment",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Building_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Boston, Massachusetts"
+  },
+  {
+    "id": 385,
+    "name": "Buoyant Ventures",
+    "website": "https://www.buoyant.vc/",
+    "overview": "Buoyant Ventures invests in digital solutions for climate mitigation and adaptation",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Buoyant_Ventures.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Chicago, Illinois"
+  },
+  {
+    "id": 724,
+    "name": "Burnt Island Ventures",
+    "website": "https://www.burntislandventures.com/",
+    "overview": "Burnt Island Ventures  finds, funds, and supports the best founders in water",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Burnt_Island_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 388,
+    "name": "Business Development Bank of Canada (BDC)",
+    "website": "https://www.bdc.ca/",
+    "overview": "Climate-focused investment facilitation",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/BDC_Capital.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Montr\u00e9al, Canada"
+  },
+  {
+    "id": 7522,
+    "name": "Cantos",
+    "website": "http://cantos.vc/",
+    "overview": "Early-stage technology venture investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Cantos.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 2841,
+    "name": "Capital Nature",
+    "website": "http://capitalnature.com/",
+    "overview": "Capital Nature is an Israeli VC that nurtures early-stage ventures with innovative technologies, addressing major global climate challenges",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Capital_Nature.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Tel Aviv, Israel"
+  },
+  {
+    "id": 2842,
+    "name": "Capricorn Investment Group",
+    "website": "http://www.capricornllc.com/",
+    "overview": "Invests in environmental and social issues",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Capricorn_Investment_Group.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Palo Alto, California"
+  },
+  {
+    "id": 13100,
+    "name": "Capricorn Partners",
+    "website": "https://capricorn.be/en",
+    "overview": "",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Capricorn_Partners.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Leuven, Belgium"
+  },
+  {
+    "id": 3654,
+    "name": "Carbon Direct",
+    "website": "https://carbon-direct.com/",
+    "overview": "Science-backed carbon management platform.",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Carbon_Direct_crop.webp",
+    "investor_types": [],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 2605,
+    "name": "Carbon Removal Partners",
+    "website": "https://carbonremoval.partners",
+    "overview": "Carbon Removal Partners specializes in carbon removal tech investments",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Carbon_Removal_Partners_AG.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Z\u00fcrich, Switzerland"
+  },
+  {
+    "id": 2844,
+    "name": "Caterpillar Ventures",
+    "website": "https://www.caterpillar.com/en/company/innovation/caterpillar-ventures.html",
+    "overview": "Caterpillar Ventures invests in energy solutions, digital products, robotics, and advanced materials",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Caterpillar_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Menlo Park, California"
+  },
+  {
+    "id": 161,
+    "name": "Cavallo Ventures",
+    "website": "https://cavallovc.com",
+    "overview": "Cavallo Ventures invests in agriculture, animal health, and novel ingredients",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Cavallo_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 4548,
+    "name": "Cemex Ventures",
+    "website": "https://www.cemexventures.com/",
+    "overview": "Cemex Ventures invests in breakthrough technologies and solutions that help decarbonize building materials production and construction industry",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Cemex_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Madrid, Spain"
+  },
+  {
+    "id": 3788,
+    "name": "Cerulean Ventures",
+    "website": "https://cerulean.vc",
+    "overview": "Cerulean Ventures invests in climate software companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Cerulean_Ventures_PrEdvoP.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "Santa Barbara, California"
+  },
+  {
+    "id": 779,
+    "name": "Cherry Ventures",
+    "website": "http://www.cherry.vc",
+    "overview": "Early-stage European venture capital",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Cherry_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Berlin, Germany"
+  },
+  {
+    "id": 82,
+    "name": "Chevron Technology Ventures",
+    "website": "https://www.chevron.com/technology/technology-ventures",
+    "overview": "Chevron Technology Ventures invests in technologies to enhance, digitize, and decarbonize energy operations",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Chevron_qIENl7N.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Houston, Texas"
+  },
+  {
+    "id": 2847,
+    "name": "Citi Impact Fund",
+    "website": "https://www.citigroup.com/citi/communities/citi-impact-fund.html",
+    "overview": "Citi Impact Fund invests capital into startups addressing society's most pressing challenges",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Citi_Impact_Fund.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 43,
+    "name": "City Light Capital",
+    "website": "http://www.citylight.vc",
+    "overview": "City Light Capital invests in early-stage climate companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/City_Light_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 21,
+    "name": "Clean Energy Ventures",
+    "website": "https://cleanenergyventures.com/",
+    "overview": "Clean Energy Ventures is investing in early stage clean energy innovations",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Clean_Energy_Ventures.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Boston, Massachusetts"
+  },
+  {
+    "id": 824,
+    "name": "Clean Growth Fund",
+    "website": "https://www.cleangrowthfund.com/",
+    "overview": "Clean Growth Fund invests in innovations that delivers clean growth",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Clean_Growth_Fund.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 10519,
+    "name": "Cleanhill Partners",
+    "website": "https://cleanhillpartners.com",
+    "overview": "Cleanhill Partners is a private equity firm pursuing investments in the energy transition sector that contribute to decarbonization",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Cleanhill_Partners.webp",
+    "investor_types": [],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 69,
+    "name": "ClearSky",
+    "website": "http://www.clear-sky.com/",
+    "overview": "ClearSky facilitates enterprise-focused innovation that enables the energy transition",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/ClearSky.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "North Palm Beach, Florida"
+  },
+  {
+    "id": 84,
+    "name": "Clearvision Ventures",
+    "website": "https://www.clearvisionventures.com/",
+    "overview": "Clearvision Ventures invests in category-leading technology and software companies that are relevant to sustainability",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Clearvision_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Menlo Park, California"
+  },
+  {
+    "id": 1438,
+    "name": "Climactic VC",
+    "website": "https://www.climactic.vc/",
+    "overview": "Climactic VC Invests in visionary founders solving our planet\u2019s greatest challenges: battling climate change, achieving sustainability",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Climactic_VC.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 6960,
+    "name": "Climate Adaptive Infrastructure",
+    "website": "https://www.climateadaptiveinfra.com/",
+    "overview": "Climate Adaptive Infrastructure invests in large-scale, low-carbon infrastructure projects",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Climate_Adaptive_Infrastructure.webp",
+    "investor_types": [
+      "Growth Infrastructure"
+    ],
+    "city_display_name": "Mill Valley, California"
+  },
+  {
+    "id": 93,
+    "name": "Climate Capital",
+    "website": "http://climatecapital.co/",
+    "overview": "Early-stage venture capital for climate tech",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Climate_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 2578,
+    "name": "Climate Innovation Capital",
+    "website": "https://climateic.com",
+    "overview": "Climate Innovation Capital is a Growth Equity fund that invests in technology and integrated solutions and services which are aimed to decarbonize the economy",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Climate_Innovation_Capital.webp",
+    "investor_types": [
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Toronto, Canada"
+  },
+  {
+    "id": 34,
+    "name": "Climate Investment (OGCI)",
+    "website": "https://www.climateinvestment.com",
+    "overview": "Climate Investment provides venture and growth capital for industrial decarbonization in energy",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Climate_Investment_OGCI.webp",
+    "investor_types": [
+      "Growth"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 2643,
+    "name": "Climate VC",
+    "website": "https://www.climate.vc/",
+    "overview": "Climate VC offers the first cheque into early-stage ventures that have a clear path to gigatonne impact in climate emissions",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Climate_VC.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 2854,
+    "name": "Climentum Capital",
+    "website": "https://www.climentum.com",
+    "overview": "Climentum Capital invests in Seed+ & Series A startups in Europe with the aim of reducing megatons of CO2 emissions",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Climentum_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Copenhagen, Denmark"
+  },
+  {
+    "id": 3527,
+    "name": "Closed Loop Partners",
+    "website": "http://www.closedlooppartners.com/",
+    "overview": "Closed Loop Partners invests in circular economy solutions across venture, growth equity, private equity, and catalytic infrastructure capital",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Closed_Loop_Partners.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "New City, New York"
+  },
+  {
+    "id": 342,
+    "name": "Coatue",
+    "website": "http://coatue.com",
+    "overview": "Technology-focused investment firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Coatue.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 123,
+    "name": "Collaborative Fund",
+    "website": "http://www.collaborativefund.com",
+    "overview": "Collaborative Fund invests in companies that fuel a more sustainable economy across materials, ingredients, energy, and supply chains",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Collaborative_Fund.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 9,
+    "name": "Congruent Ventures",
+    "website": "http://www.congruentvc.com",
+    "overview": "Congruent Ventures has a goal of creating companies that will positively impact how we move, create, eat, and live",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Congruent_Ventures_oLtxsVK.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 78,
+    "name": "Constellation Technology Ventures",
+    "website": "http://technologyventures.constellation.com",
+    "overview": "Constellation Technology Ventures invests in innovative energy technologies and business models",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Constellation_Technology_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Baltimore, Maryland"
+  },
+  {
+    "id": 2857,
+    "name": "Continental Grain Company",
+    "website": "https://continentalgrain.com",
+    "overview": "Continental Grain Company invests in cutting\u2010edge technology defining the future of food and agriculture",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Continental_Grain_Company.webp",
+    "investor_types": [],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 2597,
+    "name": "Convective Capital",
+    "website": "https://www.convectivecapital.com/",
+    "overview": "Wildfire technology venture capital",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Convective_Logo.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 726,
+    "name": "Copec WIND Ventures",
+    "website": "https://www.windventures.vc",
+    "overview": "VC arm of Copec",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/WIND_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 1764,
+    "name": "Counteract",
+    "website": "https://counteract.vc",
+    "overview": "Early-stage carbon removal investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Counteract.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 181,
+    "name": "Creative Ventures",
+    "website": "http://www.creativeventures.vc",
+    "overview": "Creative Ventures invests in companies that address critical global-scale challenges using a method-driven approach",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Creative_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Oakland, California"
+  },
+  {
+    "id": 2858,
+    "name": "Cycle Capital",
+    "website": "http://www.cyclecapital.com",
+    "overview": "Venture capital investment platform",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Cycle_Capital_DU1yV6H.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Montr\u00e9al, Canada"
+  },
+  {
+    "id": 1201,
+    "name": "Day One Ventures",
+    "website": "http://dayoneventures.com/",
+    "overview": "Day One Ventures is an early-stage venture capital firm that invests in customer-obsessed companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Day_One_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 1632,
+    "name": "DBL Partners",
+    "website": "http://www.dblinvestors.com",
+    "overview": "DBL Partners invest in companies that deliver top-tier returns and enable social, environmental, and economic benefits",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/DBL_Partners.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 15,
+    "name": "DCVC",
+    "website": "http://www.dcvc.com",
+    "overview": "DCVC backs brilliant Deep Tech teams that solve the world's hardest problems",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/DCVC.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 2752,
+    "name": "Decarbonization Partners",
+    "website": "https://www.decarbpartners.com/",
+    "overview": "Decarbonization Partners invests in the climate transition",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Decarbonization_Partners.webp",
+    "investor_types": [
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 1637,
+    "name": "Doral Energy-Tech Ventures",
+    "website": "https://doral-tech.com",
+    "overview": "Doral Energy-Tech Ventures invests in breakthrough companies taking on major global sustainability challenges",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Doral_Energy-Tech_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Tel Aviv, Israel"
+  },
+  {
+    "id": 939,
+    "name": "Drawdown Fund",
+    "website": "https://www.drawdownfund.com/",
+    "overview": "Drawdown Fund invests in growth-stage businesses at the forefront of the sustainable revolution",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Drawdown_Fund.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Park City, Utah"
+  },
+  {
+    "id": 15790,
+    "name": "E12 Ventures",
+    "website": "https://www.e12.ventures/",
+    "overview": "E12 Ventures invests in early-stage companies across climate tech, supply chain, and agtech",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/E12_Ventures.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Palo Alto, California"
+  },
+  {
+    "id": 1921,
+    "name": "Earthshot Ventures",
+    "website": "https://www.earthshot.vc",
+    "overview": "",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Earthshot_Ventures_Bj9rLbm.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 2867,
+    "name": "Earth Venture Capital",
+    "website": "https://www.earth.vc/",
+    "overview": "Climate focused venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Earth_Venture_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Ho Chi Minh City, Vietnam"
+  },
+  {
+    "id": 7097,
+    "name": "eCAPITAL ENTREPRENEURIAL PARTNERS",
+    "website": "https://ecapital.vc",
+    "overview": "eCAPITAL ENTREPRENEURIAL PARTNERS is an impact venture capital firm that offers funding to technology companies at early to growth stages",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/eCAPITAL_ENTREPRENEURIAL_PARTNERS.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "M\u00fcnster, Germany"
+  },
+  {
+    "id": 11,
+    "name": "Ecosystem Integrity Fund",
+    "website": "https://eif.vc/",
+    "overview": "Sustainability-focused venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Ecosystem_Integrity_Fund.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 1330,
+    "name": "EDP Ventures",
+    "website": "https://www.edp.com/en/innovation/edp-ventures#portfolio",
+    "overview": "EDP Ventures is the venture capital investment arm of EDP",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/edpventures_logo_new.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Lisbon, Portugal"
+  },
+  {
+    "id": 1610,
+    "name": "Eka Ventures",
+    "website": "https://ekavc.com/",
+    "overview": "Eka Ventures invests in founders building category-defining technology companies that positively shape the world, making it more sustainable, healthy and inclusive",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Eka_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 2870,
+    "name": "Elbow Beach Capital",
+    "website": "https://elbowbeachcapital.com/",
+    "overview": "Climate investment firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Elbow_Beach_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 90,
+    "name": "Elemental Impact",
+    "website": "http://elementalexcelerator.com/",
+    "overview": "Elemental Impact invests in companies on a mission to redesign systems at the root of our climate crisis",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Elemental_Impact_jUICBZG.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Honolulu, Hawaii"
+  },
+  {
+    "id": 4129,
+    "name": "Ember Infrastructure",
+    "website": "https://ember-infra.com/",
+    "overview": "Ember Infrastructure invests in the energy & resource transition",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Ember_Infrastructure.webp",
+    "investor_types": [
+      "Growth Infrastructure"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 359,
+    "name": "Emerald Technology Ventures",
+    "website": "https://emerald.vc",
+    "overview": "Venture capital for sustainable transformation",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Emerald_Technology_Ventures.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Z\u00fcrich, Switzerland"
+  },
+  {
+    "id": 159,
+    "name": "Emerson Collective",
+    "website": "http://emersoncollective.com",
+    "overview": "Emerson Collective is a multi-stage venture team focused on accelerating the growth of companies positively impacting the world",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Emerson_Collective.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Palo Alto, California"
+  },
+  {
+    "id": 1328,
+    "name": "Eneco Ventures",
+    "website": "https://www.eneco.com/what-we-do/ventures/",
+    "overview": "Eneco Ventures aims to help the future stars in sustainable energy light up even brighter",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Eneco_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Rotterdam, Netherlands"
+  },
+  {
+    "id": 112,
+    "name": "Energize Capital",
+    "website": "https://www.energizecap.com/",
+    "overview": "Early-stage climate technology investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Energize_Capital_BCqj7uB.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Chicago, Illinois"
+  },
+  {
+    "id": 109,
+    "name": "Energy Foundry",
+    "website": "http://www.energyfoundry.com",
+    "overview": "Energy Foundry invests Venture Capital to build groundbreaking energy startups",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Energy_Foundry.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Chicago, Illinois"
+  },
+  {
+    "id": 1,
+    "name": "Energy Impact Partners",
+    "website": "http://energyimpactpartners.com",
+    "overview": "Energy Impact Partners invests in companies shaping the energy future by partnering with utilities",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Energy_Impact_Partners.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 220,
+    "name": "Energy Innovation Capital",
+    "website": "http://energyinnovationcapital.com/",
+    "overview": "Energy Innovation Capital invests in companies that are developing the next generation of technology to ensure abundant, clean, and accessible energy",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Energy_Innovation_Capital.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 2203,
+    "name": "Energy Revolution Ventures",
+    "website": "https://er-v.io/",
+    "overview": "Energy Revolution Ventures is focused on early-stage startups along the electrochemical value chain: Hydrogen, Energy Storage, Advanced Material",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Energy_Revolution_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 1836,
+    "name": "Energy Transition Ventures",
+    "website": "https://energytransitionventures.com/",
+    "overview": "Energy Transition Ventures invests in companies that drive or benefit from the energy transition",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Energy_Transition_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Houston, Texas"
+  },
+  {
+    "id": 2864,
+    "name": "ENGIE New Ventures",
+    "website": "http://www.engieventures.com",
+    "overview": "Corporate venture firm investing in cleantech energy companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/ENGIE_New_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "La Defense, France"
+  },
+  {
+    "id": 24,
+    "name": "Engine Ventures",
+    "website": "https://engineventures.com/",
+    "overview": "Seed & early-stage social impact investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/EngineVenturesLogo.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Cambridge, Massachusetts"
+  },
+  {
+    "id": 39,
+    "name": "Eni Next",
+    "website": "https://www.eni.com/en_IT/home.page",
+    "overview": "Eni Next is the corporate venture arm of Eni",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Eni_Next.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Rome, Italy"
+  },
+  {
+    "id": 2210,
+    "name": "Envisioning Partners",
+    "website": "https://envisioning.partners/",
+    "overview": "Impact-focused venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Envisioning_Partners.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Seoul, South Korea"
+  },
+  {
+    "id": 168,
+    "name": "EQT Ventures",
+    "website": "https://eqtventures.com",
+    "overview": "multi-stage, sector-agnostic fund",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/EQT_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Stockholm, Sweden"
+  },
+  {
+    "id": 658,
+    "name": "Equal Ventures",
+    "website": "https://www.equal.vc/",
+    "overview": "Equal Ventures is a thesis-driven, seed-stage firm focused on 5 key investment areas, including energy & sustainability",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Equal_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 9415,
+    "name": "Equator",
+    "website": "https://equator.vc/",
+    "overview": "Equator is a climate-tech venture capital firm investing in early-stage ventures focused on energy, agriculture and mobility in Sub-Saharan Africa",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Equator.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Nairobi, Kenya"
+  },
+  {
+    "id": 2872,
+    "name": "Equinor Ventures",
+    "website": "https://www.equinor.com/energy/ventures",
+    "overview": "Equinor Ventures invests in ambitious early phase and growth companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Equinor_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Stavanger, Norway"
+  },
+  {
+    "id": 2866,
+    "name": "ETF Partners",
+    "website": "http://www.etfpartners.capital/",
+    "overview": "ETF Partners invests in sustainability through Innovation",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/ETF_Partners.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 2283,
+    "name": "European Circular Bioeconomy Fund (ECBF)",
+    "website": "https://www.ecbf.vc",
+    "overview": "Growth stage European bio economy VC",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/ECBF_sAsukrf.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Bonn, Germany"
+  },
+  {
+    "id": 28,
+    "name": "Evergreen Climate Innovations",
+    "website": "https://evergreeninno.org/",
+    "overview": "Evergreen Climate Innovations advances climate tech in the Greater Midwest by supporting startups bringing impactful climate technologies to market",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Evergreen_Climate_Innovation.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "Chicago, Illinois"
+  },
+  {
+    "id": 73,
+    "name": "Evergy Ventures",
+    "website": "http://www.evergyventures.com/",
+    "overview": "Evergy Ventures invests in companies working on the energy transition",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Evergy_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Kansas City, Missouri"
+  },
+  {
+    "id": 2602,
+    "name": "Ev\u014dk Innovations (Evok Innovations)",
+    "website": "http://www.evokinnovations.com/",
+    "overview": "Early stage technology VC",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/evok_logo_hi_res2_-_Evok_Innovations.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Vancouver, Canada"
+  },
+  {
+    "id": 183,
+    "name": "Fall Line Capital",
+    "website": "http://fall-line-capital.com/",
+    "overview": "Fall Line Capital is reinventing investment in broadacre farmland and agricultural technologies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Fall_Line_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "San Mateo, California"
+  },
+  {
+    "id": 117,
+    "name": "Fifth Wall",
+    "website": "http://fifthwall.com/",
+    "overview": "Fifth Wall is investing in Built World technology by convening a consortium of real estate leaders",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Fifth_Wall.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Los Angeles, California"
+  },
+  {
+    "id": 8,
+    "name": "Fifty Years",
+    "website": "http://fiftyyears.com/",
+    "overview": "Fifty Years supports founders who utilize technology to tackle the world's most significant issues",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Fifty_Years.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 1455,
+    "name": "Fine Structure Ventures",
+    "website": "https://finestructure.vc/",
+    "overview": "Fine Structure Venture invests in companies that leverage breakthrough scientific innovation",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Fine_Structure_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Boston, Massachusetts"
+  },
+  {
+    "id": 1228,
+    "name": "First Imagine! Ventures",
+    "website": "http://www.firstimagine.com/",
+    "overview": "First Imagine! Ventures is a seed-stage venture capital firm that invests in the energy transition across Europe and Israel",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/First_Imagine_Ventures.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 844,
+    "name": "Firstminute Capital",
+    "website": "https://firstminute.capital/",
+    "overview": "Firstminute Capital is an early-stage venture fund based in London backed by 30 unicorn founders and global strategics",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Firstminute_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 2877,
+    "name": "First Star Ventures",
+    "website": "http://www.firststar.vc/",
+    "overview": "First Star Ventures partners with visionary, technical founders who are inventing a better future by investing in pre-seed opportunities",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/First_Star_Ventures_45eedL4.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Boston, Massachusetts"
+  },
+  {
+    "id": 667,
+    "name": "Fontinalis Partners",
+    "website": "http://fontinalis.com",
+    "overview": "Fontinalis Partners invests in the future of mobility, including enabling technologies with significant impacts in mobility",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Fontinalis_Partners.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Detroit, Michigan"
+  },
+  {
+    "id": 412,
+    "name": "FootPrint Coalition",
+    "website": "https://www.footprintcoalition.com/",
+    "overview": "Footprint Coalition invests in climate change mitigation and adaptation solutions",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/FootPrint_Coalition.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Beverly Hills, California"
+  },
+  {
+    "id": 252,
+    "name": "FTW Ventures",
+    "website": "http://www.ftw.vc/",
+    "overview": "FTW Ventures is a leading early-stage venture fund that invests in the future of food that delivers exceptional returns for profit, people and the planet",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/FTW_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 1864,
+    "name": "FullCycle Climate Partners",
+    "website": "https://www.fullcycle.com/",
+    "overview": "FullCycle Climate Partners provides growth capital & project equity to accelerate commercial deployment of climate-critical technologies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/FullCycle_Climate_Partners.webp",
+    "investor_types": [
+      "Emerging Infrastructure"
+    ],
+    "city_display_name": "Los Angeles, California"
+  },
+  {
+    "id": 1229,
+    "name": "Future Energy Ventures",
+    "website": "https://fev.vc",
+    "overview": "Future Energy Ventures invests in companies revolutionizing the energy ecosystem and urban buildings",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Future_Energy_Ventures.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Berlin, Germany"
+  },
+  {
+    "id": 6347,
+    "name": "Futureland Ventures",
+    "website": "https://www.futurelandventures.com/",
+    "overview": "Futureland ventures invests in transformative early-stage technology startups creating a more sustainable, resilient, and connected future",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Futureland_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Washington D.C., District of Columbia"
+  },
+  {
+    "id": 167,
+    "name": "Future Positive Capital",
+    "website": "http://www.futurepositivecapital.com",
+    "overview": "Future Positive Capital invests in deep technologies that tackle the world's most urgent issues",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/futurepositivecapital_logo.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Paris, France"
+  },
+  {
+    "id": 16,
+    "name": "Future Ventures",
+    "website": "https://future.ventures/",
+    "overview": "Future Ventures supports disruptive technologies such as space exploration, sustainable transportation, and clean meat",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Future_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 2211,
+    "name": "G2 Venture Partners (G2VP)",
+    "website": "https://www.g2vp.com/",
+    "overview": "venture and growth capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/G2_Venture_Partners.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Portola Valley, California"
+  },
+  {
+    "id": 2013,
+    "name": "Galway Sustainable Capital",
+    "website": "https://galwaysustainable.com/",
+    "overview": "Galway Sustainable Capital invests in companies, projects and assets that promote environmental and social resilience",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Galway_Sustainable_Capital.webp",
+    "investor_types": [
+      "Growth Infrastructure"
+    ],
+    "city_display_name": "Washington D.C., District of Columbia"
+  },
+  {
+    "id": 6558,
+    "name": "GEF Capital",
+    "website": "https://gefcapital.com/",
+    "overview": "Environmental sustainability investment platform",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/GEF_Capital.webp",
+    "investor_types": [],
+    "city_display_name": "Arlington, Virginia"
+  },
+  {
+    "id": 2992,
+    "name": "gener8tor",
+    "website": "http://www.gener8tor.com",
+    "overview": "Startup accelerator",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/gener8tor-logo.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "Madison, Wisconsin"
+  },
+  {
+    "id": 1038,
+    "name": "General Atlantic BeyondNetZero",
+    "website": "https://beyond-net-zero.com/",
+    "overview": "Climate-focused growth equity fund.",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/General_Atlantic_BeyondNetZero.webp",
+    "investor_types": [
+      "Growth"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 102,
+    "name": "General Catalyst",
+    "website": "http://www.generalcatalyst.com",
+    "overview": "General Catalyst invests in early- and growth-stage companies that drive powerful, positive change that endures",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/General_Catalyst.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Cambridge, Massachusetts"
+  },
+  {
+    "id": 681,
+    "name": "Generate Capital",
+    "website": "https://generatecapital.com",
+    "overview": "Sustainable infrastructure investment platform",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Generate_Capital.webp",
+    "investor_types": [
+      "Growth Infrastructure"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 2883,
+    "name": "Generation Investment Management",
+    "website": "https://www.generationim.com/",
+    "overview": "Generation Investment Management is an investment firm founded by Al Gore and David Blood focused on long-term sustainable investing",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Generation_Investment_Management.webp",
+    "investor_types": [
+      "Growth"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 20397,
+    "name": "GET Fund",
+    "website": "https://getfund.eu/",
+    "overview": "Impact venture capital fund",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/getfund_logo.webp",
+    "investor_types": [
+      "Early-stage",
+      "Growth"
+    ],
+    "city_display_name": "Munich, Germany"
+  },
+  {
+    "id": 845,
+    "name": "Giant Ventures",
+    "website": "https://www.giant.vc/",
+    "overview": "Giant Ventures is a multi-stage fund that supports purpose-driven founders who are dedicated to creating a more sustainable, equitable, and resilient planet",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Giant_Ventures_GOIFe2O.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 10009,
+    "name": "Gigascale Capital",
+    "website": "https://gigascale.com/",
+    "overview": "Gigascale Capital invests in climate focused companies with the potential to reach massive gigaton or gigawatt scale",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Gigascale_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Palo Alto, California"
+  },
+  {
+    "id": 2370,
+    "name": "Global Cleantech Capital",
+    "website": "http://www.gccfund.com/",
+    "overview": "Global Cleantech Capital invests in companies accelerating the climate transition in the clean energy, mobility, smart cities, and fintech sectors",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Global_Cleantech_Capital.webp",
+    "investor_types": [
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Amsterdam, Netherlands"
+  },
+  {
+    "id": 1073,
+    "name": "Global Founders Capital",
+    "website": "https://www.globalfounderscapital.com",
+    "overview": "Global Founders Capital is a seed and growth investor with a climate tech partnership",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Global_Founders_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Berlin, Germany"
+  },
+  {
+    "id": 2254,
+    "name": "GM Ventures",
+    "website": "https://www.gmventures.com/",
+    "overview": "invests in early-stage automotive startups",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/GM_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Warren, Michigan"
+  },
+  {
+    "id": 135,
+    "name": "Goldman Sachs Asset Management",
+    "website": "https://www.gsam.com/content/gsam/global/en/homepage.html",
+    "overview": "Institutional Asset Management Firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Goldman_Sachs_Asset_Management.webp",
+    "investor_types": [
+      "Growth"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 640,
+    "name": "Grantham Foundation",
+    "website": "https://www.granthamfoundation.org/",
+    "overview": "Charitable foundation focused on environmental production",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Grantham_Foundation.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Boston, Massachusetts"
+  },
+  {
+    "id": 15241,
+    "name": "Great Wave Ventures",
+    "website": "https://www.greatwave.vc/",
+    "overview": "Green Wave Ventures is a New York-based early-stage venture firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Great_Wave_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 9041,
+    "name": "Greenbacker",
+    "website": "https://greenbackercapital.com/",
+    "overview": "Renewable energy investment and IPP",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/greenbacker.webp",
+    "investor_types": [],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 10952,
+    "name": "Greencode Ventures",
+    "website": "https://greencode.vc/",
+    "overview": "Early stage venture capital for European energy, industry and infrastructure",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Greencode_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Helsinki, Finland"
+  },
+  {
+    "id": 3027,
+    "name": "Green Frontier Capital",
+    "website": "https://www.greenfrontiercapital.com/",
+    "overview": "Green Frontier Capital supports early-stage companies which are focused on delivering breakthrough innovation",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Green_Frontier_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Mumbai, India"
+  },
+  {
+    "id": 1792,
+    "name": "Green Generation Fund",
+    "website": "https://www.greengenerationfund.com/",
+    "overview": "Green Generation Fund primarily invests in early stage Food Tech and Green Tech companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Green_Generation_Fund.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Berlin, Germany"
+  },
+  {
+    "id": 791,
+    "name": "GreenSoil Investments",
+    "website": "https://www.gspv.vc/",
+    "overview": "GreenSoil Investments is a venture capital firm with a focus on early-stage Israeli technology startups in agtech, foodtech, and sustainability",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/GreenSoil_Investments.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Ra'anana, Israel"
+  },
+  {
+    "id": 1528,
+    "name": "GS Futures",
+    "website": "https://www.gsfutures.vc/",
+    "overview": "GS Futures seeks to invest in companies at the early stage and partner with teams for the long haul",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/GS_Futures.webp",
+    "investor_types": [
+      "Early-stage",
+      "Corporate VC"
+    ],
+    "city_display_name": "San Mateo, California"
+  },
+  {
+    "id": 448,
+    "name": "GV (Google Venture)",
+    "website": "http://www.gv.com",
+    "overview": "GV backs founders transforming industries and creating new ones",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/GV_n055zC9.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Mountain View, California"
+  },
+  {
+    "id": 9048,
+    "name": "Hannon Armstrong Sustainable Infrastructure Capital (HASI)",
+    "website": "https://www.hasi.com/",
+    "overview": "Climate infrastructure investment firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/HASI.webp",
+    "investor_types": [
+      "Emerging Infrastructure",
+      "Growth Infrastructure"
+    ],
+    "city_display_name": "Annapolis, Maryland"
+  },
+  {
+    "id": 1627,
+    "name": "Hartree Partners",
+    "website": "http://www.hartreepartners.com/",
+    "overview": "Hartree Partners invest across the digital and physical carbon markets' value-chain",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Hartree_Partners.webp",
+    "investor_types": [],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 11737,
+    "name": "Hatch Blue",
+    "website": "https://www.hatch.blue/",
+    "overview": "Aquaculture focussed incubator & private equity firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Hatch_Blue_aljmb91.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Cork, Ireland"
+  },
+  {
+    "id": 4094,
+    "name": "Hawktail",
+    "website": "https://hawktail.com/",
+    "overview": "Hawktail invests in early stage companies focused climate solutions across deeptech, ag, synbio and software",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Hawktail.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 2890,
+    "name": "Helios Climate Ventures",
+    "website": "https://helioscv.com/",
+    "overview": "Helios Climate Ventures is a climate tech venture firm with a speciality in energy storage",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Helios_Climate_Ventures.webp",
+    "investor_types": [
+      "Early-stage",
+      "Growth Infrastructure"
+    ],
+    "city_display_name": "Aspen, Colorado"
+  },
+  {
+    "id": 12940,
+    "name": "Henkel Ventures",
+    "website": "https://www.henkeldxventures.com/",
+    "overview": "Henkel dx Ventures is the corporate venture capital arm of Henkel\u2019s consumer goods business.",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Henkel_dx_Ventures.webp",
+    "investor_types": [
+      "Early-stage",
+      "Corporate VC"
+    ],
+    "city_display_name": "D\u00fcsseldorf, Germany"
+  },
+  {
+    "id": 911,
+    "name": "HG Ventures",
+    "website": "http://www.hgventures.com/",
+    "overview": "HG Ventures invests in transportation, infrastructure, environmental services, and specialty chemicals",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/HG_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Indianapolis, Indiana"
+  },
+  {
+    "id": 4095,
+    "name": "High-Tech Gr\u00fcnderfonds (HTGF)",
+    "website": "https://www.htgf.de/en/",
+    "overview": "Seed-stage technology VC",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/high_tech_gruenderfonds_logo.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Bonn, Germany"
+  },
+  {
+    "id": 1635,
+    "name": "Hitachi Ventures",
+    "website": "https://www.hitachi-ventures.com",
+    "overview": "Hitachi Ventures looks for the best solutions to address the world\u2019s technical, social and environmental challenges",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Hitachi_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Munich, Germany"
+  },
+  {
+    "id": 1958,
+    "name": "Homecoming Capital",
+    "website": "https://www.homecomingcapital.com/",
+    "overview": "Homecoming Capital invests behind transitions in the highest emitting industries",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Homecoming_Capital.webp",
+    "investor_types": [
+      "Emerging Infrastructure"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 63,
+    "name": "Horizons Ventures",
+    "website": "http://horizonsventures.com",
+    "overview": "Horizons Ventures is a venture capital firm based in Hong Kong that concentrates on startups that are disruptive and technology-focused",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Horizons_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Central, Hong Kong"
+  },
+  {
+    "id": 12402,
+    "name": "HSBC Asset Management",
+    "website": "https://www.assetmanagement.us.hsbc.com/en",
+    "overview": "Global institutional asset management firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/HSBC_AM.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 4098,
+    "name": "ICOS Capital Management",
+    "website": "http://www.icoscapital.com/",
+    "overview": "ICOS Capital Management is a collaborative venture capital firm working at the intersection of digital and sustainable industry",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/ICOS_Capital_Management.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Amsterdam, Netherlands"
+  },
+  {
+    "id": 531,
+    "name": "Impact Engine",
+    "website": "http://www.theimpactengine.com",
+    "overview": "Impact Engine invests in companies and funds that seek to optimize both financial and social returns",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Impact_Engine.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Chicago, Illinois"
+  },
+  {
+    "id": 2330,
+    "name": "Impact Science Ventures",
+    "website": "https://www.impactscience.vc/",
+    "overview": "Impact Science Ventures invests in leading innovators who create fundamental scientific breakthroughs that have the potential to make the biggest impact and solve the world's most pressing issues",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Impact_Science_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 938,
+    "name": "InMotion Ventures",
+    "website": "https://www.inmotionventures.com",
+    "overview": "InMotion Ventures invests in transportation and travel solutions",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/InMotion_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 868,
+    "name": "Innovation Endeavors",
+    "website": "http://www.innovationendeavors.com/",
+    "overview": "Innovation Endeavors invests in visionary founders, transformational technologies, and emergent ecosystems",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Innovation_Endeavors.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Palo Alto, California"
+  },
+  {
+    "id": 147,
+    "name": "Insight Partners",
+    "website": "http://www.insightpartners.com",
+    "overview": "Global software and internet investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Insight_Partners.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 2757,
+    "name": "Invest FWD",
+    "website": "https://about.bestseller.com/news/investment-boost-benefits-bestseller",
+    "overview": "Invest FWD invests in sustainable fashion and the circular economy",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Bestseller_Invest_FWD.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Aarhus, Denmark"
+  },
+  {
+    "id": 2212,
+    "name": "Investible",
+    "website": "https://www.investible.com/",
+    "overview": "Early-stage climate tech investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Investible.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Sydney, Australia"
+  },
+  {
+    "id": 1473,
+    "name": "Japan Energy Fund",
+    "website": "https://www.japanenergyfund-ventures.com/",
+    "overview": "Invests in global climate tech",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Japan_Energy_Fund.webp",
+    "investor_types": [
+      "Late-stage"
+    ],
+    "city_display_name": "Minato-ku, Japan"
+  },
+  {
+    "id": 928,
+    "name": "JetBlue Ventures",
+    "website": "http://www.jetblueventures.com/",
+    "overview": "JetBlue Ventures invests in early-stage startups improving the travel, hospitality, and transportation industries",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/JetBlue_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "San Carlos, California"
+  },
+  {
+    "id": 5708,
+    "name": "Jetstream",
+    "website": "https://www.jetstream.io",
+    "overview": "Jetstream primarily focuses on pre-seed climate technologies, particularly software solutions",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Jetstream_FqWoaHR.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 4865,
+    "name": "J.P. Morgan Asset Management",
+    "website": "https://am.jpmorgan.com/us/en/asset-management/adv/",
+    "overview": "J.P. Morgan Asset Management is an investment firm focusing on long-term investments in various sectors",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/J.P.Morgan_Asset_Management.webp",
+    "investor_types": [
+      "Growth"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 13433,
+    "name": "Junction Growth Investors",
+    "website": "https://junctiongrowthinvestors.com/",
+    "overview": "Private equity investment firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Junction_Growth_Investors.webp",
+    "investor_types": [
+      "Growth"
+    ],
+    "city_display_name": "Antwerpen, Belgium"
+  },
+  {
+    "id": 9412,
+    "name": "Just Climate",
+    "website": "https://www.justclimate.com/",
+    "overview": "Specialist climate-led investments",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Just_Climate.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth",
+      "Emerging Infrastructure"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 7595,
+    "name": "Katapult VC",
+    "website": "https://katapult.vc/",
+    "overview": "Impact-focused startup investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Katapult_VC.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Oslo, Norway"
+  },
+  {
+    "id": 156,
+    "name": "KdT Ventures",
+    "website": "https://www.kdtvc.com",
+    "overview": "KdT invests in climate, sustainability, and human health",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/KdT_Logo_topJPG_Image.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Austin, Texas"
+  },
+  {
+    "id": 1913,
+    "name": "Keiki Capital",
+    "website": "https://keikicapital.com",
+    "overview": "Seed & early stage investor in decarbonisation startups",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Keiki_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Laguna Beach, California"
+  },
+  {
+    "id": 2292,
+    "name": "Keyframe Capital Partners",
+    "website": "https://www.keyframecapital.com/",
+    "overview": "Keyframe Capital Partners invests in equity and debt in both traditional and unconventional methods to unlock growth and propel innovation in energy transition",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Keyframe.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage",
+      "Emerging Infrastructure"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 52,
+    "name": "Khosla Ventures",
+    "website": "http://www.khoslaventures.com",
+    "overview": "Venture Capital Investment Company",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Khosla_Ventures_hBCXgvT.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Menlo Park, California"
+  },
+  {
+    "id": 1094,
+    "name": "Kiko Ventures",
+    "website": "https://kiko.vc/",
+    "overview": "Kiko Ventures is an evergreen venture investor focused on cleantech/climate tech.",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Kiko_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 2337,
+    "name": "Kinnevik",
+    "website": "http://www.kinnevik.com",
+    "overview": "Kinnevik is a long-term growth investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/kinnevik-logo-2015-liggande-transparent.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Stockholm, Sweden"
+  },
+  {
+    "id": 77,
+    "name": "Kleiner Perkins",
+    "website": "https://www.kleinerperkins.com/",
+    "overview": "Kleiner Perkins spun off its Green Growth fund into G2VP following its active investment during Cleantech 10",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Kleiner_Perkins.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Menlo Park, California"
+  },
+  {
+    "id": 1761,
+    "name": "KOMPAS",
+    "website": "http://www.kompas.vc/",
+    "overview": "KOMPAS backs solutions in the built environment and manufacturing industry",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/KOMPAS.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Copenhagen, Denmark"
+  },
+  {
+    "id": 15791,
+    "name": "Kopa Ventures",
+    "website": "https://www.kopa.vc/",
+    "overview": "Kopa Ventures invests across energy, mobility, and carbon verticals",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/kopa_ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Mainz, Germany"
+  },
+  {
+    "id": 3850,
+    "name": "Korys",
+    "website": "http://www.korys.be/",
+    "overview": "Korys invests in early-stage and late-stage climate companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Korys.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage",
+      "Growth",
+      "Emerging Infrastructure"
+    ],
+    "city_display_name": "Halle, Belgium"
+  },
+  {
+    "id": 9937,
+    "name": "Leap Forward Ventures",
+    "website": "https://leapforward.vc/",
+    "overview": "Leap Forward Ventures invests in early-stage climate tech companies accelerating decarbonization",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Leap_Forward_Ventures_obGpcrP.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 7236,
+    "name": "LeapFrog Investments",
+    "website": "https://leapfroginvest.com/",
+    "overview": "Global impact investment private equity",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/LeapFrog-Investments.webp",
+    "investor_types": [
+      "Growth"
+    ],
+    "city_display_name": "Ebene, Mauritius"
+  },
+  {
+    "id": 755,
+    "name": "Leaps by Bayer",
+    "website": "https://leaps.bayer.com/",
+    "overview": "Strategic life sciences CVC",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Leaps_by_Bayer.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth",
+      "Corporate VC"
+    ],
+    "city_display_name": "Berlin, Germany"
+  },
+  {
+    "id": 1776,
+    "name": "Lightrock",
+    "website": "https://www.lightrock.com",
+    "overview": "Growth-equity sustainability investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/LightrockLogo.webp",
+    "investor_types": [
+      "Growth"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 6380,
+    "name": "Link Capital",
+    "website": "https://www.linkcapital.no/",
+    "overview": "Early-stage climate and energy investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Link_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Stavanger, Norway"
+  },
+  {
+    "id": 2904,
+    "name": "Longrun Capital",
+    "website": "https://www.longruncapital.com/",
+    "overview": "Longrun Capital invests in Nordic-based seed-stage companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Longrun_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "Stockholm, Sweden"
+  },
+  {
+    "id": 14,
+    "name": "Lowercarbon Capital",
+    "website": "https://lowercarbon.com/",
+    "overview": "Climate-focused venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Lowercarbon_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 963,
+    "name": "M12 - Microsoft's Venture Fund",
+    "website": "https://m12.vc/",
+    "overview": "Corporate venture capital investing",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/M12_-_Microsofts_Venture_Fund.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 2213,
+    "name": "MacKinnon, Bennett & Co. (MKB)",
+    "website": "http://mkbandco.com/",
+    "overview": "Growth Equity Investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/MacKinnon_Bennett__Co._MKB.webp",
+    "investor_types": [
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Montr\u00e9al, Canada"
+  },
+  {
+    "id": 870,
+    "name": "Maersk Growth",
+    "website": "https://www.maersk.com/growth",
+    "overview": "Maersk Growth invests in startups in transport and logistics",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Maersk_Growth.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Corporate VC"
+    ],
+    "city_display_name": "Copenhagen, Denmark"
+  },
+  {
+    "id": 4994,
+    "name": "Main Sequence Ventures",
+    "website": "https://www.mseq.vc/",
+    "overview": "Main Sequence Ventures backs founders solving the planet's greatest challenges, and turning Australia's scientific and engineering breakthroughs into the next century's giants",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Main_Sequence_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Sydney, Australia"
+  },
+  {
+    "id": 913,
+    "name": "Maniv Mobility",
+    "website": "https://www.maniv.com",
+    "overview": "Early-stage mobility venture fund",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Maniv_Mobility.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Tel Aviv, Israel"
+  },
+  {
+    "id": 7596,
+    "name": "MassMutual Ventures",
+    "website": "https://massmutualventures.com/",
+    "overview": "Global multi stage venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/MassMutual_ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Corporate VC"
+    ],
+    "city_display_name": "Boston, Massachusetts"
+  },
+  {
+    "id": 2907,
+    "name": "Material Impact",
+    "website": "https://materialimpact.com/",
+    "overview": "Material Impact Fund specializes in transforming materials into companies that make an impact",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Material_Impact_Fund.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Boston, Massachusetts"
+  },
+  {
+    "id": 677,
+    "name": "MCJ Collective",
+    "website": "https://www.mcjcollective.com/capital",
+    "overview": "Seed stage VC firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/MCJ_CNPG3LP.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Boston, Massachusetts"
+  },
+  {
+    "id": 2909,
+    "name": "Micelio Fund",
+    "website": "https://micelio.com/micelio-funds/",
+    "overview": "Micelio Fund is exclusively targeting radical and sustainable innovation in the clean mobility ecosystem",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Micelio_Fund.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "Bengaluru, India"
+  },
+  {
+    "id": 8742,
+    "name": "Modern Energy",
+    "website": "https://modern.energy/",
+    "overview": "Modern Energy invests in early-stage asset development platforms",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Modern_Energy.webp",
+    "investor_types": [
+      "Emerging Infrastructure"
+    ],
+    "city_display_name": "Durham, North Carolina"
+  },
+  {
+    "id": 1909,
+    "name": "Moxxie Ventures",
+    "website": "https://www.moxxie.vc/",
+    "overview": "Moxxie Ventures invests in exceptional founders who make life and work better",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Moxxie_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 2913,
+    "name": "Munich Venture Partners",
+    "website": "http://www.munichvp.com",
+    "overview": "Munich Venture Partners supports entrepreneurs leading the eco-industrial revolution in Europe",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Munich_Venture_Partners.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Munich, Germany"
+  },
+  {
+    "id": 2906,
+    "name": "MUUS Climate Partners",
+    "website": "https://www.muus.com/",
+    "overview": "MUUS Climate Partners supports early- and growth-stage companies with extraordinary potential to reduce emissions and benefit society",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/MUUS_Climate_Partners.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 451,
+    "name": "National Grid Partners",
+    "website": "https://ngpartners.com/",
+    "overview": "National Grid Partners invests in the potential of energy and entrepreneurs with a provocative vision for energy and IT",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/National_Grid_Partners.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Menlo Park, California"
+  },
+  {
+    "id": 19,
+    "name": "New Enterprise Associates (NEA)",
+    "website": "http://www.nea.com",
+    "overview": "Global venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/NEA_lgoo.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Menlo Park, California"
+  },
+  {
+    "id": 10959,
+    "name": "New System Ventures",
+    "website": "https://www.newsystemventures.com",
+    "overview": "New System Ventures invests in climate and energy transition solutions to decarbonise the planet",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/New_System_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Brooklyn, New York"
+  },
+  {
+    "id": 53,
+    "name": "Next47",
+    "website": "https://next47.com",
+    "overview": "Next47 invests in SaaS, Enterprise IT, Deep Tech, and AI/ML/Dev",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Next47_tdD3gTl.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Palo Alto, California"
+  },
+  {
+    "id": 2233,
+    "name": "NGIF Capital",
+    "website": "https://www.ngif.ca/ngif-capital/",
+    "overview": "Early-stage cleantech venture capital",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/NGIF_Capital.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Ottawa, Canada"
+  },
+  {
+    "id": 2914,
+    "name": "NGP Energy Capital Management",
+    "website": "https://ngpenergycapital.com/",
+    "overview": "NGP Energy Capital Management invests in companies working on the energy transition",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/NGP_Energy_Capital_Management.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Irving, Texas"
+  },
+  {
+    "id": 2525,
+    "name": "noa",
+    "website": "https://www.noavc.com/",
+    "overview": "noa invests in companies making real estate into a more digital, efficient, and accessible asset class",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/noa.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 2918,
+    "name": "Nomadic Venture Partners",
+    "website": "https://www.nomadicvp.com/",
+    "overview": "Climate-focused venture capital",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Nomadic_Venture_Partners.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Denver, Colorado"
+  },
+  {
+    "id": 404,
+    "name": "NordicNinja",
+    "website": "https://nordicninja.vc/",
+    "overview": "NordicNinja is a deep tech-focused venture firm that invests in the Nordic and Baltic regions",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/NordicNinja.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Helsinki, Finland"
+  },
+  {
+    "id": 15477,
+    "name": "Nor'Easter Ventures",
+    "website": "https://www.noreaster.vc/",
+    "overview": "Early-stage deep tech venture firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Noreaster_Ventures.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Cambridge, Massachusetts"
+  },
+  {
+    "id": 200,
+    "name": "Norrsken VC",
+    "website": "https://www.norrsken.vc/",
+    "overview": "Norrsken VC invests in startups that solve the world's biggest problems while building massive businesses",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Norrsken_VC.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Growth"
+    ],
+    "city_display_name": "Stockholm, Sweden"
+  },
+  {
+    "id": 3414,
+    "name": "Nucleus Capital",
+    "website": "http://www.nucleus-capital.com/",
+    "overview": "Nucleus Capital is a new venture capital firm supporting purpose-driven founders solving systemic challenges to planetary health",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Nucleus_Capital_nI0BtKM.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "Berlin, Germany"
+  },
+  {
+    "id": 402,
+    "name": "Nysn\u00f8",
+    "website": "https://www.nysnoinvest.no/en/",
+    "overview": "Nysn\u00f8 invests in climate technologies in Norway \u2013 including software, hardware, and funds",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Nysno.webp",
+    "investor_types": [],
+    "city_display_name": "Stavanger, Norway"
+  },
+  {
+    "id": 10,
+    "name": "Obvious Ventures",
+    "website": "http://www.obvious.com",
+    "overview": "Obvious Ventures supports purpose-driven entrepreneurs across three investment pillars: Sustainable Systems, Healthy Living, and People Power",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Obvious_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 1240,
+    "name": "Octopus Ventures",
+    "website": "http://www.octopusventures.com",
+    "overview": "Octopus Ventures invests in health, fintech, deep tech, B2B software and consumer",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Octopus_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 270,
+    "name": "Omnivore",
+    "website": "http://omnivore.vc/",
+    "overview": "Agrifood impact venture capital",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Omnivore.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Mumbai, India"
+  },
+  {
+    "id": 771,
+    "name": "Orbia Ventures",
+    "website": "https://www.orbia.com/ventures/",
+    "overview": "Orbia Ventures is focused on investing in ag and food tech, infrastructure, smart cities, energy storage, circular economy, health and communications",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Orbia_Ventures.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Boston, Massachusetts"
+  },
+  {
+    "id": 15266,
+    "name": "Orion Industrial Ventures",
+    "website": "https://oiv.orionrp.com/",
+    "overview": "Industrial decarbonization venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Orion_Industrial_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 11674,
+    "name": "Orion Infrastructure Capital",
+    "website": "https://oic.com/",
+    "overview": "Orion Infrastructure Capital (OIC) focuses on infrastructure investments across energy, food, and waste",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/OIC.webp",
+    "investor_types": [
+      "Growth Infrastructure"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 2922,
+    "name": "Overture VC",
+    "website": "https://www.overture.vc/",
+    "overview": "Climate-focused venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Overture_VC.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Los Angeles, California"
+  },
+  {
+    "id": 9354,
+    "name": "Overview",
+    "website": "https://www.overview.earth",
+    "overview": "Overview Capital invests in companies working towards climate change solutions",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Overview_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 105,
+    "name": "Oxy Low Carbon Ventures",
+    "website": "https://www.oxylowcarbon.com/",
+    "overview": "Oxy Low Carbon Ventures invests in solutions for the low-carbon economy",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Oxy_Low_Carbon_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Houston, Texas"
+  },
+  {
+    "id": 518,
+    "name": "Pale Blue Dot",
+    "website": "https://www.paleblue.vc/",
+    "overview": "Climate-focused early-stage venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Pale_Blue_Dot.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Malm\u00f6, Sweden"
+  },
+  {
+    "id": 556,
+    "name": "Partech",
+    "website": "https://partechpartners.com",
+    "overview": "Partech is a global investment platform for tech and digital companies making bets in food, energy, and mobility",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Partech.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Paris, France"
+  },
+  {
+    "id": 2924,
+    "name": "Peak Sustainability Ventures",
+    "website": "https://www.peakventures.in/",
+    "overview": "Pioneering early-stage sustainability investing in India, across New Energy, Agriculture, Water and Climate Tech.",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Peak_Sustainability_Ventures.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Mumbai, India"
+  },
+  {
+    "id": 4228,
+    "name": "Picus Capital",
+    "website": "https://www.picuscap.com",
+    "overview": "Picus Capital invests in early-stage companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Picus_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Munich, Germany"
+  },
+  {
+    "id": 920,
+    "name": "Piva Capital",
+    "website": "http://www.piva.vc/",
+    "overview": "Energy & industry VC investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/pivavc_logo.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 10954,
+    "name": "Planeteer Capital",
+    "website": "https://planeteercapital.com/",
+    "overview": "Climate-focusses seed and pre-seed VC",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Planeteer_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 1777,
+    "name": "Planet First Partners",
+    "website": "http://www.planetfirst.partners/",
+    "overview": "Planet First Partners is a growth equity investment platform",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Planet_First_Partners.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Niederanven, Luxembourg"
+  },
+  {
+    "id": 925,
+    "name": "Playground Global",
+    "website": "https://playground.vc/",
+    "overview": "Playground Global invests in early stage deep tech companies tackling problems that move human civilization forward",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/logo_3jfT4Wx.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Palo Alto, California"
+  },
+  {
+    "id": 2925,
+    "name": "Plug and Play Ventures",
+    "website": "https://www.plugandplaytechcenter.com",
+    "overview": "Innovation platform connecting startups",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Plug_and_Play.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Sunnyvale, California"
+  },
+  {
+    "id": 3525,
+    "name": "Ponderosa Ventures",
+    "website": "https://www.ponderosavc.com/",
+    "overview": "Swine and poultry pharmaceuticals",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/ponderosa_ventures_logo.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 1985,
+    "name": "Porsche Ventures",
+    "website": "https://www.porsche.ventures",
+    "overview": "Porsche Ventures is a corporate venture capital firm focused on investing in early-stage technology startups that are disrupting the automotive and mobility industries.",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Porsche_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Stuttgart, Germany"
+  },
+  {
+    "id": 13,
+    "name": "Powerhouse Ventures",
+    "website": "https://powerhouse.fund/ventures",
+    "overview": "Seed-stage climate tech venture fund",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Powerhouse_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "Oakland, California"
+  },
+  {
+    "id": 7131,
+    "name": "Power Sustainable",
+    "website": "https://powersustainable.com/en/",
+    "overview": "Sustainability-focused alternative asset manager",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Power_Sustainable.webp",
+    "investor_types": [],
+    "city_display_name": "Montr\u00e9al, Canada"
+  },
+  {
+    "id": 7,
+    "name": "Prelude Ventures",
+    "website": "http://www.preludeventures.com",
+    "overview": "Prelude Ventures invests in the low-carbon economy",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Prelude_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 2927,
+    "name": "Presidio Ventures",
+    "website": "http://www.presidio-ventures.com",
+    "overview": "Presidio Ventures invests in technologies disrupting the industrial sector",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Presidio_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Santa Clara, California"
+  },
+  {
+    "id": 7745,
+    "name": "Prime Impact Fund",
+    "website": "https://www.primeimpactfund.com/",
+    "overview": "Early-stage climate VC",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/prime_impact_fund_logo.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Cambridge, Massachusetts"
+  },
+  {
+    "id": 1108,
+    "name": "Prime Movers Lab",
+    "website": "http://www.primemoverslab.com/",
+    "overview": "Early-stage venture capital for energy, infrastructure, transportation, agriculture, manufacturing, and human augmentation",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Prime_Movers_Lab.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Jackson, Wyoming"
+  },
+  {
+    "id": 2929,
+    "name": "Princeville Capital",
+    "website": "https://www.princeville-capital.com/",
+    "overview": "Investment firm backing technology companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/PrincevilleCapital.webp",
+    "investor_types": [
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 6430,
+    "name": "Propeller",
+    "website": "https://www.propellervc.com/",
+    "overview": "Propeller is an early-stage venture firm that invests in ocean-based companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Propeller.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "Boston, Massachusetts"
+  },
+  {
+    "id": 17400,
+    "name": "Pulse Fund",
+    "website": "https://www.pulsefund.com",
+    "overview": "Climate-focused venture capital firm.",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/pulse_fund_logo.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Los Angeles, California"
+  },
+  {
+    "id": 2933,
+    "name": "Quantum Energy Partners",
+    "website": "http://quantumep.com",
+    "overview": "Quantum Energy Partners is a technology investment platform that provides capital and expertise for high-growth, technology-based companies supporting the energy and sustainability industries\u00a0",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Quantum_Energy_Partners.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Houston, Texas"
+  },
+  {
+    "id": 9635,
+    "name": "Quantum Innovation Fund",
+    "website": "https://www.qif.vc/",
+    "overview": "Quantum Innovation Fund provides capital and expertise to support growing, technology-based companies targeting the climate, sustainability and decarbonization sectors",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Quantum_Innovation_Fund.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Houston, Texas"
+  },
+  {
+    "id": 8737,
+    "name": "RA Capital Management",
+    "website": "https://www.racap.com/planetary-health",
+    "overview": "Multi-stage investor in healthcare and planetary health",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/RA_Capital_Management.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Boston, Massachusetts"
+  },
+  {
+    "id": 133,
+    "name": "Refactor Capital",
+    "website": "http://www.refactor.com",
+    "overview": "Refactor Capital is a seed stage firm that leads climate, bio, and health investments",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Refactor_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Burlingame, California"
+  },
+  {
+    "id": 2215,
+    "name": "Regeneration.vc",
+    "website": "https://www.regeneration.vc/",
+    "overview": "Regeneration.vc is cultivating circular and regenerative approaches to evolve conventional consumer industries",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Regeneration.vc.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 7333,
+    "name": "ReGen Ventures",
+    "website": "https://www.regen.vc/",
+    "overview": "Early stage regenerative technology investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/ReGen_Ventures_Yh0ymjZ.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Byron Bay, Australia"
+  },
+  {
+    "id": 2936,
+    "name": "Revent",
+    "website": "https://www.revent.vc/",
+    "overview": "Impact-focused early-stage venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Revent.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "Berlin, Germany"
+  },
+  {
+    "id": 933,
+    "name": "Rhapsody Venture Partners",
+    "website": "https://rhapsodyvp.com/",
+    "overview": "Rhapsody Venture Partners is investing in and co-creating successful hard science startups with scientific founders",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Rhapsody_Venture_Partners.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Cambridge, Massachusetts"
+  },
+  {
+    "id": 1869,
+    "name": "Riverstone Ventures",
+    "website": "https://www.riverstone.ventures/",
+    "overview": "Riverstone Ventures invests in early-stage climate companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Riverstone.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 2937,
+    "name": "Rubio Impact Ventures",
+    "website": "https://www.rubio.vc",
+    "overview": "Rubio Impact Ventures invests in companies solving humanity's biggest challenges",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Rubio_Impact_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Amsterdam, Netherlands"
+  },
+  {
+    "id": 144,
+    "name": "S2G Investments",
+    "website": "https://www.s2ginvestments.com/",
+    "overview": "Food, agriculture & energy specialist investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/S2G-logo-black-rgb.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage",
+      "Growth",
+      "Emerging Infrastructure"
+    ],
+    "city_display_name": "Chicago, Illinois"
+  },
+  {
+    "id": 1011,
+    "name": "Safar Partners",
+    "website": "https://safar.partners/",
+    "overview": "Safar Partners is investing in tomorrow's world-changers",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Safar_Partners.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Cambridge, Massachusetts"
+  },
+  {
+    "id": 2943,
+    "name": "Sandbox Industries",
+    "website": "https://sandboxindustries.com",
+    "overview": "Sandbox Industries is helping to build next-generation food and agriculture technology companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Sandbox_Industries.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Chicago, Illinois"
+  },
+  {
+    "id": 1718,
+    "name": "Sandwater",
+    "website": "https://sandwater.com/",
+    "overview": "Sandwater invests in ambitious companies that make an impact that matters in sectors such as climate, education and health",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Sandwater.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Oslo, Norway"
+  },
+  {
+    "id": 5992,
+    "name": "Satgana",
+    "website": "https://www.satgana.com/",
+    "overview": "Climate tech venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Satgana.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "Luxembourg, Luxembourg"
+  },
+  {
+    "id": 14370,
+    "name": "Savia Ventures",
+    "website": "https://saviaventures.com/",
+    "overview": "Savia Ventures invest in LATAM-based climate companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/savia_ventures_logo.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "Santiago, Chile"
+  },
+  {
+    "id": 6965,
+    "name": "Seaya Andromeda",
+    "website": "https://seaya.vc/seaya-andromeda/",
+    "overview": "Seaya Andromeda is a \u20ac300M sustainability fund addressing global challenges through investments in companies with measurable sustainability impact",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Seaya_Andromeda_Logo_W_copy.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Madrid, Spain"
+  },
+  {
+    "id": 1737,
+    "name": "SE Ventures",
+    "website": "https://www.seventures.com/home.jsp",
+    "overview": "SE Ventures invests in areas including energy management, electric mobility, cybersecurity, Al, and Industry 40",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/SE_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Menlo Park, California"
+  },
+  {
+    "id": 55,
+    "name": "Shell Ventures",
+    "website": "https://www.shell.com/energy-and-innovation/new-energies/shell-ventures.html",
+    "overview": "Corporate venture arm of Shell",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Shell_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth",
+      "Corporate VC"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 4213,
+    "name": "SHIFT Invest",
+    "website": "https://www.shiftinvest.com/",
+    "overview": "SHIFT Invest is a seed-stage venture capital firm that focuses on investing in early-stage companies across energy transition, smart food & ag, green industries and sustainable mobility",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/SHIFT_Invest.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Amsterdam, Netherlands"
+  },
+  {
+    "id": 9132,
+    "name": "Shorewind Capital",
+    "website": "https://www.shorewindcapital.com/",
+    "overview": "Shorewind Capital invests in early stage climate and health startups that move humanity forward",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Shorewind_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Burlingame, California"
+  },
+  {
+    "id": 6545,
+    "name": "Silence VC",
+    "website": "https://silencevc.com/",
+    "overview": "Silence VC is an early-stage climate investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Silence_VC.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 12,
+    "name": "SJF Ventures",
+    "website": "http://www.sjfventures.com",
+    "overview": "Venture capital for sustainable impact.",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/SJF_Ventures.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Durham, North Carolina"
+  },
+  {
+    "id": 5990,
+    "name": "Skyview Ventures",
+    "website": "https://skyviewventures.com/",
+    "overview": "Skyview Ventures invests in early-stage startups focusing on renewable energy",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Skyview_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Port Chester, New York"
+  },
+  {
+    "id": 2774,
+    "name": "Social Impact Capital",
+    "website": "http://social-impact-capital.com",
+    "overview": "Social Impact Capital is a research-driven venture capital firm backing the companies that move the world forward",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Social_Impact_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 42,
+    "name": "Softbank Vision Fund",
+    "website": "https://visionfund.com/",
+    "overview": "Softbank Vision Fund explores investments in the sustainable energy space",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Softbank_aWFrySM.webp",
+    "investor_types": [
+      "Late-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 68,
+    "name": "SOSV",
+    "website": "https://sosv.com/",
+    "overview": "Global deep tech venture capital",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/SOSV.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "Princeton, New Jersey"
+  },
+  {
+    "id": 107,
+    "name": "Speedinvest",
+    "website": "http://speedinvest.com",
+    "overview": "Speedinvest is a leading European early-stage venture capital focused on HealthTech, IndustrialTech and ClimateTech",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Speedinvest.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Vienna, Austria"
+  },
+  {
+    "id": 2951,
+    "name": "Spero Ventures",
+    "website": "https://spero.vc/",
+    "overview": "Spero Ventures invests in early-stage technology companies solving critical problems in well-being, work & purpose, and human connection",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Spero_Final-1600x1063.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Burlingame, California"
+  },
+  {
+    "id": 2216,
+    "name": "Spring Lane Capital",
+    "website": "https://www.springlanecapital.com",
+    "overview": "Spring Lane Capital offers a new approach to faster growth for companies that deploy smaller-scale projects and equipment",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Spring_Lane_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Emerging Infrastructure"
+    ],
+    "city_display_name": "Boston, Massachusetts"
+  },
+  {
+    "id": 106,
+    "name": "Starlight Ventures",
+    "website": "http://www.starlight.vc",
+    "overview": "Starlight Ventures invests to address humanity's greatest challenges and opportunities",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Starlight_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Miami, Florida"
+  },
+  {
+    "id": 8124,
+    "name": "Starshot Capital",
+    "website": "https://starshotcapital.com/",
+    "overview": "Climate tech venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Starshot_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "South San Francisco, California"
+  },
+  {
+    "id": 2084,
+    "name": "Statkraft Ventures",
+    "website": "http://www.statkraftventures.com/",
+    "overview": "Statkraft Ventures invests in ambitious entrepreneurs building the software-driven energy incumbents of tomorrow",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/statkraft-logo-positive-rgb_1.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "D\u00fcsseldorf, Germany"
+  },
+  {
+    "id": 934,
+    "name": "Stray Dog Capital",
+    "website": "https://straydogcapital.com/",
+    "overview": "Stray Dog Capital provides capital and support to early-stage businesses to help them grow",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Stray_Dog_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Leawood, Kansas"
+  },
+  {
+    "id": 3445,
+    "name": "Susquehanna Sustainable Investments (SSI)",
+    "website": "https://www.sig-ssi.com",
+    "overview": "Early-stage climate-tech investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Susquehanna_Sustainable_Investments_SSI.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Bala-Cynwyd, Pennsylvania"
+  },
+  {
+    "id": 14410,
+    "name": "Sustainable Development Capital",
+    "website": "https://www.sdclgroup.com/",
+    "overview": "Specialist clean energy investment firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Sustainable_Development_Capital.webp",
+    "investor_types": [
+      "Growth",
+      "Growth Infrastructure"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 9120,
+    "name": "Sustainable Future Ventures",
+    "website": "https://www.sfv.vc",
+    "overview": "Sustainable Future Ventures invests in technology companies to enable a more sustainable built environment",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Sustainable_Future_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 1926,
+    "name": "Syensqo Ventures",
+    "website": "https://www.solvay.com/en/innovation/solvay-ventures",
+    "overview": "Solvay Ventures is the venture capital arm of Solvay",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Solvay_Ventures_oxEz3Cz.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Brussels, Belgium"
+  },
+  {
+    "id": 284,
+    "name": "Syngenta Ventures",
+    "website": "https://www.syngentagroupventures.com/",
+    "overview": "Syngenta Ventures invests in new technologies and businesses that are transforming the future of agriculture and food",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Syngenta.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Basel, Switzerland"
+  },
+  {
+    "id": 2940,
+    "name": "SYSTEMIQ",
+    "website": "https://www.systemiq.earth/",
+    "overview": "Sustainability systems advisory firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/SYSTEMIQ.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 750,
+    "name": "Talis Capital",
+    "website": "http://www.taliscapital.com",
+    "overview": "Talis Capital is a London-based Seed-Series A fund investing in Climate, Tech Infrastructure and Consumer across Europe and North America",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Talis_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 46,
+    "name": "Tao Capital Partners",
+    "website": "http://www.taocap.com",
+    "overview": "Tao Capital Partners invests in technology, alternative energy and transportation, healthcare, education, and food & ag businesses that have a positive impact",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/tao_Capital_Partners.webp",
+    "investor_types": [
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 772,
+    "name": "TDK Ventures",
+    "website": "http://www.tdk-ventures.com/",
+    "overview": "Corporate venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/TDK_Ventures_d5DUngH.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Corporate VC"
+    ],
+    "city_display_name": "San Jose, California"
+  },
+  {
+    "id": 2958,
+    "name": "Techstars",
+    "website": "https://www.techstars.com",
+    "overview": "Global startup accelerator and VC.",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Techstars.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 632,
+    "name": "Tekfen Ventures",
+    "website": "http://tekfenventures.com/",
+    "overview": "Tekfen Ventures invests in deep technologies to transform the sectors that help build, feed, and supply the world",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Tekfen_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 2956,
+    "name": "TELUS Pollinator Fund for Good",
+    "website": "https://www.telus.com/en/pollinatorfund",
+    "overview": "TELUS Pollinator Fund invests in responsible startups driving social and environmental change to make the world a better place",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/TELUS_Pollinator_Fund.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Vancouver, Canada"
+  },
+  {
+    "id": 62,
+    "name": "Temasek",
+    "website": "http://www.temasek.com.sg/",
+    "overview": "Global investment company",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Temasek_Holdings.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth",
+      "Growth Infrastructure"
+    ],
+    "city_display_name": "Singapore, Singapore"
+  },
+  {
+    "id": 1060,
+    "name": "Tenacious Ventures",
+    "website": "https://tenacious.ventures/",
+    "overview": "Agrifood climate venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Tenacious_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Melbourne, Australia"
+  },
+  {
+    "id": 5401,
+    "name": "Terra Venture Partners",
+    "website": "https://www.terravp.com/",
+    "overview": "Impact-focused venture capital fund",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Terra_Venture_Partners.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Jerusalem, Israel"
+  },
+  {
+    "id": 2217,
+    "name": "The Westly Group",
+    "website": "http://www.westlygroup.com/",
+    "overview": "Early-stage energy & mobility investment firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/the_westly_group_logo.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Menlo Park, California"
+  },
+  {
+    "id": 1443,
+    "name": "The Yield Lab",
+    "website": "https://www.theyieldlab.com/",
+    "overview": "Early-stage agrifood venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/The_Yield_Lab.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Dublin, Ireland"
+  },
+  {
+    "id": 1551,
+    "name": "Thin Line Capital",
+    "website": "https://www.thinlinecapital.com/",
+    "overview": "Thin Line Capital is a seed-stage sustainability-focused VC firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/ThinLineCapital_Main.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Pasadena, California"
+  },
+  {
+    "id": 2962,
+    "name": "Third Sphere",
+    "website": "https://thirdsphere.com",
+    "overview": "Third Sphere is working for founders transforming global systems",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Third_Sphere.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Emerging Infrastructure"
+    ],
+    "city_display_name": "Brooklyn, New York"
+  },
+  {
+    "id": 2964,
+    "name": "Tin Shed Ventures",
+    "website": "http://www.tinshedventures.com/",
+    "overview": "Tin Shed Ventures invests in renewable energy, regenerative agriculture, water conservation, and waste management",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Tin_Shed_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "Santa Clara, California"
+  },
+  {
+    "id": 2957,
+    "name": "TO VC",
+    "website": "http://to.vc/",
+    "overview": "Early-stage climate venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/TO_VC.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 929,
+    "name": "Toyota Ventures",
+    "website": "https://toyota.ventures",
+    "overview": "Early-stage venture capital arm of Toyota",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Toyota_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Corporate VC"
+    ],
+    "city_display_name": "Los Altos, California"
+  },
+  {
+    "id": 12271,
+    "name": "TPG Rise Climate",
+    "website": "https://www.tpg.com/platforms/impact/rise-climate",
+    "overview": "Climate impact investing platform",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/TPG_Rise_Climate.webp",
+    "investor_types": [
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 688,
+    "name": "Trailhead Capital",
+    "website": "https://trailheadcap.com/",
+    "overview": "Trailhead Capital is a mission-driven investment firm backing entrepreneurs who are building the regenerative future of food and agriculture",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Trailhead_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Boulder, Colorado"
+  },
+  {
+    "id": 10409,
+    "name": "Transition Venture Capital",
+    "website": "https://transitionventurecapital.com/",
+    "overview": "Transition Venture Capital is an India-based venture fund that invests in early-stage climate tech companies",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/transitionventurecapita.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Bengaluru, India"
+  },
+  {
+    "id": 2624,
+    "name": "Transition Ventures",
+    "website": "https://transition.vc",
+    "overview": "Climate-focused venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Transition_Logo_White_Green.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 2754,
+    "name": "TreeArc Investment Group",
+    "website": "https://treearcgroup.com/",
+    "overview": "Global climate specialist investment firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/treearc-investment-group-4f27c000d2728ddf.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Emerging Infrastructure"
+    ],
+    "city_display_name": "Sydney, Australia"
+  },
+  {
+    "id": 924,
+    "name": "TRIREC",
+    "website": "http://www.trirec.co/",
+    "overview": "TRIREC is a Singapore based decarbonisation focused Climate Tech VC that invests globally in early stage startups",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/TRIREC_hYyW6Ey.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Singapore, Singapore"
+  },
+  {
+    "id": 341,
+    "name": "T. Rowe Price",
+    "website": "http://www.troweprice.com",
+    "overview": "Global investment management",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/T._Rowe_Price.webp",
+    "investor_types": [
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Baltimore, Maryland"
+  },
+  {
+    "id": 747,
+    "name": "Trucks Venture Capital",
+    "website": "http://trucks.vc/",
+    "overview": "Trucks Venture Capital is funding the entrepreneurs building the future of transportation",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Trucks_Venture_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 205,
+    "name": "True Ventures",
+    "website": "http://www.trueventures.com",
+    "overview": "True Ventures is an early-stage venture investor, with a developed climate thesis",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/True_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Palo Alto, California"
+  },
+  {
+    "id": 2965,
+    "name": "Twynam",
+    "website": "https://www.twynam.com/vc",
+    "overview": "Twynam invests in early-stage climate companies with a focus on deeptech",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Twynam.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Sydney, Australia"
+  },
+  {
+    "id": 5528,
+    "name": "\u00dcbermorgen Ventures",
+    "website": "https://www.uebermorgen.vc/",
+    "overview": "\u00dcbermorgen Ventures invests in early-stage climate tech startups that embrace climate action as a business opportunity",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/\u00dcbermorgen_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Z\u00fcrich, Switzerland"
+  },
+  {
+    "id": 4231,
+    "name": "Ultra Capital",
+    "website": "http://ultracapital.com/",
+    "overview": "Ultra Capital invests in high-growth businesses and assets focused on sustainable infrastructure, energy transition, and industrial de-carbonization",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Ultra_Capital.webp",
+    "investor_types": [
+      "Growth",
+      "Emerging Infrastructure"
+    ],
+    "city_display_name": "Philadelphia, Pennsylvania"
+  },
+  {
+    "id": 3638,
+    "name": "Undivided VC",
+    "website": "https://www.undivided.vc/",
+    "overview": "Undivided Ventures invests in innovations that address the built environment\u2019s most urgent sustainability challenges",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Undivided_VC.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Central, Hong Kong"
+  },
+  {
+    "id": 2968,
+    "name": "Union Labs Ventures",
+    "website": "http://unionlabs.com/",
+    "overview": "Union Labs Ventures is a pre-seed/seed fund focused on solving the world's biggest and messiest problems in climate, proptech, and mobility",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Union_Labs_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "Morro Bay, California"
+  },
+  {
+    "id": 89,
+    "name": "Union Square Ventures",
+    "website": "http://www.usv.com",
+    "overview": "Venture capital firm investing globally",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Union_Square_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 2969,
+    "name": "Unovis",
+    "website": "https://unovis.vc/",
+    "overview": "Alternative protein venture investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Unovis_Niit36Z.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "New York City, New York"
+  },
+  {
+    "id": 7699,
+    "name": "Unruly Capital",
+    "website": "https://www.unrulycap.com/",
+    "overview": "Unruly Capital is an early-stage investment firm that invests across energy, agriculture, and transportation",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Unruly_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "London, England"
+  },
+  {
+    "id": 752,
+    "name": "UP.Partners",
+    "website": "https://up.partners/",
+    "overview": "UP.Partners backs founders that helps people and things move faster, cleaner, safer, and more efficiently throughout the world and space",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/UP.Partners.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Santa Monica, California"
+  },
+  {
+    "id": 3346,
+    "name": "UVC Partners",
+    "website": "https://www.uvcpartners.com/",
+    "overview": "UVC Partners invests in early-stage B2B startups across Europe",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/UVC_Partners.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Munich, Germany"
+  },
+  {
+    "id": 649,
+    "name": "Vale Ventures",
+    "website": "https://vale.com/vale-ventures",
+    "overview": "Vale Ventures invests across solutions to mining and metals challenges",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Vale_Ventures.webp",
+    "investor_types": [
+      "Corporate VC"
+    ],
+    "city_display_name": "S\u00e3o Paulo, Brazil"
+  },
+  {
+    "id": 312,
+    "name": "Valor Equity Partners",
+    "website": "http://www.valorep.com",
+    "overview": "Valor Equity Partners invests in technology to improve the world",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Valor_Equity_Partners.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Chicago, Illinois"
+  },
+  {
+    "id": 348,
+    "name": "Valo Ventures",
+    "website": "https://valoventures.org",
+    "overview": "Valo Ventures is a thesis-driven venture capital firm championing digital technology companies that create economic, environmental and social value",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Valo_Ventures.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Palo Alto, California"
+  },
+  {
+    "id": 13011,
+    "name": "Verdane",
+    "website": "https://verdane.com",
+    "overview": "Verdane is a growth equity investment firm that partners with tech-enabled and sustainable businesses",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/verdane.webp",
+    "investor_types": [
+      "Growth"
+    ],
+    "city_display_name": "Oslo, Norway"
+  },
+  {
+    "id": 2219,
+    "name": "Version One Ventures",
+    "website": "http://versionone.vc/",
+    "overview": "Version One Ventures backs mission-driven founders at the earliest stages",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Version_One_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Vancouver, Canada"
+  },
+  {
+    "id": 7096,
+    "name": "Verve Ventures",
+    "website": "https://www.verve.vc/",
+    "overview": "Verve Ventures is a large stage-agnostic VC investing in DeepTech startups across Europe, incl ClimateTech",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Verve_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Zug, Switzerland"
+  },
+  {
+    "id": 2978,
+    "name": "Virescent Ventures",
+    "website": "https://www.virescent.vc/",
+    "overview": "Virescent Ventures invests in founders, tech, and business that accelerate the transition to net zero",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Virescent_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Melbourne, Australia"
+  },
+  {
+    "id": 5480,
+    "name": "Vision Ridge Partners",
+    "website": "https://vision-ridge.com/",
+    "overview": "Sustainable real asset investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/VisionRidgeLogo.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Boulder, Colorado"
+  },
+  {
+    "id": 1390,
+    "name": "VisVires New Protein",
+    "website": "http://visviresnewprotein.com/",
+    "overview": "VisVires New Protein backs ambitious teams developing transformative solutions for a healthier, safer and more sustainable food and feed system",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/VisVires_New_Protein.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Singapore, Singapore"
+  },
+  {
+    "id": 38604,
+    "name": "Vitamin C",
+    "website": "https://www.vitaminc.vc/",
+    "overview": "Private Equity and Venture Capital",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/VitaminC_Logo.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "Z\u00fcrich, Switzerland"
+  },
+  {
+    "id": 2981,
+    "name": "Volkswagen Group",
+    "website": "https://www.volkswagenag.com/",
+    "overview": "Volkswagen Group is investing\u00a0\u20ac300M in startups developing decarbonization solutions",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Volkswagen_Group.webp",
+    "investor_types": [],
+    "city_display_name": "Wolfsburg, Germany"
+  },
+  {
+    "id": 795,
+    "name": "VoLo Earth Ventures",
+    "website": "https://www.voloearth.com/",
+    "overview": "Early-stage energy & decarbonization VC",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/VoLo_Earth_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Snowmass Village, Colorado"
+  },
+  {
+    "id": 1106,
+    "name": "Volta Energy Technologies",
+    "website": "https://volta.vc/",
+    "overview": "Volta Energy Technologies identifies and invests in battery and energy storage technology, helping companies move from the lab to market",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Volta_Energy_Technologies.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Naperville, Illinois"
+  },
+  {
+    "id": 15616,
+    "name": "VOX Capital",
+    "website": "https://voxcapital.com.br/en/homepage/",
+    "overview": "VOX Capital is an impact investor that invests in across food, health, and climate",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Vox_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "S\u00e3o Paulo, Brazil"
+  },
+  {
+    "id": 2644,
+    "name": "Voyager Ventures",
+    "website": "https://www.voyagervc.com/",
+    "overview": "Voyager Ventures is investing in early-stage climate technology companies creating the foundation of a decarbonized global economy and a liveable future for all",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Voyager_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage",
+      "Growth"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 1125,
+    "name": "WAVE Equity Partners",
+    "website": "https://waveep.com",
+    "overview": "WAVE Equity Partners is supporting companies solving some of the world's greatest challenges in clean air, energy, food, water and waste",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/WAVE_Equity_Partners.webp",
+    "investor_types": [
+      "Early-stage",
+      "Late-stage"
+    ],
+    "city_display_name": "Boston, Massachusetts"
+  },
+  {
+    "id": 1501,
+    "name": "Wellington Management",
+    "website": "http://wellington.com",
+    "overview": "Wellington Management is supporting companies addressing climate change through adaptation, mitigation, or innovation\u00a0",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Wellington_Management.webp",
+    "investor_types": [
+      "Late-stage",
+      "Growth"
+    ],
+    "city_display_name": "Boston, Massachusetts"
+  },
+  {
+    "id": 85,
+    "name": "Wireframe Ventures",
+    "website": "http://www.wireframevc.com/",
+    "overview": "Early-stage climate and biology investor",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Wireframe_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "Mill Valley, California"
+  },
+  {
+    "id": 2983,
+    "name": "Wi Venture",
+    "website": "https://wiventure.de/",
+    "overview": "Wi Venture is enabling ecological startups to grow and preserve the planet for future generations",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Wi_Venture.webp",
+    "investor_types": [
+      "Early-stage"
+    ],
+    "city_display_name": "Mainz, Germany"
+  },
+  {
+    "id": 2220,
+    "name": "World Fund",
+    "website": "https://www.worldfund.vc/",
+    "overview": "Climate tech venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/World_Fund.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Berlin, Germany"
+  },
+  {
+    "id": 35,
+    "name": "Y Combinator",
+    "website": "http://www.ycombinator.com",
+    "overview": "Leading global startup accelerator",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Y_Combinator.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Mountain View, California"
+  },
+  {
+    "id": 2988,
+    "name": "Zacua Ventures",
+    "website": "https://zacuaventures.com",
+    "overview": "Zacua Ventures is a global early-stage venture fund tackling world's biggest challenges across Sustainability, Productivity and Urbanization",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Zacua_Ventures.webp",
+    "investor_types": [
+      "Pre-seed / Seed"
+    ],
+    "city_display_name": "San Francisco, California"
+  },
+  {
+    "id": 2989,
+    "name": "Zero Carbon Capital",
+    "website": "https://www.zerocarbon.vc",
+    "overview": "Deep decarbonization venture capital firm",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Zero_Carbon_Capital.webp",
+    "investor_types": [
+      "Pre-seed / Seed",
+      "Early-stage"
+    ],
+    "city_display_name": "Havant, England"
+  },
+  {
+    "id": 1735,
+    "name": "Zouk Capital",
+    "website": "http://www.zouk.com",
+    "overview": "Zouk Capital is a growth equity and infrastructure fund investing in companies that advance resource efficiency",
+    "logo": "https://api.sightlineclimate.com/v1/django/s3/Zouk_Capital.webp",
+    "investor_types": [
+      "Early-stage",
+      "Growth",
+      "Growth Infrastructure"
+    ],
+    "city_display_name": "London, England"
+  }
+]

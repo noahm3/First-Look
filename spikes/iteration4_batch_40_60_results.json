@@ -1,0 +1,248 @@
+[
+  {
+    "investor": "Ascension",
+    "website": "https://www.ascension.vc",
+    "portfolio_url": "https://www.ascension.vc/portfolio",
+    "how_found": "homepage link",
+    "result": "page found but no outbound company links extracted"
+  },
+  {
+    "investor": "Astanor Ventures",
+    "website": "https://www.astanor.com/",
+    "portfolio_url": "https://astanor.com/portfolio/",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 11,
+    "sample_domains": [
+      "cdn.hu-manity.co",
+      "bcorporation.net",
+      "financeforbiodiversity.org",
+      "ifvi.org",
+      "impactvaluationhub.org",
+      "investeurope.eu",
+      "impactprinciples.org",
+      "unpri.org",
+      "projectframe.how",
+      "ventureesg.com",
+      "auth.fundrbird.com"
+    ]
+  },
+  {
+    "investor": "Asterion Ventures",
+    "website": "https://www.asterionventures.com/",
+    "portfolio_url": "https://www.asterionventures.com/en/portfolio",
+    "how_found": "homepage link",
+    "result": "page found but no outbound company links extracted"
+  },
+  {
+    "investor": "At One Ventures",
+    "website": "https://www.atoneventures.com/",
+    "portfolio_url": "https://www.atoneventures.com/portfolio",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 2,
+    "sample_domains": [
+      "atoneventures.arkpes.com",
+      "addisenergy.com"
+    ]
+  },
+  {
+    "investor": "Audacy Ventures",
+    "website": "https://www.audacyventures.com/",
+    "portfolio_url": "https://audacyventures.com/portfolio",
+    "how_found": "path guess",
+    "outbound_company_domain_count": 13,
+    "sample_domains": [
+      "audacypartners.com",
+      "ampd.energy",
+      "edgezero.co",
+      "momentenergy.com",
+      "conrytech.com",
+      "flyoro.co",
+      "genh2hydrogen.com",
+      "h3dynamics.com",
+      "jetzero.au",
+      "xfuel.com",
+      "coolplanettech.com",
+      "ocochem.com",
+      "siteassets.parastorage.com"
+    ]
+  },
+  {
+    "investor": "Autodesk Foundation",
+    "website": "http://www.autodesk.org",
+    "portfolio_url": "https://www.autodesk.org/portfolio",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 17,
+    "sample_domains": [
+      "autodesk.com",
+      "autodesk.com.cn",
+      "blogs.autodesk.com",
+      "raiseus.ai",
+      "loamist.com",
+      "ebbcarbon.com",
+      "primecoalition.org",
+      "rmi.org",
+      "upayasv.org",
+      "socialfinance.org",
+      "seaf.com",
+      "beyondthedome.com",
+      "fika.org",
+      "mati.earth",
+      "nature.org"
+    ]
+  },
+  {
+    "investor": "Automotive Ventures",
+    "website": "https://www.automotiveventures.com",
+    "portfolio_url": "https://www.automotiveventures.com/portfolio",
+    "how_found": "homepage link",
+    "result": "page found but no outbound company links extracted"
+  },
+  {
+    "investor": "Avaana Capital",
+    "website": "https://avaanacapital.com/",
+    "portfolio_url": "https://avaanacapital.com/pages/portfolio",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 1,
+    "sample_domains": [
+      "unifyndlabs.com"
+    ]
+  },
+  {
+    "investor": "Avesta Fund",
+    "website": "https://www.avesta.fund/",
+    "portfolio_url": "https://www.avesta.fund/portfolio",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 25,
+    "sample_domains": [
+      "airtable.com",
+      "aonics.ai",
+      "autonomique.ai",
+      "avatour.co",
+      "battgenie.life",
+      "trybeem.com",
+      "bluestudios.io",
+      "boxpower.io",
+      "cambiumcarbon.com",
+      "capezero.com",
+      "chargerhelp.com",
+      "clearcurrent.ai",
+      "concentro.io",
+      "courie.ai",
+      "doowii.io"
+    ]
+  },
+  {
+    "investor": "Axon Partners Group",
+    "website": "https://axonpartnersgroup.com/",
+    "portfolio_url": "https://axonpartnersgroup.com/portfolio/",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 65,
+    "sample_domains": [
+      "adsmurai.com",
+      "aganova.com",
+      "alia-mentis.com",
+      "ampere.greaveselectricmobility.com",
+      "arenit.de",
+      "arteche.com",
+      "basquevolt.com",
+      "batx.co",
+      "belevels.com",
+      "billpocket.com",
+      "bioherent.com",
+      "bm2solar.com",
+      "branchoutventures.com",
+      "buildtozero.es",
+      "busqo.com"
+    ]
+  },
+  {
+    "investor": "Azimuth Capital Management",
+    "website": "http://www.azimut-group.com/",
+    "result": "homepage fetch failed (0)"
+  },
+  {
+    "investor": "Azolla Ventures",
+    "website": "https://www.azollaventures.com/",
+    "portfolio_url": "https://azollaventures.com/our-portfolio/",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 31,
+    "sample_domains": [
+      "heaten.com",
+      "sitration.com",
+      "funga.earth",
+      "calcarea.com",
+      "scalvy.com",
+      "velozbio.com",
+      "muonvision.com",
+      "aikidotechnologies.com",
+      "oxylusenergy.com",
+      "biolumic.com",
+      "stillbright.co",
+      "rockzero.com",
+      "rain.aero",
+      "nzn2.com",
+      "ergbio.com"
+    ]
+  },
+  {
+    "investor": "Barclays Climate Ventures",
+    "website": "https://home.barclays/our-sustainability-/barclays-climate-strategy/barclays-climate-ventures/",
+    "result": "no portfolio page found (link or guess)"
+  },
+  {
+    "investor": "Baruch Future Ventures",
+    "website": "http://baruch.vc",
+    "portfolio_url": "https://www.baruch.vc/portfolio/",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 1,
+    "sample_domains": [
+      "hephaeet.com"
+    ]
+  },
+  {
+    "investor": "BASF Venture Capital",
+    "website": "https://www.basf.com/us/en",
+    "portfolio_url": "https://basf.com/portfolio",
+    "how_found": "path guess",
+    "outbound_company_domain_count": 1,
+    "sample_domains": [
+      "agriculture.basf.us"
+    ]
+  },
+  {
+    "investor": "Batteries Included Fund",
+    "website": "https://batteriesincludedfund.com",
+    "result": "no portfolio page found (link or guess)"
+  },
+  {
+    "investor": "BayWa r.e. Energy Ventures",
+    "website": "https://energy-ventures.baywa-re.com/",
+    "result": "homepage fetch failed (530)"
+  },
+  {
+    "investor": "B Capital Group",
+    "website": "http://b.capital",
+    "portfolio_url": "https://b.capital/portfolio/",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 1,
+    "sample_domains": [
+      "jobs.bcapgroup.com"
+    ]
+  },
+  {
+    "investor": "Bessemer Venture Partners",
+    "website": "http://www.bvp.com",
+    "portfolio_url": "http://www.bvp.com/portfolio",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 2,
+    "sample_domains": [
+      "bvpforge.com",
+      "services.dataexchange.fiscloudservices.com"
+    ]
+  },
+  {
+    "investor": "Better Bite Ventures",
+    "website": "https://www.betterbite.vc/",
+    "result": "no portfolio page found (link or guess)"
+  }
+]

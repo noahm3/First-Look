@@ -1,0 +1,796 @@
+[
+  {
+    "investor": "2150",
+    "website": "https://2150.vc",
+    "result": "no portfolio page found (link or guess)"
+  },
+  {
+    "investor": "360 Capital",
+    "website": "https://www.360cap.vc/",
+    "portfolio_url": "https://www.360cap.vc/portfolio",
+    "how_found": "homepage link",
+    "result": "page found but no outbound company links extracted"
+  },
+  {
+    "investor": "4impact Capital",
+    "website": "https://www.4impact.vc/",
+    "portfolio_url": "https://www.4impact.vc/portfolio",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 24,
+    "sample_domains": [
+      "circularise.com",
+      "solarmonkey.io",
+      "letsenvision.com",
+      "ourmind.ai",
+      "regulate.me",
+      "exnaton.ai",
+      "greenshift.app",
+      "suena.energy",
+      "etpa.nl",
+      "getlucend.com",
+      "deftpower.com",
+      "myrspoven.com",
+      "tvarit.com",
+      "infotiles.no",
+      "carbonfuture.earth"
+    ],
+    "all_domains": [
+      "circularise.com",
+      "solarmonkey.io",
+      "letsenvision.com",
+      "ourmind.ai",
+      "regulate.me",
+      "exnaton.ai",
+      "greenshift.app",
+      "suena.energy",
+      "etpa.nl",
+      "getlucend.com",
+      "deftpower.com",
+      "myrspoven.com",
+      "tvarit.com",
+      "infotiles.no",
+      "carbonfuture.earth",
+      "skillscv.nl",
+      "greenstory.ca",
+      "quanwellbeing.com",
+      "thenextcloset.com",
+      "carbonequity.com",
+      "thefabricant.com",
+      "satelligence.com",
+      "equalture.com",
+      "studioflabbergasted.nl"
+    ]
+  },
+  {
+    "investor": "8090 Industries",
+    "website": "https://www.8090industries.com/",
+    "portfolio_url": "https://8090industries.com/portfolio",
+    "how_found": "path guess",
+    "outbound_company_domain_count": 2,
+    "sample_domains": [
+      "datacenterdynamics.com",
+      "nscale.com"
+    ],
+    "all_domains": [
+      "datacenterdynamics.com",
+      "nscale.com"
+    ]
+  },
+  {
+    "investor": "ABB Ventures",
+    "website": "https://global.abb/group/en/technology/ventures",
+    "result": "no portfolio page found (link or guess)"
+  },
+  {
+    "investor": "Acario Innovation",
+    "website": "https://acarioinnovation.com",
+    "result": "no portfolio page found (link or guess)"
+  },
+  {
+    "investor": "Accelr8",
+    "website": "https://www.accelr8.com/",
+    "portfolio_url": "https://www.accelr8.com/companies",
+    "how_found": "homepage link",
+    "result": "page found but no outbound company links extracted"
+  },
+  {
+    "investor": "Acre Venture Partners",
+    "website": "http://acre.vc/",
+    "result": "no portfolio page found (link or guess)"
+  },
+  {
+    "investor": "Activate Capital Partners",
+    "website": "https://activatecp.com/",
+    "portfolio_url": "https://activatecp.com/portfolio",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 33,
+    "sample_domains": [
+      "aerones.com",
+      "altana.ai",
+      "antora.com",
+      "crusoe.ai",
+      "enpal.de",
+      "fictiv.com",
+      "flexe.com",
+      "generatecapital.com",
+      "homee.com",
+      "infravision.com.au",
+      "jetsonhome.com",
+      "kin.com",
+      "klearnow.com",
+      "poweredbylight.com",
+      "lunarenergy.com"
+    ],
+    "all_domains": [
+      "aerones.com",
+      "altana.ai",
+      "antora.com",
+      "crusoe.ai",
+      "enpal.de",
+      "fictiv.com",
+      "flexe.com",
+      "generatecapital.com",
+      "homee.com",
+      "infravision.com.au",
+      "jetsonhome.com",
+      "kin.com",
+      "klearnow.com",
+      "poweredbylight.com",
+      "lunarenergy.com",
+      "muonspace.com",
+      "nozominetworks.com",
+      "omnidian.com",
+      "optimaldynamics.com",
+      "parsable.com",
+      "passportinc.com",
+      "ridecell.com",
+      "rune.energy",
+      "starfishspace.com",
+      "stem.com",
+      "streetlightdata.com",
+      "swimlane.com",
+      "sympower.net",
+      "tomorrow.io",
+      "voltacharging.com",
+      "voltus.co",
+      "weavegrid.com",
+      "xnrgy.com"
+    ]
+  },
+  {
+    "investor": "Active Impact Investments",
+    "website": "https://www.activeimpactinvestments.com",
+    "portfolio_url": "https://www.activeimpactinvestments.com/our-portfolio",
+    "how_found": "homepage link",
+    "result": "page found but no outbound company links extracted"
+  },
+  {
+    "investor": "ADB Ventures",
+    "website": "https://ventures.adb.org",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "ADM Ventures",
+    "website": "https://www.adm.com/products-services/admventures",
+    "result": "homepage fetch failed (404)"
+  },
+  {
+    "investor": "AENU",
+    "website": "https://www.aenu.com",
+    "portfolio_url": "https://www.aenu.com/portfolio/",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 2,
+    "sample_domains": [
+      "cdn.sanity.io",
+      "ahp-cm.com"
+    ],
+    "all_domains": [
+      "cdn.sanity.io",
+      "ahp-cm.com"
+    ]
+  },
+  {
+    "investor": "Aera VC",
+    "website": "https://www.aera.vc",
+    "portfolio_url": "https://www.aera.vc/our-portfolio/",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 25,
+    "sample_domains": [
+      "alliumeng.com",
+      "aquila.earth",
+      "arraylabs.io",
+      "astroforge.com",
+      "autopallet.bot",
+      "calectra.com",
+      "carbicrete.com",
+      "carbonchain.com",
+      "cosmicaerospace.com",
+      "dawnaerospace.com",
+      "fablefood.co",
+      "gilgameshpharmaceutical.com",
+      "godela.ai",
+      "green-got.com",
+      "gridsight.ai"
+    ],
+    "all_domains": [
+      "alliumeng.com",
+      "aquila.earth",
+      "arraylabs.io",
+      "astroforge.com",
+      "autopallet.bot",
+      "calectra.com",
+      "carbicrete.com",
+      "carbonchain.com",
+      "cosmicaerospace.com",
+      "dawnaerospace.com",
+      "fablefood.co",
+      "gilgameshpharmaceutical.com",
+      "godela.ai",
+      "green-got.com",
+      "gridsight.ai",
+      "intramotev.com",
+      "maritimefusion.com",
+      "palomahealth.com",
+      "greentownlabs.com",
+      "reditus.space",
+      "rewbi.com",
+      "seagen.io",
+      "solugen.com",
+      "twelve.co",
+      "umamibioworks.com"
+    ]
+  },
+  {
+    "investor": "AgFunder",
+    "website": "http://agfunder.com",
+    "portfolio_url": "https://agfunder.com/portfolio/",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 2,
+    "sample_domains": [
+      "browsehappy.com",
+      "agfundernews.com"
+    ],
+    "all_domains": [
+      "browsehappy.com",
+      "agfundernews.com"
+    ]
+  },
+  {
+    "investor": "Ahren Innovation Capital",
+    "website": "http://www.ahreninnovationcapital.com/",
+    "portfolio_url": "https://www.ahreninnovationcapital.com/companies/",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 2,
+    "sample_domains": [
+      "cbwebsitedesign.co.uk",
+      "ahren.cbddev.com"
+    ],
+    "all_domains": [
+      "cbwebsitedesign.co.uk",
+      "ahren.cbddev.com"
+    ]
+  },
+  {
+    "investor": "AiiM Partners",
+    "website": "https://www.aiimpartners.com/",
+    "result": "no portfolio page found (link or guess)"
+  },
+  {
+    "investor": "Airbus Ventures",
+    "website": "http://www.airbusventures.vc/",
+    "portfolio_url": "http://www.airbusventures.vc/portfolio",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 1,
+    "sample_domains": [
+      "aerospacelab.be"
+    ],
+    "all_domains": [
+      "aerospacelab.be"
+    ]
+  },
+  {
+    "investor": "Ajax Strategies",
+    "website": "https://www.ajaxinvestmentstrategies.com/",
+    "portfolio_url": "https://www.ajaxinvestmentstrategies.com/portfolio",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 30,
+    "sample_domains": [
+      "angaza.com",
+      "descarteslabs.com",
+      "gojitsu.com",
+      "midwesternbioag.com",
+      "ripplefoods.com",
+      "voltus.co",
+      "arable.com",
+      "enverid.com",
+      "ketos.co",
+      "miraterrasoil.com",
+      "sinai.com",
+      "thinkbright.mx",
+      "gradientcomfort.com",
+      "li.me",
+      "natelenergy.com"
+    ],
+    "all_domains": [
+      "angaza.com",
+      "descarteslabs.com",
+      "gojitsu.com",
+      "midwesternbioag.com",
+      "ripplefoods.com",
+      "voltus.co",
+      "arable.com",
+      "enverid.com",
+      "ketos.co",
+      "miraterrasoil.com",
+      "sinai.com",
+      "thinkbright.mx",
+      "gradientcomfort.com",
+      "li.me",
+      "natelenergy.com",
+      "terramera.com",
+      "catalera.com",
+      "goinfinitum.com",
+      "getlumen.com",
+      "regrow.ag",
+      "upstream.tech",
+      "automotivepower.com",
+      "planet.com",
+      "sprucepower.com",
+      "greentechmedia.com",
+      "proterra.com",
+      "geli.net",
+      "streetlightdata.com",
+      "ojjo.com",
+      "watersmart.com"
+    ]
+  },
+  {
+    "investor": "Alante Capital",
+    "website": "https://www.alantecapital.com/",
+    "portfolio_url": "https://www.alantecapital.com/portfolio",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 18,
+    "sample_domains": [
+      "circ.earth",
+      "mangomaterials.com",
+      "fitmatch.ai",
+      "novoloop.com",
+      "joinflyp.com",
+      "swaythefuture.com",
+      "lizee.co",
+      "heywindow.ai",
+      "treet.co",
+      "zzdriggs.com",
+      "retraced.com",
+      "insempra.bio",
+      "matereal.co",
+      "fibe.uk",
+      "manny-ai.com"
+    ],
+    "all_domains": [
+      "circ.earth",
+      "mangomaterials.com",
+      "fitmatch.ai",
+      "novoloop.com",
+      "joinflyp.com",
+      "swaythefuture.com",
+      "lizee.co",
+      "heywindow.ai",
+      "treet.co",
+      "zzdriggs.com",
+      "retraced.com",
+      "insempra.bio",
+      "matereal.co",
+      "fibe.uk",
+      "manny-ai.com",
+      "relist.co",
+      "musthad.com",
+      "coblros.com"
+    ]
+  },
+  {
+    "investor": "Alexandria Venture Investments",
+    "website": "http://www.are.com/venture-investments.html",
+    "portfolio_url": "http://are.com/portfolio",
+    "how_found": "path guess",
+    "result": "page found but no outbound company links extracted"
+  },
+  {
+    "investor": "Aligned Climate Capital",
+    "website": "https://www.alignedclimatecapital.com/",
+    "portfolio_url": "https://www.alignedclimatecapital.com/portfolio",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 1,
+    "sample_domains": [
+      "platformeleven.io"
+    ],
+    "all_domains": [
+      "platformeleven.io"
+    ]
+  },
+  {
+    "investor": "Aliment Capital",
+    "website": "https://www.alimentcap.com",
+    "portfolio_url": "https://www.alimentcap.com/portfolio",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 1,
+    "sample_domains": [
+      "aliment.sensrportal.com"
+    ],
+    "all_domains": [
+      "aliment.sensrportal.com"
+    ]
+  },
+  {
+    "investor": "Alliance Ventures",
+    "website": "https://alliancernm.com/home-alliance/alliance-ventures/",
+    "portfolio_url": "https://alliancernm.com/home-alliance/alliance-ventures/portfolio/",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 13,
+    "sample_domains": [
+      "tekion.com",
+      "weride.ai",
+      "enevate.com",
+      "kalrayinc.com",
+      "otonomo.io",
+      "powershare.com.cn",
+      "upstream.auto",
+      "mobilityhouse.com",
+      "transitapp.com",
+      "maniv.com",
+      "renaultgroup.com",
+      "nissan-global.com",
+      "mitsubishi-motors.com"
+    ],
+    "all_domains": [
+      "tekion.com",
+      "weride.ai",
+      "enevate.com",
+      "kalrayinc.com",
+      "otonomo.io",
+      "powershare.com.cn",
+      "upstream.auto",
+      "mobilityhouse.com",
+      "transitapp.com",
+      "maniv.com",
+      "renaultgroup.com",
+      "nissan-global.com",
+      "mitsubishi-motors.com"
+    ]
+  },
+  {
+    "investor": "Almi Invest",
+    "website": "https://www.almi.se/en/venture-capital/",
+    "result": "no portfolio page found (link or guess)"
+  },
+  {
+    "investor": "Alpha Future Funds",
+    "website": "https://alphafuturefunds.com/",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "Amasia",
+    "website": "https://www.amasia.vc",
+    "portfolio_url": "https://www.amasia.vc/portfolio",
+    "how_found": "homepage link",
+    "result": "page found but no outbound company links extracted"
+  },
+  {
+    "investor": "Amazon Climate Pledge Fund",
+    "website": "https://www.theclimatepledge.com/us/en",
+    "result": "no portfolio page found (link or guess)"
+  },
+  {
+    "investor": "American Century Investments",
+    "website": "https://www.americancentury.com",
+    "result": "no portfolio page found (link or guess)"
+  },
+  {
+    "investor": "American Family Insurance",
+    "website": "https://www.amfam.com/",
+    "portfolio_url": "https://amfam.com/portfolio",
+    "how_found": "path guess",
+    "result": "next.js / client-rendered (no __NEXT_DATA__ parse attempted)"
+  },
+  {
+    "investor": "Angeleno Group",
+    "website": "http://www.angelenogroup.com",
+    "portfolio_url": "http://angelenogroup.com/portfolio",
+    "how_found": "path guess",
+    "outbound_company_domain_count": 1,
+    "sample_domains": [
+      "viewpoint.cscgfm.com"
+    ],
+    "all_domains": [
+      "viewpoint.cscgfm.com"
+    ]
+  },
+  {
+    "investor": "Anglo American Decarbonisation Ventures",
+    "website": "https://www.angloamerican.com/products/marketing-materials-solutions-for-our-customers/decarbonisation-ventures",
+    "result": "homepage fetch failed (404)"
+  },
+  {
+    "investor": "Anzu Partners",
+    "website": "https://www.anzupartners.com",
+    "portfolio_url": "https://www.anzupartners.com/portfolio/",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 17,
+    "sample_domains": [
+      "6kadditive.com",
+      "additiveflow.com",
+      "ai-media.tv",
+      "aptatek.com",
+      "axsun.com",
+      "banyanbio.com",
+      "cyrusbio.com",
+      "enachip.com",
+      "exyn.com",
+      "lightshipworks.com",
+      "lumiode.com",
+      "mobilionsystems.com",
+      "plm.automation.siemens.com",
+      "optimeos.com",
+      "pivotalsys.com"
+    ],
+    "all_domains": [
+      "6kadditive.com",
+      "additiveflow.com",
+      "ai-media.tv",
+      "aptatek.com",
+      "axsun.com",
+      "banyanbio.com",
+      "cyrusbio.com",
+      "enachip.com",
+      "exyn.com",
+      "lightshipworks.com",
+      "lumiode.com",
+      "mobilionsystems.com",
+      "plm.automation.siemens.com",
+      "optimeos.com",
+      "pivotalsys.com",
+      "voxeljet.com",
+      "dynamo.dynamosoftware.com"
+    ]
+  },
+  {
+    "investor": "Applied Ventures",
+    "website": "http://appliedventures.com/",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "AP Ventures",
+    "website": "https://apventures.com/",
+    "portfolio_url": "https://apventures.com/portfolio",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 28,
+    "sample_domains": [
+      "teragenenergy.com",
+      "crewcarbon.com",
+      "lydianlabs.com",
+      "rubi.earth",
+      "rosysoil.com",
+      "attributes.digital",
+      "snowfoxdiscovery.com",
+      "mitico.tech",
+      "aetherfuels.com",
+      "airhive.earth",
+      "immaterial.com",
+      "hyper-motive.com",
+      "plugpower.com",
+      "fabrum.nz",
+      "fairbrics.co"
+    ],
+    "all_domains": [
+      "teragenenergy.com",
+      "crewcarbon.com",
+      "lydianlabs.com",
+      "rubi.earth",
+      "rosysoil.com",
+      "attributes.digital",
+      "snowfoxdiscovery.com",
+      "mitico.tech",
+      "aetherfuels.com",
+      "airhive.earth",
+      "immaterial.com",
+      "hyper-motive.com",
+      "plugpower.com",
+      "fabrum.nz",
+      "fairbrics.co",
+      "ehgroup.ch",
+      "noblegassystems.com",
+      "zeroavia.com",
+      "hazergroup.com.au",
+      "amogy.co",
+      "hystar.org",
+      "infiniumco.com",
+      "hpnow.eu",
+      "hyetgroup.com",
+      "greyrock.com",
+      "unitedhydrogen.com",
+      "hydrogenious.net",
+      "fca.org.uk"
+    ]
+  },
+  {
+    "investor": "Aramco Ventures",
+    "website": "https://aramcoventures.com",
+    "portfolio_url": "https://aramcoventures.com/portfolio/",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 70,
+    "sample_domains": [
+      "aramcoventures.jobs.hr.cloud.sap",
+      "parallelcarbon.com",
+      "ucaneo.com",
+      "hydo.tech",
+      "prometheanparticles.co.uk",
+      "xpansiv.com",
+      "graphenergytech.com",
+      "spiritus.com",
+      "aeroseal.com",
+      "redex.eco",
+      "bostonmetal.com",
+      "rondo.com",
+      "oxccu.com",
+      "noon.energy",
+      "plasmonics.tech"
+    ],
+    "all_domains": [
+      "aramcoventures.jobs.hr.cloud.sap",
+      "parallelcarbon.com",
+      "ucaneo.com",
+      "hydo.tech",
+      "prometheanparticles.co.uk",
+      "xpansiv.com",
+      "graphenergytech.com",
+      "spiritus.com",
+      "aeroseal.com",
+      "redex.eco",
+      "bostonmetal.com",
+      "rondo.com",
+      "oxccu.com",
+      "noon.energy",
+      "plasmonics.tech",
+      "numat.tech",
+      "carbonclean.com",
+      "novomer.com",
+      "formenergy.com",
+      "enervenue.com",
+      "energyvault.com",
+      "nexwafe.com",
+      "hydrogen-mem-tech.com",
+      "utility.global",
+      "amogy.co",
+      "grandperspective.de",
+      "htmaterialsscience.com",
+      "utilidata.com",
+      "daphnetechnology.com",
+      "oxymem.com",
+      "arkestro.com",
+      "cumulusds.com",
+      "dexmat.com",
+      "inductosense.com",
+      "anybotics.com",
+      "archlet.io",
+      "earthanalytics.ai",
+      "foghorn-systems.com",
+      "maana.io",
+      "seeq.com",
+      "3yourmind.com",
+      "desktopmetal.com",
+      "nexa3d.com",
+      "datagumbo.com",
+      "tradego.com",
+      "vakt.com",
+      "attackiq.com",
+      "capsule8.com",
+      "dragos.com",
+      "xage.com",
+      "getupside.com",
+      "parsable.com",
+      "pixovr.com",
+      "908devices.com",
+      "clarkeindustrialengineering.com",
+      "conxtech.com",
+      "corrosionradar.com",
+      "rivetechnology.com",
+      "specialtyrtp.com",
+      "strohm.eu",
+      "zahroofvalves.com",
+      "zilift.com",
+      "gryphonoilfield.com",
+      "sekal.com",
+      "well-sense.co.uk",
+      "veretek.com",
+      "inflowcontrol.no",
+      "targetintervention.no",
+      "paradigm.eu",
+      "antech.co.uk"
+    ]
+  },
+  {
+    "investor": "Arborview Capital",
+    "website": "http://www.arborviewcapital.com",
+    "portfolio_url": "http://www.arborviewcapital.com/portfolio",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 20,
+    "sample_domains": [
+      "dynamo.dynamosoftware.com",
+      "thinkalpen.com",
+      "coppercowcoffee.com",
+      "elephantenergy.com",
+      "goodculture.com",
+      "kite-hill.com",
+      "pakal-tech.com",
+      "perchenergy.com",
+      "soliorganic.com",
+      "soupergirl.com",
+      "temperpack.com",
+      "rachio.com",
+      "vitalfarms.com",
+      "drexmet.com",
+      "lrienergysolutions.com"
+    ],
+    "all_domains": [
+      "dynamo.dynamosoftware.com",
+      "thinkalpen.com",
+      "coppercowcoffee.com",
+      "elephantenergy.com",
+      "goodculture.com",
+      "kite-hill.com",
+      "pakal-tech.com",
+      "perchenergy.com",
+      "soliorganic.com",
+      "soupergirl.com",
+      "temperpack.com",
+      "rachio.com",
+      "vitalfarms.com",
+      "drexmet.com",
+      "lrienergysolutions.com",
+      "paragonairheater.com",
+      "impactcapitalmanagers.com",
+      "sdgs.un.org",
+      "impactassets.org",
+      "bcorporation.net"
+    ]
+  },
+  {
+    "investor": "ArcelorMittal XCarb",
+    "website": "https://corporate.arcelormittal.com/media/press-releases/arcelormittal-launches-xcarb-innovation-fund",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "ArcLight",
+    "website": "https://www.arclight.com/",
+    "portfolio_url": "https://arclight.com/portfolio",
+    "how_found": "path guess",
+    "outbound_company_domain_count": 5,
+    "sample_domains": [
+      "elevaterenewablesenergy.com",
+      "recsolar.com",
+      "infinigenrenewables.com",
+      "pipeportal.kindermorgan.com",
+      "greatriverhydro.com"
+    ],
+    "all_domains": [
+      "elevaterenewablesenergy.com",
+      "recsolar.com",
+      "infinigenrenewables.com",
+      "pipeportal.kindermorgan.com",
+      "greatriverhydro.com"
+    ]
+  },
+  {
+    "investor": "ArcTern Ventures",
+    "website": "http://www.arcternventures.com",
+    "portfolio_url": "https://www.arcternventures.com/portfolio/",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 1,
+    "sample_domains": [
+      "365.pinnaclefundservices.com"
+    ],
+    "all_domains": [
+      "365.pinnaclefundservices.com"
+    ]
+  }
+]

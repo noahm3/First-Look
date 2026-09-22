@@ -1,0 +1,118 @@
+[
+  {
+    "investor": "Alexandria Venture Investments",
+    "website": "http://www.are.com/venture-investments.html",
+    "jobs_url": "http://are.com/jobs",
+    "how_found": "path/subdomain guess",
+    "platform": "empty/blocked response"
+  },
+  {
+    "investor": "Aligned Climate Capital",
+    "website": "https://www.alignedclimatecapital.com/",
+    "jobs_url": "https://alignedclimatecapital.com/careers/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Aliment Capital",
+    "website": "https://www.alimentcap.com",
+    "jobs_url": "https://alimentcap.com/careers",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Alliance Ventures",
+    "website": "https://alliancernm.com/home-alliance/alliance-ventures/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Almi Invest",
+    "website": "https://www.almi.se/en/venture-capital/",
+    "jobs_url": "https://www.almi.se/en/om-almi/Career/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Alpha Future Funds",
+    "website": "https://alphafuturefunds.com/",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "Amasia",
+    "website": "https://www.amasia.vc",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Amazon Climate Pledge Fund",
+    "website": "https://www.theclimatepledge.com/us/en",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "American Century Investments",
+    "website": "https://www.americancentury.com",
+    "jobs_url": "https://www.americancentury.com/about/careers/",
+    "how_found": "homepage link",
+    "platform": "unknown"
+  },
+  {
+    "investor": "American Family Insurance",
+    "website": "https://www.amfam.com/",
+    "jobs_url": "https://careers.amfam.com",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Angeleno Group",
+    "website": "http://www.angelenogroup.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Anglo American Decarbonisation Ventures",
+    "website": "https://www.angloamerican.com/products/marketing-materials-solutions-for-our-customers/decarbonisation-ventures",
+    "result": "homepage fetch failed (404)"
+  },
+  {
+    "investor": "Anzu Partners",
+    "website": "https://www.anzupartners.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Applied Ventures",
+    "website": "http://appliedventures.com/",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "AP Ventures",
+    "website": "https://apventures.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Aramco Ventures",
+    "website": "https://aramcoventures.com",
+    "jobs_url": "https://aramcoventures.com/careers",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "Arborview Capital",
+    "website": "http://www.arborviewcapital.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "ArcelorMittal XCarb",
+    "website": "https://corporate.arcelormittal.com/media/press-releases/arcelormittal-launches-xcarb-innovation-fund",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "ArcLight",
+    "website": "https://www.arclight.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "ArcTern Ventures",
+    "website": "http://www.arcternventures.com",
+    "jobs_url": "http://careers.arcternventures.com",
+    "how_found": "path/subdomain guess",
+    "platform": "getro (likely)"
+  }
+]

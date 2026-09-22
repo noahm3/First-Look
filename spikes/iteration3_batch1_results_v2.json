@@ -1,0 +1,114 @@
+[
+  {
+    "investor": "2150",
+    "website": "https://2150.vc",
+    "jobs_url": "https://2150.getro.com/jobs",
+    "how_found": "homepage link",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "360 Capital",
+    "website": "https://www.360cap.vc/",
+    "jobs_url": "https://jobs.360cap.vc",
+    "how_found": "path/subdomain guess",
+    "platform": "consider"
+  },
+  {
+    "investor": "4impact Capital",
+    "website": "https://www.4impact.vc/",
+    "jobs_url": "https://jobs.4impact.vc",
+    "how_found": "path/subdomain guess",
+    "platform": "unknown"
+  },
+  {
+    "investor": "8090 Industries",
+    "website": "https://www.8090industries.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "ABB Ventures",
+    "website": "https://global.abb/group/en/technology/ventures",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Acario Innovation",
+    "website": "https://acarioinnovation.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Accelr8",
+    "website": "https://www.accelr8.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Acre Venture Partners",
+    "website": "http://acre.vc/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Activate Capital Partners",
+    "website": "https://activatecp.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Active Impact Investments",
+    "website": "https://www.activeimpactinvestments.com",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "ADB Ventures",
+    "website": "https://ventures.adb.org",
+    "result": "homepage fetch failed (403)"
+  },
+  {
+    "investor": "ADM Ventures",
+    "website": "https://www.adm.com/products-services/admventures",
+    "result": "homepage fetch failed (404)"
+  },
+  {
+    "investor": "AENU",
+    "website": "https://www.aenu.com",
+    "jobs_url": "https://jobs.aenu.com/jobs",
+    "how_found": "homepage link",
+    "platform": "getro (likely)"
+  },
+  {
+    "investor": "Aera VC",
+    "website": "https://www.aera.vc",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "AgFunder",
+    "website": "http://agfunder.com",
+    "jobs_url": "https://agfunder.com/careers/",
+    "how_found": "homepage link",
+    "platform": "wordpress (wp job manager) - check for RSS feed"
+  },
+  {
+    "investor": "Ahren Innovation Capital",
+    "website": "http://www.ahreninnovationcapital.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "AiiM Partners",
+    "website": "https://www.aiimpartners.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Airbus Ventures",
+    "website": "http://www.airbusventures.vc/",
+    "jobs_url": "http://jobs.airbusventures.vc",
+    "how_found": "path/subdomain guess",
+    "platform": "consider"
+  },
+  {
+    "investor": "Ajax Strategies",
+    "website": "https://www.ajaxinvestmentstrategies.com/",
+    "result": "no jobs page found (link or guess)"
+  },
+  {
+    "investor": "Alante Capital",
+    "website": "https://www.alantecapital.com/",
+    "result": "no jobs page found (link or guess)"
+  }
+]

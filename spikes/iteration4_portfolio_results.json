@@ -1,0 +1,129 @@
+[
+  {
+    "investor": "8090 Industries",
+    "website": "https://www.8090industries.com/",
+    "portfolio_url": "https://8090industries.com/portfolio",
+    "how_found": "path guess",
+    "outbound_company_domain_count": 2,
+    "sample_domains": [
+      "datacenterdynamics.com",
+      "nscale.com"
+    ]
+  },
+  {
+    "investor": "Accelr8",
+    "website": "https://www.accelr8.com/",
+    "portfolio_url": "https://www.accelr8.com/companies",
+    "how_found": "homepage link",
+    "result": "page found but no outbound company links extracted"
+  },
+  {
+    "investor": "Acre Venture Partners",
+    "website": "http://acre.vc/",
+    "result": "no portfolio page found (link or guess)"
+  },
+  {
+    "investor": "Activate Capital Partners",
+    "website": "https://activatecp.com/",
+    "portfolio_url": "https://activatecp.com/portfolio",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 33,
+    "sample_domains": [
+      "aerones.com",
+      "altana.ai",
+      "antora.com",
+      "crusoe.ai",
+      "enpal.de",
+      "fictiv.com",
+      "flexe.com",
+      "generatecapital.com",
+      "homee.com",
+      "infravision.com.au",
+      "jetsonhome.com",
+      "kin.com",
+      "klearnow.com",
+      "poweredbylight.com",
+      "lunarenergy.com"
+    ]
+  },
+  {
+    "investor": "Active Impact Investments",
+    "website": "https://www.activeimpactinvestments.com",
+    "portfolio_url": "https://www.activeimpactinvestments.com/our-portfolio",
+    "how_found": "homepage link",
+    "result": "page found but no outbound company links extracted"
+  },
+  {
+    "investor": "Ahren Innovation Capital",
+    "website": "http://www.ahreninnovationcapital.com/",
+    "portfolio_url": "https://www.ahreninnovationcapital.com/companies/",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 2,
+    "sample_domains": [
+      "cbwebsitedesign.co.uk",
+      "ahren.cbddev.com"
+    ]
+  },
+  {
+    "investor": "Ajax Strategies",
+    "website": "https://www.ajaxinvestmentstrategies.com/",
+    "portfolio_url": "https://www.ajaxinvestmentstrategies.com/portfolio",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 30,
+    "sample_domains": [
+      "angaza.com",
+      "descarteslabs.com",
+      "gojitsu.com",
+      "midwesternbioag.com",
+      "ripplefoods.com",
+      "voltus.co",
+      "arable.com",
+      "enverid.com",
+      "ketos.co",
+      "miraterrasoil.com",
+      "sinai.com",
+      "thinkbright.mx",
+      "gradientcomfort.com",
+      "li.me",
+      "natelenergy.com"
+    ]
+  },
+  {
+    "investor": "Amasia",
+    "website": "https://www.amasia.vc",
+    "portfolio_url": "https://www.amasia.vc/portfolio",
+    "how_found": "homepage link",
+    "result": "page found but no outbound company links extracted"
+  },
+  {
+    "investor": "Aligned Climate Capital",
+    "website": "https://www.alignedclimatecapital.com/",
+    "portfolio_url": "https://www.alignedclimatecapital.com/portfolio",
+    "how_found": "homepage link",
+    "outbound_company_domain_count": 1,
+    "sample_domains": [
+      "platformeleven.io"
+    ]
+  },
+  {
+    "investor": "American Century Investments",
+    "website": "https://www.americancentury.com",
+    "result": "no portfolio page found (link or guess)"
+  },
+  {
+    "investor": "American Family Insurance",
+    "website": "https://www.amfam.com/",
+    "portfolio_url": "https://amfam.com/portfolio",
+    "how_found": "path guess",
+    "outbound_company_domain_count": 7,
+    "sample_domains": [
+      "myaccount.amfam.com",
+      "file-claim.amfam.com",
+      "chat-ui.amfam.com",
+      "careers.amfam.com",
+      "newsroom.amfam.com",
+      "pinterest.com",
+      "b2b.amfam.com"
+    ]
+  }
+]

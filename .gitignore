@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# First Look project-specific
+.cache/
+Connections.csv
+connections*.json
+config/notify/
+*.local.yml
