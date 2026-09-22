@@ -840,8 +840,44 @@ as a cheap backstop but it is not what fixed this.
    that depends on adjacency, and neither the run summary nor the field-coverage counts
    showed anything wrong — only reading the actual snippets did.**
 
+### Repeat-run diff — `ats_job_id` stability
+Also run at the user's request. `spikes/iteration7_run_diff.py` compares two result
+files, restricted to the (provider, token) pairs ok in **both** runs — the pool was
+growing throughout the session, so an unrestricted diff counts newly-*mapped companies*
+as newly-*opened postings*.
+
+Two runs eight minutes apart, 239 shared companies:
+
+```
+  id present in both runs : 8542
+  id only in after (new)  : 2
+  id only in before (gone): 3
+  field drift on stable ids: none - every compared field identical
+```
+
+**The assumption `SPEC.md` §10's lifecycle rests on holds**, and nothing had previously
+verified it. Zero drift across title, department, location, workplace type, url,
+`posted_at` and compensation. The three disappearances were checked rather than assumed —
+three further fetches of that board never returned them, so real closures, not board
+non-determinism. That mattered to check: spurious omissions would make §10 step 4 set
+`closed_at` on live roles.
+
+**A naive whole-run diff would have reported +681 postings against real movement of 2
+opened and 3 closed** — a hundredfold overstatement, entirely from newly-mapped
+companies. This is an M4 trap and a `SPEC.md` §14 correction, now written into §14.
+
+**One posting argued §6's case better than §6 does.** A Greenhouse role with
+`first_published` of 2026-09-10 appeared on its board for the first time between the two
+runs, `updated_at` two minutes prior. Sorted by `posted_at` it lands twelve days deep and
+the user never sees it; sorted by `first_seen_at` it is correctly the newest thing there.
+The "be early in the applicant pool" premise depends on that column.
+
+Eight minutes measures id stability well and daily churn not at all. The 0.06% figure
+says nothing about a 24-hour rate; that needs a real overnight gap, and the diff tool
+takes any two result files.
+
 ### Deviations from SPEC
-Nine corrections committed to `SPEC.md` this session (§6, §9 ×3, §10, §11, §12.3, §18 ×2),
+~~Nine corrections~~ **Fourteen corrections and additions** committed to `SPEC.md` this session (§6, §9 ×3, §10, §11, §12.3, §18 ×2),
 all struck-through rather than deleted, each carrying the date and the measurement:
 - **§9 Greenhouse** — `first_published` **is** on the list endpoint; `departments` is
   present **only** with `content=true`; the detail endpoint returned a byte-identical
@@ -855,7 +891,15 @@ all struck-through rather than deleted, each carrying the date and the measureme
 - **§9 Ashby** — the `compensation` object is truthy even when nothing is disclosed.
 - **§6** — the "list endpoint exposes only `updated_at`" claim.
 - **§10** — the Greenhouse detail call on the new-posting path.
-- **§11 / §18 #3** — the disclosure measurement above.
+- **§11 / §18 #3** — the disclosure measurement above, corrected once after the
+  precision sample (14.2% / 38.3% → 18.1% / 52.5%), with the superseded pair recorded in
+  place because it had already been committed.
+- **§14** — the ">25% run-over-run drop" anomaly check must be computed against the
+  intersection of companies polled ok in both runs, not against run totals. Added, not
+  struck — the existing rule is not wrong, it is under-specified in a way that fails
+  silently.
+- **§10** — `ats_job_id` stability recorded as measured rather than assumed.
+- **§6** — a live example for why `first_seen_at` rather than `posted_at` is the sort key.
 
 ### Criteria checked
 None — pre-M2 spike work, no `CRITERIA.md` items apply yet.
@@ -895,10 +939,11 @@ cheap corroboration signal the cascade could use.
 - ~~Recommended follow-up spikes, in the order they de-risk the most: comp-snippet
   precision sampling, then a repeat-run diff, then the `careers_page_regex` precision
   fix.~~ **Precision sampling was done this session** (above). Remaining, in order: a
-  repeat-run diff 24h apart to measure real posting churn and confirm `ats_job_id` is
-  stable across runs — which §10's whole lifecycle assumes and nothing has verified — then
-  the `careers_page_regex` precision fix, then a measurement-only pass on how many
-  description snippets yield a clean min/max/interval, so M5 starts with a known hit rate.
+  repeat-run diff — **done this session for id stability** (above); the 24h churn number
+  is still outstanding and needs only a re-run of `--all` plus
+  `spikes/iteration7_run_diff.py` against `mapped5`. Then the `careers_page_regex`
+  precision fix, then a measurement-only pass on how many description snippets yield a
+  clean min/max/interval, so M5 starts with a known hit rate.
 - Concurrency note: a separate M0 session was committing to `main` throughout this one
   (`src/http.py`, `src/models.py`, the Postgres schema, `src/health.py`). Commits
   interleaved cleanly because the two sessions touched disjoint paths, but both edited
