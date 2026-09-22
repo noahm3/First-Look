@@ -742,17 +742,26 @@ conversion, no collapsed fields, no filter predicate), classification (no `locat
 no `city_raw`), any database, any email or dashboard.
 
 ### The finding that matters
-**Compensation disclosure read from the providers' structured fields is 14.2%. Read
-including the description body it is 38.3%.**
+**Compensation disclosure read from the providers' structured fields is 18.1%. Read
+including the description body it is 52.5%.**
 
 | Where the number was published | Postings | Share |
 |---|---|---|
-| Provider's structured field | 838 | 14.2% |
-| Description body only | 1,420 | 24.1% |
-| **Either** | **2,258** | **38.3%** |
+| Provider's structured field | 1,583 | 18.1% |
+| Description body only | 3,020 | 34.5% |
+| **Either** | **4,603** | **52.5%** |
 
-Per provider, structured vs. description-only: Greenhouse **0.0%** / 24.6% (3,713
-postings), Lever 35.0% / 23.4% (363), Ashby 39.1% / 23.2% (1,817).
+Greenhouse carried `pay_input_ranges` on **0 of 5,243** postings while publishing a range
+in the description body on roughly a quarter of them; Lever and Ashby hold nearly all of
+the structured disclosure.
+
+**These figures replace an earlier 14.2% / 38.3% pair that was committed to both this
+entry and `SPEC.md` before a precision sample was run.** That pair was an undercount —
+see bug 3 below. Recorded rather than quietly swapped, because it was already published
+to the repo. The sample attributes essentially all of the gap to the bug rather than to
+the mapped pool growing from 157 to 255 companies mid-session: the rejected population
+under the old rule was 1,355 postings at ~57.5% genuine, worth ~13 points, and
+38.3 + 13 ≈ 51.5.
 
 Found because the user spotted a Crusoe posting whose page showed a salary while our
 output said none: its `compensation` object is empty and
@@ -765,9 +774,9 @@ absent without it. The text was already arriving and being discarded.
 
 It lands on `SPEC.md` §18's measurement gate, which has not been run yet. Measurement #3
 was framed as "not engineerable — if the employer published no number, no parser recovers
-it." The employer usually *had* published one, just not where the API exposes it. At 14%
+it." The employer usually *had* published one, just not where the API exposes it. At 18%
 the gate's own rule says "disclosure low → the product is novelty-and-alerting, reprioritise
-comp hard." At 38% it does not say that.
+comp hard." At 52% it does not say that.
 
 ### Decisions made this session
 - **Extract comp from the description; do not store the description.** Only the matched
@@ -788,6 +797,27 @@ comp hard." At 38% it does not say that.
 - **Did not touch `CRITERIA.md`.** C-4.7 ("seed mode makes no Greenhouse detail calls")
   becomes trivially true rather than wrong, so it needs no strike.
 
+### Precision sample on the description extraction
+Run at the user's request, after the numbers above were already committed. A reproducible
+hand-labelled sample (seed 20260922) drawn from the committed run, in two populations,
+because precision alone would have missed the actual problem:
+
+- **Counted as disclosure: 100/100 genuine role compensation.** No false positives.
+- **Rejected by the keyword test: 23/40 were genuine compensation too** — bare ranges
+  like `$120,000 – $170,000 USD`. The other 17 were correctly rejected and are
+  consistently funding rounds, valuations, revenue and market-size claims.
+
+So the rule was precise and badly under-recalling. After the fix (bug 3 below),
+re-sampled: **59/60 precision** — the one miss is `$300 per month` commuter benefit,
+a benefit rather than a salary — with residual false negatives at ~17% of a much smaller
+reject pool, about 1% of all postings. Those are mostly pay bands embedded in
+requirements lists, of the form `Level II ($101,000-$146,500): Bachelor's degree...`.
+
+Worth recording because it is counterintuitive: of the two rules added, the bounded
+±220-character context window does essentially all the work (1,989 keyword-only, 1,025
+both), and the standalone-money-line rule added alongside it contributes **6**. It stays
+as a cheap backstop but it is not what fixed this.
+
 ### Real bugs found and fixed this session
 1. **Greenhouse `content` arrives HTML-escaped**, so unescaping *after* tag-stripping left
    every tag intact and the body unsplittable — which meant the stored "snippet" was the
@@ -800,6 +830,15 @@ comp hard." At 38% it does not say that.
 2. The `--limit` batch selector originally drew in file order, which would have given a
    single-provider batch; changed to round-robin across providers so a small batch always
    covers all three.
+3. **The fix for bug 1 caused a second, larger bug, and only the precision sample caught
+   it.** Splitting on block tags — added to stop the description body leaking into
+   snippets — also split Greenhouse's pay-range amount away from its "Salary Range"
+   label, which sits on the *preceding* line. A line-local keyword test then discarded
+   real ranges, undercounting disclosure by ~13 points. Proximity is now judged against a
+   bounded ±220-character window of surrounding text. **The general lesson: a
+   text-extraction fix that changes how text is segmented can silently break a heuristic
+   that depends on adjacency, and neither the run summary nor the field-coverage counts
+   showed anything wrong — only reading the actual snippets did.**
 
 ### Deviations from SPEC
 Nine corrections committed to `SPEC.md` this session (§6, §9 ×3, §10, §11, §12.3, §18 ×2),
@@ -822,10 +861,11 @@ all struck-through rather than deleted, each carrying the date and the measureme
 None — pre-M2 spike work, no `CRITERIA.md` items apply yet.
 
 ### Least confident about
-- **The 38.3% figure is a floor for "published somewhere" and a ceiling for "cleanly
-  parseable."** `near_comp_keyword` is a proximity heuristic, not a parser; it correctly
-  rejected "$500 million mobilized" and ">$100M projects" on inspection, but it has had no
-  systematic precision check.
+- ~~The 38.3% figure is a floor for "published somewhere" and a ceiling for "cleanly
+  parseable." `near_comp_keyword` is a proximity heuristic with no systematic precision
+  check.~~ **Answered this session by the precision sample above — 59/60, with the
+  residual error characterised.** What remains unmeasured is how the heuristic behaves on
+  boards outside this mapped set; every sample so far comes from the same 255 companies.
 - **Turning snippets into numbers will be harder than the snippets suggest.** Two real
   employer errors already in the sample: `$200,00 USD - $280,000 USD` (dropped digit), and
   an Ashby tier published as `{"minValue": 20, "maxValue": 20, "interval": "1 YEAR"}` — a
@@ -852,9 +892,13 @@ cheap corroboration signal the cascade could use.
   still going; it was at ~750 of 4,284 rows checked at session end. Re-run this spike when
   that finishes — the command is `--all`, it takes ~90 seconds, and the pool could be
   several hundred companies.
-- Recommended follow-up spikes, in the order they de-risk the most: comp-snippet precision
-  sampling, then a repeat-run diff to measure real posting churn, then the
-  `careers_page_regex` precision fix above.
+- ~~Recommended follow-up spikes, in the order they de-risk the most: comp-snippet
+  precision sampling, then a repeat-run diff, then the `careers_page_regex` precision
+  fix.~~ **Precision sampling was done this session** (above). Remaining, in order: a
+  repeat-run diff 24h apart to measure real posting churn and confirm `ats_job_id` is
+  stable across runs — which §10's whole lifecycle assumes and nothing has verified — then
+  the `careers_page_regex` precision fix, then a measurement-only pass on how many
+  description snippets yield a clean min/max/interval, so M5 starts with a known hit rate.
 - Concurrency note: a separate M0 session was committing to `main` throughout this one
   (`src/http.py`, `src/models.py`, the Postgres schema, `src/health.py`). Commits
   interleaved cleanly because the two sessions touched disjoint paths, but both edited
