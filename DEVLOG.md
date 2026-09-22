@@ -526,3 +526,64 @@ None — pre-M2 spike work, no `CRITERIA.md` items apply yet.
   mechanism (validation confidence levels, new `company_sources.source` value, the
   `investor_sources` table) waits until the careers-page/ATS crawl above shows whether
   this discovery approach is worth keeping at all.
+
+---
+
+## 2026-09-22 — M-1 follow-up: Resend, PAT, and Supabase accounts resolved
+**Model:** Sonnet 5 · **Plan mode:** no
+
+### Built
+Resolved the three accounts the M-1 close-out entry (above) left deferred, ahead of
+starting M0 for real:
+
+- **Resend** — account verified, send-only API key created, set via
+  `gh secret set RESEND_API_KEY` (value entered at the interactive prompt, never pasted
+  into any chat).
+- **Fine-grained PAT** — created scoped to this one repository only, permission
+  `Contents: read/write`, no `workflow` scope, **expiry 2026-12-21** — comfortably past
+  the roughly mid-November 2026 end of the two-month leave `SPEC.md` §2 describes. Set
+  via `gh secret set KEEPALIVE_PAT`, same never-in-chat pattern.
+- **Supabase project created.** Settings chosen at creation: region Americas; Data API
+  left enabled (unused pre-platform per `SETUP-PLATFORM.md` §8 — the pipeline uses the
+  direct connection string, not the Data API); "Automatically expose new tables"
+  disabled; "Enable automatic RLS" enabled — the last two match `SETUP-PLATFORM.md`
+  §6/§7's instruction to start default-deny from the very first migration rather than
+  retrofit RLS later.
+
+### Decisions made this session
+- **Supabase: Free tier, not Pro — user's explicit, informed call, made twice after the
+  tradeoff was flagged both times.** Diverges from `SETUP-PLATFORM.md` §4's "Pro plan,
+  not Free" and `SPEC.md` §6/§16's stated reasoning (a free-tier pause after low activity
+  lands hardest during the exact unattended leave window this project exists for).
+  Recorded as a real, deliberate deviation, not an oversight. Worth noting for whoever
+  revisits this: the risk is partly bounded by controls that already exist for other
+  reasons — a 4x/day poller keeps a free project alive trivially, and the pause scenario
+  converges with "the monitor has already been dead for a week," which the
+  healthchecks.io dead-man's switch (`SPEC.md` §14) is already designed to catch
+  regardless of Supabase's plan.
+- **New Supabase credentials (project URL, anon key, service_role key, direct DB
+  connection string) were not pasted into any chat.** They'll become
+  `SUPABASE_DB_URL` / `SUPABASE_SERVICE_ROLE_KEY` GitHub secrets once M0 actually wires
+  the pipeline to Postgres.
+
+### Deviations from SPEC
+- Supabase Free tier vs. `SPEC.md` §6/§16's Pro recommendation — see above. The only
+  deviation this session.
+
+### Criteria checked
+- **C-S.12** — PAT is fine-grained, single-repo, `Contents`-only, expires after leave
+  ends (2026-12-21, recorded here as required)
+- **C-1.2, partially** — `RESEND_API_KEY` and `KEEPALIVE_PAT` secrets now set.
+  `HEALTHCHECK_URL` and `NOTIFY_PROFILES` remain unset: the healthchecks.io account
+  exists (per the M-1 entry) but isn't wired to a ping URL yet, and `NOTIFY_PROFILES`
+  isn't due until closer to M10.
+
+### Least confident about
+- Whether the Free-tier decision holds up once the M0 Postgres migration is actually
+  running unattended for real — nothing to verify yet, since no schema exists.
+
+### Next session
+- Hand off to the M0/Opus planning session with all three previously-deferred accounts
+  now resolved. Two secrets remain genuinely unset for later:
+  `HEALTHCHECK_URL` (needs the existing healthchecks.io check's actual ping URL) and
+  `NOTIFY_PROFILES` (not due until M10).
