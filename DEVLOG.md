@@ -610,8 +610,8 @@ pre-M2:
   `companies` table's fields, `SPEC.md` §6) and an `update_company_mapping()` helper.
 - Worked in small batches throughout, per the user's explicit process ask, reviewing real
   output and fixing bugs before scaling: 15 → 15 (recheck) → 15 → 15 → 150 → the remaining
-  ~4,074 kicked off in the background, **still running as this entry is written** (274 of
-  4,284 checked at time of writing; see the tally below, to be updated once complete).
+  ~4,074 run in the background (restarted once partway through — see bug 6 below). **Full
+  run completed this session: all 4,284 companies checked.**
 
 ### Real bugs found and fixed this session
 1. `careers_page_url` was silently dropped whenever a careers page was found but showed no
@@ -635,6 +635,18 @@ pre-M2:
    on `nature.org`'s third-party `careers.tnc.org`, itself layered on Workday — a domain
    -resolution-gap shape the mapping cascade doesn't chase, same class of gap `SPEC.md`
    §7.2/§7.7 already flag for Getro/Wellfound).
+6. **The 12s per-request timeout wasn't actually bounding total time per company.**
+   `find_careers_page` can attempt up to ~5 URLs per company (homepage + linked page + up
+   to 4 fallback paths); when a domain is dead/blocked, several of those can each eat the
+   full timeout independently, compounding to 30-70+ seconds for a single company even
+   though the timeout parameter itself was working correctly on each individual request
+   (confirmed live: `autodesk.com.cn` took 29.8s total; a 20-domain random sample showed
+   19/20 finishing in under 1s and one hitting the timeout ceiling cleanly at 12.35s — so
+   it's a small tail of slow/blocked domains dragging the average, not throttling or a
+   broken timeout). Lowered the default from 12s to 6s and restarted the background run —
+   safe to restart, since already-checked rows are skipped, so none of the first 591
+   companies' work was lost. Throughput went from 5.3/min to ~17.7/min (~3x) after the
+   restart.
 
 ### Decisions made this session
 - **`.org` domains are now skipped in future batches without spending a request** — the
@@ -660,26 +672,45 @@ pre-M2:
   script/origin revealing the real ATS — same two signals the script's `careers_page_regex`
   stage automates, but a useful manual fallback for anything the script calls `unknown`.
 
-### Unsupported-ATS tally (partial — background run still in progress, 274/4,284 checked)
+### Final results — all 4,284 companies checked
+56 companies excluded outright as `.org` domains (no request spent). Of the remaining
+4,228:
+
+| Outcome | Count | % of 4,228 |
+|---|---|---|
+| Mapped (`verified` + `probable`) | 584 | 13.8% |
+| `no_careers_page` | 1,783 | 42.2% |
+| `unknown` | 1,176 | 27.8% |
+| `weak_only` | 343 | 8.1% |
+| `unsupported_ats:*` (known other ATS) | 297 | 7.0% |
+| `js_rendered` | 45 | 1.1% |
+
+Mapped, by provider: **Greenhouse 287, Ashby 220, Lever 77** (435 `verified` / 149
+`probable`).
+
+### Unsupported-ATS tally (final, input to SPEC.md §8.6 / §18 measurement #2's "build
+another adapter" question)
 | Provider | Count |
 |---|---|
-| BambooHR | 5 |
-| Polymer | 4 |
-| Breezy HR | 4 |
-| WordPress + WP Job Manager | 3 |
-| Workday | 2 |
-| careers-page.com | 2 |
-| Workable | 2 |
-| Recruitee | 2 |
+| BambooHR | 57 |
+| Workable | 55 |
+| Personio | 42 |
+| Breezy HR | 34 |
+| Workday | 30 |
+| ApplyToJob | 22 |
+| WordPress + WP Job Manager | 20 |
+| Polymer | 12 |
+| Recruitee | 11 |
+| Phenom People | 7 |
+| careers-page.com | 3 |
+| SmartRecruiters | 3 |
 | PyjamaHR | 1 |
-| Personio | 1 |
-| ApplyToJob | 1 |
 
-Confidence so far: 20 `verified`, 8 `probable` (~10% of checked). Other failure buckets:
-116 `no_careers_page`, 79 `unknown`, 20 `weak_only`, 4 `js_rendered`. **This table will need
-updating once the full run completes** — flagging now per the user's explicit ask to track
-this, since it's the input to a "build another adapter" decision (`SPEC.md` §8.6, §18
-measurement #2), not because the count is final.
+**No single unsupported provider comes close to Greenhouse/Ashby/Lever's volume** — even
+BambooHR (the largest) is 57 companies against 584 mapped. Not an obvious case for a new
+adapter yet on this data alone; `no_careers_page` (1,783) and `unknown` (1,176) together
+dwarf every `unsupported_ats` bucket combined (297) and are the real opportunity — see
+"Next session."
 
 ### Deviations from SPEC
 - The Ashby org-name finding above (§8.2 correction).
@@ -704,9 +735,9 @@ None — pre-M2 spike work, no `CRITERIA.md` items apply yet.
   worth a second look before this logic (if any) moves toward `src/`.
 
 ### Next session
-- Full run completes in the background; report the final distribution and unsupported-ATS
-  tally, then game-plan reducing `no_careers_page`/`unknown` (most likely: junk-domain
-  filtering upstream in `discovered_companies.csv`, not more cascade logic).
+- Full run is done; game-planning reducing `no_careers_page`/`unknown` (most likely:
+  junk-domain filtering upstream in `discovered_companies.csv`, not more cascade logic) is
+  the live open thread as of this entry.
 - A new spike session was requested in parallel: fetching live postings from the
   `verified`/`probable`-mapped companies' actual ATS APIs (Greenhouse, Lever, Ashby to
   start) — separate from this mapping work, prompt handed to the user directly rather than
@@ -948,3 +979,39 @@ cheap corroboration signal the cascade could use.
   (`src/http.py`, `src/models.py`, the Postgres schema, `src/health.py`). Commits
   interleaved cleanly because the two sessions touched disjoint paths, but both edited
   documentation — worth checking `SPEC.md` has not drifted before the next doc change.
+
+---
+
+## 2026-09-22 — Addendum: a third concurrent session also built (and dropped) its own iteration 7
+**Model:** Sonnet 5 · **Plan mode:** yes (design phase), no (rest)
+
+A third session, running the iteration 6 mapping cascade recorded earlier today (see the
+"Iteration 6: ATS mapping cascade for discovered companies" entry above — that work is
+this session's), also independently built a job-fetching spike against the mapped output,
+under the same "iteration 7" name as the session recorded immediately above. Discovered via
+`git log` after the fact, not before building it — this session's `discovered_companies.csv`
+and `tracking_store.py` edits were never committed, so there was no earlier signal to catch.
+
+**Resolution, the user's explicit call:** the other session's `spikes/iteration7_live_postings_spike.py`
+is already committed, more thorough (comp-in-description extraction, precision-sampled,
+`SPEC.md`-corrected — see that entry). This session's simpler duplicate
+(`spikes/iteration7_ats_job_fetch_spike.py` and its batch/log output) was deleted rather
+than committed or reconciled. It did validate two things worth keeping, informally, since
+they're consistent with the kept entry's own findings rather than contradicting them:
+a 94.2% fetch-success rate across all 584 companies iteration 6 mapped (550 ok, 17,371
+postings, 34 failures — all clean 404s/connection errors, the same "mapping went stale
+between the mapping run and the fetch" pattern, not script bugs), and two real bugs in its
+own reporting path (a Unicode character in a job title crashing print() outside the
+per-company try/except, and no incremental write meaning that crash lost an entire batch)
+that have no bearing on the kept spike, which didn't share that code.
+
+**Iteration 6 itself is unaffected and stands as this session's real contribution** — it
+was the input the other session's iteration 7 was reading from `discovered_companies.csv`
+on disk while both sessions were live simultaneously.
+
+### Next session
+- Before doing further spike work in `spikes/`, check `git log` first — this collision
+  would have been caught immediately rather than after building a full duplicate.
+- Iteration 6's output (`discovered_companies.csv`, `tracking_store.py`) is still
+  uncommitted as of this entry. Whether to commit it, and how it reconciles with whatever
+  state the other iteration-7 session left those same files in, is still open.

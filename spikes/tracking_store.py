@@ -40,7 +40,9 @@ COMPANY_FIELDS = [
     "company_domain", "company_website",
     "discovered_via_investors", "discovery_method",
     "first_discovered_at", "last_seen_at",
-    "careers_page_url", "ats_provider", "ats_token", "last_checked_at", "notes",
+    "careers_page_url", "ats_provider", "ats_token",
+    "mapping_confidence", "mapping_method", "mapping_failure_reason",
+    "last_checked_at", "notes",
 ]
 
 
@@ -78,6 +80,29 @@ def upsert_investor(row: dict) -> None:
     existing.setdefault("name", row["name"])
     rows[row["name"]] = existing
     _write(INVESTOR_CSV, INVESTOR_FIELDS, rows)
+
+
+def list_companies() -> list[dict]:
+    """All company rows, in file order (stable across runs, diffable)."""
+    return list(_read(COMPANY_CSV, COMPANY_FIELDS).values())
+
+
+def update_company_mapping(domain: str, **fields) -> None:
+    """Set ATS-mapping fields (careers_page_url, ats_provider, ats_token,
+    mapping_confidence, mapping_method, mapping_failure_reason) on an existing
+    company row. Only overwrites keys actually passed - same
+    don't-blank-other-columns behavior as upsert_investor - and always stamps
+    last_checked_at, since that's what a re-crawl uses to skip already-checked
+    rows."""
+    rows = _read(COMPANY_CSV, COMPANY_FIELDS)
+    existing = rows.get(domain)
+    if existing is None:
+        raise KeyError(f"no discovered_companies.csv row for domain {domain!r}")
+    for k, v in fields.items():
+        existing[k] = v if v is not None else ""
+    existing["last_checked_at"] = now_iso()
+    rows[domain] = existing
+    _write(COMPANY_CSV, COMPANY_FIELDS, rows)
 
 
 def upsert_company(domain: str, investor_name: str, discovery_method: str) -> None:
