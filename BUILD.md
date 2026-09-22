@@ -75,7 +75,7 @@ personal data, ask before committing it.
 - Check a box only when I have seen the actual output, not a summary.
 
 ## Non-negotiables
-- Python 3.12, stdlib + httpx + pytest. Justify any other dependency.
+- Python 3.13, stdlib + httpx + pytest. Justify any other dependency.
 - No user-specific job criteria in src/. Dashboard filters are client-side;
   notification criteria come from the NOTIFY_PROFILES secret.
 - No headless browsers. No authenticated scraping. No OAuth, no backend,
@@ -306,7 +306,7 @@ guarantee, which is why the dead-man's switch exists.
 ## 2. Environment
 
 ```
-Python 3.12
+Python 3.13
 httpx                # HTTP client
 pytest               # tests
 selectolax or lxml   # HTML parsing

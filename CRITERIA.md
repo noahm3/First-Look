@@ -36,7 +36,10 @@ patches are preserved in `archive/`. Nothing above this note was reworded or ren
 ## M0 — Skeleton and reliability plumbing
 
 - [ ] **C-0.1** The scheduled workflow runs unattended without manual triggering
-- [ ] **C-0.2** A run commits `jobs.db` and the JSON exports back to the repo
+- [ ] ~~**C-0.2** A run commits `jobs.db` and the JSON exports back to the repo~~
+      (superseded 2026-09-22: `jobs.db` is never committed — `SPEC.md` §6 moved state to
+      Postgres and §15 says so explicitly, so this criterion can no longer pass as
+      written. The JSON-exports half is live and is re-stated as C-0.9.)
 - [ ] **C-0.3** Commits are attributed to the user's account, not `github-actions[bot]`
 - [ ] **C-0.4** The dashboard loads on the Pages URL and shows a green
       `last_successful_run`
@@ -45,6 +48,9 @@ patches are preserved in `archive/`. Nothing above this note was reworded or ren
 - [ ] **C-0.6** A forced non-zero exit produces a GitHub workflow-failure email
 - [ ] **C-0.7** Two overlapping runs cannot occur (concurrency group verified)
 - [ ] **C-0.8** The run summary prints counts only and contains no `@` character
+- [ ] **C-0.9** A run commits the JSON exports under `docs/` back to the repo. This is the
+      only state the repo still holds (`SPEC.md` §6) and it doubles as the
+      PAT-attributed keepalive commit (§16). Replaces the struck C-0.2.
 
 ## M1 — Watchlist ingest and dedupe
 

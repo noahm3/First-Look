@@ -172,11 +172,20 @@ was a hedge covering companies whose ATS mapping failed. That hedge is gone. **A
 unmapped company is now invisible, full stop.** Mapping coverage stops being an open
 question and becomes the top-line product metric — see §8 and §18.
 
-**Two independent workflows**, plus a third with no secrets. `monitor.yml` (~4x daily)
+**Two independent workflows**, plus a third with no secrets, plus a fourth that only ever
+runs by hand. `migrate.yml` (added at M0) applies the §6 migrations and triggers on
+`workflow_dispatch` **only** — it cannot live in secrets-free `test.yml`, and
+auto-applying a schema change on every push to `main` during an unattended leave is
+exactly the class of quiet risk §3.3 exists to prevent. `monitor.yml` (~4x daily)
 and `discover.yml` (manual/monthly) carry secrets and never trigger on `pull_request`. A
-third workflow, `test.yml`, runs lint and tests on pull requests **with no secrets in
-scope** — a security boundary, not an organisational one (`SECURITY.md §S2`). A crash in
-fragile discovery code must not take down monitoring. All three carry `workflow_dispatch`
+third workflow, `test.yml`, runs lint and tests **with no secrets in scope** — a security
+boundary, not an organisational one (`SECURITY.md §S2`). **It triggers on `push` and
+`workflow_dispatch`, not on `pull_request`** (settled at M0): `CRITERIA.md` C-S.6 forbids
+*any* workflow from triggering on `pull_request`, and `BUILD.md` §0.3 rejected pull
+requests outright in favour of committing straight to `main` — so a PR trigger would be
+dead configuration that only widens the C-S.6 surface. The secrets-free property is what
+matters and is unchanged. A crash in
+fragile discovery code must not take down monitoring. All four carry `workflow_dispatch`
 where relevant.
 
 Cron is UTC and has no DST handling — wall-clock times shift by an hour when DST ends
@@ -202,6 +211,16 @@ companies, during the exact unattended window nobody is watching disk usage. See
 non-zero, which emails (§14). That is a *loud* failure — precisely what §3.3 asks for.
 The criterion was never zero dependencies, it was no *silent* ones.
 
+**The DDL below is Postgres-shaped as of M0.** Earlier drafts of this section carried
+SQLite-flavoured types — `INTEGER PRIMARY KEY`, `TEXT` timestamps, `INTEGER` booleans —
+left over from the committed-SQLite design this section supersedes. They are now written as
+`BIGINT GENERATED ALWAYS AS IDENTITY`, `TIMESTAMPTZ`, `BOOLEAN`, and `JSONB`. This is not
+cosmetic: archiving by `closed_at`, the 30-day hot/cold split, and §12.2's "Posted within N
+days" filter are all interval arithmetic, which `TEXT` cannot do. `ON DELETE CASCADE` is
+added on the child tables so `canonical_domain`'s manual merge hatch (below) doesn't leave
+orphans — companies are still **never auto-removed** (§14); the cascade exists for
+deliberate merges only. Timestamps are still stored as UTC.
+
 **Accepted costs of the move:**
 - Loss of `git checkout` on state. Managed backups only partly cover it; free-tier
   retention is short.
@@ -224,32 +243,32 @@ grants requirement for the Data API is scheduled to roll out to existing project
 
 ```sql
 CREATE TABLE companies (
-  id                        INTEGER PRIMARY KEY,
+  id                        BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   canonical_domain          TEXT UNIQUE,
   name                      TEXT NOT NULL,
-  is_climate                INTEGER DEFAULT 0,
-  industry_tags             TEXT,            -- JSON array, raw
-  has_open_roles_signal     INTEGER DEFAULT 0,
+  is_climate                BOOLEAN NOT NULL DEFAULT FALSE,
+  industry_tags             JSONB,           -- raw array; a lookup, not a classifier (§3.6)
+  has_open_roles_signal     BOOLEAN NOT NULL DEFAULT FALSE,
   ats_provider              TEXT,
   ats_token                 TEXT,
-  ats_status                TEXT DEFAULT 'unmapped',  -- unmapped|ok|failing|unmappable
+  ats_status                TEXT NOT NULL DEFAULT 'unmapped',  -- unmapped|ok|failing|unmappable
   mapping_confidence        TEXT,            -- verified|probable|weak
   mapping_method            TEXT,
   mapping_failure_reason    TEXT,            -- §8.4
-  mapping_last_attempt_at   TEXT,
-  ats_last_success_at       TEXT,
-  ats_consecutive_failures  INTEGER DEFAULT 0,
-  last_nonzero_postings_at  TEXT,
-  created_at                TEXT NOT NULL
+  mapping_last_attempt_at   TIMESTAMPTZ,
+  ats_last_success_at       TIMESTAMPTZ,
+  ats_consecutive_failures  INTEGER NOT NULL DEFAULT 0,
+  last_nonzero_postings_at  TIMESTAMPTZ,
+  created_at                TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 CREATE TABLE company_sources (
-  company_id            INTEGER NOT NULL REFERENCES companies(id),
+  company_id            BIGINT NOT NULL REFERENCES companies(id) ON DELETE CASCADE,
   source                TEXT NOT NULL,
   -- builtin | climatebase | climatetechlist | getro | consider
   -- | wellfound | yc | greentown | manual
   source_id             TEXT,
-  source_metadata_json  TEXT,
+  source_metadata_json  JSONB,
   PRIMARY KEY (company_id, source)
 );
 ```
@@ -261,8 +280,8 @@ a lookup, not a classifier — principle §3.6 holds.
 
 ```sql
 CREATE TABLE postings (
-  id                     INTEGER PRIMARY KEY,
-  company_id             INTEGER NOT NULL REFERENCES companies(id),
+  id                     BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  company_id             BIGINT NOT NULL REFERENCES companies(id) ON DELETE CASCADE,
   ats_job_id             TEXT NOT NULL,
   title_raw              TEXT NOT NULL,
   department_raw         TEXT,
@@ -271,19 +290,19 @@ CREATE TABLE postings (
   location_class         TEXT,            -- derived §12.3: remote|hybrid|onsite|unknown
   city_raw               TEXT,            -- first comma-token of location_raw
   url                    TEXT,
-  first_seen_at          TEXT NOT NULL,   -- THE date: sort key and "Posted" filter
-  last_seen_at           TEXT NOT NULL,
-  closed_at              TEXT,
-  posted_at              TEXT,            -- ATS date, informational only
+  first_seen_at          TIMESTAMPTZ NOT NULL,  -- THE date: sort key and "Posted" filter
+  last_seen_at           TIMESTAMPTZ NOT NULL,
+  closed_at              TIMESTAMPTZ,
+  posted_at              TIMESTAMPTZ,     -- ATS date, informational only
   content_hash           TEXT,
-  is_repost              INTEGER DEFAULT 0,
-  comp_data_quality      TEXT DEFAULT 'none',
+  is_repost              BOOLEAN NOT NULL DEFAULT FALSE,
+  comp_data_quality      TEXT NOT NULL DEFAULT 'none',
   comp_raw_summary       TEXT,
-  comp_best_annual_usd   INTEGER,
+  comp_best_annual_usd   INTEGER,         -- normalized, whole USD per year
   comp_floor_annual_usd  INTEGER,
-  comp_tier_count        INTEGER DEFAULT 0,
+  comp_tier_count        INTEGER NOT NULL DEFAULT 0,
   UNIQUE (company_id, ats_job_id)
-);
+) WITH (fillfactor = 85);   -- keeps the daily last_seen_at update HOT, per below
 ```
 
 **`source_path` (`'ats' | 'getro'`) has been removed from this table**
@@ -293,22 +312,32 @@ old draft or a stale fixture, it predates the R0 architecture change.
 
 ```sql
 CREATE TABLE posting_comp_tiers (
-  id, posting_id REFERENCES postings(id),
-  tier_label, min_amount, max_amount, currency,
-  period,          -- year|month|week|hour
-  observed_at TEXT NOT NULL   -- added by SPEC-REVISION-02 §4, pre-leave item — see §11
+  id           BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  posting_id   BIGINT NOT NULL REFERENCES postings(id) ON DELETE CASCADE,
+  tier_label   TEXT,
+  min_amount   NUMERIC,         -- as published; an hourly rate is not a whole number
+  max_amount   NUMERIC,
+  currency     TEXT,
+  period       TEXT,            -- year|month|week|hour
+  observed_at  TIMESTAMPTZ NOT NULL DEFAULT now()
+      -- added by SPEC-REVISION-02 §4, pre-leave item — see §11
 );
 
 CREATE TABLE runs (
-  id, started_at, finished_at,
-  companies_polled, http_ok, http_err,
-  total_live_postings, new_postings
+  id                   BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  started_at           TIMESTAMPTZ NOT NULL DEFAULT now(),
+  finished_at          TIMESTAMPTZ,
+  companies_polled     INTEGER NOT NULL DEFAULT 0,
+  http_ok              INTEGER NOT NULL DEFAULT 0,
+  http_err             INTEGER NOT NULL DEFAULT 0,
+  total_live_postings  INTEGER NOT NULL DEFAULT 0,
+  new_postings         INTEGER NOT NULL DEFAULT 0
 );
 
 CREATE TABLE notifications_sent (
-  posting_id   INTEGER NOT NULL REFERENCES postings(id),
+  posting_id   BIGINT NOT NULL REFERENCES postings(id) ON DELETE CASCADE,
   profile      TEXT NOT NULL,   -- profile NAME only, never an email address
-  sent_at      TEXT NOT NULL,
+  sent_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
   PRIMARY KEY (posting_id, profile)
 );
 ```
@@ -367,8 +396,8 @@ would quietly stop that from working past 30 days. Add:
 ```sql
 CREATE TABLE posting_hashes (
   content_hash  TEXT NOT NULL,
-  company_id    INTEGER NOT NULL REFERENCES companies(id),
-  closed_at     TEXT,
+  company_id    BIGINT NOT NULL REFERENCES companies(id) ON DELETE CASCADE,
+  closed_at     TIMESTAMPTZ,
   PRIMARY KEY (content_hash, company_id)
 );
 ```

@@ -68,9 +68,13 @@ workflows means arbitrary code execution with every other secret.
 - **The monitoring workflow triggers only on `schedule` and `workflow_dispatch`.** Never
   `pull_request`, and under no circumstances `pull_request_target`, which runs in the
   context of the base repo with secrets available.
-- **Two workflows, split by secret access.** A `test.yml` running lint and tests on PRs
-  with **no secrets at all**, and `monitor.yml` / `discover.yml` carrying secrets but
-  never triggered by a PR.
+- **Two workflows, split by secret access.** A `test.yml` running lint and tests with
+  **no secrets at all**, and `monitor.yml` / `discover.yml` carrying secrets but never
+  triggered by a PR. (Settled at M0: `test.yml` triggers on `push` and
+  `workflow_dispatch`, *not* `pull_request` — C-S.6 forbids the trigger outright and
+  `BUILD.md` §0.3 rejected PRs as a workflow, so nothing is lost. C-S.7's "PR test
+  workflow" is this workflow under its original name. A fourth workflow, `migrate.yml`,
+  carries `SUPABASE_DB_URL` and triggers on `workflow_dispatch` only — see `SPEC.md` §5.)
 - **Pin every third-party Action to a full commit SHA**, not a tag. The spec already
   requires this for stability; the security reason is stronger — a mutable tag can be
   repointed at code that reads your secrets.
