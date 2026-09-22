@@ -55,4 +55,4 @@ personal data, ask before committing it.
   data from a posting, company, or URL parameter. Use textContent.
 
 ## Current milestone
-M-1. See BUILD.md.
+M0. See BUILD.md.

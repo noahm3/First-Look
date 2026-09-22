@@ -283,3 +283,106 @@ None — still pre-M2 spike work.
 4. Still separately outstanding from prior sessions: Wellfound, YC, and ClimateTechList
    spikes were never done (only Getro/Consider/the three ATS providers were). Connecting
    the GitHub repo (`GETTING-STARTED.md` Phases 1–4) is also still untouched.
+
+---
+
+## 2026-09-22 — M-1: GitHub repo setup
+**Model:** Sonnet 5 · **Plan mode:** no
+
+### Built
+Worked through `GETTING-STARTED.md` Phases 0–7 with the user driving the browser/account
+steps and Claude running the git/gh commands:
+
+- `git init`, `main` branch, per-repo commit identity set to a GitHub noreply address
+  (not global config, so no work identity is at risk).
+- Remote connected to `noahm3/First-Look` (personal account, confirmed via `gh auth
+  status` before doing anything — the account list also showed a second, work account,
+  correctly inactive).
+- `git pull origin main` brought down GitHub's own initial commit (`README.md`,
+  `.gitignore`, `LICENSE`) as a fast-forward — local `main` had no commits yet, so no
+  `--allow-unrelated-histories` was needed.
+- `.gitignore` extended with the project-specific block from `BUILD.md` §1.3 (`.cache/`,
+  `Connections.csv`, `connections*.json`, `config/notify/`, `*.local.yml`). The template's
+  existing `db.sqlite3` lines were left alone — harmless, and correct-by-accident now that
+  storage is Postgres.
+- Two commits pushed to `main`: "Initial design documents" (all design docs, `archive/`,
+  and the `spikes/` folder as it stood at the time) and "Setup: CLAUDE.md, pre-commit
+  hook".
+- `CLAUDE.md` created verbatim from `BUILD.md` §0.2.
+- `.githooks/pre-commit` created verbatim from `BUILD.md` §0.3, `core.hooksPath` enabled,
+  and live-tested: a commit containing a fabricated email-shaped string was correctly
+  blocked with `BLOCKED: email address in staged changes`, then cleaned up. (This same
+  DEVLOG entry tripped the hook a second time on its own draft — see Least confident
+  about, below.)
+- Repo settings confirmed enabled: Secret Protection, push protection, workflow
+  permissions set to read-and-write, "Require approval for all external contributors."
+
+### Decisions made this session
+- **Commit email: the account's GitHub noreply address** (set per-repo, not global), name
+  `noahm3` — user's choice, matches `GETTING-STARTED.md`'s recommendation and the
+  project's low-profile posture. (Deliberately not spelled out here — see Least confident
+  about, below.)
+- **Resend API key and the fine-grained PAT deliberately not created yet.** User's
+  reasoning: no point minting a live credential before there's a secret store
+  (`gh secret set`) ready to receive it — that happens as part of M0, not M-1. Sound
+  practice, just noting it as a sequencing choice since `GETTING-STARTED.md` Phase 8
+  assumes these get created in this same setup pass.
+- **Supabase: staying on the free tier for now, project creation deferred to when M0
+  actually needs it.** Diverges from `SPEC.md` §6's explicit "pay for Supabase Pro across
+  the leave months" recommendation and `GETTING-STARTED.md` Phase 8's "decide on Pro now"
+  framing. Flagging as genuinely open, not resolved — `SPEC.md` §2 states the parental
+  leave began mid-September 2026, so the free-tier pause risk this recommendation exists
+  to avoid may already be live.
+- **Hosted form for alert requests deferred to M10** — `GETTING-STARTED.md` itself offers
+  this as an acceptable deferral.
+- **healthchecks.io account created, but no check configured with a real ping yet** —
+  correctly, since nothing exists to ping it. Will be wired up in M0.
+
+### Deviations from SPEC
+None to `SPEC.md` itself. One stale pointer in `GETTING-STARTED.md`: it directs the user
+to "Settings → Code security" for secret scanning/push protection, but GitHub has since
+renamed and relocated this to "Settings → Advanced Security" under "Secret Protection."
+Confirmed both toggles were enabled there instead.
+
+### Criteria checked
+- **C-1.1** — `git push` to the public repo succeeds (two pushed commits, both visible on
+  github.com under the correct personal account)
+- **C-1.4** — Workflow permissions set to read-and-write (user confirmed in Settings →
+  Actions → General)
+- **C-1.9** — `.gitignore` includes the required entries, added before the first commit
+- **C-1.10** — Repo name (`First-Look`) doesn't identify the project as a personal job
+  search; README stays neutral and technical
+- **Not yet checked:** C-1.2 (`NOTIFY_PROFILES`/`HEALTHCHECK_URL`/`RESEND_API_KEY`/
+  `KEEPALIVE_PAT` secrets — none set yet, no PAT or API key exists to set them with),
+  C-1.3 (Pages — that's M0's job via `gh`), C-1.5 (healthchecks period/grace/alert-address
+  — account exists but the check isn't wired to a real ping yet)
+
+### Least confident about
+- **The pre-commit hook's blunt email regex applies to prose in this very file, not just
+  code.** This entry originally spelled out the noreply address and a fabricated test
+  address; both tripped `BLOCKED: email address in staged changes` on the first commit
+  attempt. Rewrote both to describe rather than quote the address. Worth remembering for
+  future DEVLOG entries: don't write any email-shaped string literally, even a
+  known-safe or fabricated one, when documenting work in this repo.
+- Whether deferring PAT/Resend-key creation cleanly folds into M0's own setup steps, or
+  whether M0 will assume they already exist. No functional risk either way, just a
+  sequencing question for whoever picks up M0.
+- Whether the Supabase free-vs-Pro decision needs resolving before M0's Postgres migration
+  work starts, given `SPEC.md` §6 treats Pro as a leave-window requirement, not an
+  optional upgrade, and leave has reportedly already begun.
+
+### Next session
+- **M0** — skeleton and reliability plumbing. `BUILD.md` recommends **Opus 5 with plan
+  mode**; start a **fresh Claude Code session** for it. Before M0's workflows can be built
+  end-to-end, the deferred accounts (Resend key, correctly-scoped fine-grained PAT with a
+  leave-safe expiry, Supabase project/plan) need resolving, since M0 wires secrets into
+  GitHub Actions.
+- **Separately, flagging for the user's attention, not touched this session:** while this
+  setup work was underway, a background process completed a full run of
+  `iteration3_vc_board_discovery.py` and `iteration4_vc_portfolio_discovery.py` against
+  all 393 Sightline investors (`spikes/investor_sources.csv` now has 393 rows;
+  `spikes/discovered_companies.csv` has grown to ~4,260 rows). This appears to go beyond
+  the 20-investor test batch the 2026-09-21 entry describes, and beyond what that entry's
+  "Next session" list asked to confirm before scaling. Nothing from this output was
+  reviewed, folded into `SPEC.md`, or committed as part of this session — that decision
+  and review are still the user's, per the prior entry's explicit ask.
