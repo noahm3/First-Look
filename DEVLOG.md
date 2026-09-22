@@ -745,7 +745,7 @@ None — pre-M2 spike work, no `CRITERIA.md` items apply yet.
 
 ---
 
-## 2026-09-22 — Iteration 7: live postings from mapped companies' ATS APIs
+## 2026-09-22 — Iteration 7: live postings from mapped ATS APIs, and the stage-3 mapping fix
 **Model:** Opus 5 (1M context) · **Plan mode:** no
 
 ### Built
@@ -944,6 +944,70 @@ rules are written. That is §18's measurement #4 with a real starting point, and
 almost entirely a Greenhouse problem. Unlike measurement #3 this one is squarely a
 parsing problem, as §18 already says: the information is in `location_raw`.
 
+### Iteration 8: fixing the cascade stage that produced every dead token
+Iteration 7's full-population run found 30 dead tokens, **all 30 from
+`careers_page_regex` and none from `slug_guess+careers_page_corroboration`**. Reading
+iteration 6's `classify_and_map` explains the clean split exactly: stage 1 calls
+`PROVIDER_CHECKS` to validate a guessed slug, and **stage 3 never called the provider at
+all** — a token scraped off the company's own careers page was accepted as `verified` on
+the page's word alone. About 5% of the mapped set pointed at boards that did not exist,
+at the highest confidence level the system has.
+
+Two changes, both committed:
+
+1. **`spikes/iteration6_ats_mapping_spike.py`** — stage 3 now validates the scraped token
+   against the provider before accepting it. A board that does not resolve becomes
+   `weak_only`, which returns the company to the monthly retry set (`SPEC.md` §8.5)
+   rather than leaving it `verified` and silently contributing nothing (§3.8). Where
+   Greenhouse returns a name that does not fuzzy-match the domain label, that is recorded
+   in `notes` but is **not** disqualifying — a rebrand that kept an old slug is real and
+   correct, which `voltacharging.com` → lever `joltcharge` already demonstrated.
+2. **`spikes/iteration8_revalidate_mappings.py`** — a one-off pass repairing the rows the
+   unvalidated version already wrote. Report-only by default, `--apply` to write.
+
+**The 30 were confirmed unrecoverable before being demoted**, because several looked like
+regex capture bugs rather than dead boards (`American`, `Benchmark`, `dClimate`,
+`Commure-Athelas` — mixed case, some apparently truncated). Neither lowercasing the token
+nor substituting the full domain label resolves a single one: **0 of 30 recoverable**. So
+they are genuinely dead boards and the mixed case was a red herring. Discovery
+provenance, timestamps and `careers_page_url` are all preserved — the careers page is
+still the right place for a monthly retry to look.
+
+**Mapped set: 584 → 554** (405 `verified`, 149 `probable`). A clean re-run of the
+validator afterwards reports **554 live, 0 dead, 0 inconclusive**.
+
+**Independently corroborated.** A third concurrent session built a duplicate job-fetching
+spike against the same mapped output before the collision was noticed (see the addendum
+entry below, and the user's call to keep this one). Its run reported **550 companies ok
+and 17,371 postings against this spike's 554 and 17,499**, with 34 failures described as
+404s and connection errors — consistent with the 30 dead boards found here plus a few
+transients, which is exactly the distinction the validator bug below turned on. Two
+implementations written independently landing within 1% is better evidence for these
+numbers than either run alone.
+
+### A bug I wrote, caught by one anomalous number
+The first `--apply` wrote **31** corrections rather than 30, and the extra one was
+attributed to stage 1 — contradicting the finding it was meant to act on. That was the
+only signal, and it was worth chasing:
+
+```
+flyzipline.com | slug_guess+name_match | token 'flyzipline' returned HTTP 0
+```
+
+**HTTP 0 is a connection failure, not a 404.** The script read "I could not reach it" as
+"it does not exist" and retired a live Greenhouse board carrying **336 open postings** —
+in a script whose own docstring cites §3.8 about wrong data being worse than missing
+data. `SPEC.md` §14 already separates transient failures (timeout, 5xx, connection reset)
+from permanent ones (404, invalid token) for precisely this reason, and I had not applied
+its own rule inside the validator. Only a definitive 4xx demotes now; timeouts, 5xx and
+429 retry three times and are reported as `inconclusive` and left untouched. Zipline is
+restored.
+
+Worth writing down because the near-miss is instructive: had the transient failure landed
+on a stage-3 row instead of a stage-1 one, the count would have been a plausible 31/31
+from `careers_page_regex` and I would have shipped a silently wrong demotion. The tell
+was a number that did not match a prediction, not anything the tooling flagged.
+
 ### Deviations from SPEC
 ~~Nine corrections~~ **Fourteen corrections and additions** committed to `SPEC.md` this session (§6, §9 ×3, §10, §11, §12.3, §18 ×2),
 all struck-through rather than deleted, each carrying the date and the measurement:
@@ -1003,6 +1067,14 @@ cheap corroboration signal the cascade could use.
 - ~~The mapped pool grew from 35 to 157 during this session because iteration 6's run was
   still going. Re-run this spike when that finishes.~~ **Done — iteration 6 completed
   mid-session and `--all` was re-run against all 584 mapped companies (above).**
+- **Re-run iteration 6's cascade over the failure buckets**, now that stage 3 validates.
+  The 30 newly-demoted companies join the existing `weak_only` set (374 total), and the
+  failure distribution is still dominated by `no_careers_page` (1,783) and `unknown`
+  (1,176) — the junk-domain question the iteration 6 entry flagged as the likely cheaper
+  fix is still unanswered.
+- **Coordination note:** this session edited `spikes/iteration6_ats_mapping_spike.py`,
+  which the concurrent M0 session had committed shortly before. The edit is confined to
+  `classify_and_map`'s stage-3 branch. Worth a glance from whoever owns that file next.
 - **Repo weight is now a real question, not a nit.** The results JSON for the full
   population is 26MB pretty-printed. One copy is fine; re-committing one per run is not,
   and this spike is meant to be re-run. Options, cheapest first: write it compact rather
