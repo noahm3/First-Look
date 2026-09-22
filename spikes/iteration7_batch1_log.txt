@@ -1,0 +1,25 @@
+discovered_companies.csv: 4284 rows, 59 verified/probable on a supported provider
+batch: 12 companies  ({'greenhouse': 4, 'lever': 4, 'ashby': 4})
+rate limit: 3.0 req/sec per provider host - greenhouse detail cap: 0/company
+
+[  1/12] greenhouse momentenergy                   15 postings  dept  15 / date  15 / wtype   0 / comp   0  (0.16s)
+[  2/12] lever      joltcharge                      7 postings  dept   7 / date   7 / wtype   7 / comp   0  (0.45s)
+[  3/12] ashby      cambium                         5 postings  dept   5 / date   5 / wtype   5 / comp   5  (0.07s)
+[  4/12] greenhouse socialfinance                   4 postings  dept   3 / date   4 / wtype   0 / comp   0  (0.1s)
+[  5/12] lever      arraylabs                    FAILED  HTTP 404  (0.31s)
+[  6/12] ashby      stillbright                     6 postings  dept   6 / date   6 / wtype   6 / comp   4  (0.07s)
+[  7/12] greenhouse funga                           0 postings  dept   0 / date   0 / wtype   0 / comp   0  (0.09s)
+[  8/12] lever      arable                          5 postings  dept   5 / date   5 / wtype   5 / comp   0  (0.56s)
+[  9/12] ashby      crusoe                        348 postings  dept 348 / date 348 / wtype 347 / comp   1  (0.17s)
+[ 10/12] greenhouse carbonfuture                    0 postings  dept   0 / date   0 / wtype   0 / comp   0  (0.12s)
+[ 11/12] lever      weride                         16 postings  dept  16 / date  16 / wtype  16 / comp   5  (0.56s)
+[ 12/12] ashby      generate                       15 postings  dept  15 / date  15 / wtype  12 / comp   0  (0.06s)
+
+--- run summary ---
+companies: 11 ok / 1 failed  (2 ok with zero postings)
+postings:  421  {'greenhouse': 19, 'lever': 28, 'ashby': 374}
+requests:  12 (0 greenhouse detail), 0 rate-limit waits totalling 0.0s
+coverage:  {'title_raw': 421, 'department_raw': 420, 'location_raw': 421, 'workplace_type_raw': 398, 'url': 421, 'posted_at': 421}
+comp:      {'none': 406, 'structured': 14, 'parsed': 1}
+redacted:  0 email-shaped strings
+wrote:     spikes\iteration7_live_postings_batch1_results.json
