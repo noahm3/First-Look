@@ -587,3 +587,275 @@ starting M0 for real:
   now resolved. Two secrets remain genuinely unset for later:
   `HEALTHCHECK_URL` (needs the existing healthchecks.io check's actual ping URL) and
   `NOTIFY_PROFILES` (not due until M10).
+
+---
+
+## 2026-09-22 — Iteration 6: ATS mapping cascade for discovered companies
+**Model:** Opus 5 (plan mode for cascade design) → same session for implementation
+
+### Built
+Continuing directly from the previous Iteration 3/4/5 entry's "Next session" ask —
+mapping the ~4,284 VC-discovered company domains to their own ATS, in `spikes/`, still
+pre-M2:
+
+- `spikes/iteration6_ats_mapping_spike.py` — implements `SPEC.md` §8.1's cascade (slug
+  guess against Greenhouse/Lever/Ashby → careers-page regex → classified failure; stage 2
+  apply-redirect is N/A here, these aren't Built In postings) and §8.2's three confidence
+  levels plus the negative guard for short/collision-word slugs. Reuses the fetch pattern
+  from `iteration1_ats_spike.py` and the careers-page-finding logic (href regex +
+  subdomain-first fallback) from `iteration3_vc_board_discovery.py`, applied to a plain
+  company domain instead of a VC site.
+- Extended `spikes/tracking_store.py`: added `mapping_confidence`/`mapping_method`/
+  `mapping_failure_reason` columns to `discovered_companies.csv` (mirroring the real
+  `companies` table's fields, `SPEC.md` §6) and an `update_company_mapping()` helper.
+- Worked in small batches throughout, per the user's explicit process ask, reviewing real
+  output and fixing bugs before scaling: 15 → 15 (recheck) → 15 → 15 → 150 → the remaining
+  ~4,074 kicked off in the background, **still running as this entry is written** (274 of
+  4,284 checked at time of writing; see the tally below, to be updated once complete).
+
+### Real bugs found and fixed this session
+1. `careers_page_url` was silently dropped whenever a careers page was found but showed no
+   recognizable ATS — lost real signal (e.g. `ifvi.org`). Fixed.
+2. **`jetzero.au`** — fuzzy-matched a real Greenhouse board ("JetZero") at `probable`
+   confidence, but the domain is a dead, suspended-hosting parked page with no connection
+   to the real company (`jetzero.com`). The fuzzy-name check only compared strings, never
+   checked whether the discovered domain was live. Added a parked/dead-domain guard
+   (same escalation-to-`verified` treatment as the existing collision-word guard) and
+   corrected the already-written CSV row. This is the C-3.1-shaped finding this milestone's
+   own `BUILD.md` warns about: a real false `probable`, caught by review, not hypothetical.
+3. **`loamist.com`** (found via the user's manual spot-check, see below) — its "Careers"
+   button resolved to a page byte-identical to the homepage, a same-page anchor/placeholder
+   link. Added a same-content check so this no longer counts as a found careers page.
+4. Forgot to port the WordPress/WP Job Manager fingerprint (`job_listing`,
+   `wp-job-manager`, `feed=job_feed`) from `iteration3_vc_board_discovery.py` into this
+   script — found again via `genh2hydrogen.com`'s RSS feed. Restored.
+5. New `unsupported_ats` platforms found via the user's manual spot-check and added to
+   detection (measurement only, no adapter): Polymer (`addisenergy.com`), PyjamaHR
+   (`unifyndlabs.com`), careers-page.com (`mati.earth`), Phenom People (found one hop deep
+   on `nature.org`'s third-party `careers.tnc.org`, itself layered on Workday — a domain
+   -resolution-gap shape the mapping cascade doesn't chase, same class of gap `SPEC.md`
+   §7.2/§7.7 already flag for Getro/Wellfound).
+
+### Decisions made this session
+- **`.org` domains are now skipped in future batches without spending a request** — the
+  user's call after reviewing the first 45 results, most of which were industry
+  associations/advocacy groups, not real hiring companies. **Known counterexample, not
+  retroactively touched:** `rmi.org`, checked before this rule existed, is a real nonprofit
+  that hires and mapped cleanly to `unsupported_ats:workday`. `SPEC.md` §7's "source
+  selection is a sourcing decision, not user criteria" framing covers this kind of scoping
+  choice.
+- **A careers page directly naming its own ATS token counts as `verified` on its own**,
+  with no separate corroborating slug guess required — the company's own domain asserting
+  the token is treated as the independent-source bar `SPEC.md` §8.2 sets, even though only
+  one source (the page itself) is literally consulted. This is an interpretation worth
+  flagging, not obviously the only valid one: `voltacharging.com` verified this way with
+  Lever token `joltcharge` (a mismatched brand name, evidently a rebrand that kept the old
+  slug) — correct, but a real edge case for this reading of "verified."
+- **Confirmed live, contradicts `SPEC.md` §8.2:** Ashby's public job-board API returns only
+  `{jobs, apiVersion}` — no organization-name field. §8.2's claim that "Ashby carries the
+  org name" is wrong as written. Ashby (like Lever) caps at `weak` from the API alone;
+  `verified` requires the careers page to independently name the token.
+- User's review technique, worth remembering for future ATS-detection work: click "Apply"
+  and see where it lands, and check the page's raw HTML (before and/or after) for the
+  script/origin revealing the real ATS — same two signals the script's `careers_page_regex`
+  stage automates, but a useful manual fallback for anything the script calls `unknown`.
+
+### Unsupported-ATS tally (partial — background run still in progress, 274/4,284 checked)
+| Provider | Count |
+|---|---|
+| BambooHR | 5 |
+| Polymer | 4 |
+| Breezy HR | 4 |
+| WordPress + WP Job Manager | 3 |
+| Workday | 2 |
+| careers-page.com | 2 |
+| Workable | 2 |
+| Recruitee | 2 |
+| PyjamaHR | 1 |
+| Personio | 1 |
+| ApplyToJob | 1 |
+
+Confidence so far: 20 `verified`, 8 `probable` (~10% of checked). Other failure buckets:
+116 `no_careers_page`, 79 `unknown`, 20 `weak_only`, 4 `js_rendered`. **This table will need
+updating once the full run completes** — flagging now per the user's explicit ask to track
+this, since it's the input to a "build another adapter" decision (`SPEC.md` §8.6, §18
+measurement #2), not because the count is final.
+
+### Deviations from SPEC
+- The Ashby org-name finding above (§8.2 correction).
+- Everything in "Decisions made this session" above.
+
+### Criteria checked
+None — pre-M2 spike work, no `CRITERIA.md` items apply yet.
+
+### Least confident about
+- **Junk-domain rate in `discovered_companies.csv` is still substantial** and is inflating
+  both `no_careers_page` and `unknown` — VC-internal tooling subdomains
+  (`atoneventures.arkpes.com`), CDN/asset hosts (`siteassets.parastorage.com`), and
+  auth-portal subdomains with a coincidental `/careers` path (`auth.fundrbird.com`) all
+  showed up in just the first 45. Fixing this upstream (before mapping, in the discovery
+  CSV itself) is likely cheaper than making the cascade smarter, but hasn't been
+  attempted — flagged to the user as the open "game plan" question once the full run
+  completes.
+- Whether the `.org` exclusion rule is too blunt (see `rmi.org` above) — kept as-is per the
+  user's explicit choice, but worth revisiting once the failure-reason distribution is
+  complete.
+- The `verified`-from-careers-page-alone interpretation above — not SPEC-blocking, but
+  worth a second look before this logic (if any) moves toward `src/`.
+
+### Next session
+- Full run completes in the background; report the final distribution and unsupported-ATS
+  tally, then game-plan reducing `no_careers_page`/`unknown` (most likely: junk-domain
+  filtering upstream in `discovered_companies.csv`, not more cascade logic).
+- A new spike session was requested in parallel: fetching live postings from the
+  `verified`/`probable`-mapped companies' actual ATS APIs (Greenhouse, Lever, Ashby to
+  start) — separate from this mapping work, prompt handed to the user directly rather than
+  recorded here.
+
+---
+
+## 2026-09-22 — Iteration 7: live postings from mapped companies' ATS APIs
+**Model:** Opus 5 (1M context) · **Plan mode:** no
+
+### Built
+`spikes/iteration7_live_postings_spike.py` — generalizes the one-hardcoded-example-per-
+provider fetch logic from `iteration1_ats_spike.py` across every company that iteration 6
+mapped to `verified`/`probable`, parsing into `SPEC.md` §6's `postings` field names and
+§9's per-provider notes. Reads `discovered_companies.csv`; never writes to it, since
+iteration 6's background mapping run was still rewriting that file whole throughout this
+session.
+
+Carried over from `SPEC.md` even at spike scale: a per-provider-host rate limiter (§9's
+2–5 req/sec, default 3, verified engaging — 70 waits totalling 13.1s on the full run), and
+§3.7's no-exception-escapes wrapper around every company plus a fetch helper that returns
+a result object instead of raising.
+
+Ran small-batch first per the usual process: 3-company probe (one per provider, with a raw
+JSON key inventory) → 12 companies round-robin across providers → full mapped set, twice,
+the second time after a bug fix. Final run: **157 mapped companies, 147 ok, 5,893 live
+postings, 158 requests, ~90 seconds.** Field coverage was 5,893/5,893 on `title_raw`,
+`location_raw`, `url`, `posted_at` and 5,890 on `department_raw`.
+
+Out of scope by design and not built: lifecycle (§10 — no `first_seen_at`/`closed_at`/
+`is_repost`/`content_hash`), comp normalization (§11 — no annualization, no currency
+conversion, no collapsed fields, no filter predicate), classification (no `location_class`,
+no `city_raw`), any database, any email or dashboard.
+
+### The finding that matters
+**Compensation disclosure read from the providers' structured fields is 14.2%. Read
+including the description body it is 38.3%.**
+
+| Where the number was published | Postings | Share |
+|---|---|---|
+| Provider's structured field | 838 | 14.2% |
+| Description body only | 1,420 | 24.1% |
+| **Either** | **2,258** | **38.3%** |
+
+Per provider, structured vs. description-only: Greenhouse **0.0%** / 24.6% (3,713
+postings), Lever 35.0% / 23.4% (363), Ashby 39.1% / 23.2% (1,817).
+
+Found because the user spotted a Crusoe posting whose page showed a salary while our
+output said none: its `compensation` object is empty and
+`shouldDisplayCompensationOnJobPostings` is `false`, while the description reads
+"Compensation will be paid in the range of $170,000 to $205,000 + Bonus."
+
+This costs no extra requests. Ashby and Lever return `descriptionPlain` in the board
+response, and Greenhouse's `content=true` must be passed anyway because `departments` is
+absent without it. The text was already arriving and being discarded.
+
+It lands on `SPEC.md` §18's measurement gate, which has not been run yet. Measurement #3
+was framed as "not engineerable — if the employer published no number, no parser recovers
+it." The employer usually *had* published one, just not where the API exposes it. At 14%
+the gate's own rule says "disclosure low → the product is novelty-and-alerting, reprioritise
+comp hard." At 38% it does not say that.
+
+### Decisions made this session
+- **Extract comp from the description; do not store the description.** Only the matched
+  line is kept, windowed on the money match and capped at 300 characters, at most 3 per
+  posting. §6's "descriptions are deliberately discarded" is preserved — no body is
+  written. Kept in separate fields (`comp_in_description`, `comp_description_snippets`)
+  rather than folded into `comp_data_quality`, so structured and prose-derived comp stay
+  distinguishable rather than being silently merged.
+- **Do not parse the snippets into numbers.** That is §11/M5, and the live text argues for
+  caution — see "least confident" below.
+- **Greenhouse detail calls default to 0** after measuring them redundant, rather than the
+  cap of 3 the user selected at the start of the session. The choice was made on the
+  assumption detail calls were needed for `posted_at` and comp; both assumptions turned
+  out false. Flag retained to re-verify on a new board.
+- **A board exceeding the response size cap falls back to the plain list** and flags the
+  degradation per posting, rather than losing the company. Recovered 618 postings on the
+  one board that hit it. Losing `department_raw` for a company beats losing the company.
+- **Did not touch `CRITERIA.md`.** C-4.7 ("seed mode makes no Greenhouse detail calls")
+  becomes trivially true rather than wrong, so it needs no strike.
+
+### Real bugs found and fixed this session
+1. **Greenhouse `content` arrives HTML-escaped**, so unescaping *after* tag-stripping left
+   every tag intact and the body unsplittable — which meant the stored "snippet" was the
+   first 300 characters of the job description, exactly what this spike must not store. It
+   also inflated the headline number (1,847 → 1,476 confident matches) because `salary`
+   appearing anywhere in an undivided blob counted as keyword proximity. Fixed by
+   unescaping first, converting block tags to newlines, and windowing on the money match
+   instead of taking the head. **The known-wrong run's output was deleted rather than
+   committed.** Caught by reading the actual snippets in review, not by a test.
+2. The `--limit` batch selector originally drew in file order, which would have given a
+   single-provider batch; changed to round-robin across providers so a small batch always
+   covers all three.
+
+### Deviations from SPEC
+Nine corrections committed to `SPEC.md` this session (§6, §9 ×3, §10, §11, §12.3, §18 ×2),
+all struck-through rather than deleted, each carrying the date and the measurement:
+- **§9 Greenhouse** — `first_published` **is** on the list endpoint; `departments` is
+  present **only** with `content=true`; the detail endpoint returned a byte-identical
+  object to the `content=true` list entry on 6/6 jobs across 2 boards; `pay_input_ranges`
+  appeared on **none** of 384 postings across 8 boards, on either endpoint.
+- **§9/§12.3 Lever** — exposes a structured `workplaceType` (363/363 postings), so Ashby is
+  not "the only provider" with one and Lever does not need §12.3's keyword fallback. Ashby's
+  values are capitalised, Lever's lowercase.
+- **§9 Lever** — `createdAt` is not a publication date: 9 of 28 sampled postings over a
+  year old, oldest 7.7 years. Supports §6's existing choice of `first_seen_at`.
+- **§9 Ashby** — the `compensation` object is truthy even when nothing is disclosed.
+- **§6** — the "list endpoint exposes only `updated_at`" claim.
+- **§10** — the Greenhouse detail call on the new-posting path.
+- **§11 / §18 #3** — the disclosure measurement above.
+
+### Criteria checked
+None — pre-M2 spike work, no `CRITERIA.md` items apply yet.
+
+### Least confident about
+- **The 38.3% figure is a floor for "published somewhere" and a ceiling for "cleanly
+  parseable."** `near_comp_keyword` is a proximity heuristic, not a parser; it correctly
+  rejected "$500 million mobilized" and ">$100M projects" on inspection, but it has had no
+  systematic precision check.
+- **Turning snippets into numbers will be harder than the snippets suggest.** Two real
+  employer errors already in the sample: `$200,00 USD - $280,000 USD` (dropped digit), and
+  an Ashby tier published as `{"minValue": 20, "maxValue": 20, "interval": "1 YEAR"}` — a
+  twenty-dollar *annual* salary that is plainly an hourly rate. §3.8 applies.
+- **The "detail endpoint is redundant" claim rests on 6 jobs across 2 boards**, neither of
+  which publishes `pay_input_ranges` — and no board that does has been found. Worth
+  confirming before the detail path is deleted outright.
+- Whether committing an 8.5 MB results JSON per run is the right shape. Fine once; it
+  should not be re-committed on every future run.
+
+### Mapping-precision signal for iteration 6 (not this spike's to fix)
+**9 of 157 mapped tokens returned 404, and every one came from `careers_page_regex`** —
+zero from `slug_guess+careers_page_corroboration`. That is a direct precision signal about
+the "a careers page naming its own token counts as `verified` on its own" interpretation
+the iteration 6 entry flagged: it is the stage producing all the bad tokens. One of them,
+`app.grammarly.com`, also looks like a junk-domain row rather than a mapping error.
+Separately, 10 boards returned 200-with-zero-postings; the two checked by hand (`funga`,
+`carbonfuture`) resolve to real board names via `/v1/boards/{token}` — correct mappings,
+genuinely empty boards, `SPEC.md` §14's ambiguous case. That endpoint returning `name` is a
+cheap corroboration signal the cascade could use.
+
+### Next session
+- The mapped pool grew from 35 to 157 *during* this session because iteration 6's run was
+  still going; it was at ~750 of 4,284 rows checked at session end. Re-run this spike when
+  that finishes — the command is `--all`, it takes ~90 seconds, and the pool could be
+  several hundred companies.
+- Recommended follow-up spikes, in the order they de-risk the most: comp-snippet precision
+  sampling, then a repeat-run diff to measure real posting churn, then the
+  `careers_page_regex` precision fix above.
+- Concurrency note: a separate M0 session was committing to `main` throughout this one
+  (`src/http.py`, `src/models.py`, the Postgres schema, `src/health.py`). Commits
+  interleaved cleanly because the two sessions touched disjoint paths, but both edited
+  documentation — worth checking `SPEC.md` has not drifted before the next doc change.
