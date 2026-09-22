@@ -358,8 +358,11 @@ resolution hop for (§7.7). Check this per source rather than assuming any of th
 like the others.
 
 **`first_seen_at` is the canonical date** for sorting and the "Posted" filter.
-`posted_at` is unreliable — Greenhouse's list endpoint exposes only `updated_at`, which
-mutates on any edit. The UI says **"Found 6h ago"**, which is what the number means.
+`posted_at` is unreliable — ~~Greenhouse's list endpoint exposes only `updated_at`, which
+mutates on any edit~~ **(corrected 2026-09-22: the list endpoint carries `first_published`
+too — see §9 — but `posted_at` stays informational regardless, because Lever's `createdAt`
+runs years stale on live postings)**. The UI says **"Found 6h ago"**, which is what the
+number means.
 
 **Do not add a table for observed compensation history.** It is derivable from `postings`
 and `posting_comp_tiers` by company (`SPEC-REVISION-01` §R4). Store raw, derive on read —
@@ -731,8 +734,22 @@ GET boards-api.greenhouse.io/v1/boards/{token}/jobs?content=true
 GET boards-api.greenhouse.io/v1/boards/{token}/jobs/{id}    # detail
 GET boards-api.greenhouse.io/v1/boards/{token}               # name, for validation
 ```
-List returns only `updated_at`, which mutates on any edit. True `first_published` and
-`payInputRanges` come only from the detail endpoint. Department via `departments`.
+~~List returns only `updated_at`, which mutates on any edit. True `first_published` and
+`payInputRanges` come only from the detail endpoint.~~ Department via `departments`.
+**Corrected 2026-09-22 against 384 live postings on 8 mapped boards**
+(`spikes/iteration7_live_postings_spike.py`):
+
+- `first_published` **is** on the list endpoint, with or without `content=true`.
+  `updated_at` is there too and still mutates on any edit, so §6's choice of
+  `first_seen_at` as the canonical date is unaffected.
+- `departments` is present **only** when `content=true` is passed. The plain list has no
+  department field at all, so `content=true` is mandatory rather than optional — which
+  also means the description body is fetched on every poll and must be discarded in
+  memory (§6).
+- **The detail endpoint returned a byte-identical object to the `content=true` list
+  entry** — same key set, same values, on 6/6 jobs across two boards. See §10.
+- `pay_input_ranges` appeared on **none** of those 384 postings, on either endpoint.
+  See §11.
 
 ### Lever — [hire.lever.co/developer/documentation](https://hire.lever.co/developer/documentation)
 ```
@@ -740,16 +757,27 @@ GET api.lever.co/v0/postings/{site}?mode=json
 ```
 Full board in one call. **The linked docs cover the authenticated v1 Data API; the public
 v0 Postings API used here is not officially documented.** Undocumented `createdAt` (epoch
-ms), reliable in practice. `salaryRange` when disclosed. Department via `categories.team`.
-v1's rate limits don't apply.
+ms), ~~reliable in practice~~ **not a publication date — corrected 2026-09-22**: 9 of 28
+live postings sampled carried a `createdAt` over a year old, the oldest 7.7 years. Still
+worth storing in `posted_at`, which §6 already treats as informational only.
+`salaryRange` when disclosed. Department via `categories.team`. **Lever also exposes a
+structured `workplaceType`** (`onsite` / `hybrid` / `remote`), populated on 363/363 live
+postings — store it in `workplace_type_raw` and see §12.3. v1's rate limits don't apply.
 
 ### Ashby — [developers.ashbyhq.com/docs/public-job-posting-api](https://developers.ashbyhq.com/docs/public-job-posting-api)
 ```
 GET api.ashbyhq.com/posting-api/job-board/{name}?includeCompensation=true
 ```
-Full board, no pagination. `publishedAt` directly. **The only provider exposing a
-structured `workplaceType`** — store in `workplace_type_raw`. Compensation returns
-`compensationTiers` with a human-readable summary string rather than separated numerics.
+Full board, no pagination. `publishedAt` directly. ~~**The only provider exposing a
+structured `workplaceType`**~~ — store in `workplace_type_raw`. *(Struck 2026-09-22: Lever
+exposes one too, see above. Ashby's values are capitalised — `OnSite` / `Hybrid` /
+`Remote` — against Lever's lowercase, and were populated on 1,416 of 1,817 live
+postings.)* Compensation returns `compensationTiers` with a human-readable summary string
+rather than separated numerics. **The `compensation` object is truthy even when nothing is
+disclosed** (`compensationTiers: []`, summary `null`), so disclosure must be judged on the
+tiers or the summary and never on the object itself;
+`shouldDisplayCompensationOnJobPostings` is the provider's own flag and tracks it
+exactly.
 
 ### SmartRecruiters — [developers.smartrecruiters.com/docs/endpoints](https://developers.smartrecruiters.com/docs/endpoints)
 ```
@@ -774,8 +802,12 @@ the hiring company. Polling is the only option; structural.
 Per company, per run:
 
 1. Fetch the live board.
-2. **New** `ats_job_id` → insert, set `first_seen_at` / `last_seen_at`; Greenhouse detail
-   call *only here*.
+2. **New** `ats_job_id` → insert, set `first_seen_at` / `last_seen_at`; ~~Greenhouse detail
+   call *only here*~~. **No Greenhouse detail call appears to be needed at all
+   (2026-09-22): the detail endpoint returned a byte-identical object to the
+   `content=true` list entry on every job tested, so one list request per company covers
+   it — see §9. Confirm against a board that actually publishes `pay_input_ranges` before
+   deleting the detail path outright; none has been found yet.**
 3. **Still present** → update `last_seen_at` **once per day**, not on every run (§6). New
    postings still insert on every run.
 4. **Absent but previously present** → set `closed_at`.
@@ -819,6 +851,34 @@ means hourly postings silently never match.
 **By provider:** Greenhouse `payInputRanges` (detail) → `structured`; Lever `salaryRange`
 → `structured`; Ashby `compensationTiers` parsed with the original kept verbatim →
 `structured` or `parsed`; nothing disclosed → `none`.
+
+**Measured 2026-09-22 on 5,893 live postings across 157 mapped companies**
+(`spikes/iteration7_live_postings_spike.py`), and it changes what "disclosed" means:
+
+| Where the number was published | Postings | Share |
+|---|---|---|
+| Provider's structured field | 838 | 14.2% |
+| Description body only | 1,420 | 24.1% |
+| **Either** | **2,258** | **38.3%** |
+
+**Greenhouse disclosed nothing structurally at all** — 0 of 3,713 postings carried
+`pay_input_ranges` — while 24.6% of its postings published a range in the description
+body. Lever and Ashby structured disclosure sits at 35.0% and 39.1%.
+
+**The structured fields therefore see roughly a third of the compensation actually
+published.** An adapter reading only `payInputRanges` / `salaryRange` /
+`compensationTiers` reports 14.2% where the real figure is 38.3%, and reports *zero* for
+Greenhouse, the largest provider in the mapped set. Reading the description costs no
+extra requests — all three providers return it in a response the poller already makes.
+
+**This is not licence to parse prose into a number.** Keeping the matched line verbatim
+in `comp_raw_summary` is cheap and safe; deriving integers from it is the part that needs
+care, because the observed text carries real employer errors — `$200,00 USD - $280,000
+USD` with a dropped digit, and an Ashby tier published as
+`{"minValue": 20, "maxValue": 20, "interval": "1 YEAR"}`, a twenty-dollar *annual* salary
+that is obviously an hourly rate. §3.8 applies: a confidently wrong number is worse than
+a missing one. Treat any description-derived value as lower confidence than a structured
+tier, and never let one satisfy a numeric filter silently.
 
 **Never drop a row for missing comp.** Undisclosed is a first-class state.
 
@@ -921,8 +981,11 @@ note:** once accounts exist, dismissal moves server-side and gains three more st
 
 `location_raw` is verbatim and never overwritten. `location_class` is narrow and derived:
 
-- **Ashby** → from structured `workplace_type_raw`.
-- **Greenhouse / Lever** → narrow keyword match on the raw string for remote and hybrid.
+- **Ashby and Lever** → from structured `workplace_type_raw`. *(Lever added 2026-09-22 —
+  see §9. Ashby's values are capitalised and Lever's lowercase, so normalise case when
+  deriving; never overwrite the raw value.)*
+- ~~**Greenhouse / Lever**~~ **Greenhouse** → narrow keyword match on the raw string for
+  remote and hybrid. It exposes no structured field at all (0 of 3,713 live postings).
 - **Everything else** → `unknown`, never guessed as onsite.
 
 `unknown` is a **visible filter option**. It will be a large bucket, and hiding it would
@@ -1317,11 +1380,14 @@ numbers from `--dump-facets` and the mapping table:
 |---|---|---|
 | 1 | Cascade coverage: % reaching `verified` or `probable` | Whether company-first discovery works at all, and therefore whether Built In national (§7.4) is a 10x win or 90k unmappable rows |
 | 2 | `mapping_failure_reason` distribution | Which adapter, if any, to build next |
-| 3 | Comp disclosure rate on live postings | The ceiling on the whole time-saving claim. Not engineerable — if the employer published no number, no parser recovers it |
+| 3 | Comp disclosure rate on live postings | The ceiling on the whole time-saving claim. ~~Not engineerable — if the employer published no number, no parser recovers it~~ **Partly engineerable after all (2026-09-22): most published comp sits in the description body rather than the structured field — 14.2% structured against 38.3% including description text. See §11.** What stays un-engineerable is only the remainder where no number was published anywhere |
 | 4 | `location_class = 'unknown'` share | Whether remote filtering is usable. Unlike #3 this *is* engineerable: the information is present in `location_raw` and the rules grow from real facet output |
 
 **#3 is a fact about the world; #4 is a parsing problem.** Do not conflate them when
-reading the results.
+reading the results. **Qualified 2026-09-22:** #3 turned out to be part parsing problem
+too — the employer frequently *had* published a number, just not where the API exposes
+it. The distinction still holds for postings carrying no number anywhere, which is the
+real ceiling.
 
 **Gate outcomes:**
 - Coverage high, disclosure high → proceed to Built In national and the platform
