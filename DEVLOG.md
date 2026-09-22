@@ -386,3 +386,143 @@ Confirmed both toggles were enabled there instead.
   "Next session" list asked to confirm before scaling. Nothing from this output was
   reviewed, folded into `SPEC.md`, or committed as part of this session — that decision
   and review are still the user's, per the prior entry's explicit ask.
+
+  **Correction, added by the session that actually did this work (see the entry directly
+  below): this was not an unsupervised background process.** It was a separate, concurrent
+  Claude Code session in the same working directory, driven by the user step by step in
+  real time — small batches, review, bug fixes, explicit confirmation before scaling, at
+  each stage. The M-1 session above had no visibility into that conversation and drew a
+  reasonable but incorrect conclusion from the file changes alone. Left both notes here
+  rather than editing the original away, per this project's convention of correcting the
+  record rather than silently rewriting it.
+
+---
+
+## 2026-09-22 — Iteration 3/4/5: VC-based company discovery scaled to all 393 investors
+**Model:** Sonnet 5 · **Plan mode:** no
+
+### Built
+Continuing directly from the 2026-09-21 entry's VC-board-discovery spike, in a session
+running concurrently with the M-1 GitHub-setup session recorded above (see the correction
+note there):
+
+- Scaled `iteration3_vc_board_discovery.py` (VC-hosted jobs-board fingerprinting:
+  Getro/Consider/direct Greenhouse/Lever/Ashby/WordPress) across all 393 investors.
+- Built and scaled `iteration4_vc_portfolio_discovery.py`, a second, complementary
+  discovery approach: instead of looking for a shared jobs-board platform, find each VC's
+  marketing "portfolio" page and extract outbound links to each portfolio company's own
+  domain. Structurally the same as the manual watchlist (`SPEC.md` §7.1) — a name+domain
+  list — just VC-sourced instead of hand-curated, and it doesn't require the VC to run any
+  job-board infrastructure at all, unlike the iteration-3 approach.
+- Built `iteration5_second_hop_detail_pages.py`: for the ~42 investors where iteration 4
+  found a portfolio page but extracted zero domains, most turned out not to be
+  client-rendered at all — the index page links to per-company detail pages on the VC's
+  own domain, and the real external link is one hop deeper (confirmed by hand on
+  Lowercarbon Capital: `lowercarbon.com/company/antora/` → `antora.com`). Recovered real
+  companies for 13 of those 42 investors this way.
+- Built `tracking_store.py` + `spikes/investor_sources.csv` + `spikes/discovered_companies.csv`:
+  persistent, upsert-keyed CSV storage (chosen over SQLite for this stage, on the user's
+  call — plain-text, diffable, hand-editable) so a monthly re-crawl can build on prior
+  state instead of re-discovering everything from scratch. `discovered_companies.csv`
+  already carries empty `careers_page_url` / `ats_provider` / `ats_token` columns, staged
+  for the next spike, same shape as `SPEC.md` §11.1's `observed_at` — schema in now, the
+  crawl that fills it comes later.
+
+**End state:** `investor_sources.csv` — 393 rows (jobs-board result, portfolio-page result,
+or both, per investor). `discovered_companies.csv` — 4,284 unique candidate company
+domains.
+
+### Decisions made this session
+- **VC portfolio-page extraction is a broader, complementary discovery mechanism to
+  jobs-board fingerprinting, not a replacement.** Hand-checking iteration 3's early misses
+  showed several VCs (Aligned Climate Capital, American Century Investments) have no
+  shared jobs board at all, but do have a portfolio page. Both approaches now run across
+  the full list.
+- **Treated "portfolio page found, zero domains extracted" as a classified, revisitable
+  bucket** (same shape as `SPEC.md` §8.4's `mapping_failure_reason`) rather than a dead
+  end — this paid off directly: most of that bucket was a recoverable two-hop link
+  structure, not genuine client-side rendering.
+- **Did not add headless-browser rendering** to recover the remainder that are genuinely
+  client-rendered SPA shells — consistent with `SPEC.md` §4's existing project-wide
+  rejection of headless browsers. Where a real per-VC API might exist (the Consider
+  precedent), that would need the same hand-devtools approach used for Consider, not a
+  generic renderer.
+- **This session's raw discovery output is explicitly left unvalidated.** No
+  confidence-level system (verified/probable/weak, per `SPEC.md` §8.2) exists yet for
+  either VC-discovery approach, and it was a deliberate choice not to build one here.
+  Reasoning: a junk domain (an ESG-certification body, a fund-admin SaaS tool, a
+  press-mention link) will simply fail to map to a real Greenhouse/Lever/Ashby board when
+  it goes through the actual ATS mapping cascade later — costs a wasted request, not
+  invisible bad data, per `SPEC.md` §3.8. Validation effort was spent instead on the
+  extraction mechanics themselves (see bugs below).
+- **This whole mechanism (both discovery approaches, the two-CSV schema) is deliberately
+  not yet folded into `SPEC.md` §6/§7.** Still spike-only, same discipline already applied
+  to the original Getro/Consider work — prove it out further before formalizing.
+
+### Deviations from SPEC
+None yet — nothing here has been written into `SPEC.md`. See "Next session" for what
+formalizing this would need to answer first.
+
+### Real bugs found and fixed this session (worth remembering if any of this logic moves
+into `src/`)
+1. An href regex matched *any* `href="..."` attribute, not just `<a>` tags — a
+   `<link rel="preconnect">` performance hint pointed at analytics domains was being
+   counted as an "outbound company" (found on Verve Ventures).
+2. A handful of sites leak un-rendered JS template code as a raw href value (client-side
+   string concatenation, e.g. `.../portfolio/' + text + '`) — confirms genuine client-side
+   rendering with nothing to recover, not a bug in the extractor.
+3. **A one-character-too-short junk-domain entry (`"ft.com"` for Financial Times) matched
+   as a substring and silently deleted real companies** whose domain happened to end in
+   "...ft.com" — `microsoft.com`, `shift.com`, `lyft.com`, `treeswift.com`,
+   `salesloft.com`, `triplelift.com`, and others. Caught by verifying the cleanup's effect
+   before trusting it, not after; all wrongly-removed rows were restored and the entry
+   replaced with the exact Financial Times subdomain.
+4. Company detail pages routinely link to press-mention logos ("as seen in TechCrunch/
+   CNBC/Reuters") and government/regulator citations (`sec.gov`, `bafin.de`) — a junk
+   category that turned out to be scattered across the *original* full-393 portfolio-page
+   run too, not just the second-hop bucket, since some VCs' index pages carry the same
+   press logos. A global sweep against the corrected junk list removed 35 genuine junk
+   rows once the substring bug above was fixed.
+
+### Criteria checked
+None — pre-M2 spike work, no `CRITERIA.md` items apply yet.
+
+### Least confident about
+- **Overall precision of the 4,284 discovered companies is still unmeasured.** Real bugs
+  were found and fixed iteratively, but there's no guarantee the junk-domain blocklist is
+  now exhaustive — the true signal-to-noise ratio won't be known until these companies go
+  through real ATS mapping.
+- **The ~76 raw "confirmed platform" jobs-board hits (Getro/Consider/Greenhouse/Lever/
+  Ashby/WordPress) have not been validated against the VC they're attributed to.** The
+  2026-09-21 entry already confirmed naive Getro slug-guessing has a real false-positive
+  rate (3 guesses, only 1 correct); this session's jobs-board fingerprinting works
+  differently (checks the VC's own found careers/jobs page, not a raw slug guess) but has
+  had no equivalent validation pass.
+- **Cerulean Ventures' 7 recovered domains** came from blog-post-shaped URLs
+  (`/portfolio/cerulean-ventures-blog/financing-coffee-farms...`) rather than clean
+  per-company detail pages — less certain than the rest of the second-hop recoveries,
+  worth a manual glance before relying on them.
+- Whether the CSV-based `investor_sources`/`discovered_companies` schema, upsert-keyed and
+  hand-editable, will still be the right shape once this needs to run unattended on a
+  schedule rather than interactively — it was chosen explicitly for this exploratory
+  stage, not evaluated against the concurrency/write-amplification concerns `SPEC.md` §6
+  already works through for the real system.
+
+### Next session
+- **Crawl the ~4,284 discovered companies for their own careers page, and detect which ATS
+  (if any) each is running** — the natural next layer, using the same cascade shape
+  `SPEC.md` §8 already designs for the real system (slug guess → careers-page regex →
+  classified failure), reusing the working fetch/parse logic already proven in
+  `spikes/iteration1_ats_spike.py` for Greenhouse/Lever/Ashby. Write results into
+  `discovered_companies.csv`'s already-staged `careers_page_url`/`ats_provider`/
+  `ats_token` columns.
+- **Uncommitted at end of session:** `spikes/discovered_companies.csv`,
+  `spikes/investor_sources.csv`, and `spikes/iteration4_vc_portfolio_discovery.py` are
+  modified; several `iteration3_batch_*`/`iteration4_batch_*` JSON files and
+  `iteration5_second_hop_detail_pages.py` are untracked. Not committed this session —
+  that's the user's call, same as the M-1 session's note above about this same directory.
+- Still separately outstanding from prior sessions: Wellfound, YC, and ClimateTechList
+  spikes were never done. `SPEC.md`/`CRITERIA.md` formalization of the VC-discovery
+  mechanism (validation confidence levels, new `company_sources.source` value, the
+  `investor_sources` table) waits until the careers-page/ATS crawl above shows whether
+  this discovery approach is worth keeping at all.
