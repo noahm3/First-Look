@@ -38,19 +38,26 @@ real companies' live boards repeatedly across a batch:
   wrapped, every detail call is wrapped, and fetch_json returns a result
   object instead of raising. One malformed board cannot end the batch.
 
-DESCRIPTIONS ARE NEVER FETCHED OR STORED. SPEC.md section 6 discards them on
-purpose (5-8KB per row). Practical second reason at spike scale: this output
-gets committed to a public repo, and a job description is the one field likely
-to contain a recruiter's email address or another third party's contact
-details, which CLAUDE.md forbids committing.
+DESCRIPTIONS ARE READ BUT NEVER STORED. SPEC.md section 6 discards description
+bodies on purpose (5-8KB per row) and that still holds: no description body is
+written to the output. What IS read out of them is compensation, because a
+real posting was found publishing its salary range in the description while
+the provider's structured compensation field said nothing at all (see
+attach_description_comp below). Only the matched line is kept, capped at 300
+characters, at most 3 per posting.
 
-Greenhouse is the one place a description is unavoidably fetched: `departments`
-is only present on the list endpoint when `content=true` is passed, so the
-request returns `content` too. That field is never read and never stored.
-Lever's `description*` / `additional*` / `opening*` and Ashby's
-`descriptionHtml` / `descriptionPlain` are not read at all. As a backstop,
-every string written to the JSON passes through an email-shaped-string
-redactor and the run reports how many it redacted.
+This costs no extra requests. All three providers already hand the text over
+in a response this spike was already making: Ashby and Lever include
+descriptionPlain in the board response, and Greenhouse's content=true - which
+must be passed anyway, because `departments` is absent without it - includes
+`content`.
+
+The public-repo hazard is real and is why the snippets are capped rather than
+free-form: a description is the one field likely to contain a recruiter's
+email address or another third party's contact details, which CLAUDE.md
+forbids committing. As a backstop, every string written to the JSON passes
+through an email-shaped-string redactor and the run reports how many it
+redacted.
 
 Run:
   python spikes/iteration7_live_postings_spike.py --limit 12 --label batch1
@@ -61,6 +68,7 @@ Run:
 import argparse
 import collections
 import csv
+import html
 import json
 import os
 import re
@@ -204,6 +212,11 @@ def blank_posting():
         "comp_data_quality": "none",    # structured | parsed | none (section 11)
         "comp_raw_summary": None,
         "comp_raw_tiers": None,         # verbatim, unnormalized
+        # Comp found in the description body, kept separate from the
+        # provider's structured fields so the two stay distinguishable.
+        "comp_in_description": False,
+        "comp_in_description_confident": False,
+        "comp_description_snippets": None,
         "detail_fetched": False,
         "provider_extra": {},
     }
@@ -215,6 +228,94 @@ def comp_quality(tiers, summary):
     if summary:
         return "parsed"
     return "none"
+
+
+# Compensation published in the description body rather than in the
+# provider's structured field. Found 2026-09-22 on Crusoe's "Senior Product
+# Manager, Orchestration": compensation object empty and
+# shouldDisplayCompensationOnJobPostings false, while the description says
+# "Compensation will be paid in the range of $170,000 to $205,000 + Bonus".
+#
+# This costs no extra requests: Ashby and Lever return descriptionPlain in
+# the same board response, and Greenhouse's content=true is already being
+# fetched for `departments`. The text was being thrown away.
+#
+# ONLY a short matched snippet is kept, never the description body - same
+# category of value as comp_raw_summary, and it keeps SPEC.md section 6's
+# "descriptions are deliberately discarded" intact. Nothing is parsed into a
+# number, normalized, or classified here; that is section 11 / M5.
+
+MONEY_RE = re.compile(r"\$\s?\d[\d,.]*\s?[KkMm]?\b")
+COMP_KEYWORD_RE = re.compile(
+    r"compensat|salary|salaries|pay range|pay rate|base pay|hourly|per hour|"
+    r"annualized|wage", re.I)
+TAG_RE = re.compile(r"<[^>]+>")
+BLOCK_TAG_RE = re.compile(
+    r"(?i)<\s*(?:br|/p|/div|/li|/ul|/ol|/tr|/h[1-6]|/blockquote)[^>]*>")
+WS_RE = re.compile(r"[ \t ]+")
+
+SNIPPET_MAX_CHARS = 300
+SNIPPET_MAX_COUNT = 3
+
+
+def strip_html(text):
+    """Greenhouse's `content` arrives HTML-ESCAPED, so unescaping must happen
+    BEFORE tag stripping - the other order leaves every tag intact and, worse,
+    leaves the body as one unsplittable line, which turns a "snippet" into the
+    first 300 characters of the description. Block-level tags become newlines
+    so there is something to split on."""
+    if not text:
+        return ""
+    t = html.unescape(text)
+    t = BLOCK_TAG_RE.sub("\n", t)
+    t = TAG_RE.sub(" ", t)
+    return html.unescape(t)
+
+
+def extract_comp_snippets(*texts):
+    """Return short windows around any dollar amount. Raw text, windowed,
+    capped and deduped; no interpretation of the numbers."""
+    snippets = []
+    seen = set()
+    for text in texts:
+        if not text:
+            continue
+        flat = strip_html(text).replace("\r", "\n")
+        for chunk in re.split(r"[\n•]+", flat):
+            line = WS_RE.sub(" ", chunk).strip()
+            if not line:
+                continue
+            match = MONEY_RE.search(line)
+            if not match:
+                continue
+            # Window around the money mention rather than the head of the
+            # chunk, so a long unsplit block cannot smuggle the description
+            # body into the output.
+            if len(line) > SNIPPET_MAX_CHARS:
+                start = max(0, match.start() - 120)
+                window = line[start:start + SNIPPET_MAX_CHARS]
+            else:
+                window = line
+            key = window[:120].lower()
+            if key in seen:
+                continue
+            seen.add(key)
+            snippets.append({
+                "snippet": window,
+                "money_mentions": len(MONEY_RE.findall(window)),
+                "near_comp_keyword": bool(COMP_KEYWORD_RE.search(window)),
+            })
+            if len(snippets) >= SNIPPET_MAX_COUNT:
+                return snippets
+    return snippets
+
+
+def attach_description_comp(posting, *texts):
+    snippets = extract_comp_snippets(*texts)
+    posting["comp_description_snippets"] = snippets or None
+    posting["comp_in_description"] = bool(snippets)
+    posting["comp_in_description_confident"] = any(
+        s["near_comp_keyword"] and s["money_mentions"] >= 1 for s in snippets)
 
 
 # --------------------------------------------------------------------------
@@ -242,6 +343,15 @@ def fetch_greenhouse(token, ctx):
     never read or stored - see the module docstring."""
     base = f"https://boards-api.greenhouse.io/v1/boards/{token}"
     res = fetch_json(f"{base}/jobs?content=true", ctx["limiter"], ctx["requests"])
+    degraded = False
+    if not res.ok and "byte cap" in (res.error or ""):
+        # A big board plus full descriptions can exceed the response cap
+        # (hit live on a 400+ posting board). Losing the whole company to a
+        # size guard is worse than losing departments and description-derived
+        # comp for it, so fall back to the plain list and say so, rather than
+        # dropping it or quietly raising the cap for everyone.
+        degraded = True
+        res = fetch_json(f"{base}/jobs", ctx["limiter"], ctx["requests"])
     if not res.ok:
         return None, res.error, res.status, None
     body = res.data
@@ -272,6 +382,11 @@ def fetch_greenhouse(token, ctx):
         p["comp_data_quality"] = comp_quality(tiers, None)
         if job.get("application_deadline"):
             p["provider_extra"]["application_deadline"] = job["application_deadline"]
+        attach_description_comp(p, job.get("content"))
+        if degraded:
+            p["provider_extra"]["content_unavailable"] = (
+                "board exceeded the response size cap with content=true; "
+                "department_raw and description-derived comp are unavailable")
 
         # Optional re-verification of the redundant detail endpoint. Off by
         # default; when on, it records whether detail actually differs.
@@ -339,6 +454,9 @@ def fetch_lever(site, ctx):
             value = cats.get(key)
             if value:
                 p["provider_extra"][f"categories.{key}"] = value
+        attach_description_comp(p, job.get("descriptionPlain"),
+                                job.get("additionalPlain"),
+                                job.get("openingPlain"))
         postings.append(p)
     return postings, None, res.status, raw_keys
 
@@ -392,6 +510,7 @@ def fetch_ashby(board, ctx):
                     "secondaryLocations", "shouldDisplayCompensationOnJobPostings"):
             if job.get(key) not in (None, "", [], {}):
                 p["provider_extra"][key] = job.get(key)
+        attach_description_comp(p, job.get("descriptionPlain"))
         postings.append(p)
     return postings, None, res.status, raw_keys
 
@@ -615,6 +734,14 @@ def main(argv=None):
         },
         "comp_data_quality": dict(collections.Counter(
             p["comp_data_quality"] for p in all_postings)),
+        "comp_in_description": sum(1 for p in all_postings
+                                   if p["comp_in_description"]),
+        "comp_in_description_confident": sum(
+            1 for p in all_postings if p["comp_in_description_confident"]),
+        "comp_api_none_but_in_description": sum(
+            1 for p in all_postings
+            if p["comp_data_quality"] == "none"
+            and p["comp_in_description_confident"]),
         "postings_by_provider": dict(collections.Counter(
             r["ats_provider"] for r in ok_rows for _ in r["postings"])),
     }
@@ -641,6 +768,11 @@ def main(argv=None):
           f"totalling {run['rate_limit_wait_seconds']}s")
     print(f"coverage:  {run['field_coverage']}")
     print(f"comp:      {run['comp_data_quality']}")
+    print(f"comp text: {run['comp_in_description']} postings name a dollar "
+          f"amount in the description "
+          f"({run['comp_in_description_confident']} near a comp keyword); "
+          f"{run['comp_api_none_but_in_description']} of those are 'none' "
+          f"in the provider's structured field")
     print(f"redacted:  {redactions[0]} email-shaped strings")
     print(f"wrote:     {os.path.relpath(out_path, os.path.dirname(SPIKE_DIR))}")
     return 0
