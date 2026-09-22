@@ -907,6 +907,43 @@ Eight minutes measures id stability well and daily churn not at all. The 0.06% f
 says nothing about a 24-hour rate; that needs a real overnight gap, and the diff tool
 takes any two result files.
 
+### Full mapped population — the numbers restated on all 584 companies
+Iteration 6's cascade finished mid-session (4,284/4,284 rows checked, **584 mapped** —
+435 `verified`, 149 `probable`; 287 Greenhouse, 220 Ashby, 77 Lever). Re-ran `--all`
+against the complete population: **554 companies ok, 17,499 live postings, 588 requests,
+~6 minutes.** Everything above was measured on samples of 12 → 157 → 255 companies; this
+is the population.
+
+**The disclosure measurement held at three times the scale it was taken on** — 54.2%
+against 52.5%:
+
+| | Structured | Description-only | Total | Combined |
+|---|---|---|---|---|
+| Greenhouse | 0 (0.0%) | 5,238 (48.5%) | 10,802 | **48.5%** |
+| Lever | 598 (40.4%) | 410 (27.7%) | 1,481 | **68.1%** |
+| Ashby | 2,398 (46.0%) | 847 (16.2%) | 5,216 | **62.2%** |
+| **All** | **2,996 (17.1%)** | **6,495 (37.1%)** | **17,499** | **54.2%** |
+
+`SPEC.md` §11 was deliberately left at the 255-company figures: a 1.7-point move changes
+no decision, and re-editing that section a third time is churn rather than accuracy.
+
+**Greenhouse carried `pay_input_ranges` on 0 of 10,802 postings.** At 62% of all
+postings in the mapped set that is no longer a small-sample artifact — the field is not
+in use across this population at all, and nearly half of the largest provider's
+published compensation is invisible to the adapter §9 describes.
+
+**All 30 dead tokens are `verified` via `careers_page_regex`. Zero** from
+`slug_guess+careers_page_corroboration`, across 584 companies. At 12 of 157 this was a
+hint; at 30 of 584 with a perfectly clean split it is a verdict on one cascade stage, and
+it is ~5% of the mapped set silently contributing nothing. 40 further companies returned
+200 with zero postings (§14's ambiguous case).
+
+**`workplace_type_raw` covers 34.6% overall** — Lever 100%, Ashby 87.6%, Greenhouse 0% —
+so **65.4% of postings would start as `location_class = unknown`** before any keyword
+rules are written. That is §18's measurement #4 with a real starting point, and it is
+almost entirely a Greenhouse problem. Unlike measurement #3 this one is squarely a
+parsing problem, as §18 already says: the information is in `location_raw`.
+
 ### Deviations from SPEC
 ~~Nine corrections~~ **Fourteen corrections and additions** committed to `SPEC.md` this session (§6, §9 ×3, §10, §11, §12.3, §18 ×2),
 all struck-through rather than deleted, each carrying the date and the measurement:
@@ -963,10 +1000,16 @@ genuinely empty boards, `SPEC.md` §14's ambiguous case. That endpoint returning
 cheap corroboration signal the cascade could use.
 
 ### Next session
-- The mapped pool grew from 35 to 157 *during* this session because iteration 6's run was
-  still going; it was at ~750 of 4,284 rows checked at session end. Re-run this spike when
-  that finishes — the command is `--all`, it takes ~90 seconds, and the pool could be
-  several hundred companies.
+- ~~The mapped pool grew from 35 to 157 during this session because iteration 6's run was
+  still going. Re-run this spike when that finishes.~~ **Done — iteration 6 completed
+  mid-session and `--all` was re-run against all 584 mapped companies (above).**
+- **Repo weight is now a real question, not a nit.** The results JSON for the full
+  population is 26MB pretty-printed. One copy is fine; re-committing one per run is not,
+  and this spike is meant to be re-run. Options, cheapest first: write it compact rather
+  than `indent=2` (roughly halves it), gzip it, or commit only a trimmed CSV of the
+  fields under analysis and keep the full JSON local. Worth deciding before the next run
+  rather than after five of them. `SPEC.md` §6 already reasons about repo growth for a
+  different artifact.
 - ~~Recommended follow-up spikes, in the order they de-risk the most: comp-snippet
   precision sampling, then a repeat-run diff, then the `careers_page_regex` precision
   fix.~~ **Precision sampling was done this session** (above). Remaining, in order: a
