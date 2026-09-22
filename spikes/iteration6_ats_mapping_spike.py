@@ -41,9 +41,19 @@ from urllib.parse import urljoin, urlparse
 
 import tracking_store as ts
 
+# NOTE, measured 2026-09-22: the Chrome version in this string is
+# load-bearing, not cosmetic. Four domains that returned 403 to Chrome/120
+# returned 200 to Chrome/140 in the same minute, with identical headers
+# (dataminr.com, lunewave.com, yieldmo.com, quinoenergy.com). WAFs block
+# outdated browser versions, so a hardcoded UA silently rots into a wall of
+# 403s - which this cascade records as "no_careers_page", indistinguishable
+# from a company that genuinely has none. ~4% of all failures were 403s.
+# Whatever this becomes in src/http.py needs a current UA and a note to
+# refresh it; an aged-out UA during an unattended leave is exactly the silent
+# failure SPEC.md 3.3 exists to prevent.
 UA = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-    "(KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+    "(KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
 )
 
 # SPEC.md section 8.2's negative guard: a short or common-word slug can return
@@ -82,7 +92,8 @@ PARKED_DOMAIN_PATTERN = re.compile(
 # section 8.4 rather than losing that signal.
 SUPPORTED_ATS_PATTERNS = {
     "greenhouse": re.compile(
-        r"(?:boards|job-boards)\.greenhouse\.io/(?:embed/job_board\?for=)?([a-z0-9_-]+)", re.I
+        r"(?:boards|job-boards)\.greenhouse\.io/(?:embed/job_board\?for=)?([a-z0-9_-]+)"
+        r"|boards-api\.greenhouse\.io/v1/boards/([a-z0-9_-]+)", re.I
     ),
     "lever": re.compile(r"jobs\.lever\.co/([a-z0-9_-]+)", re.I),
     "ashby": re.compile(r"jobs\.ashbyhq\.com/([a-z0-9_-]+)", re.I),
@@ -102,7 +113,25 @@ OTHER_ATS_DOMAINS = {
     "pyjamahr": re.compile(r"pyjamahr\.com", re.I),             # unifyndlabs.com
     "phenompeople": re.compile(r"phenompeople\.com", re.I),    # nature.org's careers.tnc.org, one hop deep - see NOTE below
     # Found live 2026-09-22 via the random-sample review of no_careers_page/unknown:
-    "rippling": re.compile(r"ats\.rippling\.com", re.I),       # getdelos.com
+    # Broadened 2026-09-22: ats.rippling.com alone missed real Rippling users.
+    # gobrightside.com embeds static-assets.ripplingcdn.com/ats/embeds/... and
+    # goshippo.com calls api.rippling.com/platform/api/ats/v2/board/shippo/jobs
+    # - note that URL carries the board token, so Rippling is adapter-able if
+    # the volume ever justifies one (SPEC.md 8.6, 18 measurement 2).
+    "rippling": re.compile(r"rippling\.com|ripplingcdn\.com", re.I),
+    # Found live 2026-09-22 by sampling 18 careers pages from the "unknown"
+    # bucket: 8 of 18 had an ATS on the page that nothing here matched, which
+    # is why that bucket is large. Detection only, no adapters (SPEC.md 8.4).
+    "ukg": re.compile(r"ukg\.com|ultipro\.com|\.ukg\.net", re.I),
+    "dayforce": re.compile(r"dayforcehcm\.com|dayforce\.com", re.I),
+    "teamtailor": re.compile(r"teamtailor\.com", re.I),
+    "jazzhr": re.compile(r"jazzhr\.com|applytojob\.com/apply", re.I),
+    "icims": re.compile(r"icims\.com", re.I),
+    "jobvite": re.compile(r"jobvite\.com", re.I),
+    "paylocity": re.compile(r"paylocity\.com", re.I),
+    "adp": re.compile(r"myjobs\.adp\.com|workforcenow\.adp\.com", re.I),
+    "successfactors": re.compile(r"successfactors\.com|sapsf\.com", re.I),
+    "taleo": re.compile(r"taleo\.net", re.I),
     "linkedin-jobs": re.compile(r"linkedin\.com/(?:company/[^/\"]+/jobs|jobs/)", re.I),  # xplorobot.com -
     # not a real ATS and never pollable (SPEC.md section 4 rules out LinkedIn
     # scraping entirely) - measurement only, same as every other entry here.
@@ -258,7 +287,9 @@ def detect_ats_from_html(html: str) -> tuple[str, str | None]:
     for provider, pattern in SUPPORTED_ATS_PATTERNS.items():
         m = pattern.search(html)
         if m:
-            return provider, m.group(1)
+            token = next((g for g in m.groups() if g), None)
+            if token:
+                return provider, token
     for name, pattern in OTHER_ATS_DOMAINS.items():
         if pattern.search(html):
             return name, None
