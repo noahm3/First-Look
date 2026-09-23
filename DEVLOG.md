@@ -1887,4 +1887,4 @@ None — pre-M2 spike work, no `CRITERIA.md` items apply yet.
   (five URL/attribute patterns, unescape-before-matching) is the part that took the most
   iteration here and is worth porting deliberately rather than re-discovering.
 - Continue applying `spikes/ats_platform_census.py` after each future discovery source
-  lands, per the standing methodology (iteration 11's earlier entry today).
+  lands, per the standing methodology (iteration 11, the platform census, from the previous session).
