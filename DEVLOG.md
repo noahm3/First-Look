@@ -1682,3 +1682,125 @@ None — pre-M2 spike work, no `CRITERIA.md` items apply yet.
 - Also outstanding from the prior entry: a measurement-only pass on how many description
   comp snippets yield a clean min/max/interval, so M5 starts with a known hit rate.
 
+
+
+---
+
+## 2026-09-23 — M0 closed: KEEPALIVE_PAT fixed, a real last-successful-run bug found and
+## fixed, C-0.5 verified end to end, all criteria checked
+**Model:** Sonnet 5 · **Plan mode:** yes (carried over from the M0 planning session)
+
+### Built
+Continuing directly from the earlier same-day M0 session (packages 1-7 built, blocked on
+a KEEPALIVE_PAT 403). This session unblocked it and closed the milestone for real, against
+the live database and the live workflows — not fixtures.
+
+- **KEEPALIVE_PAT fixed by the user** (permissions corrected in the token's own GitHub
+  settings). Re-dispatched `monitor.yml`; the commit landed as `d6b9878`, attributed to
+  `noahm3`, not `github-actions[bot]` — C-0.3's real evidence.
+- **Migrations applied for real**, twice: the original two files from the earlier session,
+  then a third (`20260923000003_runs_ok_column.sql`, see the bug below). `check_schema.py`
+  confirmed against the live `pg_tables`/`pg_policies` both times.
+- **GitHub Pages confirmed live** at `https://noahm3.github.io/First-Look/`, serving the
+  real committed export.
+- **A real bug found by live testing, not by unit tests**: after a C-0.6 forced-failure
+  run (100% HTTP error rate, exit 1), the *next* run's export reported that failed run's
+  finish time as `last_successful_run`, with `stale: false` — a green marker for a run
+  that had just failed. Root cause: `runs` had no column recording a run's own anomaly
+  verdict, so `last_successful_run_at()` could not distinguish a cleanly-finished run from
+  one that finished but tripped an anomaly. Confirmed with a two-step live test: dispatched
+  a force-failure run (run 6, finished ~16:48:44), then a clean run (run 7, ~16:49) —
+  run 7's export correctly reported run 5's earlier timestamp (16:41:12), *skipping over*
+  run 6 despite it finishing more recently. Fixed by adding `runs.ok BOOLEAN NOT NULL
+  DEFAULT true`, written once at close time from `should_fail_run()`, filtered on by
+  `last_successful_run_at()`. Deliberately *not* applied to `previous_finished_run()` —
+  the run-over-run anomaly baseline needs the true prior state regardless of that run's own
+  outcome, or a real posting-count drop would compare against stale data. SPEC.md §6's
+  `runs` table definition updated to match, diff shown and approved before commit.
+- **SETUP-PLATFORM.md §4 and §8 corrected.** Both said the pipeline uses Supabase's Direct
+  connection string. Empirically wrong: GitHub-hosted Actions runners are IPv4-only, and
+  Supabase's Direct connection is IPv6-only on Free-tier projects without the paid IPv4
+  add-on — the first live `migrate.yml` run couldn't connect at all until the secret was
+  switched to the Session pooler (port 5432), which worked immediately. Also recorded why
+  the *Transaction* pooler (6543) is wrong too: no prepared-statement support, which
+  psycopg needs. Reserved for the future Next.js read layer instead.
+- **C-0.5 — the hard gate — run for real, end to end, and it found a genuine gap on the
+  first attempt.** User shortened the healthchecks.io check's period/grace to 2min/2min
+  for a fast test, then set `HEALTHCHECK_URL` to a bad value and a run was dispatched so
+  the real check stopped receiving valid pings. The dashboard correctly showed ~27 minutes
+  of downtime, but **no DOWN alert email arrived** — only a recovery (UP) email after the
+  user manually re-pinged it. This is exactly the failure mode a dead-man's switch exists
+  to catch, so it was treated as a real finding, not dismissed. Diagnosed live with the
+  user (checked the Integrations tab — channel present, active, configured for both UP
+  and DOWN — ruling out the obvious "no channel attached" cause). Root cause: healthchecks.io
+  was still evaluating the check's "next expected ping" deadline against the *old* 6h/2h
+  period active when the last real ping had landed, so the first post-change evaluation
+  cycle ran on stale timing. Once that cycle passed, a genuine DOWN email reached the
+  user's phone, confirmed directly and separately from the dashboard's own status.
+  Settings and the real ping URL were restored to production values (6h/2h); a subsequent
+  real run logged `healthcheck ping accepted` and the user confirmed the dashboard showed
+  UP.
+- **CRITERIA.md closed out.** All eight non-superseded M0 criteria (C-0.1, C-0.3–C-0.9)
+  checked with dated evidence notes — real commit hashes, real log excerpts, real curl
+  output against the live Pages URL, and explicit user confirmations for the two criteria
+  (C-0.5, C-0.6) that depend on an email actually arriving, which only the user can see.
+  C-0.2 stays struck (superseded, from the earlier session).
+
+### Decisions made this session
+- **The `runs.ok` column is a decision that changed SPEC.md §6** — diff shown, approved,
+  committed, per session protocol.
+- **C-0.5's fast-test methodology (temporarily shrinking period/grace) was the user's own
+  call**, offered as the recommended option among three paced differently. It was the right
+  call: it surfaced a real, subtle bug (the stale-evaluation-cycle delay) that a full
+  8-hour real-timing wait would also have hit, just slower and with much less clarity about
+  *why* the first email didn't arrive on schedule.
+- **Git push races with the concurrent session's own direct pushes to `main` happened
+  repeatedly** during live testing (multiple `git stash push -u` / rebase / `stash pop`
+  cycles to preserve that session's uncommitted spike work without ever touching it). No
+  conflict was ever force-resolved in either direction; every rebase was clean.
+
+### Deviations from SPEC
+- SPEC.md §6: `runs` gained the `ok` column, documented above and in the file itself.
+- SETUP-PLATFORM.md §4/§8: Direct connection corrected to Session pooler, documented above
+  and in the file itself.
+
+### Real infrastructure now running, with live evidence for each claim
+- Live Postgres database, migrated, RLS-verified against the actual schema (not a mock).
+- Live GitHub Pages dashboard serving a real, continuously-updating export.
+- Live scheduled workflow (`0 11,15,19,23 * * *` UTC) confirmed to have fired
+  unattended at least once (2026-09-23T15:22:10Z) before this session began fixing
+  anything — the automation itself was never in question, only the two credentials
+  wired into it.
+- Live dead-man's switch, proven with a real induced outage and a real recovered alert.
+
+### Least confident about
+- **Whether the C-0.5 stale-evaluation-cycle explanation is exactly right** or merely
+  the most plausible account consistent with what was observed. Not verified against
+  healthchecks.io's own source or documentation. Low practical risk either way — if wrong,
+  the failure mode is "alert arrives a bit late," not "alert never arrives," which is a
+  much smaller problem for a system with 6h/2h production settings than it would be for
+  a testing setup with 2min/2min.
+- **The git-push race with the concurrent session is not defended against by monitor.yml's
+  retry logic**, which does one `git pull --rebase --autostash` and gives up on conflict.
+  During the actual unattended leave window there is no second writer, so this is not a
+  real production risk today — but it's worth remembering if that assumption ever changes.
+- Same open items carried from the earlier same-day entry: the Session-pooler finding's
+  generality across Supabase plan tiers, and the placeholder-detection regex's specificity
+  to Supabase's current UI.
+
+### Criteria checked
+C-0.1, C-0.3, C-0.4, C-0.5, C-0.6, C-0.7, C-0.8, C-0.9 — every non-superseded M0 criterion
+that doesn't require a later milestone's code. **M0 is closed.**
+
+### Next session
+**M1 — Watchlist ingest and dedupe. BUILD.md recommends Sonnet 5, no plan mode** (M1 is
+small and mechanical: build `config/watchlist.yml` with 20-30 companies, and the
+ingest/dedupe logic against it — C-1.6 through C-1.8). Prompt to paste:
+
+> Read CLAUDE.md, then the last two DEVLOG entries. We just closed M0 — confirm the
+> milestone header says M1 and tell me the recommended model and plan-mode setting from
+> BUILD.md, then wait for me to confirm before starting. M1 is watchlist ingest and
+> dedupe (C-1.6 - C-1.8): `config/watchlist.yml` with 20-30 companies whose ATS I already
+> know (this becomes M3's ground truth, so we should choose deliberately), plus the
+> ingest logic that dedupes on `canonical_domain` and never drops a company with no
+> resolvable domain. Commit at each criterion, not once at the end.
