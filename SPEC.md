@@ -334,7 +334,17 @@ CREATE TABLE runs (
   http_ok              INTEGER NOT NULL DEFAULT 0,
   http_err             INTEGER NOT NULL DEFAULT 0,
   total_live_postings  INTEGER NOT NULL DEFAULT 0,
-  new_postings         INTEGER NOT NULL DEFAULT 0
+  new_postings         INTEGER NOT NULL DEFAULT 0,
+  ok                   BOOLEAN NOT NULL DEFAULT true  -- added M0, post-launch:
+                       -- this run's own anomaly verdict at close time. Without
+                       -- it, a run that finishes but trips an anomaly (§14) is
+                       -- indistinguishable from a clean one to any later query,
+                       -- which a live C-0.6 test on 2026-09-23 demonstrated
+                       -- directly -- the dashboard's "last successful run"
+                       -- read a run that had just failed as its most recent
+                       -- success. §12.1's stale-banner rule ("last run failed
+                       -- OR is over 48h old") needs this column to check the
+                       -- first half at all.
 );
 
 CREATE TABLE notifications_sent (
