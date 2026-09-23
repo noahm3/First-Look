@@ -1406,3 +1406,166 @@ None — pre-M2 spike/backlog work, no `CRITERIA.md` items apply yet.
   what the catalog claims to track.
 - Personio needs a fresh, larger live sample before its backlog entry can be trusted either
   direction.
+
+
+---
+
+## 2026-09-23 — M0: skeleton and reliability plumbing built through package 7
+**Model:** Opus 5 (1M context), then Sonnet 5 mid-session · **Plan mode:** yes (per BUILD.md's M0 header)
+
+### Built
+Full M0 plan executed through package 7 of 11 (see the approved plan for the package
+breakdown). In commit order:
+
+- **Doc amendments** — Python pin 3.12 -> 3.13 (CLAUDE.md, BUILD.md), SPEC.md §6 DDL
+  rewritten in Postgres types (was SQLite-shaped: `INTEGER PRIMARY KEY`, `TEXT`
+  timestamps), `migrate.yml` added as a fourth workflow to SPEC.md §5 and SECURITY.md §S2,
+  CRITERIA.md's C-0.2 struck and replaced by C-0.9 (JSON export only — `jobs.db` is never
+  committed under the Postgres design).
+- **Repo skeleton** — `pyproject.toml`, `uv.lock` (hash-pinned), `.python-version`,
+  `test.yml` (push + workflow_dispatch, zero secrets, SHA-pinned actions), and two CI
+  guards: `tools/check_criteria.py` (fails the build if a criterion identifier disappears)
+  and `tools/check_rls.py` (fails if a migration creates a table without enabling RLS).
+- **`src/models.py`, `src/http.py`** — the network chokepoint, guards written before the
+  happy path per SECURITY.md's ordering. Redirect cap, scheme allowlist, private/loopback/
+  link-local address rejection (169.254.169.254 explicit), response size cap, exponential
+  backoff with no retry on 4xx, per-host token bucket, optional dev disk cache. Every
+  rejection logs the requested URL and resolved address.
+- **Postgres schema + RLS baseline + migration runner** — `supabase/migrations/`, two
+  files: RLS baseline (default-deny before any table exists) then the SPEC.md §6 core
+  tables, each enabling RLS in the same migration. Supabase CLI dropped in favor of a
+  ~130-line psycopg-based runner (`src/migrate.py`) — decided with the user mid-session
+  once it became clear the CLI has no winget package and buys nothing over hand-authored
+  SQL. `src/check_schema.py` is the live half of the RLS check (queries `pg_tables`/
+  `pg_policies` directly; the static half runs in `test.yml` with no DB credential).
+- **`src/health.py`** — `RunRecorder`, anomaly detection (posting drop >25%, HTTP error
+  rate >10%, DB unavailable, RLS posture wrong), and the counts-only run summary
+  (`format_run_summary`). The counts-only shape is enforced by the function signature, not
+  by discipline, per SECURITY.md §S3. A `scrub()` helper neutralizes `@` in any third-party
+  string (company name, failure reason) so C-0.8's literal "no @ character" rule holds even
+  though a company name can legitimately contain one. The summary is pure ASCII — an em
+  dash rendered as `?` on a cp1252 Windows console during testing, so the header is now
+  plain characters only.
+- **`src/export.py`** + `tests/fixtures/jobs-recent.json` — the export schema settled with
+  a seven-row fixture, each row pinning a specific case (multi-band C-5.2 trap, undisclosed
+  comp, hourly normalization, CAD conversion, SECURITY.md §S1's exact XSS row, a repost). A
+  test asserts every fixture row matches the real row shape, so fixture and code cannot
+  drift apart silently.
+- **Dashboard scaffold** — `docs/index.html`, `app.js`, `health.html`, `health.js`,
+  `style.css`, with the CSP meta tag and the `textContent`-only rendering rules present from
+  this first commit rather than retrofitted at M9, per SECURITY.md's explicit ordering
+  requirement. `tests/test_dashboard.py` makes C-S.2/C-S.3/C-S.4 build failures; verified
+  against a deliberately bad probe file that it actually catches all six violation types.
+- **`src/monitor.py`, `monitor.yml`, `discover.yml`** — the real entry point (open a run, do
+  nothing yet, close it, write the export, ping healthchecks, exit) and the two remaining
+  workflows. `tests/test_workflows.py` parses the YAML (not grep) to enforce C-S.6/7/8 as
+  tests rather than manual review — this caught a real bug on the first pass, where a naive
+  grep for `pull_request` "matched" every workflow because each one documents in a comment
+  why the trigger is absent.
+- **A real bug found and fixed mid-build**: `monitor.yml`'s commit step originally
+  hardcoded the account's noreply email address as a literal string. CLAUDE.md forbids
+  committing any email address and does not carve out a known-safe noreply one. Rewrote to
+  assemble the identity from `github.repository_owner_id` + `github.repository_owner` at
+  runtime instead, with a test now asserting no email-shaped literal exists in any workflow
+  file.
+- **A second real bug, found by the first live migration run**: `redact_dsn()` returned a
+  bare `"<unparseable dsn>"` when `urlsplit` raised — which is exactly what happens on
+  Supabase's Connect-modal URI, since it ships with a literal `[YOUR-PASSWORD]` placeholder
+  that reads as an unmatched IPv6 bracket. The diagnostic was least useful in the single
+  most likely failure. Added `describe_dsn_problem()`, which runs before psycopg is ever
+  dialled and names the actual problem (unreplaced placeholder, wrong scheme, whitespace,
+  missing host/password) without ever including the DSN itself, plus `redact_secrets()` to
+  scrub psycopg's own error text before logging it (GitHub only masks the *exact* secret
+  value; a substring like the bare password is a different string and slips through).
+
+### Decisions made this session
+- **Python 3.13, not 3.12** — CLAUDE.md's non-negotiable was the pin, not the number; 3.13
+  was already the only interpreter on the machine. Documents amended, diff shown before
+  commit per the session protocol.
+- **C-0.2 struck, replaced by C-0.9** — `jobs.db` can never be committed under the Postgres
+  design; the JSON-export half of the original criterion is live and carries forward.
+- **Migration runner: hand-rolled psycopg, not the Supabase CLI** — the CLI has no winget
+  package and its main draw (`db diff`) is moot against hand-authored migrations. Decided
+  with the user via AskUserQuestion mid-session, not unilaterally.
+- **Supabase connection: Session pooler (port 5432), not Direct** — flagged as a probable
+  deviation from SETUP-PLATFORM.md §4 before it was confirmed: GitHub-hosted runners are
+  IPv4-only, and Supabase's Direct connection is IPv6-only on Free-tier projects without the
+  paid IPv4 add-on. Confirmed empirically once the secret was set correctly — the pooler
+  connected on the first successful attempt. **SETUP-PLATFORM.md §4 needs a correction
+  noting this**, not yet made.
+- **`npx skills add supabase/agent-skills` declined for now** — the project's Supabase
+  surface is a bare connection string and hand-written SQL; nearly everything the skill
+  covers (RLS policy authoring, auth, storage) is §19 platform-era work. Revisit then. Saved
+  to persistent memory so future sessions don't need to re-litigate it.
+
+### Deviations from SPEC
+- SPEC.md §6's DDL was SQLite-shaped and is now Postgres-shaped (diff shown, committed).
+- SPEC.md §5 gained a fourth workflow, `migrate.yml` (diff shown, committed).
+- SETUP-PLATFORM.md §4 still says "Direct connection" for the pipeline; empirically the
+  Session pooler is what actually works from GitHub Actions on this project's Free tier.
+  Not yet corrected in the document — flagged for next session.
+
+### Criteria checked
+- **C-S.13** — `uv sync --locked` from a clean state; hash-pinned lockfile confirmed.
+- **C-S.14** — fetch guards, verified by 67 tests including the literal 169.254.169.254
+  case, a mid-redirect block, and an oversized-body rejection.
+- **C-S.6, C-S.7, C-S.8** — enforced as tests (`tests/test_workflows.py`), passing.
+- **C-0.8** — the run summary contains no `@` character; verified against a company name
+  and failure reason that both legitimately contain one.
+- **Not yet checked (need a live push to succeed first):** C-0.1, C-0.2/C-0.9, C-0.3, C-0.4,
+  C-0.5 (hard gate — needs the healthcheck grace period to elapse), C-0.6, C-0.7, C-1.2
+  (partially — SUPABASE_DB_URL and HEALTHCHECK_URL now set; all four M0-relevant secrets
+  exist), C-1.3 (Pages enabled and live at the predicted URL, not yet verified against a
+  real committed export since the commit step is blocked).
+
+### Real infrastructure stood up this session, with live evidence
+- **Migrations applied for real** against the actual Supabase project. `check_schema.py`
+  ran against the live database afterward and reported: "every public table has RLS
+  enabled, and every deny-all table is on the allowlist (9 inspected)." Not a mock — a real
+  query against `pg_tables`/`pg_policies`.
+- **GitHub Pages enabled**, live at `https://noahm3.github.io/First-Look/`, predicted
+  correctly from the owner+repo name before Pages existed.
+- **The monitor ran for real**: connected to Postgres, wrote a real (empty, correctly-so)
+  export, computed a summary. The pipeline itself works end to end.
+
+### Blocked, needs the user
+**`KEEPALIVE_PAT` push failed with `403: Permission ... denied to noahm3`** on the first
+live monitor run's commit step. Checkout succeeded with the token (basic-auth header set
+correctly), branch protection is off, and the account has full admin on the repo via a
+separate `gh` session — so the problem is specific to the fine-grained PAT itself: most
+likely its Contents permission is read-only rather than read/write, its repository access
+doesn't actually include `First-Look`, or it needs regenerating. Cannot be diagnosed further
+from this side since the token's contents aren't inspectable. **User needs to check the
+token's settings on GitHub and re-set the secret if wrong; nothing else in M0 that depends
+on a real commit (C-0.2/C-0.9, C-0.3, C-0.4 with real data) can be verified until this is
+fixed.**
+
+### Least confident about
+- Whether the Session-pooler-over-Direct-connection finding generalizes, or is specific to
+  this project's Free-tier + IPv4-only-runner combination. Worth re-verifying if Supabase's
+  networking options change.
+- Whether `describe_dsn_problem()`'s placeholder-detection regex is specific enough to
+  Supabase's current UI, versus a more general "brackets in the authority" heuristic that
+  happens to work today. Low risk either way — worst case it just doesn't fire and the
+  generic unparseable-DSN message takes over.
+- The two untracked spike files from the concurrent session
+  (`iteration6_batch_0_150_results.json`, `iteration6_batch150_log.txt`) were left
+  completely untouched throughout, per the session's standing rule of only ever staging
+  explicit paths.
+
+### Next session
+**Fresh session, same milestone (M0), Opus + plan mode per BUILD.md's header — no need to
+re-plan, the approved plan file covers packages 8-11 exhaustively.** Prompt to paste:
+
+> Read CLAUDE.md, then the last two DEVLOG entries. We're continuing M0 (BUILD.md), plan
+> mode already approved in the prior session — the plan file is still at
+> `C:\Users\o439n\.claude\plans\valiant-dreaming-crab.md` if you need to re-read it. First,
+> confirm the KEEPALIVE_PAT push issue from the last session is now fixed by re-dispatching
+> `monitor.yml` and checking the commit lands. Then work through the M0 evidence sweep
+> (BUILD.md §0.5): C-0.5 is the hard gate — point HEALTHCHECK_URL at a wrong URL, wait out
+> the grace period, confirm the email reaches my phone, then restore it — and C-0.6 (forced
+> failure -> GitHub email). Check off every M0 criterion you have real terminal output for,
+> not a summary. Also: correct SETUP-PLATFORM.md §4 to say Session pooler (port 5432)
+> instead of Direct connection, since Direct is IPv6-only and GitHub Actions runners are
+> IPv4-only — show me that diff before committing. When M0's criteria all check out, give
+> me the BUILD.md §0.5 evidence report and we'll move to M1.
