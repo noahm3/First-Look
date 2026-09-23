@@ -9,7 +9,15 @@ import pathlib
 
 import pytest
 
-from src.db import DEFAULT_DSN_ENV_VAR, Database, DatabaseUnavailable, RunRow, redact_dsn
+from src.db import (
+    DEFAULT_DSN_ENV_VAR,
+    Database,
+    DatabaseUnavailable,
+    RunRow,
+    describe_dsn_problem,
+    redact_dsn,
+    redact_secrets,
+)
 from src.migrate import migrate, pending
 
 # Split so no literal in this file is email-shaped: .githooks/pre-commit blocks
@@ -295,3 +303,67 @@ class TestCheckSchemaEntryPoint:
         monkeypatch.delenv(DEFAULT_DSN_ENV_VAR, raising=False)
         assert check_schema.main([]) == 1
         assert "BLOCKED" in capsys.readouterr().out
+
+
+class TestMalformedDsnDiagnostics:
+    """The failure that prompted these: a real migrate.yml run reported only
+    '<unparseable dsn>: OperationalError', which withholds the one fact worth
+    having. A diagnostic that hides the host is no better than none."""
+
+    PLACEHOLDER = "postgresql://postgres.abcdefgh:[YOUR-PASSWORD]@aws-0-us-east-1.pooler.example.com:5432/postgres"
+
+    def test_an_unreplaced_password_placeholder_is_named_exactly(self):
+        problem = describe_dsn_problem(self.PLACEHOLDER)
+        assert problem is not None
+        assert "placeholder" in problem
+
+    def test_the_diagnostic_never_echoes_the_connection_string(self):
+        problem = describe_dsn_problem(self.PLACEHOLDER)
+        assert "aws-0-us-east-1" not in problem
+        assert "abcdefgh" not in problem
+
+    def test_a_wrong_scheme_is_named(self):
+        problem = describe_dsn_problem("psql 'host=x user=y'")
+        assert problem is not None and "postgresql://" in problem
+
+    def test_surrounding_whitespace_is_named(self):
+        assert "whitespace" in describe_dsn_problem(f"  {DSN}  ")
+
+    def test_an_empty_value_is_named(self):
+        assert "empty" in describe_dsn_problem("   ")
+
+    def test_a_missing_password_is_named(self):
+        problem = describe_dsn_problem(f"postgresql://postgres@{DB_HOST}:5432/postgres")
+        assert problem is not None and "password" in problem
+
+    def test_a_good_dsn_reports_no_problem(self):
+        assert describe_dsn_problem(DSN) is None
+
+    def test_redact_dsn_still_names_the_host_when_parsing_fails(self):
+        redacted = redact_dsn(self.PLACEHOLDER)
+        assert "pooler.example.com" in redacted
+        assert "YOUR-PASSWORD" not in redacted
+
+    def test_redact_dsn_handles_an_empty_string(self):
+        assert redact_dsn("") == "<empty dsn>"
+
+    def test_redact_secrets_strips_a_password_echoed_by_the_driver(self):
+        # GitHub masks the exact registered secret; the password alone is a
+        # different string and would not be masked.
+        driver_text = f'connection failed: "{DSN}" timed out'
+        cleaned = redact_secrets(driver_text, DSN)
+        assert DB_PASSWORD not in cleaned
+        assert "timed out" in cleaned
+
+    def test_connect_reports_the_malformed_string_before_dialling(self):
+        called = []
+
+        def should_not_run(*_a, **_k):
+            called.append(1)
+            raise AssertionError("connect was attempted with a malformed DSN")
+
+        db = Database(self.PLACEHOLDER, connect_fn=should_not_run)
+        with pytest.raises(DatabaseUnavailable) as exc:
+            db.connect()
+        assert "placeholder" in str(exc.value)
+        assert not called

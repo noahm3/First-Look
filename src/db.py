@@ -14,6 +14,7 @@ diagnostic can name the host without naming the credential.
 
 import logging
 import os
+import re
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
 from datetime import datetime
@@ -58,18 +59,107 @@ class DatabaseUnavailable(RuntimeError):
     """
 
 
+# Everything between "://" and the last "@" of the authority is credentials.
+# Used as the fallback when the DSN will not parse — which is exactly the case
+# where a diagnostic is most needed and a structured parse is least available.
+_USERINFO = re.compile(r"(?<=://)[^/@]*@")
+
+# Supabase's Connect modal shows the URI with a literal placeholder in place of
+# the password. Pasting it unchanged produces a string that will not parse (the
+# brackets read as an IPv6 literal) and obviously will not connect.
+_PLACEHOLDER = re.compile(r"\[[^\]]*\]")
+
+
 def redact_dsn(dsn: str) -> str:
-    """Return a DSN safe to put in a log line — password replaced, host kept."""
+    """Return a DSN safe to log — credentials removed, host kept.
+
+    Never returns a bare "<unparseable dsn>": when the structured parse fails,
+    the host is the one thing worth knowing, so the fallback strips credentials
+    textually rather than giving up. A diagnostic that withholds the host is no
+    better than no diagnostic (the same reasoning SPEC.md §8.4 applies to fetch
+    guards that drop silently).
+    """
+    if not dsn:
+        return "<empty dsn>"
+    try:
+        parts = urlsplit(dsn)
+        if parts.hostname:
+            userinfo = f"{parts.username}:***@" if parts.username else ""
+            port = f":{parts.port}" if parts.port else ""
+            netloc = f"{userinfo}{parts.hostname}{port}"
+            return urlunsplit((parts.scheme, netloc, parts.path, "", ""))
+    except ValueError:
+        pass
+
+    # Fallback: strip credentials and any query string by hand.
+    stripped = _USERINFO.sub("***@", dsn.split("?", 1)[0])
+    return f"{stripped} (unparseable)"
+
+
+def describe_dsn_problem(dsn: str) -> str | None:
+    """Explain why a DSN is malformed, or None if it looks usable.
+
+    This exists because the failure it catches is genuinely hard to read from
+    psycopg's own error: a connection string that was never valid reports the
+    same OperationalError as a wrong password or an unreachable host. Naming the
+    real problem here saves the 3am version of this debugging session.
+
+    Never includes the DSN or any part of it in the message.
+    """
+    if not dsn.strip():
+        return "the connection string is empty"
+
+    if dsn != dsn.strip():
+        return "the connection string has leading or trailing whitespace"
+
+    scheme = dsn.split("://", 1)[0].lower() if "://" in dsn else ""
+    if scheme not in ("postgres", "postgresql"):
+        return (
+            "the connection string does not start with postgresql:// — "
+            "make sure the URI format is selected, not psql or a JDBC string"
+        )
+
+    authority = dsn.split("://", 1)[1].split("/", 1)[0]
+    if _PLACEHOLDER.search(authority):
+        return (
+            "the password placeholder was never replaced — Supabase shows the URI "
+            "with a bracketed placeholder where your database password goes. "
+            "Substitute the real password (percent-encoding any of @ : / ? # [ ] "
+            "it contains) and set the secret again"
+        )
+
     try:
         parts = urlsplit(dsn)
     except ValueError:
-        return "<unparseable dsn>"
+        return (
+            "the connection string will not parse as a URI. A password containing "
+            "@ : / ? # [ or ] must be percent-encoded"
+        )
+
     if not parts.hostname:
-        return "<dsn>"
-    userinfo = f"{parts.username}:***@" if parts.username else ""
-    port = f":{parts.port}" if parts.port else ""
-    netloc = f"{userinfo}{parts.hostname}{port}"
-    return urlunsplit((parts.scheme, netloc, parts.path, "", ""))
+        return "the connection string has no host"
+    if not parts.password:
+        return "the connection string carries no password"
+    return None
+
+
+def redact_secrets(text: str, dsn: str) -> str:
+    """Strip anything credential-shaped out of third-party error text.
+
+    psycopg's messages can echo the connection string back. Actions logs are
+    world-readable on a public repo (SPEC.md §15), and GitHub only masks the
+    exact registered secret value — a substring of it, such as the password on
+    its own, is a different string and will not be masked (the same trap
+    SECURITY.md §S3 describes for NOTIFY_PROFILES).
+    """
+    cleaned = _USERINFO.sub("***@", text)
+    try:
+        password = urlsplit(dsn).password
+    except ValueError:
+        password = None
+    if password:
+        cleaned = cleaned.replace(password, "***")
+    return cleaned
 
 
 @dataclass(frozen=True, slots=True)
@@ -119,13 +209,20 @@ class Database:
     def connect(self) -> None:
         if self._conn is not None:
             return
+        # A malformed connection string reports the same OperationalError as a
+        # wrong password or an unreachable host. Say which it is before trying.
+        problem = describe_dsn_problem(self._dsn)
+        if problem is not None:
+            raise DatabaseUnavailable(f"{DEFAULT_DSN_ENV_VAR} is malformed: {problem}")
+
         try:
             self._conn = self._connect_fn(self._dsn, autocommit=False)
         except Exception as exc:
-            # The exception text can carry the DSN. Re-raise with a message built
-            # from the redacted form only.
+            # psycopg's own text can echo the connection string, so it goes
+            # through redact_secrets before anything reaches a log.
+            detail = redact_secrets(str(exc), self._dsn).strip() or type(exc).__name__
             raise DatabaseUnavailable(
-                f"could not connect to {redact_dsn(self._dsn)}: {type(exc).__name__}"
+                f"could not connect to {redact_dsn(self._dsn)}: {type(exc).__name__}: {detail}"
             ) from None
 
     def close(self) -> None:
