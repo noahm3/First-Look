@@ -1,0 +1,43 @@
+iteration7_run_diff.py: mapped6 (2026-09-22T22:01 UTC) vs mapped7 (2026-09-23T16:30 UTC)
+~18.5 hours apart. Mapped pool unchanged (554/554) since the stage-3 validation
+fix (93feb78) - no pool-growth confound in this diff, unlike the earlier 8-minute one.
+
+before : 554 companies ok, 17499 postings
+after  : 554 companies ok, 17575 postings
+companies ok in both (the only ones compared): 534
+  only in before: 0   only in after: 0
+
+postings on shared companies: 16884 before, 16957 after
+  id present in both runs : 16731
+  id only in after (new)  : 226
+  id only in before (gone): 153
+  churn as % of before    : 2.24%
+
+field drift on the 16731 postings whose ats_job_id was stable:
+  title_raw               32
+      Antares            Staff Space Electrical Systems Eng 'Staff Space Electrical Systems E' -> 'Senior/Staff Space Electrical Sy'
+      cambium            Director of Growth Marketing       'Director of Growth Marketing' -> 'Director of Lifecycle + Growth M'
+      conversion         Deployment Strategist              'Deployment Strategist' -> 'Agent Deployment Strategist'
+  location_raw            24
+      applied            Senior Software Engineer - Air Aut 'Ann Arbor' -> 'Fort Walton Beach, FL'
+      arrive             Head of Government & Professional  'Atlanta' -> 'Paris'
+      eightsleep         Talent Acquisition  Specialist (Mi 'Milan' -> 'Italy'
+  department_raw          24
+      within-ai          Strategic Account Executive        'Sales' -> 'GTM'
+      within-ai          Business Development Representativ 'Sales' -> 'GTM'
+      within-ai          Enterprise Account Executive       'Sales' -> 'GTM'
+  posted_at               10
+      basecamp-research  Bioinformatics Scientist           '2026-07-13T12:14:16.367000+00:00' -> '2026-09-23T09:04:27.933000+00:00'
+      crusoe             Senior Staff Data Center Operation '2026-05-15T15:44:01.231000+00:00' -> '2026-09-23T15:46:15.195000+00:00'
+      etched             EE Hardware System Engineer (TW)   '2026-09-04T05:40:25.613000+00:00' -> '2026-09-23T09:57:49.327000+00:00'
+  comp_raw_summary         5
+      Antares            Staff Space Electrical Systems Eng '$150K - $210K - Offers Equity' -> '$160K - $235K - Offers Equity'
+      handshake          Program Manager                    '$108K - $150K - Offers Equity' -> '$108K - $160K - Offers Equity'
+      handshake          Staff Product Designer, Autonomous '$200K - $240K - Offers Equity' -> '$225K - $250K - Offers Equity'
+  workplace_type_raw       4
+      arrive             Head of Government & Professional  'Hybrid' -> 'None'
+      handshake          Program Manager                    'OnSite' -> 'Hybrid'
+      oyster             Business Development Representativ 'Remote' -> 'None'
+
+a naive whole-run diff would have reported +76 postings; restricted to shared
+companies the real movement is 226 opened / 153 closed
