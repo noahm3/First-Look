@@ -35,22 +35,35 @@ patches are preserved in `archive/`. Nothing above this note was reworded or ren
 
 ## M0 — Skeleton and reliability plumbing
 
-- [ ] **C-0.1** The scheduled workflow runs unattended without manual triggering
+- [x] **C-0.1** The scheduled workflow runs unattended without manual triggering
+      (2026-09-23: a `schedule`-triggered run fired at 15:22 UTC with no dispatch)
 - [ ] ~~**C-0.2** A run commits `jobs.db` and the JSON exports back to the repo~~
       (superseded 2026-09-22: `jobs.db` is never committed — `SPEC.md` §6 moved state to
       Postgres and §15 says so explicitly, so this criterion can no longer pass as
       written. The JSON-exports half is live and is re-stated as C-0.9.)
-- [ ] **C-0.3** Commits are attributed to the user's account, not `github-actions[bot]`
-- [ ] **C-0.4** The dashboard loads on the Pages URL and shows a green
-      `last_successful_run`
+- [x] **C-0.3** Commits are attributed to the user's account, not `github-actions[bot]`
+      (2026-09-23: commit `d6b9878`, authored as `noahm3` via that account's own GitHub
+      noreply identity, made by `monitor.yml` using `KEEPALIVE_PAT`)
+- [x] **C-0.4** The dashboard loads on the Pages URL and shows a green
+      `last_successful_run` (2026-09-23: `https://noahm3.github.io/First-Look/
+      jobs-recent.json` served `stale: false` with a populated `last_successful_run`
+      from a real run)
 - [ ] **C-0.5** **Breaking the healthcheck URL produces an email to the user's phone.**
       Do not proceed past M0 until that email has arrived.
-- [ ] **C-0.6** A forced non-zero exit produces a GitHub workflow-failure email
-- [ ] **C-0.7** Two overlapping runs cannot occur (concurrency group verified)
-- [ ] **C-0.8** The run summary prints counts only and contains no `@` character
-- [ ] **C-0.9** A run commits the JSON exports under `docs/` back to the repo. This is the
+- [x] **C-0.6** A forced non-zero exit produces a GitHub workflow-failure email
+      (2026-09-23: `--force-failure` dispatched twice, both exited 1 on a real
+      `http_error_rate` anomaly; user confirmed a GitHub failure email arrived)
+- [x] **C-0.7** Two overlapping runs cannot occur (concurrency group verified)
+      (2026-09-23: two `monitor.yml` dispatches 5s apart — the second sat `queued`
+      then `pending` until the first reached `completed`, never running concurrently)
+- [x] **C-0.8** The run summary prints counts only and contains no `@` character
+      (2026-09-23: real run log showed the full summary format with zero `@`
+      characters even while reporting a failing-company reason; also unit-tested)
+- [x] **C-0.9** A run commits the JSON exports under `docs/` back to the repo. This is the
       only state the repo still holds (`SPEC.md` §6) and it doubles as the
       PAT-attributed keepalive commit (§16). Replaces the struck C-0.2.
+      (2026-09-23: commit `d6b9878` and subsequent runs, each committing a real
+      `docs/jobs-recent.json` diff)
 
 ## M1 — Watchlist ingest and dedupe
 
