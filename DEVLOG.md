@@ -1083,6 +1083,79 @@ stays at 3** — this population says do not build it.
 **The honest other half: 83.6% of the bucket has no detectable ATS on its careers page at
 all.** Better fingerprinting does not recover those.
 
+### Iteration 11: the standing ATS platform census, run over the whole portfolio
+The user's ask, and the right shape for it: stop doing one-off probes, and build the
+thing we will re-run after every future source (ClimateBase, Built In Boston, Greentown,
+Wellfound, YC) so the picture accumulates instead of being recomputed and lost.
+
+`spikes/ats_platform_census.py`, plus three data files:
+
+| File | Role |
+|---|---|
+| `ats_platform_hosts.csv` | host regex → platform name. **Hand-editable.** Same user-owned-lookup pattern as §12.4's alias files, explicitly not a classifier (§3.6) — find a new platform, add a row, re-run, no code change |
+| `ats_platform_detections.csv` | one row per (company, platform), upserted, so re-running a source updates rather than duplicates. The raw record |
+| `ats_platform_tally.csv` | regenerated from detections every run (§3.5, store raw derive on read). Never hand-edited |
+
+**Method inverted on purpose.** Every earlier pass matched a hand-written platform list,
+which can only find platforms someone already thought of — and one such probe overstated
+a share by 4x (iteration 9). This mines *every* third-party host each careers page
+references, drops hosts that are clearly not recruiting infrastructure, names what it can
+from the mapping file, and reports what it **could not** name, ranked by company count. An
+unrecognised platform surfaces near the top instead of being invisible. That the current
+unnamed list is entirely analytics and CMS noise (`js.hsforms.net`, `wordpress.org`,
+`visualwebsiteoptimizer`) is the signal the naming map is complete for this population.
+
+**Full run: 1,668 careers pages, 1,663 fetched OK, ~20 minutes.**
+
+| Platform | Total | Mapped | Referenced only | Status |
+|---|---|---|---|---|
+| greenhouse | 345 | 272 | 73 | supported |
+| ashby | 248 | 209 | 39 | supported |
+| lever | 99 | 73 | 26 | supported |
+| **rippling** | **62** | 0 | 62 | candidate |
+| **workable** | **42** | 0 | 42 | rejected by §4 |
+| wordpress plugin | 24 | 0 | 24 | unbuilt |
+| adp | 21 | 0 | 21 | unbuilt |
+| bamboohr | 19 | 0 | 19 | unbuilt |
+| teamtailor | 17 | 0 | 17 | candidate |
+| workday / gem / breezy | 12 each | 0 | 12 | — |
+| smartrecruiters | 1 | 0 | 1 | deferred by §4 |
+
+**Mapped and referenced-only are split deliberately.** "Referenced" means the careers page
+names the platform but no usable mapping came out of the cascade. Conflating them would
+overstate real coverage, which is the §3.8 failure mode. 138 companies sit on a
+*supported* ATS without being mapped — but **116 of those are `weak_only`**, meaning the
+cascade found a token and validation rejected it. That is §8.2 working as designed, not a
+miss: `perchenergy.com` is in that set and its board genuinely 404s. Whether validation is
+too strict for the other 22 is unanswered.
+
+Discount three rows as noise: `glassdoor` 22, `indeed` 15, `consider` 11 are careers pages
+linking to their own profile on those sites, not platforms they run on. Tagged
+`not-an-ats` in the mapping file.
+
+### The measurement §4 asked for has arrived, and it disagrees with §4
+`SPEC.md` §4 rejects Workable, Recruitee and Personio adapters on the stated grounds of
+"SMB / agency / DACH-European skew ... **near-zero expected yield**", and then names
+exactly one condition for reopening them: "**Revisit only against a measured
+`unsupported_ats:{name}` distribution, never on principle.**"
+
+That distribution now exists, and **Workable measures 42 companies — the second-largest
+unpollable platform in the dataset**, ahead of ADP (21) and BambooHR (19). Near-zero is
+not what 42 looks like. Recruitee (5) and Personio (11) are much weaker and their
+rejections look undisturbed; Personio's XML-only objection is a separate technical point
+this measurement says nothing about.
+
+**Not re-proposed here, and no `SPEC.md` edit made** — §4 is the do-not-re-propose list
+and this is the user's call. Recorded because §4 itself asked for the number, and the
+number is in. The same applies in reverse to SmartRecruiters: §4 defers its adapter
+pending volume, and volume came back as **1**, which argues for leaving it deferred
+indefinitely.
+
+**Rippling is the strongest unbuilt candidate on the evidence**: 62 companies, ~3x
+BambooHR, never evaluated in `SPEC.md` at all, and adapter-able — its board URL carries
+the token (`api.rippling.com/platform/api/ats/v2/board/{token}/jobs`, seen on
+`goshippo.com`). Gated behind coverage per §8.6 regardless.
+
 ### Deviations from SPEC
 ~~Nine corrections~~ **Fourteen corrections and additions** committed to `SPEC.md` this session (§6, §9 ×3, §10, §11, §12.3, §18 ×2),
 all struck-through rather than deleted, each carrying the date and the measurement:
@@ -1145,6 +1218,10 @@ cheap corroboration signal the cascade could use.
 - ~~Re-run iteration 6's cascade over the failure buckets.~~ **Done and measured
   (iteration 9 above): the junk-domain hypothesis is wrong, and re-crawling recovers
   almost nothing. Closed as a line of work.**
+- **The §18 gate is not the live question yet — the user's call, 2026-09-22: "we're
+  still early, still collecting sources."** The numbers below stand as a baseline to
+  re-run once ClimateBase, Built In Boston and Greentown are in, rather than as a
+  decision now due.
 - **The `SPEC.md` §18 gate has been computed but not decided.** `BUILD.md` M7 and
   `CRITERIA.md` C-7.3 both require the go/no-go call be the user's, so
   `spikes/iteration9_measurement_gate.py` prints the four numbers and deliberately stops.
@@ -1152,9 +1229,16 @@ cheap corroboration signal the cascade could use.
   initiatives, funds and trade associations, not the watchlist/ClimateTechList/ClimateBase
   seed §18 assumes. That denominator is the crux of the decision and is the reason it is
   a judgment rather than arithmetic.
-- **A Rippling adapter is now the best-evidenced next integration** (~75 companies,
-  token-in-URL, iteration 10 above). Still gated behind the §18 decision, since §8.6 is
-  explicit that the adapter question is downstream of coverage.
+- **A Rippling adapter is the best-evidenced next integration** — 62 companies measured
+  over the full portfolio (iteration 11 supersedes iteration 10's ~75 projection from a
+  250-row sample). Token-in-URL, so it is adapter-able.
+- **Two `SPEC.md` §4 decisions now have the measurement §4 itself asked for**: Workable at
+  42 against a "near-zero expected yield" rejection, and SmartRecruiters at 1 against a
+  deferral pending volume. Both are the user's call; neither was edited.
+- **Run the census after every future source** — `python spikes/ats_platform_census.py
+  --source <name>` — so the tally accumulates. The `by_source` column will show whether
+  ClimateBase and Built In Boston skew toward different platforms than the VC portfolio,
+  which is the thing that would change an adapter decision.
 - **Coordination note:** this session edited `spikes/iteration6_ats_mapping_spike.py`,
   which the concurrent M0 session had committed shortly before. The edit is confined to
   `classify_and_map`'s stage-3 branch. Worth a glance from whoever owns that file next.
