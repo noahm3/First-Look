@@ -1213,3 +1213,112 @@ on disk while both sessions were live simultaneously.
 - Iteration 6's output (`discovered_companies.csv`, `tracking_store.py`) is still
   uncommitted as of this entry. Whether to commit it, and how it reconciles with whatever
   state the other iteration-7 session left those same files in, is still open.
+
+---
+
+## 2026-09-22 — Iteration 6 committed; unsupported-ATS backlog and feasibility spot-checks
+**Model:** Sonnet 5 · **Plan mode:** no
+
+### Built
+- **Committed iteration 6** (`spikes/iteration6_ats_mapping_spike.py`,
+  `spikes/tracking_store.py`'s extension, and the populated `discovered_companies.csv`) —
+  confirmed via `git log` that only two commits had ever touched these files and neither
+  came from a concurrent session, and that the working-tree CSV was a strict same-row,
+  same-order superset (mapping columns filled in, nothing added/removed/reordered) of the
+  last commit — safe to commit directly with no merge risk. Left the large batch/log
+  scratch artifacts (`iteration6_batch_*`, `iteration6_full_run_log*.txt`,
+  `sample_for_review.csv`) uncommitted, consistent with this project's existing precedent
+  of not committing bulky derived-and-redundant spike output.
+- `spikes/unsupported_ats_tally.py` + `spikes/unsupported_ats_tally.csv` — a re-runnable
+  view over `discovered_companies.csv`'s `mapping_failure_reason` column, per `SPEC.md`
+  §3.5 ("store raw, derive on read"): the raw per-company data is the source of truth, this
+  is just a summary that can never drift stale, unlike a hand-maintained count would.
+- `spikes/ats_integration_backlog.md` — qualitative backlog reference for a **later
+  phase**, per the user's explicit framing (not built now). Ranks unsupported-ATS
+  candidates by measured volume × confirmed API cleanliness, with live-confirmed endpoint
+  shapes for the top five.
+
+### Real findings from live feasibility spot-checks (top 5 by count)
+- **BambooHR (57 companies) — confirmed clean, public, unauthenticated:**
+  `GET {company}.bamboohr.com/careers/list` → structured JSON (title, department, city/state,
+  employment type, remote flag). Not in `SPEC.md` at all yet.
+- **Workable (55) — confirmed clean:** `GET apply.workable.com/api/v1/widget/accounts/{company}`
+  → JSON including the company name for free, a validation signal Lever/Ashby lack.
+  **`SPEC.md` §4 already rejects Workable but explicitly invites revisiting "against a
+  measured `unsupported_ats:{name}` distribution, never on principle" — this count is that
+  measurement**, not a new proposal.
+- **Personio (42) — weaker than the count suggests.** SPEC's "XML-only" characterization
+  looks stale: the documented `/xml` path returned a client-rendered Next.js HTML shell on
+  one live company and a 404 on another. Flagged rather than trusted either way — needs a
+  fresh sample before anyone builds against it.
+- **Breezy HR (34) — confirmed clean and rich:** `GET {company}.breezy.hr/json` → JSON with
+  structured `location.is_remote` and a `salary` field, comparable richness to Ashby.
+- **Workday (30) — confirmed the CxS API works structurally as `SPEC.md` §4 already
+  describes.** `POST {tenant}.wd1.myworkdayjobs.com/wday/cxs/{tenant}/{site}/jobs` returned
+  clean JSON on one live tenant (`rmi.org`'s `rockymountain`), no bot challenge encountered
+  this time — `postedOn` is a relative string only, confirming §4's "needs a second request
+  per job for a date" concern. One clean test doesn't override §4's existing "Backlog
+  only" verdict, which is about reliability at polling scale, not endpoint existence.
+
+### Decisions made this session
+- Held off on building any adapter — this is explicitly backlog/reference work for a later
+  phase per the user's framing, not implementation.
+- Did not touch or attempt to commit `iteration6_ats_mapping_spike.py` mid-session when it
+  showed as locally modified — a concurrent session was actively editing it live (a
+  User-Agent fix: `Chrome/120` was drawing false 403s from WAFs on some domains, silently
+  indistinguishable from `no_careers_page`, ~4% of all failures). Waited for it to settle
+  and confirmed via `git log`/`git diff` that it had been committed elsewhere before
+  touching anything in that file's vicinity again.
+
+### A second concurrent-session discovery, mid-session
+- **A real bug in iteration 6's own cascade got found and fixed by the other concurrent
+  session** (`93feb78`, co-authored by Opus 5/1M context), before this session touched the
+  file further: `classify_and_map` accepted a careers-page-scraped token as `verified`
+  without ever calling the provider API to confirm the board actually resolves — exactly
+  the "verified-from-careers-page-alone... worth a second look" item this session's own
+  earlier entry flagged as unresolved. Found by iteration 7 fetching all 584 mapped boards
+  live: 30 dead tokens, **100% from stage 3 (careers-page regex), 0% from stage 1** (which
+  already called the provider API). Fixed by adding that same live-resolution check to
+  stage 3, demoting unresolvable tokens to `weak_only` rather than leaving them silently
+  `verified`. Correctly kept the `voltacharging.com` → Lever `joltcharge` rebrand case as
+  legitimate (name mismatch recorded, not disqualifying) rather than over-correcting.
+  **Mapped count: 584 → 554 (405 verified, 149 probable).** The `unsupported_ats` tally
+  above is unaffected — the fix only touched the confidence bucket.
+- **A broader ATS catalog appeared, also mid-session:** `spikes/ats_platform_hosts.csv`, a
+  host-pattern registry covering far more platforms than this session measured (Teamtailor,
+  Gem, JazzHR, ADP, UKG, Dayforce, iCIMS, Jobvite, Taleo, SuccessFactors, Paylocity,
+  Pinpoint, Homerun, Join, Softgarden, HeyJobs, Factorial, HiBob, and more), each tagged
+  `supported`/`candidate`/`rejected`/`deferred`/`unbuilt`/`not-an-ats` with a `SPEC.md`
+  cross-reference. **Complementary to this session's backlog doc, not a duplicate** — it
+  has breadth (many more platforms, no counts, most unresearched), this session's has depth
+  (real measured counts and confirmed live endpoint shapes, but only for platforms
+  `iteration6_ats_mapping_spike.py`'s detection regex already looks for).
+
+### Deviations from SPEC
+None committed this session — the Personio/Workday/Workable findings are recorded as
+backlog input, not as `SPEC.md` edits, per the user's explicit "later phase" framing.
+
+### Criteria checked
+None — pre-M2 spike/backlog work, no `CRITERIA.md` items apply yet.
+
+### Least confident about
+- **This session's `unsupported_ats_tally.csv` is an undercount relative to the broader
+  `ats_platform_hosts.csv` catalog** — it only reflects platforms `iteration6`'s detection
+  regex already checks for (13 of them), not the ~20 additional ones the other session's
+  catalog now names. A truly comprehensive tally needs detection expanded to match that
+  broader list before the counts mean "this is everything," not just "this is what we
+  happened to look for."
+- Personio's live-checked sample was 2 companies. Not enough to overturn or confirm
+  SPEC's existing XML-only characterization either way.
+- Whether `ats_platform_hosts.csv` and `ats_integration_backlog.md` should eventually merge
+  into one artifact, or stay separate (catalog vs. measured-and-verified backlog) — not
+  decided, flagging for whoever next touches either file.
+
+### Next session
+- Regenerate `unsupported_ats_tally.csv` after any further iteration 6 re-runs (the
+  cascade fix above may shift companies between buckets beyond just the confidence field).
+- Consider expanding `iteration6_ats_mapping_spike.py`'s `OTHER_ATS_DOMAINS` detection to
+  match `ats_platform_hosts.csv`'s broader catalog, so the measured tally actually covers
+  what the catalog claims to track.
+- Personio needs a fresh, larger live sample before its backlog entry can be trusted either
+  direction.
