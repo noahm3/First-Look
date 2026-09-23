@@ -1,0 +1,3752 @@
+{
+ "sampled": 250,
+ "fetched_ok": 250,
+ "pathways": {
+  "third-party host referenced": 231,
+  "nothing job-like in raw HTML (likely JS-rendered)": 6,
+  "mailto only": 4,
+  "JobPosting structured data on own site": 4,
+  "wordpress job plugin": 3,
+  "own-site apply links, no third party": 2
+ },
+ "hosts": {
+  "api.w.org": [
+   "2swater.com",
+   "achatespower.com",
+   "ai-media.tv",
+   "aircarbon.co",
+   "aleph-farms.com",
+   "aquisense.com",
+   "arcticar.com",
+   "arize.com",
+   "autounify.com",
+   "axoni.com",
+   "azitrainc.com",
+   "bluerivertechnology.com",
+   "bus.com",
+   "c-motive.com",
+   "c2a-sec.com",
+   "cbwebsitedesign.co.uk",
+   "cleanscapes.com",
+   "cleantechnica.com",
+   "directly.com",
+   "documentcrunch.com",
+   "edgezero.co",
+   "elementalmachines.com",
+   "energyimpactpartners.com",
+   "energymonitor.ai",
+   "fairbrics.co",
+   "fermataenergy.com",
+   "fieldin.com",
+   "focalpointpositioning.com",
+   "fortephest.com",
+   "gandeeva.com",
+   "gobrightside.com",
+   "greatriverhydro.com",
+   "groundworkbioag.com",
+   "h2oinnovation.com",
+   "handle.com",
+   "hstsolar.com",
+   "imagindairy.com",
+   "intramotev.com",
+   "inviarobotics.com",
+   "ipeace.com",
+   "l-charge.net",
+   "librestream.com",
+   "loftdynamics.com",
+   "lrienergysolutions.com",
+   "makemydayapp.com",
+   "nps.ai",
+   "ona-therapeutics.com",
+   "opentrons.com",
+   "rayleighsolartech.com",
+   "recurve.com",
+   "resurety.com",
+   "ride1up.com",
+   "rightbound.com",
+   "rubedolife.com",
+   "signifyd.com",
+   "smartwires.com",
+   "south8.com",
+   "statnews.com",
+   "stem.com",
+   "swimlane.com",
+   "tenaska.com",
+   "texpowerev.com",
+   "therobotreport.com",
+   "travertinetech.com",
+   "truckitin.com",
+   "trucknet.io",
+   "upstream.auto",
+   "vecnarobotics.com",
+   "venturecapitaljournal.com",
+   "verdagy.com",
+   "zdnet.com",
+   "zededa.com"
+  ],
+  "yoast.com": [
+   "achatespower.com",
+   "ai-media.tv",
+   "aleph-farms.com",
+   "aquasec.com",
+   "aquisense.com",
+   "arcticar.com",
+   "arize.com",
+   "axoni.com",
+   "azitrainc.com",
+   "bluerivertechnology.com",
+   "bus.com",
+   "c-motive.com",
+   "c2a-sec.com",
+   "c2fo.com",
+   "cleanscapes.com",
+   "cleantechnica.com",
+   "documentcrunch.com",
+   "edgezero.co",
+   "elementalmachines.com",
+   "energyimpactpartners.com",
+   "energymonitor.ai",
+   "fieldin.com",
+   "gandeeva.com",
+   "gobrightside.com",
+   "greatriverhydro.com",
+   "groundworkbioag.com",
+   "h2oinnovation.com",
+   "hstsolar.com",
+   "imagindairy.com",
+   "intramotev.com",
+   "inviarobotics.com",
+   "ipeace.com",
+   "librestream.com",
+   "loftdynamics.com",
+   "lrienergysolutions.com",
+   "nps.ai",
+   "ona-therapeutics.com",
+   "rayleighsolartech.com",
+   "recurve.com",
+   "resurety.com",
+   "ride1up.com",
+   "rightbound.com",
+   "rubedolife.com",
+   "smartwires.com",
+   "statnews.com",
+   "swiftcomply.com",
+   "swimlane.com",
+   "tenaska.com",
+   "therobotreport.com",
+   "travertinetech.com",
+   "truckitin.com",
+   "upstream.auto",
+   "vecnarobotics.com",
+   "venturecapitaljournal.com",
+   "verdagy.com",
+   "zededa.com"
+  ],
+  "s.w.org": [
+   "2swater.com",
+   "achatespower.com",
+   "ai-media.tv",
+   "aircarbon.co",
+   "aquisense.com",
+   "autounify.com",
+   "azitrainc.com",
+   "bluerivertechnology.com",
+   "bus.com",
+   "c2a-sec.com",
+   "cleanscapes.com",
+   "cleantechnica.com",
+   "directly.com",
+   "edgezero.co",
+   "fairbrics.co",
+   "fermataenergy.com",
+   "gandeeva.com",
+   "gobrightside.com",
+   "greatriverhydro.com",
+   "h2-view.com",
+   "h2oinnovation.com",
+   "intramotev.com",
+   "l-charge.net",
+   "lrienergysolutions.com",
+   "makemydayapp.com",
+   "ona-therapeutics.com",
+   "opentrons.com",
+   "ride1up.com",
+   "rightbound.com",
+   "rubedolife.com",
+   "smartwires.com",
+   "south8.com",
+   "statnews.com",
+   "stem.com",
+   "texpowerev.com",
+   "therobotreport.com",
+   "truckitin.com",
+   "trucknet.io",
+   "vecnarobotics.com",
+   "venturecapitaljournal.com",
+   "verdagy.com",
+   "zededa.com"
+  ],
+  "gmpg.org": [
+   "2swater.com",
+   "achatespower.com",
+   "axoni.com",
+   "bluerivertechnology.com",
+   "c2a-sec.com",
+   "c2fo.com",
+   "cbwebsitedesign.co.uk",
+   "cleanscapes.com",
+   "cleantechnica.com",
+   "clients.alterdomus.com",
+   "directly.com",
+   "documentcrunch.com",
+   "energymonitor.ai",
+   "fairbrics.co",
+   "gandeeva.com",
+   "gobrightside.com",
+   "hstsolar.com",
+   "hyro.ai",
+   "ipeace.com",
+   "makemydayapp.com",
+   "ona-therapeutics.com",
+   "ride1up.com",
+   "rightbound.com",
+   "rubedolife.com",
+   "signifyd.com",
+   "smartwires.com",
+   "south8.com",
+   "statnews.com",
+   "stem.com",
+   "swiftcomply.com",
+   "texpowerev.com",
+   "trucknet.io",
+   "upstream.auto",
+   "vecnarobotics.com",
+   "verdagy.com",
+   "zdnet.com",
+   "zededa.com"
+  ],
+  "prod.website-files.com": [
+   "120water.com",
+   "anyword.com",
+   "app.emergent.sh",
+   "aptatek.com",
+   "augustrobotics.com",
+   "aurigaspace.com",
+   "beekeeper.io",
+   "bioptimus.com",
+   "deice.com",
+   "flok.health",
+   "fooda.com",
+   "gorevel.com",
+   "goshippo.com",
+   "hadrian.io",
+   "harmonicdiscovery.com",
+   "mitico.tech",
+   "mobiusmaterials.com",
+   "re-twin.energy",
+   "recogni.com",
+   "scalvy.com",
+   "sirona.tech",
+   "studiopaloalto.com",
+   "sungage.com",
+   "syntheticdesignlab.com",
+   "talentry.com",
+   "tive.com",
+   "unicornb.io",
+   "unravelcarbon.com"
+  ],
+  "snap.licdn.com": [
+   "bdc.ca",
+   "cleanscapes.com",
+   "conduktor.io",
+   "edgezero.co",
+   "fairing.co",
+   "h2-view.com",
+   "hdata.us",
+   "hyro.ai",
+   "indianchemicalnews.com",
+   "inviarobotics.com",
+   "mintz.com",
+   "republic.co",
+   "rightbound.com",
+   "sirona.tech",
+   "texpowerev.com",
+   "therobotreport.com",
+   "tulu.io",
+   "upstream.tech",
+   "workmarket.com"
+  ],
+  "ogp.me": [
+   "aircarbon.co",
+   "axoni.com",
+   "chevron.com",
+   "commission.europa.eu",
+   "fermataenergy.com",
+   "greentechmedia.com",
+   "gsa.gov",
+   "hyro.ai",
+   "librestream.com",
+   "makemydayapp.com",
+   "mintz.com",
+   "newschoolfoods.co",
+   "nps.ai",
+   "south8.com",
+   "tenaska.com",
+   "workmarket.com",
+   "zdnet.com"
+  ],
+  "code.jquery.com": [
+   "cleanscapes.com",
+   "deice.com",
+   "desktopmetal.com",
+   "greentechmedia.com",
+   "indianchemicalnews.com",
+   "kara5.com",
+   "magna.com",
+   "myavista.com",
+   "myurbanjungle.com",
+   "nwitimes.com",
+   "ona-therapeutics.com",
+   "travertinetech.com",
+   "verdagy.com"
+  ],
+  "www.clarity.ms": [
+   "aquisense.com",
+   "arcticar.com",
+   "avvo.com",
+   "batterysmart.in",
+   "drinkolipop.com",
+   "hyro.ai",
+   "indianchemicalnews.com",
+   "pickaxe.co",
+   "re-twin.energy",
+   "unicornb.io",
+   "vale.com",
+   "wearewarp.com",
+   "workmarket.com"
+  ],
+  "cdn.cookielaw.org": [
+   "beekeeper.io",
+   "conveycomputer.com",
+   "greentechmedia.com",
+   "mintz.com",
+   "opentrons.com",
+   "signifyd.com",
+   "statnews.com",
+   "tive.com",
+   "vale.com",
+   "vastdata.com",
+   "workmarket.com",
+   "zdnet.com"
+  ],
+  "ats.rippling.com": [
+   "aalo.com",
+   "boomsupersonic.com",
+   "formant.io",
+   "foundationalloy.com",
+   "gotenna.com",
+   "pearlcertification.com",
+   "raptormaps.com",
+   "stem.com",
+   "swiftcomply.com",
+   "tive.com",
+   "zededa.com"
+  ],
+  "opengraphprotocol.org": [
+   "aquatic-labs.com",
+   "c16bio.com",
+   "cleverciti.com",
+   "coast4c.com",
+   "dimension.bio",
+   "echiontech.com",
+   "lakril.com",
+   "propagateventures.com",
+   "simplifyber.com",
+   "tranquildata.com"
+  ],
+  "definitions.sqspcdn.com": [
+   "aquatic-labs.com",
+   "c16bio.com",
+   "cleverciti.com",
+   "coast4c.com",
+   "dimension.bio",
+   "echiontech.com",
+   "lakril.com",
+   "propagateventures.com",
+   "simplifyber.com",
+   "tranquildata.com"
+  ],
+  "cdn-cookieyes.com": [
+   "documentcrunch.com",
+   "elementalmachines.com",
+   "focalpointpositioning.com",
+   "h2oinnovation.com",
+   "hyro.ai",
+   "papayadash.com",
+   "smartwires.com",
+   "south8.com",
+   "sungage.com",
+   "verdagy.com"
+  ],
+  "static-assets.ripplingcdn.com": [
+   "aalo.com",
+   "documentcrunch.com",
+   "foundationalloy.com",
+   "gobrightside.com",
+   "handle.com",
+   "pearlcertification.com",
+   "resurety.com",
+   "swiftcomply.com",
+   "swimlane.com"
+  ],
+  "stats.wp.com": [
+   "aircarbon.co",
+   "autounify.com",
+   "cleantechnica.com",
+   "hstsolar.com",
+   "intramotev.com",
+   "ona-therapeutics.com",
+   "recurve.com",
+   "texpowerev.com",
+   "zdnet.com"
+  ],
+  "wp-rocket.me": [
+   "aleph-farms.com",
+   "aquasec.com",
+   "arize.com",
+   "c2fo.com",
+   "cbwebsitedesign.co.uk",
+   "elementalmachines.com",
+   "librestream.com",
+   "swiftcomply.com",
+   "upstream.auto"
+  ],
+  "framerusercontent.com": [
+   "fairing.co",
+   "formant.io",
+   "hupo.co",
+   "papayadash.com",
+   "qsee.io",
+   "raptormaps.com",
+   "reditus.space",
+   "tulu.io",
+   "waterplan.com"
+  ],
+  "framer.com": [
+   "fairing.co",
+   "formant.io",
+   "hupo.co",
+   "papayadash.com",
+   "qsee.io",
+   "raptormaps.com",
+   "reditus.space",
+   "tulu.io",
+   "waterplan.com"
+  ],
+  "events.framer.com": [
+   "fairing.co",
+   "formant.io",
+   "hupo.co",
+   "papayadash.com",
+   "qsee.io",
+   "raptormaps.com",
+   "reditus.space",
+   "tulu.io",
+   "waterplan.com"
+  ],
+  "consent.cookiebot.com": [
+   "amogy.co",
+   "augmentcode.com",
+   "sewerai.com",
+   "upstream.auto",
+   "vecnarobotics.com",
+   "venturecapitaljournal.com",
+   "waterplan.com"
+  ],
+  "browsehappy.com": [
+   "battery.com",
+   "careers.sky-vc.com",
+   "imagindairy.com",
+   "mcj.vc",
+   "myavista.com",
+   "quantonation.com",
+   "runtimewire.com"
+  ],
+  "app.goo.gl": [
+   "hstsolar.com",
+   "inviarobotics.com",
+   "mobiusmaterials.com",
+   "pvcase.com",
+   "ride1up.com",
+   "travertinetech.com"
+  ],
+  "webflow.com": [
+   "120water.com",
+   "augustrobotics.com",
+   "aurigaspace.com",
+   "mobiusmaterials.com",
+   "re-twin.energy",
+   "syntheticdesignlab.com"
+  ],
+  "cdn.sanity.io": [
+   "augmentcode.com",
+   "chain.io",
+   "graphika.com",
+   "ottometric.com",
+   "sewerai.com",
+   "xealenergy.com"
+  ],
+  "static.parastorage.com": [
+   "bios.health",
+   "floodmapp.com",
+   "parallelcarbon.com",
+   "raisegreen.com",
+   "sunbearbiofuture.com"
+  ],
+  "www.monsterinsights.com": [
+   "aircarbon.co",
+   "makemydayapp.com",
+   "ona-therapeutics.com",
+   "tenaska.com",
+   "texpowerev.com"
+  ],
+  "s0.wp.com": [
+   "aircarbon.co",
+   "autounify.com",
+   "energicitycorp.com",
+   "recurve.com",
+   "texpowerev.com"
+  ],
+  "media.licdn.com": [
+   "calyxglobal.com",
+   "covercress.com",
+   "feonenergy.com",
+   "milvusadvanced.co.uk",
+   "mundimoto.com"
+  ],
+  "static.licdn.com": [
+   "calyxglobal.com",
+   "covercress.com",
+   "feonenergy.com",
+   "milvusadvanced.co.uk",
+   "mundimoto.com"
+  ],
+  "js.hsforms.net": [
+   "120water.com",
+   "amogy.co",
+   "c2fo.com",
+   "desktopmetal.com",
+   "resurety.com"
+  ],
+  "www.g2.com": [
+   "aquasec.com",
+   "conduktor.io",
+   "factwise.io",
+   "pvcase.com",
+   "wearewarp.com"
+  ],
+  "i.posthog.com": [
+   "airform.space",
+   "app.emergent.sh",
+   "item.app",
+   "mobiusmaterials.com",
+   "upstream.tech"
+  ],
+  "custom.transaction": [
+   "auar.io",
+   "copecflux.cl",
+   "energymonitor.ai",
+   "nwitimes.com",
+   "vecnarobotics.com"
+  ],
+  "open.spotify.com": [
+   "chevron.com",
+   "cleantechnica.com",
+   "mcj.vc",
+   "runtimewire.com",
+   "therobotreport.com"
+  ],
+  "wiki.lexisnexis.com": [
+   "gobrightside.com",
+   "stem.com",
+   "swiftcomply.com",
+   "zededa.com"
+  ],
+  "siteassets.parastorage.com": [
+   "bios.health",
+   "floodmapp.com",
+   "parallelcarbon.com",
+   "raisegreen.com"
+  ],
+  "www.amazon.com": [
+   "cleantechnica.com",
+   "drinkolipop.com",
+   "pillpack.com",
+   "ring.com"
+  ],
+  "screenshots.teamtailor-cdn.com": [
+   "getnexar.com",
+   "hadrian.io",
+   "marleyspoon.com",
+   "revalue.earth"
+  ],
+  "images.teamtailor-cdn.com": [
+   "getnexar.com",
+   "hadrian.io",
+   "marleyspoon.com",
+   "revalue.earth"
+  ],
+  "assets-aws.teamtailor-cdn.com": [
+   "getnexar.com",
+   "hadrian.io",
+   "marleyspoon.com",
+   "revalue.earth"
+  ],
+  "www.teamtailor.com": [
+   "getnexar.com",
+   "hadrian.io",
+   "marleyspoon.com",
+   "revalue.earth"
+  ],
+  "bsky.app": [
+   "fermataenergy.com",
+   "graphika.com",
+   "greentechmedia.com",
+   "lakril.com"
+  ],
+  "lnkd.in": [
+   "covercress.com",
+   "feonenergy.com",
+   "milvusadvanced.co.uk",
+   "mundimoto.com"
+  ],
+  "sc.lfeeder.com": [
+   "echiontech.com",
+   "indianchemicalnews.com",
+   "lrienergysolutions.com",
+   "sirona.tech"
+  ],
+  "cdn.intellimize.co": [
+   "120water.com",
+   "beekeeper.io",
+   "sentinelone.com",
+   "swimlane.com"
+  ],
+  "workforcenow.adp.com": [
+   "120water.com",
+   "achatespower.com",
+   "h2oinnovation.com",
+   "lrienergysolutions.com"
+  ],
+  "cmp.osano.com": [
+   "bus.com",
+   "nwitimes.com",
+   "republic.co",
+   "swimlane.com"
+  ],
+  "consider.com": [
+   "battery.com",
+   "careers.sky-vc.com",
+   "mcj.vc",
+   "quantonation.com"
+  ],
+  "product.consider.com": [
+   "battery.com",
+   "careers.sky-vc.com",
+   "mcj.vc",
+   "quantonation.com"
+  ],
+  "acsbapp.com": [
+   "aleph-farms.com",
+   "amogy.co",
+   "hyro.ai",
+   "lrienergysolutions.com"
+  ],
+  "rankmath.com": [
+   "hyro.ai",
+   "opentrons.com",
+   "south8.com",
+   "zdnet.com"
+  ],
+  "www.glassdoor.com": [
+   "directly.com",
+   "hadrian.io",
+   "signifyd.com",
+   "workmarket.com"
+  ],
+  "605a7baede844d278b89dc95ae0a9123": [
+   "floodmapp.com",
+   "parallelcarbon.com",
+   "raisegreen.com"
+  ],
+  "boards-api.greenhouse.io": [
+   "bioptimus.com",
+   "gorevel.com",
+   "recogni.com"
+  ],
+  "forms.gle": [
+   "circularise.com",
+   "naturesprinciples.eu",
+   "rightbound.com"
+  ],
+  "js.hs-banner.com": [
+   "ai-media.tv",
+   "c2fo.com",
+   "hyro.ai"
+  ],
+  "js.hs-analytics.net": [
+   "ai-media.tv",
+   "c2fo.com",
+   "hyro.ai"
+  ],
+  "hubs.ly": [
+   "ai-media.tv",
+   "sungage.com",
+   "swiftcomply.com"
+  ],
+  "rsms.me": [
+   "epana.bio",
+   "projectwren.com",
+   "radartx.bio"
+  ],
+  "api.intellimize.co": [
+   "120water.com",
+   "beekeeper.io",
+   "swimlane.com"
+  ],
+  "api.consentpro.com": [
+   "120water.com",
+   "flok.health",
+   "gorevel.com"
+  ],
+  "log.intellimize.co": [
+   "120water.com",
+   "beekeeper.io",
+   "swimlane.com"
+  ],
+  "cdn.datatables.net": [
+   "greatriverhydro.com",
+   "gsa.gov",
+   "ride1up.com"
+  ],
+  "static.addtoany.com": [
+   "ride1up.com",
+   "stem.com",
+   "therobotreport.com"
+  ],
+  "www.threads.com": [
+   "chevron.com",
+   "magna.com",
+   "statnews.com"
+  ],
+  "cdn.vector.co": [
+   "fairing.co",
+   "fooda.com",
+   "raisegreen.com"
+  ],
+  "www.reddit.com": [
+   "duckduckgo.com",
+   "fooda.com",
+   "zdnet.com"
+  ],
+  "www.bugherd.com": [
+   "amogy.co",
+   "aurigaspace.com",
+   "ona-therapeutics.com"
+  ],
+  "908ccf35bffc4247823e66133cba73de": [
+   "aalo.com",
+   "foundationalloy.com",
+   "pearlcertification.com"
+  ],
+  "www.rippling.com": [
+   "aalo.com",
+   "foundationalloy.com",
+   "pearlcertification.com"
+  ],
+  "app.rippling.com": [
+   "aalo.com",
+   "foundationalloy.com",
+   "pearlcertification.com"
+  ],
+  "cdn.transcend.io": [
+   "aalo.com",
+   "foundationalloy.com",
+   "pearlcertification.com"
+  ],
+  "us1.rippling.com": [
+   "aalo.com",
+   "foundationalloy.com",
+   "pearlcertification.com"
+  ],
+  "rippling.com": [
+   "aalo.com",
+   "foundationalloy.com",
+   "pearlcertification.com"
+  ],
+  "tailwindcss.com": [
+   "chain.io",
+   "foliophotonics.com",
+   "smartwires.com"
+  ],
+  "www.fastcompany.com": [
+   "aleph-farms.com",
+   "waterplan.com",
+   "wearewarp.com"
+  ],
+  "www.elegantthemes.com": [
+   "c-motive.com",
+   "rayleighsolartech.com",
+   "recurve.com"
+  ],
+  "www.gnu.org": [
+   "c-motive.com",
+   "rayleighsolartech.com",
+   "recurve.com"
+  ],
+  "opensource.org": [
+   "c-motive.com",
+   "rayleighsolartech.com",
+   "recurve.com"
+  ],
+  "daneden.me": [
+   "c-motive.com",
+   "rayleighsolartech.com",
+   "recurve.com"
+  ],
+  "cookiedatabase.org": [
+   "ai-media.tv",
+   "gandeeva.com",
+   "librestream.com"
+  ],
+  "wprediscache.com": [
+   "h2-view.com",
+   "imagindairy.com",
+   "trucknet.io"
+  ],
+  "i0.wp.com": [
+   "aircarbon.co",
+   "ona-therapeutics.com",
+   "recurve.com"
+  ],
+  "wp.me": [
+   "autounify.com",
+   "energicitycorp.com",
+   "recurve.com"
+  ],
+  "angel.co": [
+   "directly.com",
+   "republic.co",
+   "tranquildata.com"
+  ],
+  "www.ycombinator.com": [
+   "autopallet.bot",
+   "getzep.com",
+   "harmonicdiscovery.com"
+  ],
+  "dms.licdn.com": [
+   "calyxglobal.com",
+   "covercress.com",
+   "mundimoto.com"
+  ],
+  "images.ctfassets.net": [
+   "skyfi.com",
+   "vastdata.com"
+  ],
+  "www.sdcexec.com": [
+   "goshippo.com",
+   "wearewarp.com"
+  ],
+  "cdn.optimizely.com": [
+   "goshippo.com",
+   "greentechmedia.com"
+  ],
+  "en.wikipedia.org": [
+   "greentechmedia.com",
+   "pillpack.com"
+  ],
+  "www.aboutamazon.com": [
+   "pillpack.com",
+   "ring.com"
+  ],
+  "js.hscollectedforms.net": [
+   "ai-media.tv",
+   "c2fo.com"
+  ],
+  "js-na2.hs-banner.com": [
+   "arize.com",
+   "swiftcomply.com"
+  ],
+  "analytics.ahrefs.com": [
+   "arize.com",
+   "raptormaps.com"
+  ],
+  "localhost": [
+   "parallelcarbon.com",
+   "sirona.tech"
+  ],
+  "assets.apollo.io": [
+   "sirona.tech",
+   "unravelcarbon.com"
+  ],
+  "fast.wistia.com": [
+   "handle.com",
+   "sirona.tech"
+  ],
+  "s.adroll.com": [
+   "rideriver.com",
+   "zededa.com"
+  ],
+  "platform-api.sharethis.com": [
+   "indianchemicalnews.com",
+   "vecnarobotics.com"
+  ],
+  "js.qualified.com": [
+   "vastdata.com",
+   "vecnarobotics.com"
+  ],
+  "a.omappapi.com": [
+   "aircarbon.co",
+   "swimlane.com"
+  ],
+  "www.bcorporation.net": [
+   "drinkolipop.com",
+   "myurbanjungle.com"
+  ],
+  "www.energy.gov": [
+   "cleantechnica.com",
+   "verdagy.com"
+  ],
+  "shop.app": [
+   "drinkolipop.com",
+   "persephonebiosciences.com"
+  ],
+  "cdn.plyr.io": [
+   "drinkolipop.com",
+   "energymonitor.ai"
+  ],
+  "api.config-security.com": [
+   "cove.sg",
+   "drinkolipop.com"
+  ],
+  "conf.config-security.com": [
+   "cove.sg",
+   "drinkolipop.com"
+  ],
+  "share.hsforms.com": [
+   "opentrons.com",
+   "propagateventures.com"
+  ],
+  "plausible.io": [
+   "aurigaspace.com",
+   "sungage.com"
+  ],
+  "www.epa.gov": [
+   "lrienergysolutions.com",
+   "wearewarp.com"
+  ],
+  "www.comeet.co": [
+   "aquasec.com",
+   "fieldin.com"
+  ],
+  "www.sipc.org": [
+   "covestor.com",
+   "republic.co"
+  ],
+  "glassdoor.co.uk": [
+   "echiontech.com",
+   "focalpointpositioning.com"
+  ],
+  "wpmudev.com": [
+   "c-motive.com",
+   "stem.com"
+  ],
+  "hb.wpmucdn.com": [
+   "ai-media.tv",
+   "c-motive.com"
+  ],
+  "analytics2.wpmudev.com": [
+   "ai-media.tv",
+   "c-motive.com"
+  ],
+  "analytics.wpmucdn.com": [
+   "ai-media.tv",
+   "c-motive.com"
+  ],
+  "prod-images.rippling.com": [
+   "aalo.com",
+   "pearlcertification.com"
+  ],
+  "static.hsappstatic.net": [
+   "mundi.io",
+   "rightbound.com"
+  ],
+  "wa.me": [
+   "mundi.io",
+   "trucknet.io"
+  ],
+  "api.whatsapp.com": [
+   "copecflux.cl",
+   "rideriver.com"
+  ],
+  "fonts-api.wp.com": [
+   "aircarbon.co",
+   "recurve.com"
+  ],
+  "c0.wp.com": [
+   "aircarbon.co",
+   "ona-therapeutics.com"
+  ],
+  "fonts.wp.com": [
+   "autounify.com",
+   "energicitycorp.com"
+  ],
+  "www.algolia.com": [
+   "ai-media.tv",
+   "opentrons.com"
+  ],
+  "js.hsadspixel.net": [
+   "ai-media.tv",
+   "hyro.ai"
+  ],
+  "api.hsforms.com": [
+   "energymonitor.ai",
+   "stem.com"
+  ],
+  "client-registry.mutinycdn.com": [
+   "opentrons.com",
+   "tive.com"
+  ],
+  "bzrcdn.openai.com": [
+   "pickaxe.co",
+   "tive.com"
+  ],
+  "app.teamtailor.com": [
+   "getnexar.com",
+   "revalue.earth"
+  ],
+  "flipboard.com": [
+   "statnews.com",
+   "zdnet.com"
+  ],
+  "www.trustpilot.com": [
+   "mobiusmaterials.com",
+   "sungage.com"
+  ],
+  "chatgpt.com": [
+   "augmentcode.com",
+   "synadia.com"
+  ],
+  "purl.org": [
+   "gsa.gov",
+   "therobotreport.com"
+  ],
+  "www.drupal.org": [
+   "commission.europa.eu",
+   "mintz.com"
+  ],
+  "bit.ly": [
+   "calyxglobal.com",
+   "vccircle.com"
+  ],
+  "jobs.gem.com": [
+   "doowii.io",
+   "prospermedical.com"
+  ],
+  "cdn.rollbar.com": [
+   "republic.co",
+   "sepiontechnologies.com"
+  ],
+  "discord.gg": [
+   "republic.co",
+   "sewerai.com"
+  ],
+  "www.recaptcha.net": [
+   "greentechmedia.com",
+   "sendgrid.com"
+  ],
+  "app.termly.io": [
+   "bandcamp.com",
+   "handle.com"
+  ],
+  "www.wikidata.org": [
+   "greentechmedia.com",
+   "wearewarp.com"
+  ],
+  "tracxn.com": [
+   "factwise.io",
+   "wearewarp.com"
+  ],
+  "goo.gl": [
+   "desktopmetal.com",
+   "sentinelone.com"
+  ],
+  "dev.visualwebsiteoptimizer.com": [
+   "arize.com",
+   "vastdata.com"
+  ],
+  "js.navattic.com": [
+   "fairing.co",
+   "vastdata.com"
+  ]
+ },
+ "per_company": [
+  {
+   "domain": "gobrightside.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "gmpg.org",
+    "s.w.org",
+    "static-assets.ripplingcdn.com",
+    "wiki.lexisnexis.com",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "skyfi.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn.contentful.com",
+    "decimalstudios.com",
+    "images.ctfassets.net"
+   ]
+  },
+  {
+   "domain": "commonfabric.com",
+   "pathway": "nothing job-like in raw HTML (likely JS-rendered)",
+   "hosts": []
+  },
+  {
+   "domain": "basquevolt.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "centinela.lefebvre.es"
+   ]
+  },
+  {
+   "domain": "floodmapp.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "605a7baede844d278b89dc95ae0a9123",
+    "siteassets.parastorage.com",
+    "static.parastorage.com"
+   ]
+  },
+  {
+   "domain": "recogni.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "boards-api.greenhouse.io",
+    "cloud.ccm19.de",
+    "form-interface-6b7553.zapier.app",
+    "huggingface.co",
+    "prod.website-files.com",
+    "www.tensordyne.ai"
+   ]
+  },
+  {
+   "domain": "texpowerev.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "gmpg.org",
+    "library.elementor.com",
+    "s.w.org",
+    "s0.wp.com",
+    "snap.licdn.com",
+    "stats.wp.com",
+    "www.monsterinsights.com"
+   ]
+  },
+  {
+   "domain": "goshippo.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.rippling.com",
+    "cdn.optimizely.com",
+    "consent-sync.shippodev.com",
+    "finance.yahoo.com",
+    "insight.adsrvr.org",
+    "prod.website-files.com",
+    "shippodev.webflow.io",
+    "stratechery.com"
+   ]
+  },
+  {
+   "domain": "fairbrics.co",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "gmpg.org",
+    "s.w.org"
+   ]
+  },
+  {
+   "domain": "amret.com.kh",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "bank.sinopac.com",
+    "closocambodia.com",
+    "t.me",
+    "www.giantbrother.com",
+    "www.giantfocus.com",
+    "www.maqsu.com",
+    "www.sinopac.com"
+   ]
+  },
+  {
+   "domain": "pillpack.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "amazon.co.jp",
+    "amazon.co.za",
+    "amazon.com.br",
+    "amazon.com.mx",
+    "en.wikipedia.org",
+    "hiring.amazon.ca",
+    "hiring.amazon.com",
+    "jobs.amazon.eg"
+   ]
+  },
+  {
+   "domain": "naturesprinciples.eu",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "bluecity.nl",
+    "forms.gle",
+    "groenechemie.nl",
+    "ispt.eu",
+    "royalswinkels.com",
+    "tech-transfer.nl",
+    "tekkoo.nl",
+    "www.basiliskconcrete.com"
+   ]
+  },
+  {
+   "domain": "travertinetech.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "app.goo.gl",
+    "code.jquery.com",
+    "jobs.lever.co",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "marleyspoon.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "assets-aws.teamtailor-cdn.com",
+    "images.teamtailor-cdn.com",
+    "screenshots.teamtailor-cdn.com",
+    "www.teamtailor.com"
+   ]
+  },
+  {
+   "domain": "lakril.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "bsky.app",
+    "cen.acs.org",
+    "definitions.sqspcdn.com",
+    "opengraphprotocol.org"
+   ]
+  },
+  {
+   "domain": "zhipin.com",
+   "pathway": "nothing job-like in raw HTML (likely JS-rendered)",
+   "hosts": []
+  },
+  {
+   "domain": "milvusadvanced.co.uk",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "lnkd.in",
+    "media.licdn.com",
+    "static.licdn.com",
+    "www.hacksummit.co"
+   ]
+  },
+  {
+   "domain": "c2fo.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "consent.trustarc.com",
+    "gmpg.org",
+    "jobs.dayforcehcm.com",
+    "js.hs-analytics.net",
+    "js.hs-banner.com",
+    "js.hscollectedforms.net",
+    "js.hsforms.net",
+    "layerslider.com"
+   ]
+  },
+  {
+   "domain": "swiftcomply.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.breadbutter.io",
+    "ats.rippling.com",
+    "cdn.breadbutter.io",
+    "gmpg.org",
+    "hubs.ly",
+    "js-na2.hs-banner.com",
+    "login.c3swift.com",
+    "static-assets.ripplingcdn.com"
+   ]
+  },
+  {
+   "domain": "unicornb.io",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "assets.website-files.com",
+    "prod.website-files.com",
+    "www.clarity.ms"
+   ]
+  },
+  {
+   "domain": "pvcase.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "app.goo.gl",
+    "jobs-widget.recruiteecdn.com",
+    "time.com",
+    "www.g2.com"
+   ]
+  },
+  {
+   "domain": "deice.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "code.jquery.com",
+    "prod.website-files.com"
+   ]
+  },
+  {
+   "domain": "c16bio.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "definitions.sqspcdn.com",
+    "gopalmless.com",
+    "opengraphprotocol.org"
+   ]
+  },
+  {
+   "domain": "scimplify.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "salesiq.zohopublic.in",
+    "script.superagi.com",
+    "www.webtraxs.com"
+   ]
+  },
+  {
+   "domain": "papayadash.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn-cookieyes.com",
+    "events.framer.com",
+    "framer.com",
+    "framerusercontent.com",
+    "share-eu1.hsforms.com"
+   ]
+  },
+  {
+   "domain": "dimension.bio",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "definitions.sqspcdn.com",
+    "opengraphprotocol.org"
+   ]
+  },
+  {
+   "domain": "raptormaps.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "analytics.ahrefs.com",
+    "app.framerstatic.com",
+    "ats.rippling.com",
+    "events.framer.com",
+    "framer.com",
+    "framerusercontent.com"
+   ]
+  },
+  {
+   "domain": "syntheticdesignlab.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "prod.website-files.com",
+    "webflow.com"
+   ]
+  },
+  {
+   "domain": "gistimpact.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "accounts.zoho.in",
+    "static.zohocdn.com"
+   ]
+  },
+  {
+   "domain": "epaylater.in",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "rbi.org.in"
+   ]
+  },
+  {
+   "domain": "koidra.ai",
+   "pathway": "mailto only",
+   "hosts": []
+  },
+  {
+   "domain": "qsee.io",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "events.framer.com",
+    "framer.com",
+    "framerusercontent.com"
+   ]
+  },
+  {
+   "domain": "sirona.tech",
+   "pathway": "JobPosting structured data on own site",
+   "hosts": [
+    "assets.apollo.io",
+    "fast.wistia.com",
+    "flinch77.com",
+    "localhost",
+    "prod.website-files.com",
+    "s2.adform.net",
+    "sc.lfeeder.com",
+    "snap.licdn.com"
+   ]
+  },
+  {
+   "domain": "elementalmachines.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "cdn-cookieyes.com",
+    "wp-rocket.me",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "item.app",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "amount-ice-79009593.figma.site",
+    "i.posthog.com",
+    "www.figma.com",
+    "www.workatastartup.com"
+   ]
+  },
+  {
+   "domain": "zededa.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "a.adroll.com",
+    "api.w.org",
+    "ats.rippling.com",
+    "gmpg.org",
+    "s.adroll.com",
+    "s.w.org",
+    "wiki.lexisnexis.com",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "vecnarobotics.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "consent.cookiebot.com",
+    "custom.transaction",
+    "gmpg.org",
+    "js.qualified.com",
+    "platform-api.sharethis.com",
+    "s.w.org",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "formant.io",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "ats.rippling.com",
+    "events.framer.com",
+    "framer.com",
+    "framerusercontent.com"
+   ]
+  },
+  {
+   "domain": "epana.bio",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "rsms.me"
+   ]
+  },
+  {
+   "domain": "120water.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "117925374.intellimizeio.com",
+    "api.consentpro.com",
+    "api.intellimize.co",
+    "cdn.intellimize.co",
+    "js.hsforms.net",
+    "log.intellimize.co",
+    "prod.website-files.com",
+    "webflow.com"
+   ]
+  },
+  {
+   "domain": "swimlane.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "117578738.intellimizeio.com",
+    "a.omappapi.com",
+    "api.intellimize.co",
+    "api.w.org",
+    "cdn.intellimize.co",
+    "cmp.osano.com",
+    "jscloud.net",
+    "log.intellimize.co"
+   ]
+  },
+  {
+   "domain": "myurbanjungle.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "app.welcometothejungle.com",
+    "code.jquery.com",
+    "communitytechaid.org.uk",
+    "deloitte.co.uk",
+    "gregsmyth.ghost.io",
+    "livingwage.org.uk",
+    "storage.ghost.io",
+    "www.bcorporation.net"
+   ]
+  },
+  {
+   "domain": "hupo.co",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "events.framer.com",
+    "framer.com",
+    "framerusercontent.com"
+   ]
+  },
+  {
+   "domain": "intramotev.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "careers.kula.ai",
+    "m0n.co",
+    "newindustrials.org",
+    "s.w.org",
+    "stats.wp.com",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "ride1up.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "app.goo.gl",
+    "cdn.attn.tv",
+    "cdn.datatables.net",
+    "chat-widget.withremark.com",
+    "gmpg.org",
+    "js.braintreegateway.com",
+    "s.w.org"
+   ]
+  },
+  {
+   "domain": "energyimpactpartners.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "a.run.app",
+    "api.w.org",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "verdagy.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "cdn-cookieyes.com",
+    "code.jquery.com",
+    "gmpg.org",
+    "host",
+    "s.w.org",
+    "www.energy.gov",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "drinkolipop.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api-cdn.videowise.com",
+    "api.beamimpact.com",
+    "api.config-security.com",
+    "assets.videowise.com",
+    "cdn.intelligems.io",
+    "cdn.plyr.io",
+    "cdn.skio.com",
+    "cdn.videowise.com"
+   ]
+  },
+  {
+   "domain": "achatespower.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "gmpg.org",
+    "s.w.org",
+    "workforcenow.adp.com",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "propagateventures.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn.outfunnel.com",
+    "definitions.sqspcdn.com",
+    "opengraphprotocol.org",
+    "share.hsforms.com",
+    "store.propagateag.com",
+    "www.propagateag.com"
+   ]
+  },
+  {
+   "domain": "magna.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "ajax.aspnetcdn.com",
+    "animejs.com",
+    "code.jquery.com",
+    "cookie-cdn.cookiepro.com",
+    "ib.adnxs.com",
+    "wd3.myworkdaysite.com",
+    "www.fonts.com",
+    "www.glassdoor.ca"
+   ]
+  },
+  {
+   "domain": "cbwebsitedesign.co.uk",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "clutch.co",
+    "creativeweb.co.uk",
+    "gmpg.org",
+    "images.dmca.com",
+    "wp-rocket.me"
+   ]
+  },
+  {
+   "domain": "oracomputing.com",
+   "pathway": "mailto only",
+   "hosts": []
+  },
+  {
+   "domain": "battery.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "browsehappy.com",
+    "consider.com",
+    "product.consider.com"
+   ]
+  },
+  {
+   "domain": "fooda.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn.vector.co",
+    "home.foodsby.com",
+    "prod.website-files.com",
+    "www.reddit.com"
+   ]
+  },
+  {
+   "domain": "aurigaspace.com",
+   "pathway": "JobPosting structured data on own site",
+   "hosts": [
+    "cdn.digitaloceanspaces.com",
+    "osmo.supply",
+    "plausible.io",
+    "prod.website-files.com",
+    "tonik.com",
+    "webflow.com",
+    "www.bugherd.com"
+   ]
+  },
+  {
+   "domain": "foundationalloy.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "908ccf35bffc4247823e66133cba73de",
+    "app.rippling.com",
+    "ats.rippling.com",
+    "cdn.transcend.io",
+    "rippling.com",
+    "secured-assets.ripplingcdn.com",
+    "static-assets.ripplingcdn.com",
+    "us1.rippling.com"
+   ]
+  },
+  {
+   "domain": "foliophotonics.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "tailwindcss.com"
+   ]
+  },
+  {
+   "domain": "conveycomputer.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "assets.micron.com",
+    "careers.micron.com",
+    "cdn-app.pathfactory.com",
+    "cdn.appdynamics.com",
+    "cdn.cookielaw.org",
+    "dmassets.micron.com",
+    "in.micron.com",
+    "investors.micron.com"
+   ]
+  },
+  {
+   "domain": "lrienergysolutions.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "acsbapp.com",
+    "api.w.org",
+    "envocore.com",
+    "members.naesco.org",
+    "ncqlp.org",
+    "s.w.org",
+    "sc.lfeeder.com",
+    "workforcenow.adp.com"
+   ]
+  },
+  {
+   "domain": "aquasec.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.concord.tech",
+    "wp-rocket.me",
+    "www.activestate.com",
+    "www.comeet.co",
+    "www.g2.com",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "covestor.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "account.interactiveadvisors.com",
+    "adviserinfo.sec.gov",
+    "cdn.interactiveadvisors.com",
+    "interactiveadvisors.com",
+    "investing.interactiveadvisors.com",
+    "www.sipc.org"
+   ]
+  },
+  {
+   "domain": "freycommodities.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "createdbyblack.com",
+    "freycom.wpenginepowered.com"
+   ]
+  },
+  {
+   "domain": "focalpointpositioning.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "cdn-cookieyes.com",
+    "glassdoor.co.uk"
+   ]
+  },
+  {
+   "domain": "waterplan.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "consent.cookiebot.com",
+    "events.framer.com",
+    "framer.com",
+    "framerusercontent.com",
+    "hbr.org",
+    "www.fastcompany.com",
+    "www.weforum.org"
+   ]
+  },
+  {
+   "domain": "c-motive.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "analytics.wpmucdn.com",
+    "analytics2.wpmudev.com",
+    "api.w.org",
+    "b3802314.assetcdn.net",
+    "daneden.me",
+    "hb.wpmucdn.com",
+    "opensource.org",
+    "wpmudev.com"
+   ]
+  },
+  {
+   "domain": "registry.blockmarktech.com",
+   "pathway": "nothing job-like in raw HTML (likely JS-rendered)",
+   "hosts": []
+  },
+  {
+   "domain": "arcticar.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "www.clarity.ms",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "scalvy.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "prod.website-files.com"
+   ]
+  },
+  {
+   "domain": "pearlcertification.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "908ccf35bffc4247823e66133cba73de",
+    "app.rippling.com",
+    "ats.rippling.com",
+    "cdn.transcend.io",
+    "prod-images.rippling.com",
+    "rippling.com",
+    "static-assets.ripplingcdn.com",
+    "us1.rippling.com"
+   ]
+  },
+  {
+   "domain": "mundi.io",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.hubapi.com",
+    "cdn.mouseflow.com",
+    "forms.hsforms.com",
+    "n2.mouseflow.com",
+    "static.hsappstatic.net",
+    "wa.me"
+   ]
+  },
+  {
+   "domain": "lp.eqtgroup.com",
+   "pathway": "mailto only",
+   "hosts": []
+  },
+  {
+   "domain": "huspy.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "a.storyblok.com",
+    "revolutpeople.com"
+   ]
+  },
+  {
+   "domain": "gandeeva.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "bkwpartners.com",
+    "cookiedatabase.org",
+    "gmpg.org",
+    "s.w.org",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "copecflux.cl",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.whatsapp.com",
+    "custom.transaction",
+    "fluxsolar.cl",
+    "fluxsolar.hiringroom.com",
+    "hiringroom.com",
+    "rawgit.com"
+   ]
+  },
+  {
+   "domain": "imagindairy.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "browsehappy.com",
+    "ltu.co.il",
+    "wprediscache.com",
+    "www.boldgrid.com",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "recurve.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "daneden.me",
+    "fonts-api.wp.com",
+    "i0.wp.com",
+    "opensource.org",
+    "s0.wp.com",
+    "stats.wp.com",
+    "wp.me"
+   ]
+  },
+  {
+   "domain": "studiopaloalto.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "arkitect-template.webflow.io",
+    "prod.website-files.com",
+    "templates.gola.io",
+    "www.gola.io",
+    "www.webflow.com"
+   ]
+  },
+  {
+   "domain": "upstream.auto",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "consent.cookiebot.com",
+    "gmpg.org",
+    "wp-rocket.me",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "aquisense.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "s.w.org",
+    "www.clarity.ms",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "mitico.tech",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "prod.website-files.com"
+   ]
+  },
+  {
+   "domain": "aircarbon.co",
+   "pathway": "wordpress job plugin",
+   "hosts": [
+    "a.omappapi.com",
+    "acx.net",
+    "api.w.org",
+    "c0.wp.com",
+    "fonts-api.wp.com",
+    "i0.wp.com",
+    "js-na2.hsforms.net",
+    "ogp.me"
+   ]
+  },
+  {
+   "domain": "m3ter.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "www.datocms-assets.com",
+    "www.salesforce.com"
+   ]
+  },
+  {
+   "domain": "greenjoules.in",
+   "pathway": "own-site apply links, no third party",
+   "hosts": []
+  },
+  {
+   "domain": "mcj.vc",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "browsehappy.com",
+    "collective.mcj.vc",
+    "consider.com",
+    "jobs.mcj.vc",
+    "lu.ma",
+    "mcj.news",
+    "mcj.vc",
+    "newsletter.mcj.vc"
+   ]
+  },
+  {
+   "domain": "nwitimes.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn.recruitology.com",
+    "cmp.osano.com",
+    "code.jquery.com",
+    "custom.transaction",
+    "my.hellobar.com",
+    "nwindiana.jobalerts.live",
+    "www.legacy.com"
+   ]
+  },
+  {
+   "domain": "previsico.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn.prismic.io",
+    "images.prismic.io"
+   ]
+  },
+  {
+   "domain": "myavista.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "browsehappy.com",
+    "cdn.weglot.com",
+    "code.jquery.com",
+    "greaterspokane.org",
+    "investor.avistacorp.com",
+    "rn12.ultipro.com"
+   ]
+  },
+  {
+   "domain": "autounify.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "fonts.wp.com",
+    "s.w.org",
+    "s0.wp.com",
+    "stats.wp.com",
+    "wp.me"
+   ]
+  },
+  {
+   "domain": "tenaska.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "modernizr.com",
+    "ogp.me",
+    "portal.ptp.energy",
+    "recruiting.ultipro.com",
+    "underscorejs.org",
+    "www.monsterinsights.com",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "augustrobotics.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "prod.website-files.com",
+    "showlanding.com",
+    "webflow.com"
+   ]
+  },
+  {
+   "domain": "conduktor.io",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "snap.licdn.com",
+    "www.chatbase.co",
+    "www.g2.com"
+   ]
+  },
+  {
+   "domain": "gorevel.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.consentpro.com",
+    "boards-api.greenhouse.io",
+    "onelink.to",
+    "prod.website-files.com",
+    "www.volterapower.com"
+   ]
+  },
+  {
+   "domain": "ona-therapeutics.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "c0.wp.com",
+    "code.jquery.com",
+    "gmpg.org",
+    "i0.wp.com",
+    "s.w.org",
+    "stats.wp.com",
+    "support.mozilla.org"
+   ]
+  },
+  {
+   "domain": "enachip.com",
+   "pathway": "mailto only",
+   "hosts": []
+  },
+  {
+   "domain": "raisegreen.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "605a7baede844d278b89dc95ae0a9123",
+    "cdn.vector.co",
+    "invest.honeycombcredit.com",
+    "siteassets.parastorage.com",
+    "start.honeycomb.credit",
+    "static.parastorage.com",
+    "www.honeycombcredit.com"
+   ]
+  },
+  {
+   "domain": "loftdynamics.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "talent.sage.hr",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "hdata.us",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "app.concierge.ai",
+    "snap.licdn.com",
+    "tag.unifyintent.com"
+   ]
+  },
+  {
+   "domain": "ai-media.tv",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "accounts.eegicap.com",
+    "analytics.wpmucdn.com",
+    "analytics2.wpmudev.com",
+    "api.w.org",
+    "bookings.ai.media",
+    "cookiedatabase.org",
+    "elmotalent.com.au",
+    "hb.wpmucdn.com"
+   ]
+  },
+  {
+   "domain": "bdc.ca",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.zaius.com",
+    "applicationinsights.azure.com",
+    "careers.bdc.ca",
+    "client.bdc.ca",
+    "collect.tealiumiq.com",
+    "js-cdn.dynatrace.com",
+    "monitor.azure.com",
+    "snap.licdn.com"
+   ]
+  },
+  {
+   "domain": "clinifyhealth.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "hotel-olsztyn.com.pl"
+   ]
+  },
+  {
+   "domain": "emabler.com",
+   "pathway": "own-site apply links, no third party",
+   "hosts": []
+  },
+  {
+   "domain": "avvo.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn.speedcurve.com",
+    "www.clarity.ms",
+    "www.internetbrands.com"
+   ]
+  },
+  {
+   "domain": "rayleighsolartech.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "ca.indeed.com",
+    "daneden.me",
+    "opensource.org",
+    "www.elegantthemes.com",
+    "www.gnu.org",
+    "www.rgstrategic.com",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "airbase.com",
+   "pathway": "nothing job-like in raw HTML (likely JS-rendered)",
+   "hosts": []
+  },
+  {
+   "domain": "stem.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.hsforms.com",
+    "api.w.org",
+    "ats.rippling.com",
+    "gmpg.org",
+    "s.w.org",
+    "static.addtoany.com",
+    "wiki.lexisnexis.com",
+    "wp-statistics.com"
+   ]
+  },
+  {
+   "domain": "2swater.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "gmpg.org",
+    "s.w.org"
+   ]
+  },
+  {
+   "domain": "tive.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "ats.rippling.com",
+    "bzrcdn.openai.com",
+    "cdn.cookielaw.org",
+    "client-registry.mutinycdn.com",
+    "i.ytimg.com",
+    "prod.website-files.com",
+    "transparency-in-coverage.bluecrossma.com"
+   ]
+  },
+  {
+   "domain": "cleverciti.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "definitions.sqspcdn.com",
+    "diffuser-cdn.app-us1.com",
+    "opengraphprotocol.org",
+    "ws.zoominfo.com"
+   ]
+  },
+  {
+   "domain": "quantonation.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "app.vestberry.com",
+    "browsehappy.com",
+    "consider.com",
+    "product.consider.com"
+   ]
+  },
+  {
+   "domain": "vale.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "analytics-js-cdn.liferay.com",
+    "analytics-js-dev-cdn.liferay.com",
+    "analytics-js-internal-cdn.liferay.com",
+    "casadaculturacanaa.com.br",
+    "ccv-ma.org.br",
+    "cdn.cookielaw.org",
+    "liferay.com",
+    "osbasahbackend-ac-southamericaeast1.lfr.cloud"
+   ]
+  },
+  {
+   "domain": "trucknet.io",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "enable.co.il",
+    "gmpg.org",
+    "noatr.com",
+    "s.w.org",
+    "wa.me",
+    "wprediscache.com"
+   ]
+  },
+  {
+   "domain": "rubedolife.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "cmp.usercentrics.eu",
+    "consumer.ftc.gov",
+    "gmpg.org",
+    "reportfraud.ftc.gov",
+    "rubedo1.wpengine.com",
+    "s.w.org",
+    "www.nature.com"
+   ]
+  },
+  {
+   "domain": "getnexar.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "app.teamtailor.com",
+    "assets-aws.teamtailor-cdn.com",
+    "images.teamtailor-cdn.com",
+    "screenshots.teamtailor-cdn.com",
+    "www.empiricearth.com",
+    "www.teamtailor.com"
+   ]
+  },
+  {
+   "domain": "amogy.co",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "acsbapp.com",
+    "consent.cookiebot.com",
+    "js.hsforms.net",
+    "secure6.saashr.com",
+    "www.bugherd.com",
+    "www.threads.net"
+   ]
+  },
+  {
+   "domain": "unravelcarbon.com",
+   "pathway": "JobPosting structured data on own site",
+   "hosts": [
+    "app.getcontrast.io",
+    "app.optibase.io",
+    "assets.apollo.io",
+    "jobs.surgeahead.com",
+    "prod.website-files.com",
+    "unreasonablegroup.com",
+    "www.getunravel.ai"
+   ]
+  },
+  {
+   "domain": "statnews.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "cdn.cookielaw.org",
+    "docs.chartbeat.com",
+    "flipboard.com",
+    "gmpg.org",
+    "s.w.org",
+    "store.bostonglobe.com",
+    "www.parsintl.com"
+   ]
+  },
+  {
+   "domain": "mobiusmaterials.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "app.goo.gl",
+    "i.posthog.com",
+    "prod.website-files.com",
+    "webflow.com",
+    "www.trustpilot.com"
+   ]
+  },
+  {
+   "domain": "inc42.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn.keka.com"
+   ]
+  },
+  {
+   "domain": "synadia.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "chatgpt.com",
+    "claude.ai",
+    "cursor.com",
+    "slack.nats.io",
+    "www.perplexity.ai"
+   ]
+  },
+  {
+   "domain": "therobotreport.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "akismet.com",
+    "api.w.org",
+    "collect.wtwhmedia.com",
+    "gateway.on24.com",
+    "madskills.com",
+    "mobilerobotguide.com",
+    "open.spotify.com",
+    "purl.org"
+   ]
+  },
+  {
+   "domain": "fermataenergy.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "bsky.app",
+    "investors.nuvve.com",
+    "nuvve.com",
+    "ogp.me",
+    "s.w.org"
+   ]
+  },
+  {
+   "domain": "tranquildata.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "angel.co",
+    "definitions.sqspcdn.com",
+    "opengraphprotocol.org",
+    "www.builtinboston.com"
+   ]
+  },
+  {
+   "domain": "allumia.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "seattlewebdesign.com"
+   ]
+  },
+  {
+   "domain": "bluefrontierac.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "bluefrontier.extensishrtalent.com"
+   ]
+  },
+  {
+   "domain": "mintz.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn.cookielaw.org",
+    "ogp.me",
+    "script.crazyegg.com",
+    "snap.licdn.com",
+    "www.drupal.org",
+    "www.mlstrategies.com"
+   ]
+  },
+  {
+   "domain": "newschoolfoods.co",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn.filestackcontent.com",
+    "nstx.industries",
+    "ogp.me",
+    "secure.collage.co",
+    "www.collage.co"
+   ]
+  },
+  {
+   "domain": "autopallet.bot",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn.tailwindcss.com",
+    "longjourney.vc",
+    "www.aera.vc",
+    "www.pioneerfund.vc",
+    "www.ycombinator.com",
+    "xpress.ventures"
+   ]
+  },
+  {
+   "domain": "mundimoto.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "dms.licdn.com",
+    "lnkd.in",
+    "media.licdn.com",
+    "static.licdn.com"
+   ]
+  },
+  {
+   "domain": "vccircle.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "bit.ly",
+    "cdn.moengage.com",
+    "events.mosaicdigital.com",
+    "info.edgeinsights.in",
+    "www.htmedia.in",
+    "www.techcircle.in"
+   ]
+  },
+  {
+   "domain": "aptatek.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "brixtemplates.com",
+    "prod.website-files.com"
+   ]
+  },
+  {
+   "domain": "greatriverhydro.com",
+   "pathway": "wordpress job plugin",
+   "hosts": [
+    "api.w.org",
+    "cdn.datatables.net",
+    "jonsuh.com",
+    "s.w.org",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "persephonebiosciences.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "app.lightlabs.com",
+    "app.shoplift.ai",
+    "b.kickoffpages.com",
+    "cdn-static.okendo.io",
+    "cdn.gomega.ai",
+    "doi.org",
+    "events.shoplift.ai",
+    "persephone.bio"
+   ]
+  },
+  {
+   "domain": "prospermedical.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "jobs.gem.com",
+    "prospermedica.onelink.me"
+   ]
+  },
+  {
+   "domain": "flok.health",
+   "pathway": "JobPosting structured data on own site",
+   "hosts": [
+    "api.consentpro.com",
+    "prod.website-files.com"
+   ]
+  },
+  {
+   "domain": "sunbearbiofuture.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "static.parastorage.com"
+   ]
+  },
+  {
+   "domain": "opentrons.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "cdn.bioz.com",
+    "cdn.cookielaw.org",
+    "client-registry.mutinycdn.com",
+    "neochromosome.com",
+    "obseu.bmccfortress.com",
+    "rankmath.com",
+    "s.w.org"
+   ]
+  },
+  {
+   "domain": "talentry.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cleverconnect.group",
+    "contact.meteojob.com",
+    "help.cleverconnect.com",
+    "prod.website-files.com",
+    "www.cleverconnect.com"
+   ]
+  },
+  {
+   "domain": "librestream.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "cookiedatabase.org",
+    "ogp.me",
+    "victimsofadvertising.com",
+    "wp-rocket.me",
+    "www.thehatcherylabs.com",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "l-charge.net",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "s.w.org"
+   ]
+  },
+  {
+   "domain": "signifyd.com",
+   "pathway": "wordpress job plugin",
+   "hosts": [
+    "api.w.org",
+    "cdn-ildoljb.nitrocdn.com",
+    "cdn.cookielaw.org",
+    "gmpg.org",
+    "to.getnitropack.com",
+    "www.glassdoor.com"
+   ]
+  },
+  {
+   "domain": "harmonicdiscovery.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "prod.website-files.com",
+    "www.ycombinator.com"
+   ]
+  },
+  {
+   "domain": "app.emergent.sh",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "discord.com",
+    "i.posthog.com",
+    "prod.website-files.com",
+    "www.withsherpa.ai"
+   ]
+  },
+  {
+   "domain": "makemydayapp.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "gmpg.org",
+    "goingonline.nl",
+    "irita.co.il",
+    "kgb-online.nl",
+    "ogp.me",
+    "s.w.org",
+    "www.monsterinsights.com"
+   ]
+  },
+  {
+   "domain": "tulu.io",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "events.framer.com",
+    "framer.com",
+    "framerusercontent.com",
+    "snap.licdn.com"
+   ]
+  },
+  {
+   "domain": "inviarobotics.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "app.goo.gl",
+    "embed.tawk.to",
+    "fonts.bunny.net",
+    "snap.licdn.com",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "taxfix.de",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn-assets-dynamic.frontify.com",
+    "files.uniform.global",
+    "tfd.sng.link"
+   ]
+  },
+  {
+   "domain": "gsa.gov",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "acquisition.gov",
+    "acquisitiongateway.gov",
+    "aoprals.state.gov",
+    "cdn.datatables.net",
+    "coe.gsa.gov",
+    "dap.digitalgov.gov",
+    "data.gov",
+    "ebuy.gsa.gov"
+   ]
+  },
+  {
+   "domain": "resurety.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "cdn.hu-manity.co",
+    "js.hsforms.net",
+    "static-assets.ripplingcdn.com",
+    "www.shadertoy.com",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "roark.ai",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "trust.delve.co"
+   ]
+  },
+  {
+   "domain": "spcllc.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "careers.sig.com",
+    "embeds.iubenda.com",
+    "raiseyourgame.com",
+    "sgep.com",
+    "sig-asiavc.com",
+    "sig.com",
+    "www.riversedgepromotions.com",
+    "www.sgep.com"
+   ]
+  },
+  {
+   "domain": "commission.europa.eu",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "ogp.me",
+    "wsocial.eu",
+    "www.drupal.org"
+   ]
+  },
+  {
+   "domain": "aleph-farms.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "acsbapp.com",
+    "api.w.org",
+    "makospecial.co.il",
+    "widgets.weforum.org",
+    "wp-rocket.me",
+    "www.betterworld.fund",
+    "www.bintelligence.com",
+    "www.fastcompany.com"
+   ]
+  },
+  {
+   "domain": "careers.sky-vc.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "browsehappy.com",
+    "consider.com",
+    "product.consider.com",
+    "www.jetblueventures.com"
+   ]
+  },
+  {
+   "domain": "republic.co",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "algoexplorer.io",
+    "angel.co",
+    "app.jazz.co",
+    "brokercheck.finra.org",
+    "cdn.rollbar.com",
+    "cmp.osano.com",
+    "discord.gg",
+    "etherscan.io"
+   ]
+  },
+  {
+   "domain": "sendgrid.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "app.eightfold.ai",
+    "eightfold.ai",
+    "jobs.twilio.com",
+    "static.vscdn.net",
+    "www.recaptcha.net",
+    "www.twilio.com"
+   ]
+  },
+  {
+   "domain": "calyxglobal.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "bit.ly",
+    "dms.licdn.com",
+    "media.licdn.com",
+    "static.licdn.com"
+   ]
+  },
+  {
+   "domain": "bandcamp.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "app.termly.io",
+    "gomakethings.com",
+    "js.recurly.com",
+    "www.songtradr.com"
+   ]
+  },
+  {
+   "domain": "xealenergy.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.sanity.io",
+    "cdn.sanity.io",
+    "laitent.ai"
+   ]
+  },
+  {
+   "domain": "projectwren.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "rsms.me",
+    "www.wren.co"
+   ]
+  },
+  {
+   "domain": "h2-view.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "gasworld-intelligence.com",
+    "geoip.cookieyes.com",
+    "players.yumpu.com",
+    "s.w.org",
+    "secure.leadforensics.com",
+    "secure.vols7feed.com",
+    "snap.licdn.com",
+    "websites.data-crypt.com"
+   ]
+  },
+  {
+   "domain": "aquatic-labs.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "definitions.sqspcdn.com",
+    "jobs.gusto.com",
+    "opengraphprotocol.org"
+   ]
+  },
+  {
+   "domain": "graphika.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "bsky.app",
+    "cdn.sanity.io"
+   ]
+  },
+  {
+   "domain": "rightbound.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "forms.gle",
+    "gmpg.org",
+    "s.w.org",
+    "snap.licdn.com",
+    "static.hsappstatic.net",
+    "tag.pearldiver.io",
+    "www.gong.io"
+   ]
+  },
+  {
+   "domain": "rideriver.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.whatsapp.com",
+    "checkout.razorpay.com",
+    "s.adroll.com"
+   ]
+  },
+  {
+   "domain": "beekeeper.io",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "117892876.intellimizeio.com",
+    "api.intellimize.co",
+    "bkpr-web-development.workers.dev",
+    "bright.lumapps.com",
+    "cdn.cookielaw.org",
+    "cdn.intellimize.co",
+    "comeen.com",
+    "emt.gartnerweb.com"
+   ]
+  },
+  {
+   "domain": "chain.io",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn.sanity.io",
+    "tailwindcss.com"
+   ]
+  },
+  {
+   "domain": "coast4c.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "definitions.sqspcdn.com",
+    "earthshotprize.org",
+    "opengraphprotocol.org"
+   ]
+  },
+  {
+   "domain": "pickaxe.co",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "bzrcdn.openai.com",
+    "www.clarity.ms",
+    "www.redditstatic.com"
+   ]
+  },
+  {
+   "domain": "venturecapitaljournal.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "consent.cookiebot.com",
+    "live.peievents.com",
+    "pei.group",
+    "s.w.org",
+    "subscriptions-api.pei-services.com",
+    "wpprincipal.wpengine.com",
+    "www.agriinvestor.com"
+   ]
+  },
+  {
+   "domain": "c2a-sec.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "gmpg.org",
+    "s.w.org",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "duckduckgo.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "duck.ai",
+    "spreadprivacy.com",
+    "www.reddit.com"
+   ]
+  },
+  {
+   "domain": "repath.earth",
+   "pathway": "nothing job-like in raw HTML (likely JS-rendered)",
+   "hosts": []
+  },
+  {
+   "domain": "re-twin.energy",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "ipapi.co",
+    "kommunaldigital.de",
+    "prod.website-files.com",
+    "retwinstaticform.azurewebsites.net",
+    "webflow.com",
+    "westeurope.azurecontainerapps.io",
+    "www.bescheinigung-forschungszulage.de",
+    "www.clarity.ms"
+   ]
+  },
+  {
+   "domain": "cove.sg",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.config-security.com",
+    "conf.config-security.com"
+   ]
+  },
+  {
+   "domain": "hadrian.io",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "assets-aws.teamtailor-cdn.com",
+    "images.teamtailor-cdn.com",
+    "prod.website-files.com",
+    "screenshots.teamtailor-cdn.com",
+    "www.glassdoor.com",
+    "www.teamtailor.com"
+   ]
+  },
+  {
+   "domain": "azitrainc.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "s.w.org",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "echiontech.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "app.smartsheet.com",
+    "definitions.sqspcdn.com",
+    "glassdoor.co.uk",
+    "opengraphprotocol.org",
+    "sc.lfeeder.com",
+    "uk.indeed.com"
+   ]
+  },
+  {
+   "domain": "wearewarp.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "depts.washington.edu",
+    "digital.acbusinessmedia.com",
+    "fmcsa.dot.gov",
+    "pitchbook.com",
+    "sourcingjournal.com",
+    "tracxn.com",
+    "www.clarity.ms",
+    "www.dbbnwa.com"
+   ]
+  },
+  {
+   "domain": "revalue.earth",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "app.teamtailor.com",
+    "assets-aws.teamtailor-cdn.com",
+    "images.teamtailor-cdn.com",
+    "screenshots.teamtailor-cdn.com",
+    "www.teamtailor.com"
+   ]
+  },
+  {
+   "domain": "cleantechnica.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "bluettius.sjv.io",
+    "careers",
+    "cdn.ampproject.org",
+    "chimpstatic.com",
+    "classic.avantlink.com",
+    "confesschairs.com",
+    "gmpg.org"
+   ]
+  },
+  {
+   "domain": "chevron.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "ogp.me",
+    "open.spotify.com",
+    "www.threads.com"
+   ]
+  },
+  {
+   "domain": "gotenna.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "ats.rippling.com",
+    "thelastmile.forterra.com"
+   ]
+  },
+  {
+   "domain": "covercress.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "dms.licdn.com",
+    "lnkd.in",
+    "media.licdn.com",
+    "static.licdn.com"
+   ]
+  },
+  {
+   "domain": "circularise.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "catena-x.net",
+    "cdn.iubenda.com",
+    "cs.iubenda.com",
+    "forms.gle",
+    "www.globalbattery.org",
+    "www.iubenda.com"
+   ]
+  },
+  {
+   "domain": "dispatchgoods.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "us.heap-api.com"
+   ]
+  },
+  {
+   "domain": "kara5.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "code.jquery.com"
+   ]
+  },
+  {
+   "domain": "batterysmart.in",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "evkart.co.in",
+    "www.clarity.ms"
+   ]
+  },
+  {
+   "domain": "energymonitor.ai",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.hsforms.com",
+    "api.w.org",
+    "cdn-ukwest.onetrust.com",
+    "cdn.permutive.com",
+    "cdn.plyr.io",
+    "cloud.umami.is",
+    "custom.transaction",
+    "datawrapper.dwcdn.net"
+   ]
+  },
+  {
+   "domain": "getzep.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "account.ycombinator.com",
+    "www.ycombinator.com"
+   ]
+  },
+  {
+   "domain": "auar.io",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "app.screenloop.com",
+    "custom.transaction",
+    "hapi.vonq.com"
+   ]
+  },
+  {
+   "domain": "boomsupersonic.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "ats.rippling.com",
+    "eyglhtalslrtdbcfueza.supabase.co"
+   ]
+  },
+  {
+   "domain": "simplifyber.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "definitions.sqspcdn.com",
+    "opengraphprotocol.org"
+   ]
+  },
+  {
+   "domain": "h2oinnovation.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "cdn-cookieyes.com",
+    "h2ocustomers.com",
+    "s.w.org",
+    "tracker.metricool.com",
+    "workforcenow.adp.com",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "nps.ai",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "nps.ai",
+    "ogp.me",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "ring.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "advertising.amazon.com",
+    "amazon.jobs",
+    "aws.amazon.com",
+    "cms.amazon.jobs",
+    "passport.amazon.jobs",
+    "static.amazon.jobs",
+    "www.aboutamazon.com",
+    "www.amazon.com"
+   ]
+  },
+  {
+   "domain": "eni.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "basic.eni.it",
+    "enicomintranet.eni.com",
+    "eniremit.eni.com",
+    "enispace.eni.com",
+    "fastlogon.eni.it",
+    "jobs.eni.com",
+    "myeni.eni.com",
+    "rum.hlx.page"
+   ]
+  },
+  {
+   "domain": "sungage.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn-cookieyes.com",
+    "hubs.ly",
+    "plausible.io",
+    "prod.website-files.com",
+    "www.trustpilot.com"
+   ]
+  },
+  {
+   "domain": "upstream.tech",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "hydroforecast.com",
+    "i.posthog.com",
+    "snap.licdn.com"
+   ]
+  },
+  {
+   "domain": "sentinelone.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn.intellimize.co",
+    "goo.gl",
+    "images.contentstack.io",
+    "ob.roundprincemusic.com",
+    "obs.roundprincemusic.com",
+    "onecon.io",
+    "www.itsa365.de"
+   ]
+  },
+  {
+   "domain": "factwise.io",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "tracxn.com",
+    "www.capterra.com",
+    "www.g2.com",
+    "www.getapp.com"
+   ]
+  },
+  {
+   "domain": "zdnet.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "cdn.cookielaw.org",
+    "cdn.parsely.com",
+    "cdn.ziffstatic.com",
+    "cnetgroup.com",
+    "experiments.parsely.com",
+    "flipboard.com",
+    "gmpg.org"
+   ]
+  },
+  {
+   "domain": "augmentcode.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "augment-assets.com",
+    "cdn.sanity.io",
+    "chatgpt.com",
+    "consent.cookiebot.com",
+    "p.conversion.ai"
+   ]
+  },
+  {
+   "domain": "radartx.bio",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "rsms.me"
+   ]
+  },
+  {
+   "domain": "arize.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "analytics.ahrefs.com",
+    "api.w.org",
+    "buttons.github.io",
+    "dev.visualwebsiteoptimizer.com",
+    "js-na2.hs-analytics.net",
+    "js-na2.hs-banner.com",
+    "js-na2.hsadspixel.net",
+    "js-na2.hscollectedforms.net"
+   ]
+  },
+  {
+   "domain": "vastdata.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "842972795634ee99bc321d7baa5c249c",
+    "cdn.cookielaw.org",
+    "dev.visualwebsiteoptimizer.com",
+    "images.ctfassets.net",
+    "js.navattic.com",
+    "js.qualified.com"
+   ]
+  },
+  {
+   "domain": "greentechmedia.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "bsky.app",
+    "cdn.cookielaw.org",
+    "cdn.optimizely.com",
+    "code.jquery.com",
+    "en.wikipedia.org",
+    "identity.woodmac.com",
+    "lens-help.woodmac.com",
+    "ogp.me"
+   ]
+  },
+  {
+   "domain": "fieldin.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "www.comeet.co",
+    "www.comeet.com",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "ottometric.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn.sanity.io"
+   ]
+  },
+  {
+   "domain": "fortephest.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "cottonet.co.il",
+    "www.spacexchimp.com",
+    "www.weedscience.org"
+   ]
+  },
+  {
+   "domain": "energicitycorp.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "akhess23.wordpress.com",
+    "fonts.wp.com",
+    "pixel.wp.com",
+    "public-api.wordpress.com",
+    "r-login.wordpress.com",
+    "s0.wp.com",
+    "s1.wp.com",
+    "s2.wp.com"
+   ]
+  },
+  {
+   "domain": "reditus.space",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "events.framer.com",
+    "framer.com",
+    "framerusercontent.com"
+   ]
+  },
+  {
+   "domain": "codecademy.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "trello.com"
+   ]
+  },
+  {
+   "domain": "addionics.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "daanvanderzwaag.com"
+   ]
+  },
+  {
+   "domain": "anyword.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn.schema-flow.com",
+    "prod.website-files.com"
+   ]
+  },
+  {
+   "domain": "desktopmetal.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "adaptive3d.com",
+    "aerosint.com",
+    "aidro.it",
+    "code.jquery.com",
+    "dental.desktophealth.com",
+    "envisiontec.com",
+    "figur.io",
+    "goo.gl"
+   ]
+  },
+  {
+   "domain": "ipeace.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "gmpg.org",
+    "mypeace-personal-ipscbanking.com",
+    "privacymark.jp",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "parallelcarbon.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "605a7baede844d278b89dc95ae0a9123",
+    "localhost",
+    "siteassets.parastorage.com",
+    "static.parastorage.com"
+   ]
+  },
+  {
+   "domain": "volexion.com",
+   "pathway": "nothing job-like in raw HTML (likely JS-rendered)",
+   "hosts": []
+  },
+  {
+   "domain": "documentcrunch.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "cdn-cookieyes.com",
+    "gmpg.org",
+    "static-assets.ripplingcdn.com",
+    "www.digitalsilk.com",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "bios.health",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "siteassets.parastorage.com",
+    "static.parastorage.com"
+   ]
+  },
+  {
+   "domain": "clients.alterdomus.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "gmpg.org"
+   ]
+  },
+  {
+   "domain": "smartwires.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "cdn-cookieyes.com",
+    "gmpg.org",
+    "recruiting.paylocity.com",
+    "s.w.org",
+    "tailwindcss.com",
+    "wind.press",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "sepiontechnologies.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "app.pinpointhq.com",
+    "cdn.rollbar.com",
+    "res.cloudinary.com",
+    "www.pinpointhq.com"
+   ]
+  },
+  {
+   "domain": "hyro.ai",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "acsbapp.com",
+    "cdn-cookieyes.com",
+    "gmpg.org",
+    "js.hs-analytics.net",
+    "js.hs-banner.com",
+    "js.hsadspixel.net",
+    "loading.io",
+    "ogp.me"
+   ]
+  },
+  {
+   "domain": "feonenergy.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "lnkd.in",
+    "media.licdn.com",
+    "static.licdn.com"
+   ]
+  },
+  {
+   "domain": "intuigence.ai",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "theindustrialaisummit.com"
+   ]
+  },
+  {
+   "domain": "cleanscapes.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "cdn.gtranslate.net",
+    "code.jquery.com",
+    "gmpg.org",
+    "s.w.org",
+    "snap.licdn.com",
+    "tag.simpli.fi",
+    "tbe.taleo.net"
+   ]
+  },
+  {
+   "domain": "hstsolar.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "54-85-206-156.cprapid.com",
+    "85.206.156",
+    "api.w.org",
+    "app.goo.gl",
+    "gmpg.org",
+    "stats.wp.com",
+    "view2.hstpowers.com",
+    "www.hstpowers.com"
+   ]
+  },
+  {
+   "domain": "indianchemicalnews.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "ciisurfacecoating.com",
+    "code.jquery.com",
+    "distillationconclave.com",
+    "events.icis.com",
+    "platform-api.sharethis.com",
+    "sc.lfeeder.com",
+    "snap.licdn.com",
+    "www.adipec.com"
+   ]
+  },
+  {
+   "domain": "fairing.co",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn.vector.co",
+    "events.framer.com",
+    "framer.com",
+    "framerusercontent.com",
+    "js.navattic.com",
+    "snap.licdn.com",
+    "tracking-api.g2.com"
+   ]
+  },
+  {
+   "domain": "sparxapp.ai",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "qtrypzzcjebvfcihiynt.supabase.co"
+   ]
+  },
+  {
+   "domain": "hedgedigital.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "eu.vanta.com"
+   ]
+  },
+  {
+   "domain": "edgezero.co",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "cdn-au.pagesense.io",
+    "lltrck.com",
+    "maillist-manage.com.au",
+    "s.w.org",
+    "snap.licdn.com",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "handle.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "app.termly.io",
+    "fast.wistia.com",
+    "static-assets.ripplingcdn.com"
+   ]
+  },
+  {
+   "domain": "airform.space",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "i.posthog.com"
+   ]
+  },
+  {
+   "domain": "bioptimus.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "boards-api.greenhouse.io",
+    "prod.website-files.com"
+   ]
+  },
+  {
+   "domain": "axoni.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "gmpg.org",
+    "ogp.me",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "aalo.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "908ccf35bffc4247823e66133cba73de",
+    "app.rippling.com",
+    "ats.rippling.com",
+    "cdn.transcend.io",
+    "prod-images.rippling.com",
+    "rippling.com",
+    "static-assets.ripplingcdn.com",
+    "us1.rippling.com"
+   ]
+  },
+  {
+   "domain": "sewerai.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn.sanity.io",
+    "consent.cookiebot.com",
+    "discord.gg"
+   ]
+  },
+  {
+   "domain": "portfolium.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn.pendo.io",
+    "community.canvaslms.com",
+    "www.instructure.com"
+   ]
+  },
+  {
+   "domain": "truckitin.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "cdn.rawgit.com",
+    "s.w.org",
+    "yoast.com",
+    "zurl.to"
+   ]
+  },
+  {
+   "domain": "runtimewire.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "browsehappy.com",
+    "open.spotify.com"
+   ]
+  },
+  {
+   "domain": "workmarket.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "cdn-prod.securiti.ai",
+    "cdn.cookielaw.org",
+    "fortune.com",
+    "happydance.love",
+    "jobs.adp.com",
+    "myjobs.adp.com",
+    "ogp.me",
+    "olivia.paradox.ai"
+   ]
+  },
+  {
+   "domain": "bus.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "cmp.osano.com",
+    "s.w.org",
+    "www.bus.com",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "groundworkbioag.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "captcha4wp.com",
+    "cdn.pagesense.io",
+    "ego-digital.com",
+    "support.gwba.cc",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "directly.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "andreasmb.github.io",
+    "angel.co",
+    "api.w.org",
+    "gmpg.org",
+    "s.w.org",
+    "www.glassdoor.com",
+    "www.movate.com"
+   ]
+  },
+  {
+   "domain": "south8.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "cdn-cookieyes.com",
+    "gmpg.org",
+    "ogp.me",
+    "rankmath.com",
+    "s.w.org"
+   ]
+  },
+  {
+   "domain": "bluerivertechnology.com",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "api.w.org",
+    "gmpg.org",
+    "s.w.org",
+    "www.deere.com",
+    "yoast.com"
+   ]
+  },
+  {
+   "domain": "doowii.io",
+   "pathway": "third-party host referenced",
+   "hosts": [
+    "jobs.gem.com"
+   ]
+  }
+ ]
+}
