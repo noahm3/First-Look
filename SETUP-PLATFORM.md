@@ -121,11 +121,18 @@ happens, before real users show up:
    - Project URL
    - **anon key** — public by design, safe in the browser, useless without correct RLS
    - **service_role key** — never leaves Actions and server-side routes
-   - Direct database connection string (for migrations and the pipeline)
-4. **Connection pooler endpoint reserved for the future web app**; the pipeline uses the
-   direct connection. When the Next.js read layer is built (§19.2), point it at the
-   pooler — serverless functions open many short-lived connections and will exhaust a
-   direct Postgres connection limit.
+   - **Session pooler connection string, port 5432** — not Direct. See point 4.
+4. **The pipeline uses the Session pooler (port 5432), not the Direct connection** —
+   corrected at M0, 2026-09-23, after the first live migration run failed to connect at
+   all. GitHub-hosted Actions runners are IPv4-only, and Supabase's Direct connection is
+   IPv6-only on Free-tier projects without the paid IPv4 add-on — an original draft of
+   this guide assumed Direct would work for the pipeline and reserved pooling for the
+   future web app, which turned out not to hold from Actions specifically. The
+   **Transaction pooler (port 6543) is still wrong for the pipeline**: it doesn't support
+   prepared statements, which psycopg relies on. Reserve the Transaction pooler for the
+   Next.js read layer once it exists (§19.2) — that workload is many short-lived
+   serverless connections, which is what the Transaction pooler is actually for; the
+   pipeline holds one persistent connection per run and has no need of it.
 
 *An explicit Postgres grants requirement for the Data API rolls out to existing projects
 from 2026-10-30. Check whether it affects your project before then.*
@@ -223,7 +230,7 @@ What's left from the original cutover plan, as things to set up at M0, not befor
 
 | Secret | Use |
 |---|---|
-| `SUPABASE_DB_URL` | Direct connection for the pipeline |
+| `SUPABASE_DB_URL` | Session pooler connection (port 5432) for the pipeline — see §4 |
 | `SUPABASE_SERVICE_ROLE_KEY` | Admin operations |
 | `RESEND_API_KEY` | Alert sending (`SPEC.md` §13) |
 | `HEALTHCHECK_URL` | Dead-man's switch (`SPEC.md` §14) |
