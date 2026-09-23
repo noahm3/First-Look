@@ -175,11 +175,14 @@ was a hedge covering companies whose ATS mapping failed. That hedge is gone. **A
 unmapped company is now invisible, full stop.** Mapping coverage stops being an open
 question and becomes the top-line product metric — see §8 and §18.
 
-**Two independent workflows**, plus a third with no secrets, plus a fourth that only ever
-runs by hand. `migrate.yml` (added at M0) applies the §6 migrations and triggers on
+**Two independent workflows**, plus a third with no secrets, plus two more that only ever
+run by hand. `migrate.yml` (added at M0) applies the §6 migrations and triggers on
 `workflow_dispatch` **only** — it cannot live in secrets-free `test.yml`, and
 auto-applying a schema change on every push to `main` during an unattended leave is
-exactly the class of quiet risk §3.3 exists to prevent. `monitor.yml` (~4x daily)
+exactly the class of quiet risk §3.3 exists to prevent. `watchlist.yml` (added at M1)
+ingests `config/watchlist.yml` into `companies` and carries the same posture: manual only,
+so a person presses the button each time the watchlist gains new entries rather than a
+seeding step running unattended. `monitor.yml` (~4x daily)
 and `discover.yml` (manual/monthly) carry secrets and never trigger on `pull_request`. A
 third workflow, `test.yml`, runs lint and tests **with no secrets in scope** — a security
 boundary, not an organisational one (`SECURITY.md §S2`). **It triggers on `push` and
@@ -188,7 +191,7 @@ boundary, not an organisational one (`SECURITY.md §S2`). **It triggers on `push
 requests outright in favour of committing straight to `main` — so a PR trigger would be
 dead configuration that only widens the C-S.6 surface. The secrets-free property is what
 matters and is unchanged. A crash in
-fragile discovery code must not take down monitoring. All four carry `workflow_dispatch`
+fragile discovery code must not take down monitoring. All five carry `workflow_dispatch`
 where relevant.
 
 Cron is UTC and has no DST handling — wall-clock times shift by an hour when DST ends

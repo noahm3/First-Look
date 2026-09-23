@@ -1,0 +1,46 @@
+name: watchlist
+
+# ---------------------------------------------------------------------------
+# Ingests config/watchlist.yml into the companies table. workflow_dispatch
+# ONLY — never on a schedule and never on push, same posture as migrate.yml:
+# a person presses the button.
+#
+# This workflow holds SUPABASE_DB_URL, which is why it cannot be folded into
+# test.yml (C-S.7 — that workflow must have no secrets at all). See SPEC.md §5.
+#
+# src/watchlist.py logs only aggregate counts (created / already present / no
+# domain) -- never a company name or domain in a way that could carry
+# anything sensitive, though company names and domains are public data anyway
+# (BUILD.md §1.3). Nothing here ever echoes SUPABASE_DB_URL itself.
+# ---------------------------------------------------------------------------
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: watchlist
+  cancel-in-progress: false
+
+jobs:
+  watchlist:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up uv and Python
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "0.12.17"
+          python-version-file: ".python-version"
+          enable-cache: true
+
+      - name: Install from the locked, hashed dependency set
+        run: uv sync --locked
+
+      - name: Ingest the watchlist
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: uv run python -m src.watchlist
