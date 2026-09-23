@@ -107,7 +107,7 @@ dashboard.
 | A preference-tier system encoded as a stored field | Same reason, and incompatible with multiple users holding different preferences. |
 | A weighted ranking score | Output is already filtered to "new." Sort by date. |
 | Workday adapter | Real endpoint, worst effort-to-yield available: POST bodies, hard 20-item pagination silently returning empty above the cap, a second request per job for a date, Akamai bot management — aimed at enterprises, not growth-stage companies. Backlog only. |
-| Workable, Recruitee, Personio adapters | SMB / agency / DACH-European skew. Personio is XML-only. Near-zero expected yield. Rejections stand, but their stakes have changed — see §8's mapping-coverage note. Revisit only against a measured `unsupported_ats:{name}` distribution, never on principle. |
+| Workable, Recruitee, Personio adapters | SMB / agency / DACH-European skew. Personio is XML-only. Near-zero expected yield. Rejections stand, but their stakes have changed — see §8's mapping-coverage note. Revisit only against a measured `unsupported_ats:{name}` distribution, never on principle. **Measured 2026-09-22** (`spikes/ats_platform_census.py`, 1,668 careers pages across the VC-discovered portfolio — one discovery source, not yet the full §18 seed): Workable 42 companies, second-largest unpollable platform found after Rippling's 62; Recruitee 5; Personio 11. Workable's rejection rested specifically on "near-zero expected yield" — this measurement contradicts that premise. Recruitee and Personio are not disturbed by it; Personio's separate XML-only objection is untouched. Not re-proposed here — §4 is the do-not-re-propose list, and building an adapter remains the user's call — recorded because this row itself asks for exactly this distribution before revisiting. |
 | `jobs.climatebase.org` GraphQL reverse-engineering | ClimateBase supplies only a climate flag, available from the plain-HTML org directory. **Reasoning strengthened, not weakened** (`SPEC-REVISION-01` §R2): job detail pages on `jobs.climatebase.org` carry `meta-robots: noindex`, a deliberate do-not-aggregate signal. The org directory (§7.3) remains in scope and is unaffected. |
 | ~~Wellfound automation~~ | ~~No public API; value behind a login wall; a warmed session is unacceptable maintenance.~~ **Struck 2026-09: factually wrong.** `wellfound.com/role/{role}`, `/role/r/{role}` (remote), and `/role/l/{role}/{city}` are public, server-rendered, `?page=N` paginated, no cookie, and carry salary range, equity range, remote policy, company size, stage, and stable numeric job URLs. What is behind the login is *arbitrary filtering and applying*, not the listings. The rejection generalised a property of the filter UI to the whole source. Replaced by acceptance as a company source — see §7.8. |
 | A circuit breaker disabling a source for N days | One request per company per run. No hammering to prevent. |
@@ -124,7 +124,10 @@ dashboard.
 **Deferred pending measurement, not rejected:** SmartRecruiters. A plain documented
 unauthenticated GET, roughly as simple as Greenhouse — the effort argument ruling out the
 others doesn't apply. Included in **detection** from day one (§9); the polling adapter is
-written only if the count justifies it (§18).
+written only if the count justifies it (§18). **Measured 2026-09-22:** 1 company out of
+1,668 careers pages in the VC-discovered portfolio (`spikes/ats_platform_census.py`) —
+one discovery source, not the full §18 seed. The volume this deferral is waiting on has
+not shown up yet; on this evidence alone the adapter stays unwritten.
 
 **A note on Y Combinator, since two documents disagreed.** `first-look-sources-patch.md`
 independently proposed rejecting `workatastartup.com` as account-gated, using the same
