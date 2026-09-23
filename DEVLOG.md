@@ -1804,3 +1804,87 @@ ingest/dedupe logic against it — C-1.6 through C-1.8). Prompt to paste:
 > know (this becomes M3's ground truth, so we should choose deliberately), plus the
 > ingest logic that dedupes on `canonical_domain` and never drops a company with no
 > resolvable domain. Commit at each criterion, not once at the end.
+
+---
+
+## 2026-09-23 — Iteration 12: the Rippling parser, built and validated
+**Model:** Sonnet 5 · **Plan mode:** no
+
+### Built
+Following the user's direct steer after a checkpoint question ("is there anything you
+would do in this spike") - the census (iteration 11's earlier entry) found Rippling as
+the largest unbuilt integration (62 companies); this builds and validates it.
+
+`spikes/iteration11_rippling_spike.py`, reusing `iteration7_live_postings_spike.py`'s
+proven infra (rate limiter, `blank_posting` shape, comp-in-description extraction,
+redaction) via import rather than duplicating it.
+
+**Two steps, small-batch first throughout**, because the census only recorded which
+*host* each company referenced, never the board token itself:
+
+1. **Token resolution.** A 6-company hand sample suggested two patterns (a hosted page
+   `ats.rippling.com/{token}/jobs` and an embed's `data-job-board-id`). The full
+   62-company run found five real shapes: hosted-bare, hosted `/embed/{token}/jobs`,
+   hosted locale-prefixed `/en-GB/{token}/jobs`, the embed attribute, and the literal API
+   call embedded directly in inline JS. **One company's embed snippet was
+   HTML-entity-double-escaped** (`data-job-board-id=&quot;gradientcomfort&quot;`) —
+   unescape-before-matching, the exact ordering bug already found once this session on
+   Greenhouse's `content` field. All three token sources resolve against the same API.
+   **62/62 resolved.**
+2. **Fetch.** `api.rippling.com/platform/api/ats/v2/board/{token}/jobs` is paginated
+   (`items`/`page`/`pageSize`/`totalItems`/`totalPages`) and, **unlike Greenhouse, its
+   detail call is not redundant** — `createdOn` (a real posted date) and
+   `payRangeDetails` (structured comp: location/currency/frequency/rangeStart/rangeEnd,
+   cleaner than any of the three existing providers) exist only on the per-job detail
+   endpoint.
+
+**Full run: 61/62 companies ok, 716 postings.** 100% field coverage on
+title/department/location/workplace_type/url/posted_at. Comp: 68 structured + 275
+description-confident = **47.9% combined**, consistent with the 45-62% range already
+measured on Greenhouse/Lever/Ashby. The reused comp-in-description extractor
+**generalized to a 4th provider with zero new bugs** — correctly separated a "raised
+$161M" funding mention from a genuine "$100-110K base salary" line inside the same
+posting's description.
+
+### Real findings caught by reading actual output, not asserted from counts
+- **`door.com` and `latch.com`** — discovered via different VC investors (Techstars,
+  Tekfen Ventures) — resolve to the **same** Rippling token and produce identical
+  postings. A real company found under two different domains, which `canonical_domain`
+  dedup cannot catch since the domains themselves are genuinely different strings, not a
+  normalization artifact of the same one. Worth remembering for M1's dedup logic:
+  domain-based dedup has a structural blind spot for rebrands/multi-domain companies that
+  no amount of URL normalization fixes.
+- **`cleartrace.io`** was the one 404. Checked before writing it off as a resolver bug:
+  the exact token is still live in a job-detail link on the company's own careers page
+  right now, so resolution was correct — the board itself has simply gone stale since.
+  Same transient/dead-board pattern already seen in iterations 6 and 8.
+
+### Decisions made this session
+- Built the parser as its own script importing iteration7's helpers, rather than adding
+  Rippling as a fifth provider inside iteration7 directly — the token-resolution step has
+  no equivalent for the other three providers and would have been an awkward fit in that
+  file's existing CLI shape.
+
+### Deviations from SPEC
+None — this is new-adapter exploration, still `spikes/`, not a deviation from any
+existing design decision.
+
+### Criteria checked
+None — pre-M2 spike work, no `CRITERIA.md` items apply yet.
+
+### Least confident about
+- Whether the 5 token-resolution patterns found here are exhaustive. They cover 62/62 of
+  this population, but a different discovery source (ClimateBase, Built In Boston) could
+  surface a sixth shape the same way this one kept surfacing new ones past the first
+  6-company sample.
+- No systematic precision check on the comp-in-description extraction for this provider
+  specifically, beyond the one hand-verified example above — it reuses code already
+  precision-sampled on Greenhouse/Lever/Ashby, but Rippling's description HTML structure
+  hasn't been checked as closely.
+
+### Next session
+- If a Rippling adapter is ever built for real in `src/`, the token-resolution step
+  (five URL/attribute patterns, unescape-before-matching) is the part that took the most
+  iteration here and is worth porting deliberately rather than re-discovering.
+- Continue applying `spikes/ats_platform_census.py` after each future discovery source
+  lands, per the standing methodology (iteration 11's earlier entry today).
