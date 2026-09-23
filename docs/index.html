@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--
+  Content-Security-Policy, present from the first line of rendering code rather
+  than added later. SECURITY.md names this one of three things that must land
+  before the code they govern: a dashboard written with innerHTML and inline
+  handlers works fine until CSP arrives, at which point it fails quietly, with
+  nothing in the console in some browsers.
+
+  It also forbids inline <script> and inline event handlers, which is the
+  constraint that keeps the render path honest.
+-->
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'">
+
+<meta name="robots" content="noindex, nofollow">
+<title>First Look</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="bar">
+  <button id="menu-toggle" class="menu" type="button" aria-expanded="false" aria-controls="menu">&#9776;</button>
+  <span class="brand">First Look</span>
+</header>
+
+<!-- Health lives behind the hamburger: the second user has no reason to see it (SPEC.md 12.1). -->
+<nav id="menu" hidden>
+  <a href="index.html">Jobs</a>
+  <a href="health.html">Health</a>
+  <a href="feed.xml">RSS</a>
+</nav>
+
+<!--
+  The stale banner is the exception to health living behind the menu. Without it
+  on the main page a broken pipeline looks identical to a quiet week, which
+  recreates silent failure in the UI (SPEC.md 12.1).
+-->
+<div id="stale-banner" class="banner" hidden></div>
+
+<main>
+  <div id="status" class="status" aria-live="polite"></div>
+
+  <!--
+    Three distinct empty states (SPEC.md 12.7). Conflating them recreates silent
+    failure in the UI, so they are three elements rather than one with swapped
+    text.
+  -->
+  <p id="empty-no-data" class="empty" hidden>
+    No jobs in the database yet &mdash; seeding has not run.
+  </p>
+  <p id="empty-last-run-failed" class="empty" hidden>
+    Last run failed &mdash; see Health. Do not trust what you are seeing.
+  </p>
+  <p id="empty-no-match" class="empty" hidden>
+    No jobs match these filters.
+  </p>
+  <p id="load-error" class="empty" hidden>
+    Could not load the job data.
+  </p>
+
+  <!-- M9 adds the filter bar and the controls above this list. -->
+  <ul id="cards" class="cards"></ul>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

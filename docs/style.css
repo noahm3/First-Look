@@ -1,0 +1,116 @@
+/* Deliberately plain. M9 owns the real design; this is the scaffold that proves
+   the page loads, the status is legible, and the CSP holds. */
+
+:root {
+  --fg: #1a1a1a;
+  --muted: #6b6b6b;
+  --line: #e2e2e2;
+  --ok: #1a7f37;
+  --stale: #9a6700;
+  --bg: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.menu {
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0.35rem 0.6rem;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.brand { font-weight: 600; }
+
+nav {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.banner {
+  padding: 0.75rem 1rem;
+  background: #fff8e1;
+  border-bottom: 1px solid #f0d98c;
+  color: var(--stale);
+}
+
+main { padding: 1rem; max-width: 52rem; margin: 0 auto; }
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.dot { width: 0.6rem; height: 0.6rem; border-radius: 50%; display: inline-block; }
+.dot-ok { background: var(--ok); }
+.dot-stale { background: var(--stale); }
+
+.empty { color: var(--muted); padding: 2rem 0; }
+
+.cards { list-style: none; margin: 0; padding: 0; }
+
+.card {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.title {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0.2rem 0;
+  color: var(--fg);
+}
+
+/* A posting whose URL failed the scheme check still shows its title; it just
+   is not a link (SECURITY.md S1, C-S.2). */
+.title-unlinked { color: var(--muted); }
+
+.meta { font-size: 0.9rem; color: var(--muted); }
+.comp { font-size: 0.95rem; margin-top: 0.15rem; }
+.comp-none { color: var(--muted); font-style: italic; }
+
+.badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.05rem 0.4rem;
+  font-size: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+}
+
+@media (max-width: 480px) {
+  .card-top { flex-direction: column; gap: 0.1rem; }
+}

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-23T00:33:00.759869+00:00",
+  "last_successful_run": null,
+  "run_id": null,
+  "stale": true,
+  "counts": {
+    "postings": 0,
+    "companies": 0
+  },
+  "postings": []
+}

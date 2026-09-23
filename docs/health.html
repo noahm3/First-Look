@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'">
+<meta name="robots" content="noindex, nofollow">
+<title>First Look &mdash; Health</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="bar">
+  <span class="brand">First Look &mdash; Health</span>
+</header>
+
+<nav>
+  <a href="index.html">Jobs</a>
+  <a href="health.html">Health</a>
+</nav>
+
+<main>
+  <div id="status" class="status" aria-live="polite"></div>
+
+  <!--
+    Scaffold. M9 fills this in with run history, companies polled, live postings,
+    failing companies by name and reason, and mapping coverage broken down by
+    ats_status / mapping_confidence / mapping_failure_reason (SPEC.md 12.9).
+
+    What must never appear here, at any milestone: an email address, a personal
+    name, or the contents of a notification profile (SPEC.md 15, C-9.15).
+  -->
+  <p class="empty">
+    Run history and mapping coverage arrive with M9. Until then the status line
+    above reports the last successful run.
+  </p>
+</main>
+
+<script src="health.js"></script>
+</body>
+</html>
