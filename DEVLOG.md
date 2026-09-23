@@ -1156,6 +1156,85 @@ BambooHR, never evaluated in `SPEC.md` at all, and adapter-able — its board UR
 the token (`api.rippling.com/platform/api/ats/v2/board/{token}/jobs`, seen on
 `goshippo.com`). Gated behind coverage per §8.6 regardless.
 
+### Iteration 12: the real 24h-scale churn diff, and a repo-weight decision
+**Model:** Sonnet 5
+
+Two follow-ups from the previous session, both requested directly by the user.
+
+**SPEC.md 4 updated with the measurements it asked for.** Workable's rejection cites
+"near-zero expected yield" and says to revisit "only against a measured
+`unsupported_ats:{name}` distribution, never on principle." That distribution now exists
+(iteration 11): Workable 42 companies, second only to Rippling among unpollable
+platforms. Recorded as contradicting the stated premise, **not as a reversal** - the
+rejection stands until the user decides to build the adapter, and §4 is the
+do-not-re-propose list regardless. Recruitee (5) and Personio (11) are undisturbed;
+Personio's separate XML-only objection is untouched. SmartRecruiters measured at 1,
+which argues for leaving that deferral in place. Both numbers are from one discovery
+source (the VC portfolio), noted as such in the addition.
+
+**The real overnight churn number, ~18.5h apart** (`spikes/iteration7_live_postings_spike.py --all`,
+labelled `mapped7`, diffed against yesterday's `mapped6` with `iteration7_run_diff.py`).
+Cleaner than the earlier 8-minute diff in one respect: the mapped pool was frozen at
+554/554 for the whole gap (no mapping run since the stage-3 fix), so there is no
+pool-growth confound to filter out this time - every company present in `mapped6` is
+still present in `mapped7`.
+
+```
+postings on shared companies: 16884 before, 16957 after
+  id present in both runs : 16731
+  id only in after (new)  :   226
+  id only in before (gone):   153
+  churn as % of before    : 2.24%
+```
+
+**Unlike the 8-minute diff, this one shows real field drift under a stable `ats_job_id`**
+- 32 title changes, 24 location, 24 department, 10 `posted_at`, 5 comp, 4 workplace
+type, out of 16,731 stable ids. `ats_job_id` stability (confirmed again) is about
+identity, not content: the same posting can be edited in place, and `SPEC.md` §10's
+lifecycle currently only touches `last_seen_at` on "still present," never the content
+fields - **so an employer's edit to a live posting's title, location, department, or
+comp band would go unrecorded under the current design.** Not fixed here; flagged for
+the user, since it is a real design gap this measurement surfaces rather than a bug in
+this spike.
+
+**One drift worth its own line:** `basecamp-research`'s "Bioinformatics Scientist" and
+`crusoe`'s "Senior Staff Data Center Operation..." both jumped `posted_at` forward by
+months under the *same* `ats_job_id` (`2026-07-13` -> `2026-09-23`; `2026-05-15` ->
+`2026-09-23`) - a live repost/refresh, not a new posting. Direct, first-hand evidence
+for `SPEC.md` §6's "`posted_at` is unreliable" and for why `first_seen_at` must be the
+system's own clock: this is not `updated_at`-style drift on every edit, it is a multi-
+month jump on the field §9 currently treats as the trustworthy one.
+
+**Comp bands moved on live postings**, not just appeared - `Antares` $150K-$210K ->
+$160K-$235K, `handshake` $108K-$150K -> $108K-$160K. `SPEC.md` §11.1 describes exactly
+this ("you can see whether a band moved") as a platform-era feature waiting on months
+of accumulated history; this is the first real instance of it showing up in a single
+overnight gap.
+
+**~2.24% churn over ~18.5h extrapolates to roughly 2.9%/day** - a single sample, not a
+stabilised rate, but a first real number for what "4x daily" polling would actually be
+catching.
+
+### Repo-weight decision, made rather than left open
+The previous entry flagged this without deciding. Deciding now: **stop committing the
+full per-run results JSON at all.** Growth so far - 8MB, 13MB, 14MB, 26MB across four
+commits as the mapped pool grew from 157 to 554 - already sits at **59MB in git history
+from four superseded snapshots alone**, and git keeps every committed version forever;
+deleting the working-tree copy after each run stopped the tree from bloating but did
+nothing for `.git`. ClimateBase and Built In Boston will grow the mapped pool by
+roughly an order of magnitude, which would take this from a minor inefficiency to a
+real problem - the same class of issue `SPEC.md` §6 already reasons through for
+`jobs.db`, just at spike scale.
+
+`spikes/iteration7_live_postings_mapped6_results.json` (already committed) untracked
+and deleted from the tree - its numbers are already in earlier DEVLOG entries and are
+not lost. `spikes/iteration7_live_postings_*_results.json` added to `.gitignore` so
+future runs (`mapped7` and on) are never committed at all. What gets committed instead:
+the printed run summary, a small derived text/CSV report when one is worth keeping
+(`spikes/iteration7_run_diff_24h_report.txt`, a few KB), and the real numbers written
+into DEVLOG - which is where the analysis lives regardless of whether the raw JSON is
+kept.
+
 ### Deviations from SPEC
 ~~Nine corrections~~ **Fourteen corrections and additions** committed to `SPEC.md` this session (§6, §9 ×3, §10, §11, §12.3, §18 ×2),
 all struck-through rather than deleted, each carrying the date and the measurement:
@@ -1242,21 +1321,14 @@ cheap corroboration signal the cascade could use.
 - **Coordination note:** this session edited `spikes/iteration6_ats_mapping_spike.py`,
   which the concurrent M0 session had committed shortly before. The edit is confined to
   `classify_and_map`'s stage-3 branch. Worth a glance from whoever owns that file next.
-- **Repo weight is now a real question, not a nit.** The results JSON for the full
-  population is 26MB pretty-printed. One copy is fine; re-committing one per run is not,
-  and this spike is meant to be re-run. Options, cheapest first: write it compact rather
-  than `indent=2` (roughly halves it), gzip it, or commit only a trimmed CSV of the
-  fields under analysis and keep the full JSON local. Worth deciding before the next run
-  rather than after five of them. `SPEC.md` §6 already reasons about repo growth for a
-  different artifact.
-- ~~Recommended follow-up spikes, in the order they de-risk the most: comp-snippet
-  precision sampling, then a repeat-run diff, then the `careers_page_regex` precision
-  fix.~~ **Precision sampling was done this session** (above). Remaining, in order: a
-  repeat-run diff — **done this session for id stability** (above); the 24h churn number
-  is still outstanding and needs only a re-run of `--all` plus
-  `spikes/iteration7_run_diff.py` against `mapped5`. Then the `careers_page_regex`
-  precision fix, then a measurement-only pass on how many description snippets yield a
-  clean min/max/interval, so M5 starts with a known hit rate.
+- ~~Repo weight is now a real question, not a nit.~~ **Decided (iteration 12): stop
+  committing the full results JSON at all.** See that section above.
+- ~~Recommended follow-up spikes: comp-snippet precision sampling, then a repeat-run
+  diff, then the `careers_page_regex` precision fix.~~ **All done.** Precision sampling
+  (this session's earlier entries), the 8-minute id-stability diff (this session), the
+  real ~18.5h churn diff (iteration 12), and the `careers_page_regex` fix (iteration 8)
+  are all complete. Remaining: a measurement-only pass on how many description snippets
+  yield a clean min/max/interval, so M5 starts with a known hit rate.
 - Concurrency note: a separate M0 session was committing to `main` throughout this one
   (`src/http.py`, `src/models.py`, the Postgres schema, `src/health.py`). Commits
   interleaved cleanly because the two sessions touched disjoint paths, but both edited
