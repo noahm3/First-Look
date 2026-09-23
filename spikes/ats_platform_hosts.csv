@@ -1,0 +1,40 @@
+host_pattern,platform,adapter_status,notes
+boards\.greenhouse\.io|job-boards\.greenhouse\.io|boards-api\.greenhouse\.io,greenhouse,supported,SPEC 9 adapter exists
+jobs\.lever\.co|api\.lever\.co,lever,supported,SPEC 9 adapter exists
+jobs\.ashbyhq\.com|api\.ashbyhq\.com,ashby,supported,SPEC 9 adapter exists
+rippling\.com|ripplingcdn\.com,rippling,candidate,board URL carries the token: api.rippling.com/platform/api/ats/v2/board/{token}/jobs
+teamtailor\.com|teamtailor-cdn\.com,teamtailor,candidate,
+myworkdayjobs\.com|workday\.com|myworkday\.com,workday,rejected,SPEC 4 rejects the adapter outright
+bamboohr\.com,bamboohr,unbuilt,
+workable\.com,workable,rejected,SPEC 4 - SMB/agency skew
+personio\.(com|de),personio,rejected,SPEC 4 - XML only, DACH skew
+recruitee\.com,recruitee,rejected,SPEC 4
+breezy\.hr,breezy,unbuilt,
+smartrecruiters\.com,smartrecruiters,deferred,SPEC 4 - deferred pending measured volume, not rejected
+applytojob\.com,applytojob,unbuilt,JazzHR white-label
+jazzhr\.com,jazzhr,unbuilt,
+jobs\.gem\.com|gem\.com/jobs,gem,unbuilt,
+workforcenow\.adp\.com|myjobs\.adp\.com|adp\.com,adp,unbuilt,
+ukg\.com|ultipro\.com|\.ukg\.net,ukg,unbuilt,
+dayforcehcm\.com|dayforce\.com,dayforce,unbuilt,
+icims\.com,icims,unbuilt,
+jobvite\.com,jobvite,unbuilt,
+taleo\.net,taleo,unbuilt,
+successfactors\.com|sapsf\.com,successfactors,unbuilt,
+paylocity\.com,paylocity,unbuilt,
+pinpointhq\.com,pinpoint,unbuilt,
+polymer\.co,polymer,unbuilt,
+pyjamahr\.com,pyjamahr,unbuilt,
+careers-page\.com,careers-page,unbuilt,India-focused; deprioritised
+phenompeople\.com,phenompeople,unbuilt,
+homerun\.co,homerun,unbuilt,
+join\.com,join,unbuilt,
+softgarden\.(io|de),softgarden,unbuilt,
+heyjobs\.co,heyjobs,unbuilt,
+factorialhr\.com,factorial,unbuilt,
+hibob\.com,hibob,unbuilt,
+ashbyhq\.com,ashby,supported,catch-all for other ashby hosts
+consider\.com,consider,not-an-ats,SPEC 7.6 discovery source only; SPEC 4 forbids it as a posting source
+indeed\.com,indeed,not-an-ats,aggregator - SPEC 3.10 forbids as a posting source
+glassdoor\.com,glassdoor,not-an-ats,aggregator
+wp-job-manager|job_listing|wpjobboard,wordpress-job-plugin,unbuilt,self-hosted WordPress plugin rather than a hosted ATS

@@ -1,0 +1,34 @@
+platform,companies,mapped,referenced_not_mapped,adapter_status,by_source,updated_at
+greenhouse,345,272,73,supported,vc_portfolio_page=344; vc_portfolio_page_detail_hop=1,2026-09-23T00:58:38.622047+00:00
+ashby,248,209,39,supported,vc_portfolio_page=246; vc_portfolio_page_detail_hop=2,2026-09-23T00:58:38.622062+00:00
+lever,99,73,26,supported,vc_portfolio_page=99,2026-09-23T00:58:38.622067+00:00
+rippling,62,0,62,candidate,vc_portfolio_page=62,2026-09-23T00:58:38.622120+00:00
+workable,42,0,42,rejected,vc_portfolio_page=42,2026-09-23T00:58:38.622091+00:00
+wordpress-job-plugin,24,0,24,unbuilt,vc_portfolio_page=24,2026-09-23T00:58:38.622074+00:00
+glassdoor,22,0,22,not-an-ats,vc_portfolio_page=21; vc_portfolio_page_detail_hop=1,2026-09-23T00:58:38.622111+00:00
+adp,21,0,21,unbuilt,vc_portfolio_page=21,2026-09-23T00:58:38.622117+00:00
+bamboohr,19,0,19,unbuilt,vc_portfolio_page=19,2026-09-23T00:58:38.622131+00:00
+teamtailor,17,0,17,candidate,vc_portfolio_page=17,2026-09-23T00:58:38.622098+00:00
+indeed,15,0,15,not-an-ats,vc_portfolio_page=15,2026-09-23T00:58:38.622107+00:00
+workday,12,0,12,rejected,vc_portfolio_page=12,2026-09-23T00:58:38.622077+00:00
+gem,12,0,12,unbuilt,vc_portfolio_page=12,2026-09-23T00:58:38.622094+00:00
+breezy,12,0,12,unbuilt,vc_portfolio_page=12,2026-09-23T00:58:38.622128+00:00
+personio,11,0,11,rejected,vc_portfolio_page=11,2026-09-23T00:58:38.622100+00:00
+consider,11,0,11,not-an-ats,vc_portfolio_page=11,2026-09-23T00:58:38.622123+00:00
+phenompeople,9,0,9,unbuilt,vc_portfolio_page=9,2026-09-23T00:58:38.622084+00:00
+paylocity,9,0,9,unbuilt,vc_portfolio_page=9,2026-09-23T00:58:38.622134+00:00
+polymer,8,0,8,unbuilt,vc_portfolio_page=8,2026-09-23T00:58:38.622071+00:00
+ukg,7,0,7,unbuilt,vc_portfolio_page=7,2026-09-23T00:58:38.622114+00:00
+recruitee,5,0,5,rejected,vc_portfolio_page=5,2026-09-23T00:58:38.622105+00:00
+dayforce,4,0,4,unbuilt,vc_portfolio_page=4,2026-09-23T00:58:38.622125+00:00
+careers-page,3,0,3,unbuilt,vc_portfolio_page=3,2026-09-23T00:58:38.622082+00:00
+jobvite,3,0,3,unbuilt,vc_portfolio_page=3,2026-09-23T00:58:38.622138+00:00
+hibob,2,0,2,unbuilt,vc_portfolio_page=2,2026-09-23T00:58:38.622149+00:00
+pyjamahr,1,0,1,unbuilt,vc_portfolio_page=1,2026-09-23T00:58:38.622087+00:00
+icims,1,0,1,unbuilt,vc_portfolio_page=1,2026-09-23T00:58:38.622140+00:00
+successfactors,1,0,1,unbuilt,vc_portfolio_page=1,2026-09-23T00:58:38.622144+00:00
+pinpoint,1,0,1,unbuilt,vc_portfolio_page=1,2026-09-23T00:58:38.622146+00:00
+jazzhr,1,0,1,unbuilt,vc_portfolio_page=1,2026-09-23T00:58:38.622153+00:00
+smartrecruiters,1,0,1,deferred,vc_portfolio_page=1,2026-09-23T00:58:38.622156+00:00
+join,1,0,1,unbuilt,vc_portfolio_page=1,2026-09-23T00:58:38.622159+00:00
+taleo,1,0,1,unbuilt,vc_portfolio_page=1,2026-09-23T00:58:38.622162+00:00
