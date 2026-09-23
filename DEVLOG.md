@@ -1008,6 +1008,81 @@ on a stage-3 row instead of a stage-1 one, the count would have been a plausible
 from `careers_page_regex` and I would have shipped a silently wrong demotion. The tell
 was a number that did not match a prediction, not anything the tooling flagged.
 
+### Iteration 9: what the failure buckets actually are
+Iteration 6 guessed `no_careers_page` (1,783) and `unknown` (1,176) were inflated by junk
+rows. **Measured, that is wrong.** Only 2.3% of those rows are structurally junk — infra
+hosts, subdomains of other rows — against a 0.9% false-positive rate on mapped rows as a
+control. They are mostly real companies.
+
+What they are, from diagnostics already recorded in the CSV:
+
+| Share | Cause |
+|---|---|
+| 44.5% | homepage OK, no careers link found |
+| 39.7% | `unknown` — and **100% of those have a `careers_page_url`**, so this means the page was fetched and no ATS fingerprint matched, not that no page was found |
+| 9.3% | HTTP 0 or 429 — transient failures recorded as permanent outcomes |
+| 4.0% | HTTP 403 |
+
+**The 403 cause generalises past this spike, and the first hypothesis was wrong.** The UA
+was already a realistic Chrome string, so "bot-shaped UA" was not it — the *version* is.
+Four domains returned 403 to `Chrome/120` and 200 to `Chrome/140` in the same minute with
+identical headers (`dataminr.com`, `lunewave.com`, `yieldmo.com`, `quinoenergy.com`). WAFs
+block outdated browser versions, so **a hardcoded UA silently rots into a wall of 403s
+that this cascade records as `no_careers_page`** — indistinguishable from a company that
+genuinely has none. Noted in the file for whatever becomes `src/http.py`; an aged-out UA
+during an unattended leave is exactly the silent failure §3.3 exists to prevent.
+
+Fixes applied to the cascade: current UA, Greenhouse's `boards-api` host, a broader
+Rippling pattern, and ten more unsupported-ATS fingerprints seen on real careers pages.
+Stage 3 also now validates (see the iteration 8 section above).
+
+**Result of a 150-row re-crawl with those fixes, which is worse than a smaller probe had
+suggested: 0 newly mapped, 9 reclassified** into named `unsupported_ats` buckets. An
+18-row probe had implied 44% were recoverable; that probe's ATS regex was looser than the
+real fingerprints and overstated it badly. The 150-row re-crawl is the number to trust.
+**The failure buckets are not a cheap win** — the lever for more mapped companies is a
+better-curated company list, not more cascade logic.
+
+### Iteration 10: census of the `unknown` bucket — which ATSes are actually out there
+The user's ask, and the right one: `unknown` and `unsupported_ats:*` are **disjoint**.
+Both mean the careers page was fetched; `unsupported_ats` means a known fingerprint
+matched, `unknown` means nothing did. So `unknown` is the unexplored four-fifths and is
+precisely the input §8.4 wants — "the distribution IS the answer to 'should we build more
+adapters'."
+
+**Method deliberately inverted.** Every earlier pass matched a hand-written platform list,
+which can only find platforms someone already thought of — and did overstate things once.
+This extracts *every* third-party host each careers page references, drops obvious
+analytics/CDN/CMS noise, and ranks what survives by distinct companies. Platforms surface
+by frequency, and an unrecognised one ranks itself.
+
+250 careers pages, all fetched. Distinct companies per platform, projected across the
+1,176-row bucket:
+
+| Platform | Companies | % | Projected |
+|---|---|---|---|
+| **rippling** | 16 | 6.4% | **~75** |
+| teamtailor | 4 | 1.6% | ~18 |
+| adp | 4 | 1.6% | ~18 |
+| consider | 4 | 1.6% | ~18 |
+| greenhouse *(supported, still missed)* | 3 | 1.2% | ~14 |
+| gem | 2 | 0.8% | ~9 |
+| ukg | 2 | 0.8% | ~9 |
+| **any platform** | 41 | 16.4% | **~192** |
+| **none detectable** | 209 | 83.6% | **~983** |
+
+**Rippling is the single largest unsupported platform in the dataset** at ~75 companies,
+ahead of BambooHR's 57 — and it is adapter-able: its board URL carries the token
+(`api.rippling.com/platform/api/ats/v2/board/{token}/jobs`, seen on `goshippo.com`).
+Teamtailor and ADP follow at ~18 each. **SmartRecruiters, which §4 defers pending volume,
+stays at 3** — this population says do not build it.
+
+`consider.com` on 4 companies is worth noting separately: §7.6 already knows Consider as a
+*discovery* source, and §4 rules it out as a posting source.
+
+**The honest other half: 83.6% of the bucket has no detectable ATS on its careers page at
+all.** Better fingerprinting does not recover those.
+
 ### Deviations from SPEC
 ~~Nine corrections~~ **Fourteen corrections and additions** committed to `SPEC.md` this session (§6, §9 ×3, §10, §11, §12.3, §18 ×2),
 all struck-through rather than deleted, each carrying the date and the measurement:
@@ -1067,11 +1142,19 @@ cheap corroboration signal the cascade could use.
 - ~~The mapped pool grew from 35 to 157 during this session because iteration 6's run was
   still going. Re-run this spike when that finishes.~~ **Done — iteration 6 completed
   mid-session and `--all` was re-run against all 584 mapped companies (above).**
-- **Re-run iteration 6's cascade over the failure buckets**, now that stage 3 validates.
-  The 30 newly-demoted companies join the existing `weak_only` set (374 total), and the
-  failure distribution is still dominated by `no_careers_page` (1,783) and `unknown`
-  (1,176) — the junk-domain question the iteration 6 entry flagged as the likely cheaper
-  fix is still unanswered.
+- ~~Re-run iteration 6's cascade over the failure buckets.~~ **Done and measured
+  (iteration 9 above): the junk-domain hypothesis is wrong, and re-crawling recovers
+  almost nothing. Closed as a line of work.**
+- **The `SPEC.md` §18 gate has been computed but not decided.** `BUILD.md` M7 and
+  `CRITERIA.md` C-7.3 both require the go/no-go call be the user's, so
+  `spikes/iteration9_measurement_gate.py` prints the four numbers and deliberately stops.
+  Coverage is 13.1% of attempted domains — but over a VC-scrape population containing
+  initiatives, funds and trade associations, not the watchlist/ClimateTechList/ClimateBase
+  seed §18 assumes. That denominator is the crux of the decision and is the reason it is
+  a judgment rather than arithmetic.
+- **A Rippling adapter is now the best-evidenced next integration** (~75 companies,
+  token-in-URL, iteration 10 above). Still gated behind the §18 decision, since §8.6 is
+  explicit that the adapter question is downstream of coverage.
 - **Coordination note:** this session edited `spikes/iteration6_ats_mapping_spike.py`,
   which the concurrent M0 session had committed shortly before. The edit is confined to
   `classify_and_map`'s stage-3 branch. Worth a glance from whoever owns that file next.
