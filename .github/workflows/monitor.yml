@@ -1,0 +1,112 @@
+name: monitor
+
+# ---------------------------------------------------------------------------
+# The recurring run. Carries secrets, and therefore triggers ONLY on schedule
+# and workflow_dispatch — never pull_request, and under no circumstances
+# pull_request_target, which runs in the base repo's context with secrets
+# available (SECURITY.md §S2, C-S.6).
+#
+# Cron is UTC and has no DST handling, so these wall-clock times shift by an
+# hour when DST ends mid-leave. Expected, not a bug (SPEC.md §5).
+# 11/15/19/23 UTC is 07:00, 11:00, 15:00 and 19:00 US Eastern — four runs a day
+# spread across the hours when postings actually go live, which is where the
+# latency §2 cares about is won.
+# ---------------------------------------------------------------------------
+on:
+  schedule:
+    - cron: "0 11,15,19,23 * * *"
+  workflow_dispatch:
+    inputs:
+      seed:
+        description: "Seed mode: populate without new-posting output or email"
+        type: boolean
+        default: false
+      force_failure:
+        description: "Exit non-zero on purpose (C-0.6 evidence)"
+        type: boolean
+        default: false
+
+# Only what the state commit needs, and nothing else (SECURITY.md §S2).
+permissions:
+  contents: write
+
+# Overlapping runs cannot race each other on writes. Transactions removed most
+# of the corruption risk this originally guarded when state was a committed
+# SQLite file, but it costs nothing to keep and C-0.7 verifies it (SPEC.md §15).
+concurrency:
+  group: monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        # KEEPALIVE_PAT rather than GITHUB_TOKEN, so the state commit below is
+        # attributed to a user account (C-0.3). Bot commits are widely reported
+        # not to reset the 60-day scheduled-workflow inactivity timer; user
+        # commits do. Community lore rather than documented behaviour — a
+        # mitigation, not a guarantee, which is why the dead-man's switch exists
+        # regardless (SPEC.md §16).
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          token: ${{ secrets.KEEPALIVE_PAT }}
+          persist-credentials: true
+
+      - name: Set up uv and Python
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "0.12.17"
+          python-version-file: ".python-version"
+          enable-cache: true
+
+      - name: Install from the locked, hashed dependency set
+        run: uv sync --locked
+
+      - name: Verify the RLS baseline still holds
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        # Live half of SETUP-PLATFORM.md §7's check. Runs before the pipeline
+        # touches anything, so a table that lost RLS stops the run rather than
+        # being written to.
+        run: uv run python -m src.check_schema
+
+      - name: Run
+        id: run
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          HEALTHCHECK_URL: ${{ secrets.HEALTHCHECK_URL }}
+        # No `echo $SECRET` anywhere, and no debug step that dumps env
+        # (SECURITY.md §S2). The run's own summary prints counts only (C-0.8).
+        run: |
+          uv run python -m src.monitor \
+            ${{ inputs.seed && '--seed' || '' }} \
+            ${{ inputs.force_failure && '--force-failure' || '' }}
+
+      - name: Commit the export
+        # always(): a failing run still produced a summary and may still have
+        # written a usable export. Skipping the commit on failure would also
+        # skip the keepalive commit, which is the one thing that must not stop
+        # happening while nobody is watching (SPEC.md §16).
+        if: always()
+        run: |
+          # The commit identity is assembled from the GitHub context rather than
+          # written out. CLAUDE.md forbids committing an email address to this
+          # repo and .githooks/pre-commit enforces it, and that rule does not
+          # carve out a known-safe noreply one. These two fields resolve to the
+          # owner's noreply identity, so the commit is attributed to the account
+          # (C-0.3) without the address appearing in the source.
+          git config user.name "${{ github.repository_owner }}"
+          git config user.email "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
+
+          if git diff --quiet -- docs/; then
+            echo "no export changes to commit"
+            exit 0
+          fi
+
+          git add docs/
+          git commit -m "state: export from run $(date -u +%Y-%m-%dT%H:%MZ)"
+          # Another run, or a person, may have pushed since checkout. Rebase
+          # rather than fail: losing the keepalive commit is worse than a retry.
+          git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

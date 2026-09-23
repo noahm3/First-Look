@@ -1,0 +1,62 @@
+name: discover
+
+# ---------------------------------------------------------------------------
+# The cold path: company discovery and ATS mapping retries. Monthly, plus by
+# hand. Carries secrets, so like monitor.yml it triggers only on schedule and
+# workflow_dispatch — never pull_request or pull_request_target (C-S.6).
+#
+# Separate from monitor.yml on purpose. SPEC.md §5: a crash in fragile discovery
+# code must not take down monitoring. Discovery parses other people's HTML,
+# which changes without notice; monitoring reads documented ATS APIs. Putting
+# them in one workflow would let the fragile half stop the reliable half.
+#
+# Nothing to discover yet — the crawlers arrive at M6 and M8, and the mapping
+# retry at M3. The workflow exists now so the trigger and secret split are
+# settled before there is code depending on them.
+# ---------------------------------------------------------------------------
+on:
+  schedule:
+    # 03:10 UTC on the 1st. Off-peak, and deliberately not on the hour: a cron
+    # sharing a minute with thousands of other repos gets queued.
+    - cron: "10 3 1 * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Crawl and report without writing to the database"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+# Its own group: discovery must never queue behind or cancel a monitoring run.
+concurrency:
+  group: discover
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          token: ${{ secrets.KEEPALIVE_PAT }}
+          persist-credentials: true
+
+      - name: Set up uv and Python
+        uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          version: "0.12.17"
+          python-version-file: ".python-version"
+          enable-cache: true
+
+      - name: Install from the locked, hashed dependency set
+        run: uv sync --locked
+
+      - name: Discover
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          echo "discovery runs from M6 onward; nothing to crawl yet."
+          echo "dry_run=${{ inputs.dry_run }}"

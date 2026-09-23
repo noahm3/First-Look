@@ -228,6 +228,9 @@ class RunRecorder:
         self._previous: RunRow | None = None
         self._anomalies: list[Anomaly] = []
         self._failing: list[FailingCompany] = []
+        # finish() is called by __exit__ and again by the entry point that needs
+        # the exit code, so it caches rather than closing the run twice.
+        self._exit_code: int | None = None
         self._counters: dict[str, int] = {
             "companies_polled": 0,
             "http_ok": 0,
@@ -302,8 +305,23 @@ class RunRecorder:
         self.finish()
         return False
 
+    @property
+    def exit_code(self) -> int:
+        """The exit code from the completed run. Valid only after finish()."""
+        if self._exit_code is None:
+            raise RuntimeError("the run has not finished yet")
+        return self._exit_code
+
     def finish(self) -> int:
-        """Close the run, ping on success, print the summary, return an exit code."""
+        """Close the run, ping on success, print the summary, return an exit code.
+
+        Idempotent: __exit__ calls it, and the entry point calls it again to read
+        the code. Closing the run twice would double-count the anomalies and print
+        two summaries.
+        """
+        if self._exit_code is not None:
+            return self._exit_code
+
         counts = self.counts
         self._anomalies.extend(detect_anomalies(counts, self._previous))
 
@@ -339,7 +357,8 @@ class RunRecorder:
                 ),
             )
         )
-        return 1 if failed else 0
+        self._exit_code = 1 if failed else 0
+        return self._exit_code
 
     # -- dead-man's switch -------------------------------------------------
 

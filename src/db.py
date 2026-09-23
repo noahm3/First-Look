@@ -22,6 +22,15 @@ from urllib.parse import urlsplit, urlunsplit
 
 import psycopg
 
+from src.models import (
+    Company,
+    CompDataQuality,
+    CompPeriod,
+    CompTier,
+    LocationClass,
+    Posting,
+)
+
 log = logging.getLogger(__name__)
 
 DEFAULT_DSN_ENV_VAR = "SUPABASE_DB_URL"
@@ -226,6 +235,102 @@ class Database:
             "ORDER BY finished_at DESC LIMIT 1"
         )
         return row[0] if row else None
+
+    # -- the dashboard export (SPEC.md §12.8) ------------------------------
+
+    def open_postings_for_export(self) -> list[tuple[Posting, Company]]:
+        """Open postings with their company and every compensation tier.
+
+        Only `closed_at IS NULL`, and only the columns the cards use (§12.8).
+        Tiers come along in full because §11's filter predicate asks whether any
+        *single* tier satisfies all conditions — collapsing them here would make
+        C-5.2 unanswerable in the browser.
+
+        Returns an empty list when there are no postings, which at M0 is the
+        expected and correct answer rather than a stub.
+        """
+        rows = self.fetch_all(
+            """
+            SELECT p.id, p.company_id, p.ats_job_id, p.title_raw, p.department_raw,
+                   p.location_raw, p.workplace_type_raw, p.location_class, p.city_raw,
+                   p.url, p.first_seen_at, p.last_seen_at, p.posted_at, p.is_repost,
+                   p.comp_data_quality, p.comp_raw_summary, p.comp_best_annual_usd,
+                   p.comp_floor_annual_usd, p.comp_tier_count,
+                   c.name, c.canonical_domain, c.is_climate, c.industry_tags
+              FROM postings p
+              JOIN companies c ON c.id = p.company_id
+             WHERE p.closed_at IS NULL
+             ORDER BY p.first_seen_at DESC
+            """
+        )
+        if not rows:
+            return []
+
+        tiers = self._comp_tiers_by_posting([r[0] for r in rows])
+        return [(self._posting_from_row(r, tiers), self._company_from_row(r)) for r in rows]
+
+    def _comp_tiers_by_posting(self, posting_ids: Sequence[int]) -> dict[int, list[CompTier]]:
+        rows = self.fetch_all(
+            """
+            SELECT posting_id, tier_label, min_amount, max_amount, currency, period,
+                   observed_at, id
+              FROM posting_comp_tiers
+             WHERE posting_id = ANY(%s)
+             ORDER BY posting_id, id
+            """,
+            (list(posting_ids),),
+        )
+        grouped: dict[int, list[CompTier]] = {}
+        for posting_id, label, low, high, currency, period, observed_at, tier_id in rows:
+            grouped.setdefault(posting_id, []).append(
+                CompTier(
+                    tier_label=label,
+                    min_amount=low,
+                    max_amount=high,
+                    currency=currency,
+                    period=CompPeriod(period) if period else None,
+                    observed_at=observed_at,
+                    id=tier_id,
+                    posting_id=posting_id,
+                )
+            )
+        return grouped
+
+    @staticmethod
+    def _company_from_row(row: tuple) -> Company:
+        tags = row[22] or []
+        return Company(
+            name=row[19],
+            canonical_domain=row[20],
+            id=row[1],
+            is_climate=bool(row[21]),
+            industry_tags=tuple(tags),
+        )
+
+    @staticmethod
+    def _posting_from_row(row: tuple, tiers: dict[int, list[CompTier]]) -> Posting:
+        return Posting(
+            id=row[0],
+            company_id=row[1],
+            ats_job_id=row[2],
+            title_raw=row[3],
+            department_raw=row[4],
+            location_raw=row[5],
+            workplace_type_raw=row[6],
+            location_class=LocationClass(row[7]) if row[7] else LocationClass.UNKNOWN,
+            city_raw=row[8],
+            url=row[9],
+            first_seen_at=row[10],
+            last_seen_at=row[11],
+            posted_at=row[12],
+            is_repost=bool(row[13]),
+            comp_data_quality=(CompDataQuality(row[14]) if row[14] else CompDataQuality.NONE),
+            comp_raw_summary=row[15],
+            comp_best_annual_usd=row[16],
+            comp_floor_annual_usd=row[17],
+            comp_tier_count=row[18] or 0,
+            tiers=tuple(tiers.get(row[0], ())),
+        )
 
     # -- schema posture (SETUP-PLATFORM.md §7, live half of the RLS check) ---
 
