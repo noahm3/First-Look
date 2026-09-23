@@ -443,6 +443,54 @@ class Database:
             tiers=tuple(tiers.get(row[0], ())),
         )
 
+    # -- companies (SPEC.md §7.1, watchlist ingest -- BUILD.md M1) ----------
+
+    def ingest_manual_company(
+        self, *, name: str, canonical_domain: str | None, source_id: str
+    ) -> tuple[int, bool]:
+        """Idempotently attach one `manual`-source company. Returns (company_id, created).
+
+        Looked up first by `company_sources.source_id` under the `manual` source,
+        because `canonical_domain` can't serve as the identity key for a company
+        with none (C-1.8) -- NULL never equals NULL under a UNIQUE constraint, so
+        re-running the ingest against a no-domain entry would otherwise insert a
+        fresh row every time (violating C-1.6). When a domain *is* present, a
+        second lookup by `canonical_domain` attaches to a company already known
+        via another source rather than creating a duplicate row for it.
+        """
+        row = self.fetch_one(
+            "SELECT company_id FROM company_sources WHERE source = 'manual' AND source_id = %s",
+            (source_id,),
+        )
+        if row:
+            return int(row[0]), False
+
+        company_id: int | None = None
+        if canonical_domain:
+            row = self.fetch_one(
+                "SELECT id FROM companies WHERE canonical_domain = %s", (canonical_domain,)
+            )
+            if row:
+                company_id = int(row[0])
+
+        created = company_id is None
+        if created:
+            row = self.fetch_one(
+                "INSERT INTO companies (name, canonical_domain) VALUES (%s, %s) RETURNING id",
+                (name, canonical_domain),
+            )
+            if row is None:
+                raise DatabaseUnavailable("could not insert company row")
+            company_id = int(row[0])
+
+        self.execute(
+            "INSERT INTO company_sources (company_id, source, source_id) "
+            "VALUES (%s, 'manual', %s) ON CONFLICT (company_id, source) DO NOTHING",
+            (company_id, source_id),
+        )
+        self.commit()
+        return company_id, created
+
     # -- schema posture (SETUP-PLATFORM.md §7, live half of the RLS check) ---
 
     def public_tables(self) -> list[str]:

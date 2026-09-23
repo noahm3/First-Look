@@ -1,0 +1,67 @@
+# config/watchlist.yml -- SPEC.md §7.1: manual watchlist, name + domain only.
+# Highest-signal source per unit of effort, and this becomes M3's ground-truth
+# set (BUILD.md M1) -- so entries here should be companies whose ATS you
+# already know, not just whatever an automated cascade already flagged.
+#
+# This first batch of 23 was selected from spikes/discovered_companies.csv's
+# `verified` mapping tier plus spikes/iteration11_rippling_tokens.csv, spread
+# across the four ATS providers that already have live-tested parsers in
+# spikes/ (Greenhouse, Ashby, Lever, Rippling). Hand-checked against the
+# spike's own known false-positive shapes (DEVLOG.md, iterations 3 and 6):
+# excludes VC/PE-fund domains, CDN/asset subdomains, and parked or dead
+# domains that turned up elsewhere in that data. More to be added -- see
+# DEVLOG.md's session notes for this milestone.
+
+# -- Greenhouse ---------------------------------------------------------
+- name: Rondo Energy
+  domain: rondo.com
+- name: Dragos
+  domain: dragos.com
+- name: Nozomi Networks
+  domain: nozominetworks.com
+- name: Kodiak Robotics
+  domain: kodiak.ai
+- name: Ginkgo Bioworks
+  domain: ginkgobioworks.com
+- name: C3 AI
+  domain: c3.ai
+
+# -- Ashby ----------------------------------------------------------------
+- name: Crusoe Energy
+  domain: crusoe.ai
+- name: Ramp
+  domain: ramp.com
+- name: Carta
+  domain: carta.com
+- name: Aurora Solar
+  domain: aurorasolar.com
+- name: Abridge
+  domain: abridge.com
+- name: Replit
+  domain: replit.com
+
+# -- Lever ------------------------------------------------------------------
+- name: Palantir Technologies
+  domain: palantir.com
+- name: Ro
+  domain: ro.co
+- name: Luminar Technologies
+  domain: luminartech.com
+- name: Velo3D
+  domain: velo3d.com
+- name: Loadsmart
+  domain: loadsmart.com
+
+# -- Rippling -----------------------------------------------------------
+- name: Stem
+  domain: stem.com
+- name: Algorand
+  domain: algorand.com
+- name: Shippo
+  domain: goshippo.com
+- name: goTenna
+  domain: gotenna.com
+- name: Zumper
+  domain: zumper.com
+- name: Boom Supersonic
+  domain: boomsupersonic.com
