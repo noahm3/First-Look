@@ -146,12 +146,31 @@ class TestRuns:
             http_err=1,
             total_live_postings=310,
             new_postings=4,
+            ok=True,
         )
         sql, params = conn.executed[-1]
         assert "UPDATE runs" in sql
-        assert params == (25, 24, 1, 310, 4, 7)
-        # Every bound value is an integer. Nothing object-shaped can reach this row.
+        assert params == (25, 24, 1, 310, 4, True, 7)
+        # Every bound value is an integer or bool. Nothing object-shaped can reach
+        # this row (bool is a subclass of int in Python, so this still holds).
         assert all(isinstance(p, int) for p in params)
+
+    def test_finish_run_records_a_failed_verdict(self):
+        # Found necessary by live testing: a run that trips an anomaly still
+        # closes its row, and without this the next run's export would report
+        # the failed run's timestamp as "last successful."
+        db, conn = make_db()
+        db.finish_run(
+            9,
+            companies_polled=0,
+            http_ok=0,
+            http_err=100,
+            total_live_postings=0,
+            new_postings=0,
+            ok=False,
+        )
+        _sql, params = conn.executed[-1]
+        assert params == (0, 0, 100, 0, 0, False, 9)
 
     def test_previous_finished_run_maps_onto_a_runrow(self):
         row = (3, "2026-09-22T00:00:00Z", "2026-09-22T00:05:00Z", 25, 24, 1, 310, 4)
@@ -163,6 +182,35 @@ class TestRuns:
     def test_previous_finished_run_is_none_on_the_very_first_run(self):
         db, _ = make_db(router=lambda _sql, _params: [])
         assert db.previous_finished_run(before_run_id=1) is None
+
+    def test_previous_finished_run_does_not_filter_on_ok(self):
+        # Deliberately different from last_successful_run_at: the run-over-run
+        # anomaly comparison needs the true prior state, whether or not that
+        # prior run itself tripped an anomaly — skipping a failed row would
+        # compare against stale data instead of what actually happened.
+        def router(sql, _params):
+            assert " AND ok" not in sql
+            return [(5, None, None, 0, 0, 100, 0, 0)]
+
+        db, _ = make_db(router=router)
+        assert db.previous_finished_run(before_run_id=6) is not None
+
+
+class TestLastSuccessfulRunAt:
+    def test_it_filters_on_ok(self):
+        captured = {}
+
+        def router(sql, _params):
+            captured["sql"] = sql
+            return [("2026-09-23T16:36:00Z",)]
+
+        db, _ = make_db(router=router)
+        assert db.last_successful_run_at() == "2026-09-23T16:36:00Z"
+        assert " AND ok" in captured["sql"]
+
+    def test_no_successful_run_yet_returns_none(self):
+        db, _ = make_db(router=lambda _sql, _params: [])
+        assert db.last_successful_run_at() is None
 
 
 class TestRlsPosture:
@@ -294,6 +342,11 @@ class TestRealMigrationFiles:
         directory = pathlib.Path(__file__).resolve().parents[1] / "supabase" / "migrations"
         first = sorted(directory.glob("*.sql"))[0]
         assert "rls_baseline" in first.name
+
+    def test_runs_gained_an_ok_column(self):
+        # Added after live testing showed last_successful_run_at() had no way
+        # to exclude a run that finished but tripped an anomaly.
+        assert "ADD COLUMN ok BOOLEAN" in self.sql
 
 
 class TestCheckSchemaEntryPoint:

@@ -356,7 +356,19 @@ class TestRunRecorder:
             recorder.bump("new_postings", 6)
 
         updates = [p for sql, p in conn.executed if "UPDATE runs" in sql]
-        assert updates == [(25, 24, 1, 412, 6, 99)]
+        assert updates == [(25, 24, 1, 412, 6, True, 99)]
+
+    def test_a_failed_run_writes_ok_false_to_its_own_row(self):
+        # This is the bug live testing found: a run that trips an anomaly must
+        # record that on its own row, or the next run's last_successful_run_at()
+        # query cannot tell it apart from a clean one.
+        recorder, conn = make_recorder(previous=run_row(total_live_postings=400))
+        recorder._emit = lambda _s: None
+        with recorder:
+            recorder.set_count("total_live_postings", 10)  # >25% drop -> anomaly
+
+        updates = [p for sql, p in conn.executed if "UPDATE runs" in sql]
+        assert updates[0][-2] is False  # the `ok` column, second-to-last bound value
 
     def test_a_ping_failure_does_not_fail_the_run(self):
         # If the ping does not land the dead-man's switch fires on its own, which

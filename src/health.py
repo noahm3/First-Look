@@ -324,6 +324,10 @@ class RunRecorder:
 
         counts = self.counts
         self._anomalies.extend(detect_anomalies(counts, self._previous))
+        # Computed before finish_run() so the row's own `ok` column reflects
+        # every anomaly detected up to and including this point — never a
+        # provisional verdict revised after the row is already closed.
+        failed = self.should_fail_run()
 
         if self.run_id is not None:
             try:
@@ -334,11 +338,14 @@ class RunRecorder:
                     http_err=counts.http_err,
                     total_live_postings=counts.total_live_postings,
                     new_postings=counts.new_postings,
+                    ok=not failed,
                 )
             except DatabaseUnavailable as exc:
                 self._anomalies.append(Anomaly(AnomalyCode.DATABASE_UNAVAILABLE, str(exc)))
-
-        failed = self.should_fail_run()
+                # A failure discovered while *closing* the row can no longer be
+                # written to that same row, but it must still change the exit
+                # code — recompute rather than trust the now-stale `failed`.
+                failed = self.should_fail_run()
         if not failed:
             self._ping_healthcheck()
 

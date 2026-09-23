@@ -288,12 +288,20 @@ class Database:
         http_err: int,
         total_live_postings: int,
         new_postings: int,
+        ok: bool,
     ) -> None:
         """Close a run row. Counts only — this signature never sees an object.
 
         SECURITY.md §S3 makes that an interface decision rather than a discipline:
         a function that cannot accept a profile cannot print an address into a
         world-readable log.
+
+        `ok` is this run's own verdict — whether its anomaly check passed —
+        recorded once at close time. Found necessary by live testing: without
+        it, `last_successful_run_at()` cannot tell a clean run apart from one
+        that finished but tripped an anomaly, which a C-0.6 forced-failure test
+        exposed directly (its row closed normally, so the next run's export
+        reported it as the "last successful" run).
         """
         self.execute(
             """
@@ -303,10 +311,11 @@ class Database:
                    http_ok = %s,
                    http_err = %s,
                    total_live_postings = %s,
-                   new_postings = %s
+                   new_postings = %s,
+                   ok = %s
              WHERE id = %s
             """,
-            (companies_polled, http_ok, http_err, total_live_postings, new_postings, run_id),
+            (companies_polled, http_ok, http_err, total_live_postings, new_postings, ok, run_id),
         )
         self.commit()
 
@@ -326,9 +335,14 @@ class Database:
         return RunRow(*row) if row else None
 
     def last_successful_run_at(self) -> datetime | None:
-        """Powers the dashboard's green marker and its stale banner (§12.1)."""
+        """Powers the dashboard's green marker and its stale banner (§12.1).
+
+        Filters on `ok = true` deliberately — a run that finished but tripped
+        an anomaly must not read as "successful" here, or the stale banner's
+        "last run failed" half (§12.1) can never fire.
+        """
         row = self.fetch_one(
-            "SELECT finished_at FROM runs WHERE finished_at IS NOT NULL "
+            "SELECT finished_at FROM runs WHERE finished_at IS NOT NULL AND ok "
             "ORDER BY finished_at DESC LIMIT 1"
         )
         return row[0] if row else None
