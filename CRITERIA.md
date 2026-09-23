@@ -48,8 +48,19 @@ patches are preserved in `archive/`. Nothing above this note was reworded or ren
       `last_successful_run` (2026-09-23: `https://noahm3.github.io/First-Look/
       jobs-recent.json` served `stale: false` with a populated `last_successful_run`
       from a real run)
-- [ ] **C-0.5** **Breaking the healthcheck URL produces an email to the user's phone.**
+- [x] **C-0.5** **Breaking the healthcheck URL produces an email to the user's phone.**
       Do not proceed past M0 until that email has arrived.
+      (2026-09-23: `HEALTHCHECK_URL` set to a bad value, healthchecks.io period/grace
+      temporarily shortened to 2min/2min for a fast test. First attempt surfaced a real
+      gap — no DOWN email arrived even though the dashboard showed downtime, only an
+      UP/recovery email after a manual ping. Root cause: the check's "next expected
+      ping" deadline was still computed from the old 6h/2h period active when the last
+      real ping landed, so the first evaluation cycle ran on stale timing before
+      catching up. Once that cycle passed, a genuine DOWN alert email reached the
+      user's phone — confirmed by the user, separately from the dashboard state.
+      Production settings restored (6h/2h) and the real ping URL restored; a
+      subsequent real run logged "healthcheck ping accepted" and the dashboard
+      confirmed UP.)
 - [x] **C-0.6** A forced non-zero exit produces a GitHub workflow-failure email
       (2026-09-23: `--force-failure` dispatched twice, both exited 1 on a real
       `http_error_rate` anomaly; user confirmed a GitHub failure email arrived)
