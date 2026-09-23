@@ -1,0 +1,251 @@
+{
+  "_comment": [
+    "Reference export fixture. BUILD.md §3 settles this shape at M0 so M9's dashboard",
+    "can be built and tested with no database behind it.",
+    "",
+    "Every row here exists to pin a case the dashboard has to get right:",
+    "  1  acme-1001   normal posting, single disclosed band",
+    "  2  borealis-77 MULTI-BAND. C-5.2: no single band satisfies min>=200k AND max<=240k,",
+    "                 even though the collapsed floor/best pair would. Filtering on the",
+    "                 collapsed values is the bug this row exists to catch.",
+    "  3  cinder-4    comp undisclosed. C-9.11: renders 'comp not disclosed', never blank.",
+    "  4  delta-19    hourly rate. §11: filters compare normalized annual USD, or an",
+    "                 hourly posting silently never matches.",
+    "  5  eolian-3    CAD, and location_class unknown. C-9.12: 'unknown' is selectable.",
+    "  6  HOSTILE-1   SECURITY.md §S1's exact test: script-shaped title, javascript: URL.",
+    "                 The title must render as literal text and the link must be dropped.",
+    "                 C-S.1 and C-S.2 are checked against this row.",
+    "  7  fathom-88   repost, and a title containing an ampersand and angle brackets."
+  ],
+  "schema_version": 1,
+  "generated_at": "2026-09-22T12:00:00+00:00",
+  "last_successful_run": "2026-09-22T12:00:00+00:00",
+  "run_id": 7,
+  "stale": false,
+  "counts": {
+    "postings": 7,
+    "companies": 7
+  },
+  "postings": [
+    {
+      "id": 1001,
+      "company": "Acme Grid Energy",
+      "company_domain": "acmegrid.example",
+      "industry_tags": ["Climate", "Energy", "Software"],
+      "is_climate": true,
+      "title": "Senior Product Manager, Grid Platform",
+      "url": "https://boards.greenhouse.io/acmegrid/jobs/1001",
+      "department": "Product",
+      "location_raw": "Remote (US)",
+      "location_class": "remote",
+      "city": "Remote",
+      "first_seen_at": "2026-09-22T06:00:00+00:00",
+      "is_repost": false,
+      "comp": {
+        "summary": "$190,000 - $255,000 USD",
+        "quality": "structured",
+        "tier_count": 1,
+        "best_annual_usd": 255000,
+        "floor_annual_usd": 190000,
+        "tiers": [
+          {
+            "label": null,
+            "min": 190000.0,
+            "max": 255000.0,
+            "currency": "USD",
+            "period": "year",
+            "min_annual_usd": 190000,
+            "max_annual_usd": 255000
+          }
+        ]
+      }
+    },
+    {
+      "id": 1002,
+      "company": "Borealis Thermal",
+      "company_domain": "borealisthermal.example",
+      "industry_tags": ["Climate", "Hardware"],
+      "is_climate": true,
+      "title": "Staff Software Engineer",
+      "url": "https://jobs.ashbyhq.com/borealisthermal/1002",
+      "department": "Engineering",
+      "location_raw": "Boston, MA or Remote",
+      "location_class": "hybrid",
+      "city": "Boston",
+      "first_seen_at": "2026-09-22T05:30:00+00:00",
+      "is_repost": false,
+      "comp": {
+        "summary": "Zone A $150,000 - $180,000 · Zone B $210,000 - $260,000",
+        "quality": "structured",
+        "tier_count": 2,
+        "best_annual_usd": 260000,
+        "floor_annual_usd": 150000,
+        "tiers": [
+          {
+            "label": "Zone A",
+            "min": 150000.0,
+            "max": 180000.0,
+            "currency": "USD",
+            "period": "year",
+            "min_annual_usd": 150000,
+            "max_annual_usd": 180000
+          },
+          {
+            "label": "Zone B",
+            "min": 210000.0,
+            "max": 260000.0,
+            "currency": "USD",
+            "period": "year",
+            "min_annual_usd": 210000,
+            "max_annual_usd": 260000
+          }
+        ]
+      }
+    },
+    {
+      "id": 1003,
+      "company": "Cinder Materials",
+      "company_domain": "cindermaterials.example",
+      "industry_tags": ["Climate", "Manufacturing"],
+      "is_climate": true,
+      "title": "Director of Operations",
+      "url": "https://jobs.lever.co/cindermaterials/1003",
+      "department": "Operations",
+      "location_raw": "Somerville, MA",
+      "location_class": "onsite",
+      "city": "Somerville",
+      "first_seen_at": "2026-09-21T18:00:00+00:00",
+      "is_repost": false,
+      "comp": {
+        "summary": null,
+        "quality": "none",
+        "tier_count": 0,
+        "best_annual_usd": null,
+        "floor_annual_usd": null,
+        "tiers": []
+      }
+    },
+    {
+      "id": 1004,
+      "company": "Delta Field Services",
+      "company_domain": "deltafield.example",
+      "industry_tags": ["Energy"],
+      "is_climate": false,
+      "title": "Field Technician II",
+      "url": "https://boards.greenhouse.io/deltafield/jobs/1004",
+      "department": "Field Operations",
+      "location_raw": "Houston, TX",
+      "location_class": "onsite",
+      "city": "Houston",
+      "first_seen_at": "2026-09-21T09:15:00+00:00",
+      "is_repost": false,
+      "comp": {
+        "summary": "$52.00 - $61.50 per hour",
+        "quality": "structured",
+        "tier_count": 1,
+        "best_annual_usd": 127920,
+        "floor_annual_usd": 108160,
+        "tiers": [
+          {
+            "label": null,
+            "min": 52.0,
+            "max": 61.5,
+            "currency": "USD",
+            "period": "hour",
+            "min_annual_usd": 108160,
+            "max_annual_usd": 127920
+          }
+        ]
+      }
+    },
+    {
+      "id": 1005,
+      "company": "Eolian Offshore",
+      "company_domain": "eolianoffshore.example",
+      "industry_tags": ["Climate", "Energy"],
+      "is_climate": true,
+      "title": "Lead Structural Engineer",
+      "url": "https://jobs.lever.co/eolianoffshore/1005",
+      "department": null,
+      "location_raw": "Halifax, NS / flexible",
+      "location_class": "unknown",
+      "city": "Halifax",
+      "first_seen_at": "2026-09-20T14:00:00+00:00",
+      "is_repost": false,
+      "comp": {
+        "summary": "CAD $165,000 - $195,000",
+        "quality": "structured",
+        "tier_count": 1,
+        "best_annual_usd": 142350,
+        "floor_annual_usd": 120450,
+        "tiers": [
+          {
+            "label": null,
+            "min": 165000.0,
+            "max": 195000.0,
+            "currency": "CAD",
+            "period": "year",
+            "min_annual_usd": 120450,
+            "max_annual_usd": 142350
+          }
+        ]
+      }
+    },
+    {
+      "id": 1006,
+      "company": "<script>alert('company')</script> Labs",
+      "company_domain": "hostile.example",
+      "industry_tags": ["<img src=x onerror=alert(1)>", "Climate"],
+      "is_climate": true,
+      "title": "<img src=x onerror=\"document.title='XSS'\">",
+      "url": "javascript:alert(1)",
+      "department": "<b>Engineering</b>",
+      "location_raw": "</div><script>alert('loc')</script>",
+      "location_class": "unknown",
+      "city": "<i>Nowhere</i>",
+      "first_seen_at": "2026-09-20T08:00:00+00:00",
+      "is_repost": false,
+      "comp": {
+        "summary": "<script>alert('comp')</script>",
+        "quality": "parsed",
+        "tier_count": 0,
+        "best_annual_usd": null,
+        "floor_annual_usd": null,
+        "tiers": []
+      }
+    },
+    {
+      "id": 1007,
+      "company": "Fathom Water & Power",
+      "company_domain": "fathomwp.example",
+      "industry_tags": ["Climate", "Water"],
+      "is_climate": true,
+      "title": "Analyst, Rates & Regulatory <Northeast>",
+      "url": "https://boards.greenhouse.io/fathomwp/jobs/1007",
+      "department": "Finance & Strategy",
+      "location_raw": "New York, NY (Hybrid)",
+      "location_class": "hybrid",
+      "city": "New York",
+      "first_seen_at": "2026-09-19T11:45:00+00:00",
+      "is_repost": true,
+      "comp": {
+        "summary": "$120,000 - $145,000",
+        "quality": "structured",
+        "tier_count": 1,
+        "best_annual_usd": 145000,
+        "floor_annual_usd": 120000,
+        "tiers": [
+          {
+            "label": null,
+            "min": 120000.0,
+            "max": 145000.0,
+            "currency": "USD",
+            "period": "year",
+            "min_annual_usd": 120000,
+            "max_annual_usd": 145000
+          }
+        ]
+      }
+    }
+  ]
+}
