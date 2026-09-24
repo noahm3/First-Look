@@ -253,9 +253,13 @@ patches are preserved in `archive/`. Nothing above this note was reworded or ren
       **added 2026-09-24, pulled forward ahead of `SPEC.md` §18's stated sequencing (item
       #4, gated behind the M7 measurement gate below) by explicit user decision, not a
       gate-driven promotion.** 4/4 confirmed live 2026-09-24 (Greentown Labs, Congruent
-      Ventures, Bessemer Venture Partners, MCJ Collective) via
-      `python -m src.consider --dry-run`: "consider (dry run): 4/4 boards parsed (0
-      failed) -> 292 companies found, nothing written"
+      Ventures, Bessemer Venture Partners, MCJ Collective), both via
+      `python -m src.consider --dry-run` ("consider (dry run): 4/4 boards parsed (0
+      failed) -> 292 companies found, nothing written") and via a real
+      `workflow_dispatch` of `discover.yml` against production
+      (github.com/noahm3/First-Look/actions/runs/36022852266): "consider: 4/4 boards
+      parsed (0 failed) -> 278 companies created, 16 already present" -- the 16 are a
+      real cross-source dedup hit against `canonical_domain`, not a fixture artifact
 
 ## M7 — Coverage sample (decision point)
 
