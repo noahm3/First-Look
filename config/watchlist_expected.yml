@@ -17,8 +17,8 @@
 #     Greenhouse boards also return the company's own name), and Stem
 #     (`stem-inc`), goTenna (`gotenna-inc`) and Algorand
 #     (`algorand-foundation`, careers page lives on algorand.co) by reading
-#     each careers page's Rippling links by eye. These 16 NEED USER
-#     RE-CONFIRMATION before C-3.1 is checked.
+#     each careers page's Rippling links by eye. Confirmed by the user
+#     2026-09-24 (the boards hand-checked in M1).
 #
 # Personio's "token" is the full tenant host (src/ats_personio.py takes a host).
 # zero_postings: true marks the "mapped, zero jobs" case.
