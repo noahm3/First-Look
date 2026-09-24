@@ -115,6 +115,18 @@ patches are preserved in `archive/`. Nothing above this note was reworded or ren
 - [ ] **C-2.6** A missing Lever `createdAt` produces a null, not an exception
 - [ ] **C-2.7** Implementation was written against the live API docs fetched during this
       milestone, not from memory
+- [ ] **C-2.8** Rippling, BambooHR, Workable, Personio, and Breezy HR each return parsed
+      postings for a known real company, with non-empty titles and URLs (scope added
+      2026-09-24 — Workday deferred, see SPEC.md §4)
+- [ ] **C-2.9** `department_raw` is populated from each of the 5 new providers' own field,
+      where the provider exposes one
+- [ ] **C-2.10** Fixtures exist per new provider for: normal board, empty board, malformed
+      response, 404
+- [ ] **C-2.11** Unit tests for all 8 providers (Greenhouse, Lever, Ashby, Rippling,
+      BambooHR, Workable, Personio, Breezy HR) pass with the network disabled
+- [ ] **C-2.12** Personio's XML feed shape was freshly re-verified against a live request
+      during this milestone, not assumed from the September spike/backlog notes — the
+      earlier spot-check found one company serving a client-rendered shell instead of XML
 
 ## M3 — Mapping cascade and validation
 

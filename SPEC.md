@@ -107,7 +107,7 @@ dashboard.
 | A preference-tier system encoded as a stored field | Same reason, and incompatible with multiple users holding different preferences. |
 | A weighted ranking score | Output is already filtered to "new." Sort by date. |
 | Workday adapter | Real endpoint, worst effort-to-yield available: POST bodies, hard 20-item pagination silently returning empty above the cap, a second request per job for a date, Akamai bot management — aimed at enterprises, not growth-stage companies. Backlog only. |
-| Workable, Recruitee, Personio adapters | SMB / agency / DACH-European skew. Personio is XML-only. Near-zero expected yield. Rejections stand, but their stakes have changed — see §8's mapping-coverage note. Revisit only against a measured `unsupported_ats:{name}` distribution, never on principle. **Measured 2026-09-22** (`spikes/ats_platform_census.py`, 1,668 careers pages across the VC-discovered portfolio — one discovery source, not yet the full §18 seed): Workable 42 companies, second-largest unpollable platform found after Rippling's 62; Recruitee 5; Personio 11. Workable's rejection rested specifically on "near-zero expected yield" — this measurement contradicts that premise. Recruitee and Personio are not disturbed by it; Personio's separate XML-only objection is untouched. Not re-proposed here — §4 is the do-not-re-propose list, and building an adapter remains the user's call — recorded because this row itself asks for exactly this distribution before revisiting. |
+| Workable, Recruitee, Personio adapters | SMB / agency / DACH-European skew. Personio is XML-only. Near-zero expected yield. Rejections stand, but their stakes have changed — see §8's mapping-coverage note. Revisit only against a measured `unsupported_ats:{name}` distribution, never on principle. **Measured 2026-09-22** (`spikes/ats_platform_census.py`, 1,668 careers pages across the VC-discovered portfolio — one discovery source, not yet the full §18 seed): Workable 42 companies, second-largest unpollable platform found after Rippling's 62; Recruitee 5; Personio 11. Workable's rejection rested specifically on "near-zero expected yield" — this measurement contradicts that premise. Recruitee and Personio are not disturbed by it; Personio's separate XML-only objection is untouched. Not re-proposed here — §4 is the do-not-re-propose list, and building an adapter remains the user's call — recorded because this row itself asks for exactly this distribution before revisiting. **Workable and Personio reopened 2026-09-24, user's explicit call, folded into M2.** Workable: this row's own "near-zero expected yield" premise is the part the 2026-09-22 measurement contradicts. Personio: a live spot-check of `nexwafe`'s documented `/xml` path returned a client-rendered shell, not XML (`spikes/ats_integration_backlog.md`) — the XML-only characterization is being re-verified against a fresh sample during M2, not assumed correct. **Recruitee is not reopened** — smallest measured count of the three (5), rejection stands as written above. |
 | `jobs.climatebase.org` GraphQL reverse-engineering | ClimateBase supplies only a climate flag, available from the plain-HTML org directory. **Reasoning strengthened, not weakened** (`SPEC-REVISION-01` §R2): job detail pages on `jobs.climatebase.org` carry `meta-robots: noindex`, a deliberate do-not-aggregate signal. The org directory (§7.3) remains in scope and is unaffected. |
 | ~~Wellfound automation~~ | ~~No public API; value behind a login wall; a warmed session is unacceptable maintenance.~~ **Struck 2026-09: factually wrong.** `wellfound.com/role/{role}`, `/role/r/{role}` (remote), and `/role/l/{role}/{city}` are public, server-rendered, `?page=N` paginated, no cookie, and carry salary range, equity range, remote policy, company size, stage, and stable numeric job URLs. What is behind the login is *arbitrary filtering and applying*, not the listings. The rejection generalised a property of the filter UI to the whole source. Replaced by acceptance as a company source — see §7.8. |
 | A circuit breaker disabling a source for N days | One request per company per run. No hammering to prevent. |
@@ -809,6 +809,75 @@ GET api.smartrecruiters.com/v1/companies/{companyIdentifier}/postings
 Documented, public, no auth. **Detection from day one**, so companies land in the
 measurement rather than the failure bucket. **Polling adapter only if the count justifies
 it** (§18).
+
+### Rippling — [developer.rippling.com/documentation/job-board-api](https://developer.rippling.com/documentation/job-board-api) (a different endpoint than the one below)
+```
+GET api.rippling.com/platform/api/ats/v2/board/{token}/jobs[?page=N]
+GET api.rippling.com/platform/api/ats/v2/board/{token}/jobs/{id}    # detail
+```
+**The linked docs describe `v1`, which requires a paid Recruiting Pro subscription and an
+API key. The public, unauthenticated `v2` endpoint used here is undocumented** — it is
+the same endpoint Rippling's own embed widget and hosted careers page call, same
+public-widget-vs-authenticated-admin-API split as Greenhouse's boards-api vs. Harvest.
+Token resolution needs a careers-page fetch first: the token appears as a literal API
+call in inline JS, an embed's `data-job-board-id` attribute, or in the hosted page URL
+(three sub-shapes: bare, `/embed/{token}/jobs`, locale-prefixed `/en-GB/{token}/jobs`) —
+unescape HTML entities before matching, not after. List endpoint has no date or comp;
+unlike Greenhouse, **the per-job detail call is not redundant** — `createdOn` (a real
+posted date) and structured `payRangeDetails` (location/currency/frequency/range) exist
+only there. `locations[].workplaceType` is structured, like Ashby. Confirmed live
+2026-09-22 on 62 companies, 61 ok, 716 postings (`spikes/iteration11_rippling_spike.py`).
+
+### BambooHR
+No authoritative documentation of any kind (same bucket as Lever v0/Getro).
+```
+GET {company}.bamboohr.com/careers/list
+```
+Undocumented internal endpoint powering BambooHR's own careers-page widget; shape and
+host reported to change between BambooHR releases without notice — needs the same
+fixture-from-live-response discipline as Lever v0/Getro, and revalidation if a board
+suddenly 404s. No organization-name field confirmed yet, so the same live-corroboration
+requirement §8.2 already applies to careers-page-derived Greenhouse/Lever/Ashby tokens
+applies here too before trusting a `verified` mapping. Confirmed live on at least one
+board 2026-09-22 (`spikes/ats_integration_backlog.md`).
+
+### Workable — [developer.workable.com](https://developer.workable.com) documents the authenticated admin API, not the endpoint below
+```
+GET apply.workable.com/api/v1/widget/accounts/{company}
+```
+The documented API (`spi/v3/jobs`, bearer token with `r_jobs` scope, 10 req/10sec limit)
+is Workable's authenticated admin surface. The endpoint above is a separate, undocumented,
+public, unauthenticated board endpoint that powers customers' own careers pages — same
+split as Rippling and Breezy HR below. Returns `name`/`description` at minimum (a
+validation signal, like Greenhouse's `/v1/boards/{token}`); full job-list field shape not
+yet inspected live for this project — confirm during implementation, not from memory.
+Rejection reopened 2026-09-24 — see §4.
+
+### Personio — [support.personio.de: Overview of the Personio Recruiting API](https://support.personio.de/hc/en-us/articles/360000314338-Overview-of-the-Personio-Recruiting-API)
+```
+GET {company}.jobs.personio.de/xml?language=en
+```
+The public XML job feed is an officially documented, sanctioned feature for job
+aggregators — not a reverse-engineered endpoint, unlike every other new provider here.
+Public, unauthenticated. Returns XML, not JSON — needs a parser, not a JSON decode.
+**Open, unresolved as of 2026-09-24:** a live spot-check of `nexwafe` returned a
+client-rendered Next.js page at this path instead of XML (`spikes/ats_integration_backlog.md`)
+— re-verify against a fresh sample during implementation before trusting either the
+XML-only framing or that one negative result. Some tenants use `.com` instead of `.de` —
+check the live hostname per company rather than hardcoding the TLD. Rejection reopened
+2026-09-24 — see §4.
+
+### Breezy HR — [developer.breezy.hr](https://developer.breezy.hr) documents the authenticated admin API, not the endpoint below
+```
+GET {company}.breezy.hr/json
+```
+The documented API (`api.breezy.hr/v3`, `GET v3/company/{company_id}/positions`, requires
+an auth token) is Breezy's authenticated admin surface. The endpoint above is a separate,
+undocumented, public, unauthenticated board endpoint — same public-widget-vs-authenticated
+split as Workable and Rippling. Confirmed live 2026-09-22: structured `location.is_remote`
+and a `salary` field, comparable richness to Ashby (`spikes/ats_integration_backlog.md`).
+A `?verbose=true` query param reportedly returns full descriptions in one request —
+confirm live before relying on it, not from this note alone.
 
 ### Getro
 No documentation of any kind. `__NEXT_DATA__` shape is community-derived. Company source
