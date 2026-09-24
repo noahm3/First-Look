@@ -706,7 +706,18 @@ expense.
    subdomains); match raw HTML for board-token URL shapes of all 8 supported providers
    (§9). Only pages on the company's own domain — or an ATS board its page redirected
    to — count as evidence. Also capture *any other* recognizable ATS host, including
-   unsupported ones — §8.4.
+   unsupported ones — §8.4. **Iteration 16 (2026-09-24):** a careers link is recognised
+   by its anchor text as well as its path ("Join The Team" → `/join-the-team/`, "Work
+   with us" → `/?page_id=…`). When the company has no own-site careers page, its own
+   careers link to *another* domain (a parent company, an acquirer) is followed and
+   counts as evidence, labelled `+offsite_careers_link`; profile sites (LinkedIn,
+   Wellfound, Glassdoor, Built In, …) are never followed.
+
+**Input check first (iteration 16):** a domain that is not a company's own site — a
+subdomain of someone else's product (`app.usercentrics.eu`), or a media/aggregator site
+listed in `config/non_company_domains.yml` — fails as `not_a_company_domain` before any
+request (`src/domain_quality.py`). Discovery ingesters should call the same check
+upstream. Mapping summaries report coverage over all inputs and over valid inputs.
 4. **Classified failure**, never a silent drop.
 
 Stages 1 and 3 both run for every company; `src/mapping_validate.py` judges the combined
@@ -747,7 +758,22 @@ Per §3.8, a known gap beats invisible bad data.
 - A token/name mismatch does **not** disqualify `verified`: rebrands and acquisitions keep
   old tokens (Volta → Lever `joltcharge`; OhmConnect → Workable `renewhome`).
 - A parked domain (§8.1's jetzero.au case) can never yield `probable`.
-- Name matching is whole-word, not substring: "Arc" does not match "Arcadia".
+- **Domain in postings (iteration 16, 2026-09-24):** a guessed Lever or Ashby board —
+  neither returns an org name — whose own posting text contains the company's **exact
+  domain** is `probable` (`slug_guess+domain_in_postings`). On that exact match only,
+  this overrides the negative guard below (user's call): the guard exists because a
+  short slug may be another company's board, and another company's board does not carry
+  this company's domain. Measured on 300 domains: 5 of 16 uncorroborated guesses matched
+  (gritt, forto, bolster, elicit, beamery), all correct by eye.
+- Name matching is whole-word, not substring: "Arc" does not match "Arcadia". A name
+  spelled as single letters only matches another spelled the same way — Greenhouse
+  `shield` is a demo board named "S.H.I.E.L.D.", which squashed to "shield" and
+  name-matched shield.ai (iteration 16 re-run).
+- When the homepage is **blocked**, the fallback careers paths are still tried (bot walls
+  are often per-page: stem.com's homepage 403'd while `/careers/` answered 200). If the
+  careers page still can't be read, the result is `blocked` unless stage 1 alone reaches
+  `probable` (a name match or domain-in-postings), the same standard as a company with no
+  careers page.
 - Tokens must be plain slugs (`^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$`, minus path words like
   `embed`); a Personio token is a `*.jobs.personio.(de|com)` host. **Lever, Rippling and
   Workable tokens are case-sensitive** (confirmed live: Lever `JourneyClinical` 200,
@@ -775,6 +801,8 @@ nothing, so degradation lands where it matters least.
 | `no_careers_page` | No careers URL resolvable | Data quality |
 | `weak_only` | Token found, failed validation | Validation signals |
 | `unknown` | Nothing diagnostic | Manual sample |
+| `blocked` | The homepage refused us (401/403/429). We can't know what's there. Added 2026-09-24 so the reason explains itself rather than hiding in `unknown` or, as before, `no_careers_page` | Retry (§8.5). A spoofed browser User-Agent rescued 4 of 14 in iteration 16 — **not adopted**, user's call |
+| `not_a_company_domain` | The input is a subdomain or a listed media/aggregator site, not a company's own domain. Added 2026-09-24 | Discovery data quality — excluded from the valid-input coverage figure |
 
 The distribution *is* the answer to "should we build more adapters." Surfaced on the
 health page.
