@@ -2522,3 +2522,72 @@ None. All six are ready for review; none are checked until the user has seen the
   Capsule8 → Sophos.
 - Then M4. It wires `python -m src.mapping` into a scheduled run, and needs the Workable
   rate question and the Rippling per-job detail question (the M2 entry) answered first.
+
+### Addendum, same day, after user review
+- **The user's call: acquisitions are let in** (`d5cc189`). A homepage redirect is the
+  company's own redirect, so its landing domain counts as the company's site. Accepts
+  reached through a differently named domain carry `+redirected_domain` in the method.
+  - Watchlist: Volta is now a TP. **Final C-3.1 run: `TP=31 FP=0 FN=0 TN=0`, exit 0.**
+- User approved the SPEC §8.1/§8.2/§8.5 diff (`bb107e6`, adding the Ashby no-org-name
+  evidence) and confirmed the re-derived watchlist tokens (`73f1dfd`).
+- **Final C-3.6 numbers (300-domain dry run, supersede the table above):**
+  - Coverage 58/300 (19.3%). Slug hit rate 55/300 (18.3%), with 32 accepted via
+    `slug_guess*`.
+  - Confidence: verified 53, probable 5, weak 17, none 225.
+  - Accepted by provider: greenhouse 15, lever 13, ashby 10, rippling 8, breezy_hr 5,
+    workable 3, bamboohr 2, personio 2.
+  - Failure reasons (242):
+
+    | Reason | Count |
+    |---|---|
+    | no_careers_page | 95 |
+    | unknown | 87 |
+    | weak_only | 27 |
+    | js_rendered | 13 |
+    | unsupported_ats | 20 |
+
+    Unsupported by platform: workday 4, teamtailor 4, jazzhr 2, ukg 2, and 1 each for
+    trinet, recruitee, careers-page, gem, factorial, smartrecruiters,
+    wordpress-job-plugin, comeet.
+  - `data/mapping_review.csv` (58 rows, `988065f`): the only change is capsule8 →
+    `sophos`, labelled.
+
+### Iteration 16 spike: why the cascade fails (`spikes/iteration16_mapping_failure_diagnosis.py`)
+Measurement only, on the same seeded 300; results in `spikes/iteration16_failure_diagnosis.csv`.
+Run on 20 domains first, then all 300.
+
+- **no_careers_page (95).**
+
+  | Sub-cause | Count | Notes |
+  |---|---|---|
+  | no careers link at all | 59 | |
+  | blocked (HTTP 403) | 14 | A browser UA rescued 4; the other 10 still 403 (bot walls) |
+  | careers link the path regex missed | 6 | "Join the Team", `/?page_id=…`, `/company#careers`, `/hiring-and-recruitment.html` |
+  | careers link to another domain | 6 | Parent company, acquirer, LinkedIn ×2, Wellfound, Collage (an unrecognised ATS) |
+  | dead DNS | 5 | |
+  | HTTP 404/402 | 5 | |
+
+  11 of the 95 are subdomain inputs (`app.usercentrics.eu`, `api.intellimize.co`, …),
+  and several more are media, VC or large-company sites. That is discovery data quality,
+  not mapping.
+- **weak_only (27).**
+  - Uncorroborated slug hits: Ashby 12, Lever 2, Greenhouse 2.
+  - Dead page tokens: 8 (correct; e.g. Landbase's Ashby board is gone, and its
+    `jobs.ashbyhq.com` page is byte-identical to a made-up name's).
+  - Ambiguous: 2. Parked: 1.
+  - Posting-text check on the uncorroborated Lever/Ashby hits: the company's **domain
+    appears in the board's own posting text for 5** (gritt, forto, bolster, elicit,
+    beamery; all look right by eye). The domain label appears for 2, no mention for 4,
+    no text for 3.
+- **unknown (87).**
+  - 77 have a careers page with no ATS evidence. The unrecognised hosts on those pages
+    are analytics, Built In profile widgets, Glassdoor and JotForm: no missed ATS
+    platform.
+  - 9 are careers-page timeouts, 1 an inconclusive probe. §8.5's retry covers these.
+- **Reading:** mapping-side fixes are worth roughly +5–10 of 300 at most. The rest is
+  structural: no ATS, no careers page, dead or non-company inputs.
+
+### Least confident about (addendum)
+- The 403 bucket is misfiled: a blocked homepage lands in `no_careers_page` when it
+  should be `unknown`. That doesn't change coverage, but it skews the §8.4 distribution.
+  Not fixed yet.

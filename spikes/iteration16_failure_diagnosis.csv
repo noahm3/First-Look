@@ -1,0 +1,301 @@
+domain,reason,method,subcause,detail
+instacart.com,accepted,slug_guess+name_match,,
+multiplylabs.com,accepted,slug_guess+careers_page,,
+cloover.co,unknown,no_ats_evidence,no_ats_evidence,
+gritt.ai,weak_only,slug_guess_uncorroborated,uncorroborated_ashby,gritt: domain_in_text
+pendulumlife.com,no_careers_page,careers_page_none,no_careers_link,1274108 bytes
+thermondo.de,unknown,no_ats_evidence,no_ats_evidence,
+coord.co,no_careers_page,careers_page_none,dead_dns,
+eavor.com,accepted,careers_page,,
+landbase.com,weak_only,careers_page_token_dead,careers_page_token_dead,
+daily-harvest.com,unknown,no_ats_evidence,no_ats_evidence,
+swiftcomply.com,accepted,careers_page,,
+sig-asiavc.com,no_careers_page,careers_page_none,careers_link_offsite,'Careers' -> https://careers.sig.com/c/growth-equity-private-equity-venture-capital-jobs
+skyviewventures.com,unknown,no_ats_evidence,no_ats_evidence,
+bluon.com,no_careers_page,careers_page_none,no_careers_link,140371 bytes
+sention.io,no_careers_page,careers_page_none,no_careers_link,63464 bytes
+akaidentity.io,no_careers_page,careers_page_none,no_careers_link,53131 bytes
+365.pinnaclefundservices.com,js_rendered,careers_page_js_rendered,,
+lumenaza.de,accepted,careers_page,,
+yummyeats.co,no_careers_page,careers_page_none,no_careers_link,249798 bytes
+elasticenergy.com,unknown,no_ats_evidence,no_ats_evidence,
+careers.playground.global,unknown,careers_page_probe_inconclusive,careers_page_probe_inconclusive,
+getmysa.com,unknown,no_ats_evidence,no_ats_evidence,
+neggst.co,no_careers_page,careers_page_none,http_402,
+sparx.ai,no_careers_page,careers_page_none,no_careers_link,189948 bytes
+3yourmind.com,accepted,careers_page,,
+behance.net,unknown,no_ats_evidence,no_ats_evidence,
+utilidata.com,unknown,no_ats_evidence,no_ats_evidence,
+viestories.com,no_careers_page,careers_page_none,no_careers_link,186574 bytes
+omeat.bio,no_careers_page,careers_page_none,no_careers_link,99254 bytes
+taptapsend.com,accepted,slug_guess+careers_page,,
+earthscale.co.uk,unknown,no_ats_evidence,no_ats_evidence,
+attackiq.com,unknown,no_ats_evidence,no_ats_evidence,
+suki.ai,weak_only,slug_guess_uncorroborated,uncorroborated_greenhouse,suki: n/a
+machindustries.com,accepted,slug_guess+careers_page,,
+supplyshift.net,unsupported_ats:workday,careers_page_unsupported_ats,,
+platformeleven.io,unknown,no_ats_evidence,no_ats_evidence,
+ema.co,weak_only,slug_guess_uncorroborated,uncorroborated_ashby,ema: no_mention
+bostonmetal.com,accepted,careers_page,,
+zivianhealth.com,accepted,careers_page,,
+agriculture.basf.us,no_careers_page,careers_page_none,careers_link_missed,subdomain_input; 'Hiring and Recruitment' -> /hiring-and-recruitment.html
+energyimpactpartners.com,unknown,no_ats_evidence,no_ats_evidence,
+mitrachem.com,unsupported_ats:trinet,careers_page_unsupported_ats,,
+trexgroup.com,js_rendered,careers_page_js_rendered,,
+oceanloop.com,no_careers_page,careers_page_none,no_careers_link,190521 bytes
+radiantnuclear.com,no_careers_page,careers_page_none,blocked_403,browser_ua_403
+deployed.co,unknown,no_ats_evidence,no_ats_evidence,
+macrocycletech.com,no_careers_page,careers_page_none,dead_dns,
+bitgo.com,accepted,slug_guess+careers_page,,
+picus.xyz,weak_only,slug_guess_uncorroborated,uncorroborated_lever,picus: no_mention
+aquaconnect.blue,unknown,no_ats_evidence,no_ats_evidence,
+aquatic-labs.com,weak_only,slug_guess_uncorroborated,uncorroborated_ashby,aquatic: no_text
+hermeus.com,accepted,slug_guess+careers_page,,
+elevaterenewablesenergy.com,no_careers_page,careers_page_none,dead_dns,
+hbr.org,unsupported_ats:workday,careers_page_unsupported_ats,,
+onedsinanode.com,no_careers_page,careers_page_none,careers_link_missed,'Join the Team' -> https://onedsinanode.com/company/join-the-team/
+hydrogen.aero,unknown,careers_page_inconclusive,careers_page_inconclusive,
+additiveflow.com,no_careers_page,careers_page_parked,no_careers_link,946 bytes
+forto.com,weak_only,slug_guess_uncorroborated,uncorroborated_ashby,forto: domain_in_text
+hedgedigital.com,unknown,no_ats_evidence,no_ats_evidence,
+newphotonics.com,unknown,no_ats_evidence,no_ats_evidence,
+getshield.xyz,no_careers_page,careers_page_none,no_careers_link,241734 bytes
+spawning.ai,js_rendered,careers_page_js_rendered,,
+genetirate.fish,unknown,no_ats_evidence,no_ats_evidence,
+loyalfordogs.com,accepted,careers_page,,
+freightwaves.com,no_careers_page,careers_page_none,no_careers_link,299319 bytes
+glow.org,weak_only,slug_guess_uncorroborated,uncorroborated_greenhouse,glow: n/a
+brightseedbio.com,weak_only,careers_page_token_dead,careers_page_token_dead,
+microverse.org,no_careers_page,careers_page_none,no_careers_link,94399 bytes
+echiontech.com,unknown,no_ats_evidence,no_ats_evidence,
+insightpartners.altareturn.com,no_careers_page,careers_page_none,blocked_403,subdomain_input; browser_ua_200
+etched.com,accepted,slug_guess+careers_page,,
+buildkubik.com,no_careers_page,careers_page_none,no_careers_link,31425 bytes
+xcimer.energy,accepted,slug_guess+careers_page,,
+muonvision.com,no_careers_page,careers_page_none,no_careers_link,801661 bytes
+telepath.computer,no_careers_page,careers_page_none,no_careers_link,4737 bytes
+sunandearth.com,unknown,careers_page_inconclusive,careers_page_inconclusive,
+teleo.ai,accepted,slug_guess+careers_page,,
+powin.com,no_careers_page,careers_page_none,blocked_403,browser_ua_403
+titanhaptics.com,unknown,no_ats_evidence,no_ats_evidence,
+owletcare.com,accepted,careers_page,,
+cibahealth.com,unknown,no_ats_evidence,no_ats_evidence,
+aonics.ai,weak_only,slug_guess_uncorroborated,uncorroborated_ashby,aonics: no_text
+leap.ac,accepted,careers_page,,
+goodmeat.co,weak_only,careers_page_token_dead,careers_page_token_dead,
+autodesk.com,no_careers_page,careers_page_none,blocked_403,browser_ua_403
+foghorn-systems.com,unknown,careers_page_inconclusive,careers_page_inconclusive,
+enerkem.com,unknown,no_ats_evidence,no_ats_evidence,
+enverus.ondemand.goldcast.io,no_careers_page,careers_page_none,http_404,subdomain_input; 
+venusaero.com,accepted,slug_guess+careers_page,,
+cleartrace.io,no_careers_page,careers_page_none,blocked_403,browser_ua_403
+rhinofcp.com,accepted,careers_page,,
+shipmonk.com,accepted,slug_guess+name_match,,
+rain.aero,weak_only,slug_guess_uncorroborated,uncorroborated_ashby,rain: no_mention
+117760946.intellimizeio.com,no_careers_page,careers_page_none,http_404,subdomain_input; 
+therobotreport.com,no_careers_page,careers_page_none,blocked_403,browser_ua_403
+shield.ai,weak_only,careers_page_ambiguous:2,careers_page_ambiguous:2,
+myrspoven.com,unsupported_ats:teamtailor,careers_page_unsupported_ats,,
+t8notch.com,js_rendered,careers_page_js_rendered,,
+75f.io,weak_only,careers_page_ambiguous:2,careers_page_ambiguous:2,
+sig.com,unknown,no_ats_evidence,no_ats_evidence,
+pactum.com,unsupported_ats:teamtailor,careers_page_unsupported_ats,,
+ruedata.com,js_rendered,careers_page_js_rendered,,
+pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev,no_careers_page,careers_page_none,http_404,subdomain_input; 
+vin.company,no_careers_page,careers_page_none,no_careers_link,170919 bytes
+nanogence.com,no_careers_page,careers_page_none,no_careers_link,50475 bytes
+pakal-tech.com,unknown,no_ats_evidence,no_ats_evidence,
+safi.co,weak_only,slug_guess_uncorroborated,uncorroborated_ashby,safi: no_text
+akasa.com,accepted,slug_guess+careers_page,,
+aalo.com,accepted,careers_page,,
+sunseap.com,no_careers_page,careers_page_none,dead_dns,
+lovu.health,no_careers_page,careers_page_none,no_careers_link,54611 bytes
+outpacebio.com,accepted,slug_guess+careers_page,,
+basiliskconcrete.com,no_careers_page,careers_page_none,no_careers_link,203197 bytes
+highfidelity.com,unknown,no_ats_evidence,no_ats_evidence,
+mobilionsystems.com,accepted,careers_page,,
+pantheondesign.com,no_careers_page,careers_page_none,no_careers_link,41185 bytes
+goswift.ly,accepted,slug_guess+careers_page,,
+laruchequiditoui.fr,no_careers_page,careers_page_none,blocked_403,browser_ua_200
+getpaid.io,no_careers_page,careers_page_none,no_careers_link,86996 bytes
+atroposhealth.com,accepted,slug_guess+careers_page,,
+mitra-ev.com,no_careers_page,careers_page_none,no_careers_link,1919338 bytes
+everdye.fr,unknown,no_ats_evidence,no_ats_evidence,
+missionbarns.com,unknown,no_ats_evidence,no_ats_evidence,
+netenergytes.com,no_careers_page,careers_page_none,no_careers_link,1937810 bytes
+heirloomcarbon.com,accepted,slug_guess+careers_page,,
+marinelixirs.us,no_careers_page,careers_page_none,no_careers_link,126376 bytes
+fundsportal.intertrustgroup.com,js_rendered,careers_page_js_rendered,,
+app.usercentrics.eu,no_careers_page,careers_page_none,blocked_403,subdomain_input; browser_ua_403
+citrine.io,accepted,careers_page,,
+mombak.com,no_careers_page,careers_page_none,blocked_403,browser_ua_200
+davidshopper.com,js_rendered,careers_page_js_rendered,,
+sourcemap.com,accepted,careers_page,,
+talentry.com,unknown,no_ats_evidence,no_ats_evidence,
+mantle3d.com,weak_only,careers_page_token_dead,careers_page_token_dead,
+yottaenergy.com,unsupported_ats:jazzhr,careers_page_unsupported_ats,,
+pearlbio.com,unknown,no_ats_evidence,no_ats_evidence,
+smartcar.com,unknown,no_ats_evidence,no_ats_evidence,
+noteworthy.ai,accepted,careers_page,,
+assetmanagement.hsbc.be,no_careers_page,careers_page_none,no_careers_link,subdomain_input; 90195 bytes
+zwitterco.com,accepted,careers_page,,
+directly.com,unknown,no_ats_evidence,no_ats_evidence,
+adaptronics.it,unknown,no_ats_evidence,no_ats_evidence,
+ryedevelopment.com,no_careers_page,careers_page_none,no_careers_link,8361 bytes
+assets.maerskline.com,unknown,careers_page_inconclusive,careers_page_inconclusive,
+aro.homes,weak_only,careers_page_token_dead,careers_page_token_dead,
+amf-france.org,no_careers_page,careers_page_none,no_careers_link,71476 bytes
+greeneye.ag,unknown,no_ats_evidence,no_ats_evidence,
+totusmedicines.com,weak_only,careers_page_token_dead,careers_page_token_dead,
+thefabricant.com,no_careers_page,careers_page_none,no_careers_link,161416 bytes
+natron.energy,unknown,careers_page_inconclusive,careers_page_inconclusive,
+hupo.co,unknown,no_ats_evidence,no_ats_evidence,
+nomaze.com,no_careers_page,careers_page_none,no_careers_link,80178 bytes
+fetcher.ai,unsupported_ats:ukg,careers_page_unsupported_ats,,
+replicahq.com,js_rendered,careers_page_js_rendered,,
+condoit.io,unknown,no_ats_evidence,no_ats_evidence,
+conxtech.com,unsupported_ats:jazzhr,careers_page_unsupported_ats,,
+oddcast.com,unknown,no_ats_evidence,no_ats_evidence,
+albacore.inc,unknown,no_ats_evidence,no_ats_evidence,
+capsule8.com,accepted,careers_page+redirected_domain,,
+regrello.com,weak_only,careers_page_token_dead,careers_page_token_dead,
+airudder.com,unknown,no_ats_evidence,no_ats_evidence,
+dynolt.com,unknown,no_ats_evidence,no_ats_evidence,
+silverfort.com,unknown,no_ats_evidence,no_ats_evidence,
+picafuel.com,unknown,no_ats_evidence,no_ats_evidence,
+leash.bio,no_careers_page,careers_page_none,no_careers_link,20122 bytes
+tanso.io,accepted,careers_page,,
+taxscouts.com,no_careers_page,careers_page_none,careers_link_offsite,'Jobs' -> https://taxfix.com/en-uk/careers/
+makersitegmbh.recruitee.com,unsupported_ats:recruitee,careers_page_unsupported_ats,,
+bolster.ai,weak_only,slug_guess_uncorroborated,uncorroborated_lever,bolster: domain_in_text
+salesloft.com,accepted,slug_guess+name_match,,
+chargedfleet.com,no_careers_page,careers_page_none,no_careers_link,284264 bytes
+delinea.com,accepted,slug_guess+careers_page,,
+elicit.com,weak_only,slug_guess_uncorroborated,uncorroborated_ashby,elicit: domain_in_text
+wattmore.com,unknown,no_ats_evidence,no_ats_evidence,
+snowcapcompute.com,unknown,no_ats_evidence,no_ats_evidence,
+elkrange.com,unknown,no_ats_evidence,no_ats_evidence,
+calectra.com,unsupported_ats:careers-page,careers_page_unsupported_ats,,
+nutrileads.com,no_careers_page,careers_page_none,no_careers_link,134497 bytes
+tala.co,accepted,slug_guess+careers_page,,
+seetree.ai,no_careers_page,careers_page_none,no_careers_link,55831 bytes
+metabolicpsychiatrylabs.com,no_careers_page,careers_page_none,careers_link_offsite,'Careers' -> https://www.linkedin.com/company/metabolic-psychiatry-labs/
+musthad.com,js_rendered,careers_page_js_rendered,,
+gradient.tech,weak_only,slug_guess_uncorroborated,uncorroborated_ashby,gradient: label_word_in_text
+proptechdk.dk,unknown,no_ats_evidence,no_ats_evidence,
+energymonitor.ai,no_careers_page,careers_page_none,blocked_403,browser_ua_403
+businessinsider.de,no_careers_page,careers_page_none,no_careers_link,495298 bytes
+vers.sh,no_careers_page,careers_page_none,no_careers_link,69430 bytes
+daydream.ing,weak_only,slug_guess_uncorroborated,uncorroborated_ashby,daydream: label_word_in_text
+isee.ai,accepted,slug_guess+careers_page,,
+polystyvert.com,no_careers_page,careers_page_none,no_careers_link,69971 bytes
+vastdata.com,unknown,no_ats_evidence,no_ats_evidence,
+onepeloton.com,no_careers_page,careers_page_none,no_careers_link,509861 bytes
+biltrewards.com,unsupported_ats:gem,careers_page_unsupported_ats,,
+polygon.technology,unknown,no_ats_evidence,no_ats_evidence,
+agentero.com,unsupported_ats:factorial,careers_page_unsupported_ats,,
+noredink.com,accepted,slug_guess+careers_page,,
+blocpower.io,weak_only,careers_page_token_dead,careers_page_token_dead,
+zenos.com,accepted,slug_guess+careers_page,,
+clickable.com,no_careers_page,careers_page_none,no_careers_link,533743 bytes
+patternlabs.ai,unknown,no_ats_evidence,no_ats_evidence,
+clarkeindustrialengineering.com,no_careers_page,careers_page_none,no_careers_link,73548 bytes
+manolinaqua.com,no_careers_page,careers_page_none,careers_link_offsite,'Careers Join the team.' -> https://wellfound.com/company/manolin
+agrospheres.com,no_careers_page,careers_page_none,no_careers_link,29103 bytes
+forwardplatform.com,unknown,no_ats_evidence,no_ats_evidence,
+secure.ethicspoint.com,js_rendered,careers_page_js_rendered,,
+codeocean.com,no_careers_page,careers_page_none,blocked_403,browser_ua_200
+polycarbin.com,no_careers_page,careers_page_none,no_careers_link,67865 bytes
+regscale.com,accepted,slug_guess+careers_page,,
+pronoiaenergy.com,js_rendered,careers_page_js_rendered,,
+viam.com,accepted,careers_page,,
+fluorok.com,no_careers_page,careers_page_none,careers_link_missed,'Join The Team' -> https://www.fluorok.com/join-the-team/
+creditgenie.com,accepted,slug_guess+careers_page,,
+miraterrasoil.com,no_careers_page,careers_page_none,no_careers_link,726355 bytes
+paytron.com.au,unsupported_ats:smartrecruiters,careers_page_unsupported_ats,,
+newschoolfoods.co,no_careers_page,careers_page_none,careers_link_offsite,'Careers' -> https://secure.collage.co/jobs/nstx
+assetmanagement.hsbc.pl,no_careers_page,careers_page_none,no_careers_link,subdomain_input; 81189 bytes
+galileohealth.com,accepted,careers_page,,
+prismml.com,unknown,no_ats_evidence,no_ats_evidence,
+lineaje.com,unknown,no_ats_evidence,no_ats_evidence,
+talusag.com,unknown,no_ats_evidence,no_ats_evidence,
+vandebron.nl,no_careers_page,careers_page_none,no_careers_link,1778383 bytes
+stackpath.bootstrapcdn.com,js_rendered,careers_page_js_rendered,,
+heatmatrixgroup.com,unknown,no_ats_evidence,no_ats_evidence,
+privateequityinternational.com,unknown,no_ats_evidence,no_ats_evidence,
+digitalocean.com,unknown,no_ats_evidence,no_ats_evidence,
+phasecraft.io,unknown,no_ats_evidence,no_ats_evidence,
+peachtreeinfra.com,no_careers_page,careers_page_none,no_careers_link,603358 bytes
+syre.com,unsupported_ats:teamtailor,careers_page_unsupported_ats,,
+dimension.bio,unknown,no_ats_evidence,no_ats_evidence,
+spark-cleantech.eu,unsupported_ats:teamtailor,careers_page_unsupported_ats,,
+uncover.co.in,unknown,no_ats_evidence,no_ats_evidence,
+ripe.io,no_careers_page,careers_page_none,http_404,
+easel.com,unknown,no_ats_evidence,no_ats_evidence,
+clarostechnologies.com,accepted,careers_page,,
+adept-id.com,accepted,slug_guess+careers_page,,
+twelve.co,accepted,slug_guess+careers_page,,
+agricycleglobal.com,no_careers_page,careers_page_none,dead_dns,
+journeyclinical.com,accepted,careers_page,,
+datacenterdynamics.com,no_careers_page,careers_page_none,blocked_403,browser_ua_403
+ivivamedical.com,unsupported_ats:workday,careers_page_unsupported_ats,,
+overroute.com,no_careers_page,careers_page_none,no_careers_link,64022 bytes
+livingseasaquafeeds.com,no_careers_page,careers_page_none,no_careers_link,130641 bytes
+api.intellimize.co,no_careers_page,careers_page_none,blocked_403,subdomain_input; browser_ua_403
+edgezero.co,unknown,no_ats_evidence,no_ats_evidence,
+currents.market,no_careers_page,careers_page_none,careers_link_missed,'Careers' -> https://www.currents.market/company#careers
+equilibriumenergy.com,accepted,slug_guess+careers_page,,
+eatvirgin.com,unknown,no_ats_evidence,no_ats_evidence,
+velo3d.com,accepted,slug_guess+careers_page,,
+hyperlatam.com,no_careers_page,careers_page_none,no_careers_link,229398 bytes
+addionics.com,unknown,no_ats_evidence,no_ats_evidence,
+h2pro.co,unknown,no_ats_evidence,no_ats_evidence,
+arcadia.com,unsupported_ats:wordpress-job-plugin,careers_page_unsupported_ats,,
+beamery.com,weak_only,slug_guess_uncorroborated,uncorroborated_ashby,beamery: domain_in_text
+ob1.io,unknown,careers_page_inconclusive,careers_page_inconclusive,
+kinexon.com,accepted,slug_guess+name_match,,
+biospace.com,unknown,no_ats_evidence,no_ats_evidence,
+aquarry.earth,unknown,no_ats_evidence,no_ats_evidence,
+bennie.com,accepted,slug_guess+careers_page,,
+greenbackers.com,no_careers_page,careers_page_none,no_careers_link,12757 bytes
+dune.xyz,weak_only,slug_guess_uncorroborated,uncorroborated_ashby,dune: no_mention
+bfab.bio,unknown,no_ats_evidence,no_ats_evidence,
+silicon-line.com,unknown,no_ats_evidence,no_ats_evidence,
+renoster.co,js_rendered,careers_page_js_rendered,,
+manypets.com,accepted,careers_page,,
+alasco.de,accepted,careers_page,,
+artificial.com,weak_only,parked_domain_uncorroborated,parked_domain_uncorroborated,
+traxen.com,unknown,no_ats_evidence,no_ats_evidence,
+thriveagric.com,unknown,no_ats_evidence,no_ats_evidence,
+gojitsu.com,accepted,careers_page,,
+inductosense.com,unknown,no_ats_evidence,no_ats_evidence,
+wiliot.com,unsupported_ats:comeet,careers_page_unsupported_ats,,
+revelpharmaceuticals.com,no_careers_page,careers_page_none,careers_link_offsite,'Careers' -> https://www.linkedin.com/company/revel-pharmaceuticals/
+interplaylearning.com,accepted,careers_page,,
+wavelogix.tech,no_careers_page,careers_page_none,no_careers_link,186302 bytes
+powermag.com,no_careers_page,careers_page_none,blocked_403,browser_ua_403
+reask.earth,no_careers_page,careers_page_none,no_careers_link,536360 bytes
+science.xyz,unknown,no_ats_evidence,no_ats_evidence,
+ampaire.com,unknown,no_ats_evidence,no_ats_evidence,
+skouria.com,no_careers_page,careers_page_none,no_careers_link,316735 bytes
+performancelivestockanalytics.com,no_careers_page,careers_page_none,no_careers_link,31173 bytes
+thermulon.com,no_careers_page,careers_page_none,no_careers_link,268374 bytes
+nvca.org,unknown,no_ats_evidence,no_ats_evidence,
+saia-agrobotics.com,unknown,no_ats_evidence,no_ats_evidence,
+assetmanagement.hsbc.ch,no_careers_page,careers_page_none,no_careers_link,subdomain_input; 85615 bytes
+luckysweater.com,no_careers_page,careers_page_none,no_careers_link,159812 bytes
+s3.amazonaws.com,unknown,no_ats_evidence,no_ats_evidence,
+construction.autodesk.com,no_careers_page,careers_page_none,careers_link_missed,subdomain_input; 'Careers' -> https://autodesk.com/careers
+purecycle.com,unsupported_ats:ukg,careers_page_unsupported_ats,,
+orlen.pl,no_careers_page,careers_page_none,no_careers_link,200572 bytes
+global.abb,unknown,careers_page_inconclusive,careers_page_inconclusive,
+sungage.com,unknown,no_ats_evidence,no_ats_evidence,
+peakenergy.com,accepted,slug_guess+name_match,,
+builtincolorado.com,unknown,no_ats_evidence,no_ats_evidence,
+plotlogic.com,no_careers_page,careers_page_none,careers_link_missed,'Work with us' -> https://plotlogic.com/?page_id=3772
+vertscience.com,unknown,careers_page_inconclusive,careers_page_inconclusive,
+cbsnews.com,unknown,no_ats_evidence,no_ats_evidence,
+sunrun.com,unsupported_ats:workday,careers_page_unsupported_ats,,
+bbhobbs.com,unknown,careers_page_inconclusive,careers_page_inconclusive,
+itskoko.com,no_careers_page,careers_page_none,no_careers_link,56598 bytes
+leveltenenergy.com,accepted,slug_guess+careers_page,,
