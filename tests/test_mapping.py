@@ -523,3 +523,150 @@ class TestGroundTruth:
             method="careers_page",
         )
         assert mapping.verdict(got_gh, gh) == "TP"
+
+
+# -- M3 follow-up (iteration 16 findings) ----------------------------------------
+
+
+class TestIteration16Fixes:
+    @pytest.mark.parametrize("status", [401, 403, 429])
+    def test_blocked_homepage_is_reason_blocked(self, status):
+        outcome = run({"https://acmewidgets.com/": respond(status)})
+        assert outcome.result.failure_reason == MappingFailureReason.BLOCKED
+
+    @pytest.mark.parametrize(
+        ("label", "href"),
+        [
+            ("Join The Team", "/join-the-team/"),  # fluorok.com
+            ("Work with us", "/?page_id=3772"),  # plotlogic.com
+            ("Careers", "/company#careers"),  # currents.market
+            ("Hiring and Recruitment", "/hiring-and-recruitment.html"),
+        ],
+    )
+    def test_careers_link_found_by_its_text(self, label, href):
+        from urllib.parse import urljoin
+
+        target = urljoin("https://acmewidgets.com/", href).split("#")[0]
+        outcome = run(
+            {
+                "https://acmewidgets.com/": page(
+                    f'<a href="{href}"><span>{label}</span></a>' + LONG_TEXT
+                ),
+                target: page('<a href="https://jobs.lever.co/acmeco">x</a>' + LONG_TEXT),
+                LEVER.format("acmeco"): respond(200, json=[]),
+            }
+        )
+        assert outcome.result.confidence is MappingConfidence.VERIFIED
+        assert outcome.result.method == "careers_page"
+
+    def test_offsite_careers_link_is_followed_and_labelled(self):
+        """taxscouts.com: its Jobs link goes to taxfix.com (its acquirer)."""
+        outcome = run(
+            {
+                "https://acmewidgets.com/": page(
+                    '<a href="https://parentco.example/en/careers/">Jobs</a>' + LONG_TEXT
+                ),
+                "https://parentco.example/en/careers/": page(
+                    '<a href="https://jobs.lever.co/parentco">x</a>' + LONG_TEXT
+                ),
+                LEVER.format("parentco"): respond(200, json=[]),
+            }
+        )
+        assert outcome.result.confidence is MappingConfidence.VERIFIED
+        assert outcome.result.token == "parentco"
+        assert outcome.result.method == "careers_page+offsite_careers_link"
+
+    @pytest.mark.parametrize(
+        "href",
+        [
+            "https://www.linkedin.com/company/acme/",
+            "https://wellfound.com/company/acme",
+            "https://www.glassdoor.com/acme",
+        ],
+    )
+    def test_profile_sites_are_not_followed_as_careers_pages(self, href):
+        seen = []
+
+        def handler(request):
+            seen.append(request.url.host)
+            if str(request.url) == "https://acmewidgets.com/":
+                return page(f'<a href="{href}">Careers</a>' + LONG_TEXT)
+            return respond(404)
+
+        with fake_client(handler, max_attempts=1) as client:
+            map_company(client, "Acme Widgets", "acmewidgets.com")
+        profile_hosts = ("linkedin.com", "wellfound.com", "glassdoor.com")
+        assert not any(h.endswith(profile_hosts) for h in seen)
+
+    def test_own_careers_link_is_preferred_over_an_offsite_one(self):
+        outcome = run(
+            {
+                "https://acmewidgets.com/": page(
+                    '<a href="https://parentco.example/careers">Careers</a>'
+                    '<a href="/careers">Careers</a>' + LONG_TEXT
+                ),
+                "https://acmewidgets.com/careers": page(
+                    '<a href="https://jobs.lever.co/acmeco">x</a>' + LONG_TEXT
+                ),
+                LEVER.format("acmeco"): respond(200, json=[]),
+            }
+        )
+        assert outcome.result.token == "acmeco"
+        assert outcome.result.method == "careers_page"
+
+    @pytest.mark.parametrize(
+        "domain", ["app.usercentrics.eu", "api.intellimize.co", "careers.acme.co.uk"]
+    )
+    def test_subdomain_inputs_are_not_a_company_domain_and_cost_no_requests(self, domain):
+        seen = []
+
+        def handler(request):
+            seen.append(request)
+            return respond(404)
+
+        with fake_client(handler, max_attempts=1) as client:
+            outcome = map_company(client, "x", domain)
+        assert outcome.result.failure_reason == MappingFailureReason.NOT_A_COMPANY_DOMAIN
+        assert seen == []
+
+    def test_listed_non_company_domain(self):
+        outcome = run({}, name="therobotreport", domain="therobotreport.com")
+        assert outcome.result.failure_reason == MappingFailureReason.NOT_A_COMPANY_DOMAIN
+
+    @pytest.mark.parametrize("domain", ["acme.co.uk", "cfs.energy", "acme.com"])
+    def test_registrable_domains_pass_the_input_check(self, domain):
+        from src.domain_quality import classify_input_domain
+
+        assert classify_input_domain(domain) is None
+
+    def test_lever_guess_with_domain_in_postings_is_probable_end_to_end(self):
+        outcome = run(
+            {
+                "https://bolster.ai/": page(LONG_TEXT),
+                "https://api.lever.co/v0/postings/bolster?mode=json&limit=1": respond(
+                    200, json=[{"id": "1"}]
+                ),
+                "https://api.lever.co/v0/postings/bolster?mode=json&limit=5": respond(
+                    200,
+                    json=[{"id": "1", "descriptionPlain": "About us: see https://bolster.ai"}],
+                ),
+            },
+            name="bolster",
+            domain="bolster.ai",
+        )
+        assert outcome.result.confidence is MappingConfidence.PROBABLE
+        assert outcome.result.method == "slug_guess+domain_in_postings"
+
+    def test_summary_reports_coverage_over_valid_inputs_too(self):
+        good = run(
+            {
+                "https://acmewidgets.com/": page(
+                    f'<a href="https://jobs.lever.co/acmeco">x</a>{LONG_TEXT}'
+                ),
+                LEVER.format("acmeco"): respond(200, json=[]),
+            }
+        )
+        bad = run({}, name="x", domain="app.usercentrics.eu")
+        text = summarize([good, bad])
+        assert "cascade coverage:     1/2 (50.0%)" in text
+        assert "1/1 (100.0%) of valid inputs" in text

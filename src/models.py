@@ -80,6 +80,10 @@ class MappingFailureReason(StrEnum):
     NO_CAREERS_PAGE = "no_careers_page"
     WEAK_ONLY = "weak_only"
     UNKNOWN = "unknown"
+    # Added M3 follow-up (2026-09-24, iteration 16), user's call: the failure
+    # reason must explain itself.
+    BLOCKED = "blocked"  # the site refused us (401/403/429) -- we can't know
+    NOT_A_COMPANY_DOMAIN = "not_a_company_domain"  # a subdomain or media/aggregator input
 
 
 UNSUPPORTED_ATS_PREFIX = "unsupported_ats:"

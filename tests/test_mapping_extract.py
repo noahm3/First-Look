@@ -143,6 +143,7 @@ class TestUnsupported:
             ('<a href="https://acme.recruitee.com/">', "recruitee"),
             ('<a href="https://acme.applytojob.com/apply">', "jazzhr"),
             ('<a href="https://jobs.jobvite.com/acme">', "jobvite"),
+            ('<a href="https://secure.collage.co/jobs/nstx">', "collage"),
             ('<a href="https://app.trinethire.com/companies/1-acme/jobs/2-x">', "trinet"),
         ],
     )

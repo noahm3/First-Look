@@ -108,6 +108,8 @@ class CareersPage(StrEnum):
     JS_RENDERED = "js_rendered"
     PARKED = "parked"
     INCONCLUSIVE = "inconclusive"
+    BLOCKED = "blocked"  # homepage answered 401/403/429
+    NOT_A_COMPANY = "not_a_company"  # input rejected before any request
 
 
 @dataclass(frozen=True, slots=True)
@@ -137,6 +139,9 @@ class Evidence:
     slug_probes: tuple[BoardProbe, ...] = ()
     # Unsupported ATS platforms seen on the careers page (SPEC §8.4).
     unsupported: tuple[str, ...] = field(default=())
+    # Slug-guess boards whose own posting text contains the company's exact
+    # domain -- the board declaring whose it is (iteration 16).
+    domain_mentions: tuple[tuple[AtsProvider, str], ...] = ()
 
 
 @cache
@@ -163,6 +168,16 @@ def is_valid_token(provider: AtsProvider, token: str) -> bool:
     if provider is AtsProvider.PERSONIO:
         return bool(_PERSONIO_HOST_RE.fullmatch(token))
     return bool(_TOKEN_RE.fullmatch(token)) and token.lower() not in _RESERVED_TOKENS
+
+
+def mentions_domain(text: str, domain: str) -> bool:
+    """Does `text` contain `domain` as a whole host (`https://www.bolster.ai`,
+    a mailto address at the domain), not as part of a longer one (`notbolster.ai`,
+    `bolster.airline.com`)?"""
+    if not text or not domain:
+        return False
+    pattern = rf"(?<![a-z0-9-])(?:www\.)?{re.escape(domain.lower())}(?![a-z0-9-]|\.[a-z])"
+    return re.search(pattern, text.lower()) is not None
 
 
 def _name_words(name: str) -> list[str]:
@@ -260,20 +275,31 @@ def decide(ev: Evidence) -> MappingResult:
 
     # -- probable: a guessed board that names the company ----------------------
     if ev.careers_page is not CareersPage.PARKED:
-        probable = _distinct(
+        # The board's own postings containing the company's exact domain is
+        # the board saying whose it is -- stronger than a name match, and
+        # (user's call, 2026-09-24) strong enough to override the short-slug
+        # guard: the guard exists because a short slug may be someone else's
+        # board, and someone else's board doesn't carry this domain.
+        mentioned = set(ev.domain_mentions)
+        by_domain = [
+            (p.provider, p.token) for p in live_slugs if (p.provider, p.token) in mentioned
+        ]
+        by_name = [
             (p.provider, p.token)
             for p in live_slugs
             if p.provider in NAME_BEARING_PROVIDERS
             and fuzzy_name_match(ev.company_name, p.org_name)
             and not guard_requires_verified(p.token)
-        )
+        ]
+        probable = _distinct(by_domain + by_name)
         if len(probable) == 1:
             provider, token = probable[0]
+            how = "domain_in_postings" if probable[0] in by_domain else "name_match"
             return MappingResult(
                 provider=provider,
                 token=token,
                 confidence=MappingConfidence.PROBABLE,
-                method="slug_guess+name_match",
+                method=f"slug_guess+{how}",
             )
         if len(probable) > 1:
             return _failure(
@@ -281,6 +307,16 @@ def decide(ev: Evidence) -> MappingResult:
             )
 
     # -- failures, most diagnostic first --------------------------------------
+    if ev.careers_page is CareersPage.NOT_A_COMPANY:
+        return _failure(MappingFailureReason.NOT_A_COMPANY_DOMAIN.value, "input_rejected")
+    if ev.careers_page is CareersPage.BLOCKED:
+        # Any guess stayed uncorroborated *because* the site refused us.
+        return _failure(
+            MappingFailureReason.BLOCKED.value,
+            "homepage_blocked",
+            weak=live_slugs[0] if live_slugs else None,
+        )
+
     inconclusive_page = [
         pair
         for pair in page_pairs

@@ -79,6 +79,30 @@ def probe(client: FetchClient, provider: AtsProvider, token: str) -> BoardProbe:
     return outcome(ProbeOutcome.LIVE, org_name=org_name, posting_count=count)
 
 
+def postings_text(client: FetchClient, provider: AtsProvider, token: str) -> str:
+    """Plain text of a few of a board's postings, for the domain-mention check.
+    Lever and Ashby only -- the two guessed providers with no org name. Empty on
+    any failure; never raises."""
+    if not is_valid_token(provider, token):
+        return ""
+    try:
+        if provider is AtsProvider.LEVER:
+            body = client.get(f"https://api.lever.co/v0/postings/{token}?mode=json&limit=5").json()
+            jobs = body if isinstance(body, list) else []
+            fields = ("descriptionPlain", "additionalPlain", "openingPlain", "descriptionBodyPlain")
+        elif provider is AtsProvider.ASHBY:
+            body = client.get(probe_url(provider, token)).json()
+            jobs = (body.get("jobs") or [])[:5] if isinstance(body, dict) else []
+            fields = ("descriptionPlain",)
+        else:
+            return ""
+        return " ".join(
+            str(job.get(f) or "") for job in jobs if isinstance(job, dict) for f in fields
+        )
+    except Exception:  # undocumented endpoints; a bad body is just "no text"
+        return ""
+
+
 def _classify_failure(result: FetchResult) -> ProbeOutcome:
     error = result.error
     if error is not None and error.kind is not FetchErrorKind.HTTP_ERROR:

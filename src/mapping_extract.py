@@ -140,6 +140,8 @@ _UNSUPPORTED_HOSTS: tuple[tuple[str, re.Pattern[str]], ...] = tuple(
         ("freshteam", r"freshteam\.com"),
         # mitrachem.com, first 50-domain dry run.
         ("trinet", r"trinethire\.com"),
+        # newschoolfoods.co, iteration 16.
+        ("collage", r"collage\.co"),
     )
 )
 _URL_HOST = re.compile(r"(?:https?:)?//([a-z0-9][a-z0-9.-]*\.[a-z]{2,})", re.I)

@@ -31,10 +31,18 @@ from urllib.parse import urljoin, urlsplit
 
 import yaml
 
+from src.domain_quality import classify_input_domain
 from src.http import FetchClient, FetchErrorKind, FetchResult
 from src.mapping_extract import extract
-from src.mapping_probe import probe
-from src.mapping_validate import BoardProbe, CareersPage, Evidence, decide, normalize_token
+from src.mapping_probe import postings_text, probe
+from src.mapping_validate import (
+    BoardProbe,
+    CareersPage,
+    Evidence,
+    decide,
+    mentions_domain,
+    normalize_token,
+)
 from src.models import AtsProvider, Company, MappingFailureReason, MappingResult
 
 log = logging.getLogger(__name__)
@@ -52,6 +60,7 @@ SLUG_GUESS_PROVIDERS = (
 )
 MAX_SLUG_CANDIDATES = 3
 MAX_CAREERS_LINKS = 2
+MAX_OFFSITE_LINKS = 1
 MAX_PAGE_TOKENS = 6
 FALLBACK_PATHS = ("/careers", "/jobs", "/company/careers", "/about/careers")
 FALLBACK_SUBDOMAINS = ("careers", "jobs")
@@ -69,7 +78,25 @@ _CAREERS_SEGMENT = re.compile(
     r"(?:[/?#]|\.html?$|$)",
     re.I,
 )
-_HREF = re.compile(r"""href\s*=\s*["']([^"'<>\s]+)["']""", re.I)
+_ANCHOR = re.compile(
+    r"""<a\b[^>]*?href\s*=\s*["']([^"'<>\s]+)["'][^>]*>(.*?)</a\s*>""", re.I | re.S
+)
+# A careers link found by its *text* -- iteration 16 found real careers links
+# whose paths no segment regex could know: "Join The Team" -> /join-the-team/,
+# "Work with us" -> /?page_id=3772, "Careers" -> /company#careers.
+_CAREERS_TEXT = re.compile(
+    r"\b(?:careers?|jobs?|join (?:us|our team|the team)|we'?re hiring|hiring|"
+    r"work with us|open (?:roles|positions)|vacanc(?:y|ies))\b",
+    re.I,
+)
+MAX_LINK_TEXT = 60
+# Offsite careers links to these are profiles, not the company's careers
+# page (iteration 16: LinkedIn x2, Wellfound). Never followed.
+_PROFILE_HOSTS = re.compile(
+    r"(?:^|\.)(?:linkedin\.com|wellfound\.com|angel\.co|glassdoor\.[a-z.]+|indeed\.[a-z.]+|"
+    r"crunchbase\.com|builtin[a-z]*\.(?:com|org)|facebook\.com|twitter\.com|x\.com|"
+    r"instagram\.com|youtube\.com|medium\.com|workatastartup\.com|ycombinator\.com)$"
+)
 _ASSET_EXT = (".css", ".js", ".png", ".jpg", ".jpeg", ".svg", ".ico", ".webp", ".woff", ".woff2")
 _ATS_HOST = re.compile(
     r"(?:^|\.)(?:greenhouse\.io|lever\.co|ashbyhq\.com|rippling\.com|bamboohr\.com|"
@@ -170,21 +197,45 @@ def _visible_text_len(html: str) -> int:
     return len(" ".join(_TAG.sub(" ", _SCRIPT_OR_STYLE.sub(" ", html)).split()))
 
 
-def _careers_links(html: str, base_url: str, own_roots: Sequence[str]) -> list[str]:
-    links: list[str] = []
-    for href in _HREF.findall(html):
+def _careers_links(
+    html: str, base_url: str, own_roots: Sequence[str]
+) -> tuple[list[str], list[str]]:
+    """(own-site careers links, offsite careers links) found on a page.
+
+    A link counts if its path has a careers segment *or* its anchor text says
+    careers. Own-site links with a careers path come first. Offsite links to
+    an ATS are skipped (the token is already in the page text), and so are
+    profile sites -- a LinkedIn "Careers" link is not a careers page.
+    """
+    by_path: list[str] = []
+    by_text: list[str] = []
+    offsite: list[str] = []
+    for href, inner in _ANCHOR.findall(html):
         if href.startswith(("mailto:", "tel:", "javascript:", "#")):
             continue
         url = urljoin(base_url, href)
         parts = urlsplit(url)
-        if parts.scheme not in ("http", "https") or not _is_own(parts.hostname or "", own_roots):
-            continue  # off-site ATS links are already evidence in the page text
-        if parts.path.lower().endswith(_ASSET_EXT) or not _CAREERS_SEGMENT.search(parts.path):
+        host = (parts.hostname or "").lower()
+        if parts.scheme not in ("http", "https") or not host:
+            continue
+        if parts.path.lower().endswith(_ASSET_EXT):
+            continue
+        label = " ".join(_TAG.sub(" ", inner).split())
+        path_hit = bool(_CAREERS_SEGMENT.search(parts.path))
+        text_hit = bool(label) and len(label) <= MAX_LINK_TEXT and bool(_CAREERS_TEXT.search(label))
+        if not (path_hit or text_hit):
             continue
         url = url.split("#", 1)[0]
-        if url not in links:
-            links.append(url)
-    return links
+        if _is_own(host, own_roots):
+            bucket = by_path if path_hit else by_text
+        elif _ATS_HOST.search(host) or _PROFILE_HOSTS.search(host):
+            continue
+        else:
+            bucket = offsite
+        if url not in bucket:
+            bucket.append(url)
+    own = by_path + [u for u in by_text if u not in by_path]
+    return own, offsite
 
 
 @dataclass
@@ -193,20 +244,24 @@ class _PageSet:
 
     own_roots: list[str]
     homepage: str = ""
-    pages: list[tuple[str, str, str]] = field(default_factory=list)  # (url, final_url, html)
+    # (url, final_url, html, offsite) -- offsite: reached by a careers link the
+    # company itself put on its site pointing at another domain.
+    pages: list[tuple[str, str, str, bool]] = field(default_factory=list)
 
-    def accept(self, result: FetchResult) -> bool:
-        """Keep a fetched page if it's the company's own, or an ATS board it
-        redirected to (ohmconnect.com/careers -> apply.workable.com/renewhome)."""
+    def accept(self, result: FetchResult, *, offsite: bool = False) -> bool:
+        """Keep a fetched page if it's the company's own, an ATS board it
+        redirected to (ohmconnect.com/careers -> apply.workable.com/renewhome),
+        or -- `offsite` -- the page its own careers link pointed at."""
         if not result.ok:
             return False
         final_host = _host(result.final_url or result.requested_url)
-        if not (_is_own(final_host, self.own_roots) or _ATS_HOST.search(final_host)):
+        if not (offsite or _is_own(final_host, self.own_roots) or _ATS_HOST.search(final_host)):
             return False
         text = result.text
         if text == self.homepage:  # loamist.com: the "careers" link served the homepage
             return False
-        self.pages.append((result.requested_url, result.final_url or result.requested_url, text))
+        final = result.final_url or result.requested_url
+        self.pages.append((result.requested_url, final, text, offsite))
         return True
 
 
@@ -218,9 +273,12 @@ def _homepage(client: FetchClient, domain: str) -> FetchResult:
     return www if www.ok else result
 
 
+BLOCKED_STATUSES = frozenset({401, 403, 429})
+
+
 def gather_careers_evidence(
     client: FetchClient, domain: str
-) -> tuple[CareersPage, list[tuple[str, str, str]]]:
+) -> tuple[CareersPage, list[tuple[str, str, str, bool]]]:
     """(page status, own pages fetched). The homepage counts as a page: many
     companies link their ATS board straight from it."""
     home = _homepage(client, domain)
@@ -232,6 +290,8 @@ def gather_careers_evidence(
             return CareersPage.INCONCLUSIVE, []
         if home.status is not None and home.status >= 500:
             return CareersPage.INCONCLUSIVE, []
+        if home.status in BLOCKED_STATUSES:
+            return CareersPage.BLOCKED, []
         return CareersPage.NONE, []
 
     home_text = home.text
@@ -249,16 +309,24 @@ def gather_careers_evidence(
         # differently named landing domain is labelled in the method instead.
         roots.append(redirected_root)
     pages = _PageSet(own_roots=roots)
-    pages.pages.append((home.requested_url, home.final_url or home.requested_url, home_text))
+    pages.pages.append((home.requested_url, home.final_url or home.requested_url, home_text, False))
     pages.homepage = home_text
 
     base = home.final_url or home.requested_url
+    own_links, offsite_links = _careers_links(home_text, base, roots)
     followed = 0
-    for link in _careers_links(home_text, base, roots):
+    for link in own_links:
         if followed >= MAX_CAREERS_LINKS:
             break
         if pages.accept(client.get(link)):
             followed += 1
+
+    # The company's own careers link to another domain (a parent company, an
+    # acquirer) -- consistent with following homepage redirects.
+    if not followed:
+        for link in offsite_links[:MAX_OFFSITE_LINKS]:
+            if pages.accept(client.get(link), offsite=True):
+                followed += 1
 
     if not followed:
         root = _strip_www(_host(base)) or domain
@@ -303,6 +371,11 @@ def map_company(client: FetchClient, name: str, domain: str | None) -> MappingOu
 
 
 def _map_company(client: FetchClient, name: str, domain: str | None) -> MappingOutcome:
+    if domain and classify_input_domain(domain):
+        # Not a company's own site -- fail before spending any request on it.
+        evidence = Evidence(company_name=name, careers_page=CareersPage.NOT_A_COMPANY)
+        return MappingOutcome(result=decide(evidence), evidence=evidence)
+
     slug_probes = run_slug_guesses(client, name, domain)
 
     if not domain:
@@ -313,11 +386,14 @@ def _map_company(client: FetchClient, name: str, domain: str | None) -> MappingO
 
     status, pages = gather_careers_evidence(client, domain)
     page_tokens: dict[tuple[AtsProvider, str], None] = {}
+    own_tokens: set[tuple[AtsProvider, str]] = set()
     unsupported: dict[str, None] = {}
-    for _url, final_url, html in pages:
+    for _url, final_url, html, offsite in pages:
         found = extract(html + " " + final_url)
         for pair in found.tokens:
             page_tokens.setdefault(pair, None)
+            if not offsite:
+                own_tokens.add(pair)
         for platform in found.unsupported:
             unsupported.setdefault(platform, None)
 
@@ -326,6 +402,17 @@ def _map_company(client: FetchClient, name: str, domain: str | None) -> MappingO
     for provider, token in list(page_tokens)[:MAX_PAGE_TOKENS]:
         page_probes.append(known.get((provider, token)) or probe(client, provider, token))
 
+    # Lever and Ashby return no org name; the board's own postings naming the
+    # company's exact domain is the corroboration they can offer (iteration 16).
+    domain_mentions = tuple(
+        (p.provider, p.token)
+        for p in slug_probes
+        if p.live
+        and p.provider in (AtsProvider.LEVER, AtsProvider.ASHBY)
+        and (p.provider, p.token) not in page_tokens
+        and mentions_domain(postings_text(client, p.provider, p.token), domain)
+    )
+
     evidence = Evidence(
         company_name=name,
         careers_page=status,
@@ -333,9 +420,14 @@ def _map_company(client: FetchClient, name: str, domain: str | None) -> MappingO
         page_probes=tuple(page_probes),
         slug_probes=tuple(slug_probes),
         unsupported=tuple(unsupported),
+        domain_mentions=domain_mentions,
     )
-    careers_urls = tuple(final for _u, final, _h in pages[1:])
+    careers_urls = tuple(final for _u, final, _h, _o in pages[1:])
     result = decide(evidence)
+    chosen = (result.provider, result.token)
+    if result.accepted and chosen in page_tokens and chosen not in own_tokens:
+        # Found only on the page the company's careers link sent us to.
+        result = replace(result, method=f"{result.method}+offsite_careers_link")
     landed = _strip_www(_host(pages[0][1])) if pages else ""
     if result.accepted and landed and not _same_brand(landed, domain):
         # Rebrand or acquisition: accepted, but visible as such in review.
@@ -385,6 +477,8 @@ def summarize(outcomes: Sequence[MappingOutcome]) -> str:
     total = len(outcomes)
     accepted = [o for o in outcomes if o.result.accepted]
     with_domain = [o for o in outcomes if o.evidence.careers_page is not CareersPage.NO_DOMAIN]
+    valid = [o for o in outcomes if o.evidence.careers_page is not CareersPage.NOT_A_COMPANY]
+    accepted_valid = sum(1 for o in valid if o.result.accepted)
     slug_hits = sum(o.slug_hit for o in outcomes)
     slug_accepted = sum(
         1 for o in accepted if o.result.method and o.result.method.startswith("slug_guess")
@@ -401,7 +495,8 @@ def summarize(outcomes: Sequence[MappingOutcome]) -> str:
 
     lines = [
         f"companies:            {total} ({len(with_domain)} with a domain)",
-        f"cascade coverage:     {pct(len(accepted), total)} accepted (verified+probable)",
+        f"cascade coverage:     {pct(len(accepted), total)} accepted (verified+probable); "
+        f"{pct(accepted_valid, len(valid))} of valid inputs",
         f"slug hit rate:        {pct(slug_hits, total)} had a live stage-1 guess; "
         f"{slug_accepted} accepted via slug_guess*",
         "confidence:           " + ", ".join(f"{k}={v}" for k, v in sorted(confidence.items())),

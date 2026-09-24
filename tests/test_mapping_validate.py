@@ -471,3 +471,127 @@ class TestFailures:
             assert result.failure_reason in CLOSED_REASONS or result.failure_reason.startswith(
                 "unsupported_ats:"
             ), result
+
+
+# -- M3 follow-up: domain-in-postings corroboration, blocked, bad inputs ------
+
+
+class TestDomainInPostings:
+    def test_lever_guess_whose_postings_name_the_domain_is_probable(self):
+        """bolster.ai, iteration 16: Lever gives no org name, but the board's own
+        postings contain the company's exact domain."""
+        result = decide(
+            evidence(
+                name="bolster",
+                slug_probes=(live(LEVER, "bolster"),),
+                domain_mentions=((LEVER, "bolster"),),
+            )
+        )
+        assert result.confidence is MappingConfidence.PROBABLE
+        assert result.method == "slug_guess+domain_in_postings"
+
+    def test_domain_match_overrides_the_short_slug_guard(self):
+        """gritt.ai -> Ashby `gritt` (5 chars). User's call 2026-09-24: an exact
+        domain match in the board's postings is stronger than the guard."""
+        result = decide(
+            evidence(
+                name="gritt",
+                slug_probes=(live(ASHBY, "gritt"),),
+                domain_mentions=((ASHBY, "gritt"),),
+            )
+        )
+        assert result.accepted
+        assert result.confidence is MappingConfidence.PROBABLE
+
+    def test_without_a_domain_match_the_guard_still_holds(self):
+        result = decide(evidence(name="Ramp", slug_probes=(live(GH, "ramp", name="Ramp"),)))
+        assert not result.accepted
+
+    def test_two_boards_both_naming_the_domain_are_ambiguous(self):
+        result = decide(
+            evidence(
+                slug_probes=(live(LEVER, "acmeco"), live(ASHBY, "acmeco")),
+                domain_mentions=((LEVER, "acmeco"), (ASHBY, "acmeco")),
+            )
+        )
+        assert not result.accepted
+        assert result.failure_reason == MappingFailureReason.WEAK_ONLY
+
+    def test_a_domain_mention_on_a_dead_probe_counts_for_nothing(self):
+        result = decide(
+            evidence(
+                slug_probes=(dead(LEVER, "acmeco"),),
+                domain_mentions=((LEVER, "acmeco"),),
+            )
+        )
+        assert not result.accepted
+
+    def test_parked_domain_still_blocks_probable(self):
+        result = decide(
+            evidence(
+                careers_page=CareersPage.PARKED,
+                slug_probes=(live(LEVER, "acmeco"),),
+                domain_mentions=((LEVER, "acmeco"),),
+            )
+        )
+        assert not result.accepted
+
+    def test_verified_still_outranks_a_domain_mention(self):
+        result = decide(
+            evidence(
+                page_tokens=((GH, "acmewidgets"),),
+                page_probes=(live(GH, "acmewidgets"),),
+                slug_probes=(live(LEVER, "otherco"),),
+                domain_mentions=((LEVER, "otherco"),),
+            )
+        )
+        assert result.confidence is MappingConfidence.VERIFIED
+        assert result.token == "acmewidgets"
+
+
+class TestMentionsDomain:
+    @pytest.mark.parametrize(
+        ("text", "domain", "hit"),
+        [
+            ("Learn more at https://www.bolster.ai/about", "bolster.ai", True),
+            # Split so no literal here is email-shaped (.githooks/pre-commit).
+            ("email jobs" + "@" + "forto.com today", "forto.com", True),
+            ("Visit FORTO.COM", "forto.com", True),
+            ("see notbolster.ai for more", "bolster.ai", False),
+            ("bolster.airline.com", "bolster.ai", False),
+            ("we bolster our team", "bolster.ai", False),
+            ("", "bolster.ai", False),
+        ],
+    )
+    def test_exact_domain_only(self, text, domain, hit):
+        from src.mapping_validate import mentions_domain
+
+        assert mentions_domain(text, domain) is hit
+
+
+class TestBlockedAndBadInputs:
+    def test_blocked_homepage_has_a_self_explanatory_reason(self):
+        result = decide(evidence(careers_page=CareersPage.BLOCKED))
+        assert_failure(result, MappingFailureReason.BLOCKED)
+        assert result.method == "homepage_blocked"
+
+    def test_blocked_outranks_an_uncorroborated_guess(self):
+        """The guess could not be corroborated *because* the site blocked us."""
+        result = decide(
+            evidence(careers_page=CareersPage.BLOCKED, slug_probes=(live(LEVER, "acmeco"),))
+        )
+        assert_failure(result, MappingFailureReason.BLOCKED)
+
+    def test_blocked_site_can_still_be_probable_on_a_domain_mention(self):
+        result = decide(
+            evidence(
+                careers_page=CareersPage.BLOCKED,
+                slug_probes=(live(LEVER, "acmeco"),),
+                domain_mentions=((LEVER, "acmeco"),),
+            )
+        )
+        assert result.confidence is MappingConfidence.PROBABLE
+
+    def test_not_a_company_domain(self):
+        result = decide(evidence(careers_page=CareersPage.NOT_A_COMPANY))
+        assert_failure(result, MappingFailureReason.NOT_A_COMPANY_DOMAIN)

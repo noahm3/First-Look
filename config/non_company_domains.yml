@@ -1,0 +1,24 @@
+# config/non_company_domains.yml -- domains that are not a company's own site.
+#
+# Media outlets, aggregators and profile sites that discovery sources surface
+# as if they were portfolio companies. src/domain_quality.py fails them as
+# `not_a_company_domain` before any request, so they don't dilute mapping
+# coverage (SPEC.md §8.6). Seeded from the iteration 16 spike's 300-domain
+# sample (media) plus the obvious aggregators. Lowercase, registrable domain.
+#
+# Removing a line lets that domain be mapped again.
+
+# media seen in iteration 16's sample
+- therobotreport.com
+- datacenterdynamics.com
+- powermag.com
+- energymonitor.ai
+# aggregators / profile sites -- never a company's own careers home
+- linkedin.com
+- wellfound.com
+- angel.co
+- glassdoor.com
+- indeed.com
+- crunchbase.com
+- builtin.com
+- ycombinator.com
