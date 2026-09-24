@@ -338,3 +338,48 @@ class TestReporting:
         text = summarize([accepted, failed])
         assert "cascade coverage:     1/2 (50.0%)" in text
         assert "Acme" not in text and "Zeta" not in text and "acmeco" not in text
+
+
+class TestGroundTruth:
+    def test_every_watchlist_domain_has_an_expected_mapping_and_nothing_else(self):
+        from src.watchlist import canonicalize_domain, load_watchlist
+
+        expected = mapping.load_expected()
+        domains = {canonicalize_domain(e.domain) for e in load_watchlist()}
+        assert domains == set(expected)
+
+    def test_ground_truth_covers_all_eight_providers(self):
+        providers = {e.provider for e in mapping.load_expected().values()}
+        # SmartRecruiters is detection-only (SPEC §4): no adapter, nothing to map to.
+        assert providers == set(AtsProvider) - {AtsProvider.SMARTRECRUITERS}
+
+    def test_ground_truth_tokens_are_valid(self):
+        from src.mapping_validate import is_valid_token
+
+        for exp in mapping.load_expected().values():
+            assert is_valid_token(exp.provider, exp.token), exp
+
+    def test_verdicts(self):
+        exp = mapping.Expected(AtsProvider.LEVER, "joltcharge")
+        right = MappingResult(
+            provider=AtsProvider.LEVER,
+            token="joltcharge",
+            confidence=MappingConfidence.VERIFIED,
+            method="careers_page",
+        )
+        wrong = MappingResult(
+            provider=AtsProvider.LEVER,
+            token="volta",
+            confidence=MappingConfidence.PROBABLE,
+            method="slug_guess+name_match",
+        )
+        weak = MappingResult(
+            provider=AtsProvider.LEVER,
+            token="joltcharge",
+            confidence=MappingConfidence.WEAK,
+            failure_reason="weak_only",
+        )
+        assert mapping.verdict(right, exp) == "TP"
+        assert mapping.verdict(wrong, exp) == "FP"
+        assert mapping.verdict(weak, exp) == "FN"
+        assert mapping.verdict(right, None) == "FP"

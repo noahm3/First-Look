@@ -18,14 +18,18 @@ against what the company's own careers page says, because agreement between
 the two is what `verified` means and disagreement is what `ambiguous` means.
 """
 
+import argparse
 import csv
 import logging
 import pathlib
 import re
+import sys
 from collections import Counter
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass, field
 from urllib.parse import urljoin, urlsplit
+
+import yaml
 
 from src.http import FetchClient, FetchErrorKind, FetchResult
 from src.mapping_extract import extract
@@ -381,3 +385,192 @@ def summarize(outcomes: Sequence[MappingOutcome]) -> str:
         + ", ".join(f"{k}={v}" for k, v in sorted(reasons.items(), key=lambda kv: -kv[1])),
     ]
     return "\n".join(lines)
+
+
+# -- ground-truth check (C-3.1) -------------------------------------------------
+
+EXPECTED_PATH = pathlib.Path("config/watchlist_expected.yml")
+DEFAULT_REVIEW_PATH = pathlib.Path("data/mapping_review.csv")
+
+
+@dataclass(frozen=True, slots=True)
+class Expected:
+    provider: AtsProvider
+    token: str
+    zero_postings: bool = False
+
+
+def load_expected(path: pathlib.Path = EXPECTED_PATH) -> dict[str, Expected]:
+    raw = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    return {
+        str(domain).lower(): Expected(
+            provider=AtsProvider(entry["provider"]),
+            token=str(entry["token"]).lower(),
+            zero_postings=bool(entry.get("zero_postings", False)),
+        )
+        for domain, entry in raw.items()
+    }
+
+
+def verdict(result: MappingResult, expected: Expected | None) -> str:
+    """TP: accepted and correct. FP: accepted and wrong -- the one C-3.1 forbids.
+    FN: correct answer known, not accepted (a coverage finding, not an error)."""
+    if not result.accepted:
+        return "FN" if expected else "TN"
+    if expected and (result.provider, result.token) == (expected.provider, expected.token):
+        return "TP"
+    return "FP"
+
+
+# -- CLI --------------------------------------------------------------------------
+
+
+def _cli_client() -> FetchClient:
+    # Shorter than the polling defaults: a careers page that takes 20s is
+    # indistinguishable from one that isn't there, and the cascade can make
+    # ~20 requests per company.
+    return FetchClient(timeout=10.0, max_attempts=2)
+
+
+def _map_all(
+    client: FetchClient, companies: Sequence[tuple[str, str | None]]
+) -> list[MappingOutcome]:
+    outcomes = []
+    for i, (name, domain) in enumerate(companies, 1):
+        outcomes.append(map_company(client, name, domain))
+        if i % 25 == 0:
+            print(f"  ... {i}/{len(companies)}", flush=True)
+    return outcomes
+
+
+def _check_watchlist(review_path: pathlib.Path) -> int:
+    from src.watchlist import canonicalize_domain, load_watchlist
+
+    entries = load_watchlist()
+    expected = load_expected()
+    companies = [(e.name, canonicalize_domain(e.domain)) for e in entries]
+    with _cli_client() as client:
+        outcomes = _map_all(client, companies)
+
+    counts: Counter[str] = Counter()
+    print(f"{'company':28s} {'expected':42s} {'got':42s} {'confidence':10s} verdict  method")
+    for (name, domain), outcome in zip(companies, outcomes, strict=True):
+        exp = expected.get(domain or "")
+        r = outcome.result
+        v = verdict(r, exp)
+        counts[v] += 1
+        exp_s = f"{exp.provider.value}:{exp.token}" if exp else "-"
+        got_s = f"{r.provider.value}:{r.token}" if r.provider and r.token else "-"
+        conf = r.confidence.value if r.confidence else "-"
+        detail = r.method if r.accepted else f"{r.method} [{r.failure_reason}]"
+        print(f"{name[:28]:28s} {exp_s[:42]:42s} {got_s[:42]:42s} {conf:10s} {v:7s}  {detail}")
+
+    write_review_csv(
+        review_path, [(n, d, o.result) for (n, d), o in zip(companies, outcomes, strict=True)]
+    )
+    print()
+    print(summarize(outcomes))
+    print(
+        f"verdicts:             TP={counts['TP']} FP={counts['FP']} FN={counts['FN']} "
+        f"TN={counts['TN']}"
+    )
+    print(f"review csv:           {review_path}")
+    return 1 if counts["FP"] else 0
+
+
+def _read_domains_csv(path: pathlib.Path, limit: int | None, seed: int) -> list[tuple[str, str]]:
+    """A dry-run sample from a spike CSV with a `company_domain` column. No
+    name column exists there, so the domain label stands in for the name --
+    which makes `probable` rarer than it would be with a real name."""
+    import random
+
+    from src.watchlist import canonicalize_domain
+
+    with path.open(encoding="utf-8", newline="") as fh:
+        domains = sorted(
+            {d for row in csv.DictReader(fh) if (d := canonicalize_domain(row["company_domain"]))}
+        )
+    random.Random(seed).shuffle(domains)
+    if limit is not None:
+        domains = domains[:limit]
+    return [(domain_label(d), d) for d in domains]
+
+
+def _dry_run(path: pathlib.Path, limit: int | None, seed: int, review_path: pathlib.Path) -> int:
+    companies = _read_domains_csv(path, limit, seed)
+    print(f"dry run: mapping {len(companies)} domains from {path} (seed {seed}); no DB writes")
+    with _cli_client() as client:
+        outcomes = _map_all(client, companies)
+    write_review_csv(
+        review_path, [(n, d, o.result) for (n, d), o in zip(companies, outcomes, strict=True)]
+    )
+    print(summarize(outcomes))
+    print(f"review csv:           {review_path}")
+    return 0
+
+
+def _map_database(limit: int | None, review_path: pathlib.Path) -> int:
+    from datetime import UTC, datetime
+
+    from src.db import Database, DatabaseUnavailable
+
+    try:
+        db = Database.from_env()
+        with db, _cli_client() as client:
+            companies = order_for_mapping(db.companies_to_map(limit))
+            outcomes = []
+            for company in companies:
+                outcome = map_company(client, company.name, company.canonical_domain)
+                if company.id is not None:
+                    db.record_mapping(company.id, outcome.result, datetime.now(UTC))
+                outcomes.append(outcome)
+            accepted = db.pollable_companies()
+    except DatabaseUnavailable as exc:
+        print(f"BLOCKED: {exc}")
+        return 1
+    write_review_csv(
+        review_path,
+        [
+            (
+                c.name,
+                c.canonical_domain,
+                MappingResult(
+                    provider=c.ats_provider,
+                    token=c.ats_token,
+                    confidence=c.mapping_confidence,
+                    method=c.mapping_method,
+                ),
+            )
+            for c in accepted
+        ],
+    )
+    print(summarize(outcomes))
+    return 0
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="SPEC.md §8 ATS mapping cascade.")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument(
+        "--check-watchlist",
+        action="store_true",
+        help="map config/watchlist.yml live and score it against config/watchlist_expected.yml",
+    )
+    mode.add_argument(
+        "--domains-csv", type=pathlib.Path, help="dry run over a CSV's company_domain column"
+    )
+    parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument("--seed", type=int, default=20260924)
+    parser.add_argument("--review-csv", type=pathlib.Path, default=DEFAULT_REVIEW_PATH)
+    args = parser.parse_args(argv)
+    logging.basicConfig(level=logging.WARNING, format="%(levelname)s %(name)s %(message)s")
+
+    if args.check_watchlist:
+        return _check_watchlist(args.review_csv)
+    if args.domains_csv:
+        return _dry_run(args.domains_csv, args.limit, args.seed, args.review_csv)
+    return _map_database(args.limit, args.review_csv)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

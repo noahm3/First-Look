@@ -1,0 +1,71 @@
+# config/watchlist_expected.yml -- C-3.1 ground truth: the correct ATS mapping
+# for every config/watchlist.yml entry, keyed by domain.
+#
+# Kept separate from watchlist.yml on purpose: SPEC.md §7.1 keeps the
+# watchlist as name + domain only, so the cascade sees exactly what it would
+# see for any other company. This file is only read by
+# `python -m src.mapping --check-watchlist`, which scores the cascade against it.
+#
+# Provenance (2026-09-24): every token below was live-probed on its own, not
+# produced by the cascade under test.
+#   - The 14 entries added 2026-09-24 (BambooHR, Workable, Personio, Breezy,
+#     Volta, OhmConnect) were run through the real src/ats_*.py adapters and
+#     then hand-checked by the user.
+#   - The 16 remaining original M1 entries were hand-checked by the user in
+#     M1, but M1 never recorded their tokens. Re-derived today: 13 by
+#     live-probing the obvious board slug (each confirmed live; the 5
+#     Greenhouse boards also return the company's own name), and Stem
+#     (`stem-inc`), goTenna (`gotenna-inc`) and Algorand
+#     (`algorand-foundation`, careers page lives on algorand.co) by reading
+#     each careers page's Rippling links by eye. These 16 NEED USER
+#     RE-CONFIRMATION before C-3.1 is checked.
+#
+# Personio's "token" is the full tenant host (src/ats_personio.py takes a host).
+# zero_postings: true marks the "mapped, zero jobs" case.
+
+# -- Greenhouse
+owllabs.com: {provider: greenhouse, token: owllabs}
+markforged.com: {provider: greenhouse, token: markforged}
+brandwatch.com: {provider: greenhouse, token: brandwatch}
+vestmark.com: {provider: greenhouse, token: vestmark}
+3playmedia.com: {provider: greenhouse, token: 3playmedia}
+
+# -- Lever
+logrocket.com: {provider: lever, token: logrocket}
+cfs.energy: {provider: lever, token: cfsenergy}
+voltacharging.com: {provider: lever, token: joltcharge}
+palantir.com: {provider: lever, token: palantir}
+ro.co: {provider: lever, token: ro}
+
+# -- Ashby
+crusoe.ai: {provider: ashby, token: crusoe}
+helpscout.com: {provider: ashby, token: helpscout}
+wistia.com: {provider: ashby, token: wistia}
+
+# -- Rippling
+stem.com: {provider: rippling, token: stem-inc}
+goshippo.com: {provider: rippling, token: shippo}
+algorand.com: {provider: rippling, token: algorand-foundation}
+gotenna.com: {provider: rippling, token: gotenna-inc}
+
+# -- BambooHR
+ph7technologies.com: {provider: bamboohr, token: ph7}
+svanteinc.com: {provider: bamboohr, token: svante}
+virtual-peaker.com: {provider: bamboohr, token: virtualpeaker}
+
+# -- Workable
+aerones.com: {provider: workable, token: aerones}
+seeq.com: {provider: workable, token: seeq}
+terabase.energy: {provider: workable, token: terabase-energy}
+ohmconnect.com: {provider: workable, token: renewhome}
+
+# -- Personio
+strohm.eu: {provider: personio, token: strohm.jobs.personio.com}
+planet-a-foods.com: {provider: personio, token: planetafoods.jobs.personio.de}
+live-eo.com: {provider: personio, token: liveeo-gmbh.jobs.personio.de}
+
+# -- Breezy HR
+forgenano.com: {provider: breezy_hr, token: forge-nano}
+sabantoag.com: {provider: breezy_hr, token: sabanto}
+righthandrobotics.com: {provider: breezy_hr, token: righthand-robotics}
+cofactorgenomics.com: {provider: breezy_hr, token: cofactor-genomics, zero_postings: true}
