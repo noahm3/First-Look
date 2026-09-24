@@ -39,7 +39,15 @@ class TestSupportedTokens:
                 (P.GREENHOUSE, "3playmedia"),
             ),
             ('<a href="https://jobs.lever.co/logrocket">', (P.LEVER, "logrocket")),
-            ('<a href="https://jobs.lever.co/CFSEnergy/abc-123">', (P.LEVER, "cfsenergy")),
+            # Lever, Rippling and Workable tokens are case-sensitive (confirmed
+            # live: Lever `JourneyClinical` 200, `journeyclinical` 404).
+            ('<a href="https://jobs.lever.co/JourneyClinical/abc">', (P.LEVER, "JourneyClinical")),
+            ('<a href="https://ats.rippling.com/Acme-Inc/jobs">', (P.RIPPLING, "Acme-Inc")),
+            ('<a href="https://apply.workable.com/AcmeCo/">', (P.WORKABLE, "AcmeCo")),
+            # ...the others are not, and are normalised to lowercase.
+            ('<a href="https://boards.greenhouse.io/OwlLabs">', (P.GREENHOUSE, "owllabs")),
+            ('<a href="https://jobs.ashbyhq.com/Crusoe">', (P.ASHBY, "crusoe")),
+            ('<a href="https://Forge-Nano.breezy.hr/">', (P.BREEZY_HR, "forge-nano")),
             ("api.lever.co/v0/postings/palantir?mode=json", (P.LEVER, "palantir")),
             ('<a href="https://jobs.ashbyhq.com/crusoe">', (P.ASHBY, "crusoe")),
             (

@@ -151,7 +151,9 @@ class TestFuzzyNameMatch:
 
 
 class TestTokenSanity:
-    @pytest.mark.parametrize("token", ["markforged", "cfsenergy", "3playmedia", "a_b-c"])
+    @pytest.mark.parametrize(
+        "token", ["markforged", "cfsenergy", "3playmedia", "a_b-c", "JourneyClinical"]
+    )
     def test_plain_tokens_are_valid(self, token):
         assert is_valid_token(GH, token)
 
@@ -161,6 +163,19 @@ class TestTokenSanity:
     )
     def test_malformed_or_path_word_tokens_are_invalid(self, token):
         assert not is_valid_token(GH, token)
+
+    def test_reserved_path_words_are_invalid_in_any_case(self):
+        assert not is_valid_token(GH, "Embed")
+
+    def test_case_sensitivity_per_provider(self):
+        from src.mapping_validate import normalize_token
+
+        assert normalize_token(LEVER, "JourneyClinical") == "JourneyClinical"
+        assert normalize_token(AtsProvider.RIPPLING, "Stem-Inc") == "Stem-Inc"
+        assert normalize_token(WORKABLE, "AcmeCo") == "AcmeCo"
+        assert normalize_token(GH, "OwlLabs") == "owllabs"
+        assert normalize_token(ASHBY, "Crusoe") == "crusoe"
+        assert normalize_token(PERSONIO, "Strohm.Jobs.Personio.com") == "strohm.jobs.personio.com"
 
     def test_personio_token_must_be_a_personio_tenant_host(self):
         assert is_valid_token(PERSONIO, "strohm.jobs.personio.com")

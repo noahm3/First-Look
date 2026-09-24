@@ -18,7 +18,7 @@ import html
 import re
 from dataclasses import dataclass
 
-from src.mapping_validate import is_valid_token
+from src.mapping_validate import is_valid_token, normalize_token
 from src.models import AtsProvider
 
 P = AtsProvider
@@ -165,8 +165,9 @@ def extract(raw_html: str) -> Extracted:
     found: dict[tuple[AtsProvider, str], None] = {}
     for provider, pattern, exclude in _TOKEN_PATTERNS:
         for match in pattern.finditer(text):
-            token = match.group(1).lower()
-            if token in exclude or (provider in _NON_TENANT and _ASSET_LABEL.fullmatch(token)):
+            token = normalize_token(provider, match.group(1))
+            label = token.lower()
+            if label in exclude or (provider in _NON_TENANT and _ASSET_LABEL.fullmatch(label)):
                 continue
             if not is_valid_token(provider, token):
                 continue

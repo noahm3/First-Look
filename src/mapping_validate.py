@@ -50,7 +50,14 @@ MIN_TOKEN_LEN = 6
 # against the company's -- the only basis for `probable`.
 NAME_BEARING_PROVIDERS = frozenset({AtsProvider.GREENHOUSE, AtsProvider.WORKABLE})
 
-_TOKEN_RE = re.compile(r"^[a-z0-9][a-z0-9_-]{0,63}$")
+_TOKEN_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$")
+# Confirmed live 2026-09-24: these providers' tokens are case-sensitive (Lever
+# `JourneyClinical` 200, `journeyclinical` 404; Rippling `Shippo` and Workable
+# `Aerones` 404). Greenhouse, Ashby, and the hostname-based providers are not,
+# and are normalised to lowercase.
+CASE_SENSITIVE_PROVIDERS = frozenset(
+    {AtsProvider.LEVER, AtsProvider.RIPPLING, AtsProvider.WORKABLE}
+)
 _PERSONIO_HOST_RE = re.compile(r"^[a-z0-9][a-z0-9-]{0,62}\.jobs\.personio\.(?:de|com)$")
 # Path words that a loose URL regex can capture as a "token" -- e.g. the
 # Greenhouse `embed/job_board/js?for=` shape the iteration 6 spike misread.
@@ -146,12 +153,17 @@ def guard_requires_verified(token: str) -> bool:
     return len(t) < MIN_TOKEN_LEN or t in load_collision_words()
 
 
+def normalize_token(provider: AtsProvider, token: str) -> str:
+    token = token.strip()
+    return token if provider in CASE_SENSITIVE_PROVIDERS else token.lower()
+
+
 def is_valid_token(provider: AtsProvider, token: str) -> bool:
     """A token is interpolated into a provider URL and stored publicly, so it
     must be a plain slug -- or, for Personio, a tenant host."""
     if provider is AtsProvider.PERSONIO:
         return bool(_PERSONIO_HOST_RE.fullmatch(token))
-    return bool(_TOKEN_RE.fullmatch(token)) and token not in _RESERVED_TOKENS
+    return bool(_TOKEN_RE.fullmatch(token)) and token.lower() not in _RESERVED_TOKENS
 
 
 def _name_words(name: str) -> list[str]:

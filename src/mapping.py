@@ -34,7 +34,7 @@ import yaml
 from src.http import FetchClient, FetchErrorKind, FetchResult
 from src.mapping_extract import extract
 from src.mapping_probe import probe
-from src.mapping_validate import BoardProbe, CareersPage, Evidence, decide
+from src.mapping_validate import BoardProbe, CareersPage, Evidence, decide, normalize_token
 from src.models import AtsProvider, Company, MappingFailureReason, MappingResult
 
 log = logging.getLogger(__name__)
@@ -427,7 +427,7 @@ def load_expected(path: pathlib.Path = EXPECTED_PATH) -> dict[str, Expected]:
     return {
         str(domain).lower(): Expected(
             provider=AtsProvider(entry["provider"]),
-            token=str(entry["token"]).lower(),
+            token=normalize_token(AtsProvider(entry["provider"]), str(entry["token"])),
             zero_postings=bool(entry.get("zero_postings", False)),
         )
         for domain, entry in raw.items()

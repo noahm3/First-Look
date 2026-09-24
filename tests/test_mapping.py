@@ -471,3 +471,21 @@ class TestGroundTruth:
         assert mapping.verdict(wrong, exp) == "FP"
         assert mapping.verdict(weak, exp) == "FN"
         assert mapping.verdict(right, None) == "FP"
+
+    def test_verdict_respects_case_sensitivity(self):
+        lever = mapping.Expected(AtsProvider.LEVER, "JourneyClinical")
+        got = MappingResult(
+            provider=AtsProvider.LEVER,
+            token="journeyclinical",
+            confidence=MappingConfidence.VERIFIED,
+            method="careers_page",
+        )
+        assert mapping.verdict(got, lever) == "FP"  # a different, dead Lever board
+        gh = mapping.Expected(AtsProvider.GREENHOUSE, "owllabs")
+        got_gh = MappingResult(
+            provider=AtsProvider.GREENHOUSE,
+            token="owllabs",
+            confidence=MappingConfidence.VERIFIED,
+            method="careers_page",
+        )
+        assert mapping.verdict(got_gh, gh) == "TP"
