@@ -78,11 +78,30 @@ patches are preserved in `archive/`. Nothing above this note was reworded or ren
 
 ## M1 — Watchlist ingest and dedupe
 
-- [ ] **C-1.6** Ingesting the watchlist twice creates zero duplicate companies on the
-      second run
-- [ ] **C-1.7** `https://www.X.com/careers?utm=1` and `x.com` resolve to one company row
-- [ ] **C-1.8** A company with no resolvable domain is ingested and flagged rather than
-      dropped or crashed on
+- [x] **C-1.6** Ingesting the watchlist twice creates zero duplicate companies on the
+      second run. (2026-09-24, against the final 17-entry, real-API-verified,
+      hand-confirmed-by-the-user file: run `35948412764`: "17 entries -> 0 created, 17
+      already present, 0 with no domain" — all 17 were already rows in the database from
+      earlier dispatches this session, so this run was itself a genuine re-ingest and
+      correctly created zero duplicates; run `35948465336` immediately after: identical
+      output, "17 entries -> 0 created, 17 already present, 0 with no domain". Earlier in
+      the session, a fresh subset of these same rows was also observed going from
+      `N created, 0 already present` to `0 created, N already present` on a second
+      dispatch — e.g. run `35936442516` -> `35936489777` for the file's prior 13-entry
+      revision — so both the create and the re-ingest halves of this criterion have live
+      evidence, just not in the same pair of runs against the final file content)
+- [x] **C-1.7** `https://www.X.com/careers?utm=1` and `x.com` resolve to one company row.
+      (2026-09-23: `tests/test_watchlist.py::TestIngestWatchlist::
+      test_c_1_7_a_url_variant_and_a_bare_host_resolve_to_one_company`, passing against the
+      real `ingest_manual_company`/`canonicalize_domain` code. Not exercised live against
+      Supabase — `config/watchlist.yml`'s real entries don't currently contain a
+      duplicate-under-a-URL-variant pair to force the case)
+- [x] **C-1.8** A company with no resolvable domain is ingested and flagged rather than
+      dropped or crashed on. (2026-09-23: `tests/test_watchlist.py::TestIngestWatchlist::
+      test_c_1_8_a_company_with_no_resolvable_domain_is_ingested_and_flagged` and
+      `test_c_1_8_re_ingesting_a_no_domain_company_does_not_duplicate_it`, passing against
+      the real code path. Not exercised live — the production watchlist has no no-domain
+      entry yet)
 
 ## M2 — ATS adapters
 
