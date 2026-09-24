@@ -96,11 +96,15 @@ M-1. See BUILD.md.
 
 **Build one milestone at a time, sequentially, committing directly to `main`.**
 
-Parallel tracks were considered and rejected. Several milestones are technically
+~~Parallel tracks were considered and rejected. Several milestones are technically
 independent — M6 and M9 in particular could run alongside the backend chain — but
 parallelism only pays off when the human is the review bottleneck. Without line-by-line
 review, two tracks mean twice as much unreviewed code landing simultaneously, which is
-strictly worse.
+strictly worse.~~ **Superseded 2026-09-23: the premise was wrong.** Review here is
+already evidence-based, not line-by-line (§0.5) — the human reviews terminal output
+against criteria, not diffs as they land. That model doesn't get worse with a second
+track; it just runs twice. The real hazard is concurrent mutation of shared state, not
+review load. See §0.3a.
 
 Pull requests were also considered and rejected, for the same reason. They existed to
 force a diff review; a PR approved without reading is theatre. **The two things PRs were
@@ -124,6 +128,26 @@ present in `main`'s copy is missing from the current one. Twenty lines of Python
 enforces the never-delete rule better than a tired person at 11pm.
 
 Plus GitHub secret scanning and push protection, enabled in M-1.
+
+### 0.3a Parallel tracks (added 2026-09-23)
+
+A milestone may run in its own git worktree alongside the in-flight one **only if**:
+- it consumes only *closed* milestones' output (frozen foundations), never the in-flight
+  milestone's still-changing adapters/cascade/data
+- it doesn't edit files the in-flight milestone is editing
+- its CRITERIA.md range is disjoint from the in-flight milestone's
+
+**Currently parallel-safe alongside M2:** M6, M9 (schema/fixture scaffolding only), M11
+(local/client-side). M9 and M11 conflict with *each other* (same dashboard file) —
+sequence those two, don't run them concurrently.
+
+**Mechanics:** separate worktree, separate branch, commits still land on `main` one at a
+time (rebase before push if two tracks are close together). One DEVLOG entry per session
+per track, headed by milestone number.
+
+**The one real hazard parallelism doesn't remove:** if a parallel track's foundational
+assumption (schema, `models.py`, `http.py`) changes mid-flight in the other track, pause
+both until reconciled.
 
 ### 0.4 DEVLOG.md
 
