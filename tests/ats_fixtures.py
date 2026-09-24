@@ -36,9 +36,22 @@ def fake_client(handler, *, resolves_to: str = PUBLIC_IP, **kwargs) -> FetchClie
     )
 
 
-def respond(status: int, *, content: bytes | None = None, json: object = None) -> httpx.Response:
+def refuse_connection(request) -> httpx.Response:
+    """A `fake_client` handler whose every request fails at the socket -- the
+    transient "HTTP 0" case, for tests that must not import httpx."""
+    raise httpx.ConnectError("connection reset", request=request)
+
+
+def respond(
+    status: int,
+    *,
+    content: bytes | None = None,
+    json: object = None,
+    headers: dict[str, str] | None = None,
+) -> httpx.Response:
     """Build the response a `fake_client` handler returns, without the
-    caller needing its own `import httpx`."""
+    caller needing its own `import httpx`. `headers` carries e.g. a redirect's
+    `Location`."""
     if json is not None:
-        return httpx.Response(status, json=json)
-    return httpx.Response(status, content=content or b"")
+        return httpx.Response(status, json=json, headers=headers)
+    return httpx.Response(status, content=content or b"", headers=headers)
