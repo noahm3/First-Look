@@ -667,14 +667,29 @@ expense.
 1. **Slug guessing.** Candidates from company name (lowercase, strip punctuation and
    whitespace, strip trailing `Inc`/`Labs`/`Technologies`/`AI`) and from the
    second-level label of `canonical_domain` — the domain candidate hits noticeably more
-   often. Try against Greenhouse, Lever, Ashby, SmartRecruiters.
+   often. Try against Greenhouse, Lever, Ashby. **Updated 2026-09-24 (M3):**
+   SmartRecruiters dropped from guessing — it has no adapter, so a hit could never be
+   polled; stage 3 still detects it as `unsupported_ats:smartrecruiters`. Workable was
+   briefly added and then removed after the first dry run: three guesses per company
+   tripped a sustained HTTP 429 on `apply.workable.com`, which then made *real* Workable
+   tokens found on careers pages probe as inconclusive. Workable is probed only when a
+   careers page names a token. BambooHR, Breezy, Personio and Rippling are never guessed
+   (BambooHR 302s an unknown tenant to a 200 marketing page; none return an org name).
 2. **Apply-redirect.** Built In postings link to
    `builtinboston.com/job/{slug}/{id}?handler=ApplyRedirect`. Follow redirects; parse the
-   resolved domain.
-3. **Careers-page regex.** Fetch the careers page; match raw HTML for `greenhouse.io`,
-   `lever.co`, `ashbyhq.com`, `smartrecruiters.com`. Also capture *any other*
-   recognizable ATS domain, including unsupported ones — §8.4.
+   resolved domain. **Deferred to M8 (2026-09-24):** no source supplies apply links until
+   Built In is ingested; `src/mapping.py` treats this stage as an explicit no-op.
+3. **Careers-page regex.** Fetch the homepage, a careers link on it, or a fallback path
+   (`/careers`, `/jobs`, `/company/careers`, `/about/careers`, then `careers.`/`jobs.`
+   subdomains); match raw HTML for board-token URL shapes of all 8 supported providers
+   (§9). Only pages on the company's own domain — or an ATS board its page redirected
+   to — count as evidence. Also capture *any other* recognizable ATS host, including
+   unsupported ones — §8.4.
 4. **Classified failure**, never a silent drop.
+
+Stages 1 and 3 both run for every company; `src/mapping_validate.py` judges the combined
+evidence. Implemented in M3 as `src/mapping.py` (cascade), `src/mapping_probe.py` (board
+probes), `src/mapping_extract.py` (HTML evidence), `src/mapping_validate.py` (§8.2).
 
 ### 8.2 Validation — three confidence levels
 
@@ -684,11 +699,38 @@ an unvalidated false positive means silently monitoring the wrong company for mo
 | Level | Test |
 |---|---|
 | `verified` | The company's own careers page references the **same token**. Two independent sources agreeing. |
-| `probable` | The ATS response names the company and it fuzzy-matches (Greenhouse `/v1/boards/{token}` returns `name`; Ashby carries the org name). Lever is weak here. |
+| `probable` | The ATS response names the company and it fuzzy-matches (Greenhouse `/v1/boards/{token}` returns `name`; Workable's widget returns `name`). ~~Ashby carries the org name.~~ **Corrected 2026-09-24:** Ashby's public job-board endpoint returns only `{jobs, apiVersion}` — no org name (spikes/iteration6, DEVLOG) — so Ashby, like Lever, BambooHR, Breezy and Rippling, can only ever be `verified` or `weak`. |
 | `weak` | 200, nothing corroborates. |
 
 **Only `verified` and `probable` enter the polling loop.** `weak` is a mapping failure.
 Per §3.8, a known gap beats invisible bad data.
+
+**Rules added in M3 (2026-09-24):**
+- A board probe is `live` only if the body is that provider's board shape *and* it came
+  from the host asked (BambooHR's 302-to-marketing-page is not a board). Timeouts, 5xx,
+  429 and bot blocks are **inconclusive** — never evidence a board is dead (iteration 7
+  retired a live 336-posting board on an HTTP 0). Inconclusive yields `unknown`.
+- A careers page naming **two or more distinct live boards** (a parent company, a VC
+  portfolio board) is ambiguous → `weak_only`, unless exactly one of them matches a
+  stage-1 slug hit. A page token whose probe was inconclusive, or that was never probed,
+  **counts toward that ambiguity** (→ `unknown`): shield.ai's real Lever board was too
+  large to download, and ignoring it "verified" an acquired subsidiary's board instead.
+- A homepage redirect is the company's own redirect, so its landing domain counts as the
+  company's site — same brand on another TLD (algorand.com → algorand.co), a rebrand
+  (voltacharging.com → joltcharge.com), or an acquisition (capsule8.com → sophos.com;
+  user's call 2026-09-24: acquisitions are let in). When the landing domain's name isn't
+  the same brand (equal, or one a prefix of the other: galileohealth.com → galileo.io),
+  the accepted method is suffixed `+redirected_domain` so it stands out in
+  `mapping_review.csv`.
+- A token/name mismatch does **not** disqualify `verified`: rebrands and acquisitions keep
+  old tokens (Volta → Lever `joltcharge`; OhmConnect → Workable `renewhome`).
+- A parked domain (§8.1's jetzero.au case) can never yield `probable`.
+- Name matching is whole-word, not substring: "Arc" does not match "Arcadia".
+- Tokens must be plain slugs (`^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$`, minus path words like
+  `embed`); a Personio token is a `*.jobs.personio.(de|com)` host. **Lever, Rippling and
+  Workable tokens are case-sensitive** (confirmed live: Lever `JourneyClinical` 200,
+  `journeyclinical` 404) and are stored exactly as the careers page wrote them;
+  Greenhouse, Ashby and the hostname-based providers are normalised to lowercase.
 
 **Negative guard:** candidates under six characters or listed in
 `config/collision_words.yml` (`atlas`, `square`, `ramp`, `notion`, `arc`, `level`,
@@ -723,6 +765,11 @@ poisoning the one distribution the whole coverage decision rests on.
 
 ### 8.5 Retry
 Failed mappings retry monthly on the cold path. Failure is not permanent.
+**M3 (2026-09-24):** a failed mapping is stored with `ats_status = 'unmappable'` and its
+§8.4 reason (a `weak` provider/token is kept for diagnosis); an accepted one with
+`ats_status = 'ok'`. `Database.companies_to_map()` returns everything without an
+accepted mapping in §8.3 order, oldest `mapping_last_attempt_at` first — the retry
+queue. The scheduled trigger for the retry is M4's.
 
 ### 8.6 Mapping coverage is now the product
 
