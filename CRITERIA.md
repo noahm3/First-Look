@@ -114,6 +114,13 @@ patches are preserved in `archive/`. Nothing above this note was reworded or ren
       today, see the M2 DEVLOG entry, not an adapter bug. **Ashby only 3/3, not 5**: the
       M1 watchlist has just 3 Ashby entries (crusoe 350, helpscout 10, wistia 2 postings)
       — a gap in M1's watchlist composition, not this adapter; all 3 known tokens work.)
+      **Correction, same day, after the final-review pass flagged this note as checked
+      without literally meeting "5 known tokens" for two providers:** re-ran against 2
+      more real, live-verified tokens per gap — Lever `joltcharge` (6 postings, replacing
+      `appcues`, real 5/5) and Ashby `cambium` (5 postings) + `stillbright` (6 postings)
+      (real 5/5, alongside the original crusoe/helpscout/wistia). All 8 real tokens
+      (`spikes/ats_platform_detections.csv`) confirmed live via the actual adapters, not
+      fixtures. Greenhouse and Lever now both genuinely 5/5; Ashby now genuinely 5/5.
 - [x] **C-2.2** `department_raw` is populated from each provider's own field. (2026-09-24:
       `tests/test_ats_greenhouse.py::test_department_raw_populated_from_departments_field`,
       `tests/test_ats_lever.py::test_department_raw_populated_from_categories_team`,
@@ -123,11 +130,18 @@ patches are preserved in `archive/`. Nothing above this note was reworded or ren
       `tests/test_ats_ashby.py::test_workplace_type_raw_captured_where_present`, passing.)
 - [x] **C-2.4** Unit tests pass with the network disabled. (2026-09-24: `pytest -v`, full
       suite, `342 passed in 1.02s`, `tests/conftest.py`'s socket-blocking fixture active
-      throughout.)
+      throughout.) **Updated same day, after the final-review fix pass added 13 more
+      tests** (Rippling pagination, 6 nested-type-drift crash tests, a Personio encoding
+      test, a Greenhouse size-cap-fallback test): `pytest -v` → `356 passed in 1.03s`.
 - [x] **C-2.5** Fixtures exist per provider for: normal board, empty board, malformed
       JSON, 404. (2026-09-24: `tests/fixtures/ats/{greenhouse,lever,ashby}/` each carry
       `normal.json`, `empty.json`, `malformed.json`, `not_found.json`, all recorded from
       real live responses except the hand-constructed malformed cases.)
+      **Correction, same day:** Lever's `empty.json` is also hand-constructed (`[]`), not
+      live-recorded — Appcues, the real zero-postings board this fixture was meant to
+      capture, went from "mapped, zero postings" to a genuine 404 within one day (see the
+      M2 DEVLOG entry), so no live zero-postings Lever board was available when this
+      fixture was built.
 - [x] **C-2.6** A missing Lever `createdAt` produces a null, not an exception. (2026-09-24:
       `tests/test_ats_lever.py::test_missing_created_at_produces_null_not_exception`,
       passing.)
@@ -167,7 +181,8 @@ patches are preserved in `archive/`. Nothing above this note was reworded or ren
 - [x] **C-2.11** Unit tests for all 8 providers (Greenhouse, Lever, Ashby, Rippling,
       BambooHR, Workable, Personio, Breezy HR) pass with the network disabled. (2026-09-24:
       `pytest -v`, full suite including all 8 `tests/test_ats_*.py` files,
-      `342 passed in 1.02s`.)
+      `342 passed in 1.02s`.) **Updated same day: `356 passed in 1.03s`** after the
+      final-review fix pass (see C-2.4's correction).
 - [x] **C-2.12** Personio's XML feed shape was freshly re-verified against a live request
       during this milestone, not assumed from the September spike/backlog notes — the
       earlier spot-check found one company serving a client-rendered shell instead of XML.
