@@ -195,16 +195,35 @@ patches are preserved in `archive/`. Nothing above this note was reworded or ren
 
 ## M3 — Mapping cascade and validation
 
-- [ ] **C-3.1** **Zero false positives** against the watchlist, where the correct answer
+- [x] **C-3.1** **Zero false positives** against the watchlist, where the correct answer
       is already known. One false positive means tightening the guard before proceeding.
-- [ ] **C-3.2** A `weak`-confidence result is recorded as a mapping failure and does not
-      enter the polling loop
-- [ ] **C-3.3** A short or collision-listed slug cannot be accepted at `probable`
-- [ ] **C-3.4** Every failure carries a `mapping_failure_reason`; none are null
-- [ ] **C-3.5** `data/mapping_review.csv` contains every accepted mapping with its
-      confidence and method
-- [ ] **C-3.6** Slug hit rate, cascade coverage, confidence distribution, and
-      failure-reason distribution recorded in DEVLOG
+      (2026-09-24: `python -m src.mapping --check-watchlist`, live, against
+      `config/watchlist_expected.yml` -- 31 companies across all 8 providers:
+      "verdicts: TP=31 FP=0 FN=0 TN=0", exit 0. One real false positive was found
+      *outside* the watchlist while reviewing the 300-domain sample -- shield.ai mapped to
+      an acquired subsidiary's board because its real board probed inconclusive -- and
+      fixed with regression tests before this run.)
+- [x] **C-3.2** A `weak`-confidence result is recorded as a mapping failure and does not
+      enter the polling loop (2026-09-24:
+      `tests/test_db_mapping.py::TestC32WeakNeverEntersThePollingLoop` (4 tests, incl.
+      a loosened-SQL case) and
+      `tests/test_mapping_validate.py::TestFailures::test_c_3_2_weak_is_recorded_as_a_failure_not_accepted`,
+      passing.)
+- [x] **C-3.3** A short or collision-listed slug cannot be accepted at `probable`
+      (2026-09-24: `tests/test_mapping_validate.py::TestGuard::test_c_3_3_*` (3 tests),
+      passing; removing the guard makes 2 of them fail.)
+- [x] **C-3.4** Every failure carries a `mapping_failure_reason`; none are null
+      (2026-09-24: `test_c_3_4_every_failure_in_the_matrix_carries_a_closed_set_reason`
+      and `tests/test_db_mapping.py::TestRecordMapping::test_c_3_4_a_failure_without_a_reason_is_refused`,
+      passing. The 300-domain run's 242 failures all carry a reason.)
+- [x] **C-3.5** `data/mapping_review.csv` contains every accepted mapping with its
+      confidence and method (2026-09-24: 58 rows from the 300-domain dry run, commit
+      `988065f`, opened and read row by row. shield.ai's wrong row from an earlier run is
+      fixed and absent; capsule8 -> Lever `sophos` is present by the user's acquisition
+      decision, labelled `careers_page+redirected_domain`.)
+- [x] **C-3.6** Slug hit rate, cascade coverage, confidence distribution, and
+      failure-reason distribution recorded in DEVLOG (2026-09-24: DEVLOG "M3: mapping
+      cascade and validation" entry and its addendum.)
 
 ## M4 — Monitoring loop and seed mode
 
