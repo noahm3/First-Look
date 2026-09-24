@@ -2356,3 +2356,169 @@ Getro-comparison table is the starting point, and `config/consider_boards.yml` w
 need real per-board confirmation the same way `config/getro_boards.yml` did, not a
 straight promotion of the fingerprint-flagged candidate list in
 `spikes/investor_sources.csv`.
+
+---
+
+## 2026-09-24 — M3: mapping cascade and validation (built; criteria pending user review)
+**Model:** Opus 5.5 · **Plan mode:** yes (plan approved, then run unattended at the user's request)
+
+Validation was written first, as BUILD.md asks. The user stepped away mid-session and
+asked me to keep going on my own recommendations. Per CLAUDE.md, **no CRITERIA box is
+checked and the SPEC.md changes are left uncommitted** until the user has seen the output
+and the diff.
+
+### Built
+- **Before any code** (`502323f`): watchlist fixes.
+  - Appcues re-checked live: still a 404. Swapped for Volta (Lever `joltcharge`).
+  - 14 entries added for BambooHR, Workable, Personio and Breezy HR, so ground truth now
+    covers all 8 providers (31 entries). Candidates were run live through the real M2
+    adapters, and the user hand-checked each. During that check the user found OhmConnect
+    → Workable `renewhome`, an acquisition case.
+- `src/mapping_validate.py`: a pure `decide(evidence)` that assigns verified / probable /
+  weak and a failure reason. It never sees an HTTP status. Also holds the negative guard
+  (`config/collision_words.yml`), whole-word name matching, and token sanity checks.
+- `src/mapping_probe.py`: one GET per (provider, token). It separates `live` /
+  `not_found` / `not_a_board` / `inconclusive`. A 200 counts as `live` only with the
+  provider's board shape, and only from the host we asked.
+- `src/mapping_extract.py`: board-token URL shapes for all 8 providers, plus
+  unsupported-ATS hosts. Unsupported names come from URLs only, never prose.
+- `src/mapping.py`: the cascade (stage 1 slug guesses, stage 3 careers pages, stage 2 an
+  explicit no-op until M8) and the CLI:
+  - `python -m src.mapping --check-watchlist`: live run, scored against the new
+    `config/watchlist_expected.yml`; exits non-zero on any false positive.
+  - `--domains-csv PATH --limit N`: dry run, no DB.
+  - Default: maps DB companies.
+  - All modes print counts-only summaries.
+- `src/db.py`: `companies_to_map()`, `record_mapping()`, `pollable_companies()`. No schema
+  change was needed.
+- 603 tests (up from 445). ruff and check_rls are clean.
+
+### Decisions made this session
+- **Stage 1 no longer guesses SmartRecruiters**: it has no adapter, so a hit could never
+  be polled. Stage 3 still detects it.
+- **Workable was added to stage 1 at the plan stage (user-approved), then removed after
+  the first 50-domain run.** Three guesses per company tripped a sustained HTTP 429 on
+  `apply.workable.com` (Retry-After 0; cleared after ~20 min). The 429 then made *real*
+  Workable tokens found on careers pages probe as inconclusive (`boston-metal`). This
+  reverses something the user approved, so it is flagged here and in the SPEC diff.
+- **Stages 1 and 3 always both run.** Agreement between them is what `verified` means;
+  disagreement is what "ambiguous" means.
+- **Failed mapping → `ats_status='unmappable'`** plus its reason; accepted → `'ok'`. The
+  retry queue is `companies_to_map()`, ordered oldest `mapping_last_attempt_at` first.
+- **The CLI uses a 10s timeout with 2 attempts** instead of the 20s/3 polling defaults.
+- **The honest `first-look/0.1` User-Agent was kept** for careers pages. The iteration 6
+  spike used a browser UA; I did not spoof one. This is a small coverage cost I did not
+  measure.
+
+### Bugs and false positives found by looking at real output (all fixed, all regression-tested)
+- **shield.ai: false positive.** The page links its real Lever board (8.5 MB, over the
+  response cap, so inconclusive) and the Greenhouse board of Aechelon, a company Shield AI
+  acquired (live). Ignoring the inconclusive token "verified" the subsidiary. Found by
+  opening `mapping_review.csv` by eye, as BUILD.md asks.
+  - Fix: unprobed or inconclusive page tokens now count toward ambiguity.
+  - Fix: the Lever probe uses `limit=1`.
+- **capsule8.com → Lever `sophos`: false positive.** The whole domain redirects to
+  sophos.com (acquired). Fix: a homepage redirect to a differently named domain is not
+  "own". The same brand, or a prefix-named domain, still is (algorand.com → .co,
+  galileohealth.com → galileo.io, loyalfordogs.com → loyal.com; the last two were caught
+  by diffing runs after a first, blunter version of this rule lost them).
+- **Token lowercasing killed real boards.** Lever, Rippling and Workable tokens are
+  case-sensitive, confirmed live: `JourneyClinical` 200, `journeyclinical` 404. Found by
+  diffing against iteration 6's results for the same 300 domains.
+- **`images4.bamboohr.com` read as a tenant**; asset hosts are now excluded.
+- **TriNet Hire was missing** from the unsupported list.
+- **The iteration 6 comparison also shows M3 rejecting 3 iteration-6 false positives** on
+  the same 300 domains:
+  - shield.ai → GH `shield` (probable on a short token)
+  - ethicspoint → GH `secure` (probable on a common word)
+  - careers.playground.global → GH `ultimagenomics` (a VC job board "verified" as one
+    company)
+
+### C-3.1 evidence (final code, live, `--check-watchlist`)
+`verdicts: TP=30 FP=0 FN=1 TN=0`, exit 0.
+- **The one FN is Volta.** voltacharging.com now redirects to joltcharge.com, which has
+  the same shape as the Capsule8 → Sophos acquisition, so the new redirect rule rejects
+  it. It ends as `weak` (Ashby `volta`, uncorroborated), not accepted. It was a TP before
+  that rule.
+- **This is a deliberate trade-off (§3.8) for the user to confirm.** A rebrand to an
+  unrelated name and an acquisition look identical from the domain.
+
+### C-3.6 measurements (final code, 300-domain dry run, `spikes/discovered_companies.csv`)
+Sample: seed 20260924, watchlist domains excluded, domain label used as the name (the CSV
+has no names).
+- **Cascade coverage:** 57/300 (19.0%) accepted. Iteration 6 accepted 33 of the same 300,
+  3 of them wrong. All 29 companies both runs accepted agree on provider and token.
+- **Slug hit rate:** 55/300 (18.3%) had a live stage-1 guess. 32 accepted via
+  `slug_guess*`: 27 corroborated by the careers page, 5 probable on a name match. The
+  other 23 were uncorroborated (weak) or superseded.
+- **Confidence:** verified 52, probable 5, weak 17, none 226.
+- **Accepted by provider:** greenhouse 15, lever 12, ashby 10, rippling 8, breezy_hr 5,
+  workable 3, bamboohr 2, personio 2.
+- **Failure reasons (243):**
+
+  | Reason | Count |
+  |---|---|
+  | no_careers_page | 101 |
+  | unknown | 85 |
+  | weak_only | 27 |
+  | js_rendered | 12 |
+  | unsupported_ats (18 total, below) | 18 |
+
+  Unsupported by platform: teamtailor 4, workday 3, jazzhr 2, ukg 2, trinet 1, recruitee 1,
+  careers-page 1, gem 1, factorial 1, wordpress-job-plugin 1, comeet 1.
+- **Watchlist (31):** coverage 30/31; slug hit rate 12/31; verified 29, probable 1,
+  weak 1.
+
+### Deviations from SPEC
+The following SPEC.md changes are written but **not committed; the diff is waiting for the
+user**:
+- §8.1: stage-1 provider list (no SmartRecruiters, no Workable, with the reason); stage 2
+  deferred to M8; stage-3 page discovery and own-domain rule.
+- §8.2: the "Ashby carries the org name" claim is wrong (the endpoint returns
+  `{jobs, apiVersion}` only); Workable named as name-bearing; the new rules for
+  inconclusive probes, ambiguity, offsite redirects, parked domains, whole-word names, and
+  token case.
+- §8.5: `unmappable` status and the retry queue.
+
+### Criteria checked
+None. All six are ready for review; none are checked until the user has seen the output
+(CLAUDE.md).
+- C-3.1: the watchlist run above.
+- C-3.2: `tests/test_db_mapping.py::TestC32WeakNeverEntersThePollingLoop` and
+  `test_mapping_validate.py::TestFailures::test_c_3_2_*`.
+- C-3.3: `test_mapping_validate.py::TestGuard::test_c_3_3_*`.
+- C-3.4: `test_mapping_validate.py::...::test_c_3_4_*` plus
+  `test_db_mapping.py::...::test_c_3_4_*`.
+- C-3.5: `data/mapping_review.csv` (57 rows, opened and read row by row).
+- C-3.6: this entry.
+
+### Least confident about
+- **The watchlist is not independent ground truth for 16 of its 31 tokens.** M1 never
+  recorded tokens, so I re-derived them today.
+  - 13 were found by live-probing the obvious slug. That is independent of the careers-page
+    stage but not of stage 1.
+  - Stem, goTenna and Algorand were found by reading the same careers pages the cascade
+    reads. That is circular, and those three need the user's re-confirmation.
+  - The watchlist is also biased toward companies whose ATS is findable from public HTML,
+    which is how it was assembled. 97% watchlist coverage against 19% population coverage
+    is mostly that bias, not cascade quality.
+- **The watchlist has no true negatives** (companies that *should* stay unmapped). Zero FP
+  there says nothing about FP rate on the other ~80%.
+  - The population review caught 2 real FPs in 58 rows (3.4%) before the fixes.
+  - The remaining 57 rows were read by eye but not hand-verified against each company.
+- **The 85 `unknown`s.** A 6-page sample was mostly genuine (self-hosted listings, mailto
+  links, no ATS at all). But "careers page found, no evidence" and "a probe was
+  inconclusive" share that bucket, and the second kind is recoverable on retry.
+- **Workable throttling will matter for M4 polling too.** No rate-limit budget for
+  `apply.workable.com` was measured; 429 isn't retried by `src/http.py`.
+- **Name-only `probable`** is still possible for no-domain companies (Getro's). Stage 1
+  runs with name candidates only, and a Greenhouse name match can accept. Correct per SPEC,
+  but it is the least-corroborated accept path and nothing on the watchlist exercises it.
+
+### Next session
+- The user reviews the output, the SPEC diff and the watchlist tokens. Then check C-3.x
+  boxes (CRITERIA diff first).
+- Decide on Volta: accept the FN, or relax the redirect rule. Relaxing it would re-admit
+  Capsule8 → Sophos.
+- Then M4. It wires `python -m src.mapping` into a scheduled run, and needs the Workable
+  rate question and the Rippling per-job detail question (the M2 entry) answered first.
