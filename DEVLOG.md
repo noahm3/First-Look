@@ -2002,3 +2002,138 @@ contract. Prompt to paste:
 > recorded from live responses in `tests/fixtures/`. Fetch the real API docs linked in
 > SPEC.md §9 first rather than building from memory. Commit at each criterion, not once at
 > the end.
+
+---
+
+## 2026-09-24 — M2 closed: 8 ATS adapters, scope expanded mid-session
+**Model:** Sonnet 5 · **Plan mode:** yes, for the implementation plan; execution inline
+
+### Built
+Scope grew from the original 3-provider M2 ask to 8 during the session-start
+conversation, per the user's explicit direction ("let's ALSO fold in BambooHR, Workable,
+Personio, Breezy HR, and Workday... the more ATS integrations the merrier"). Workday was
+deferred after flagging its distinct risk profile (hard pagination cap, Akamai bot
+management, no "revisit on measurement" escape hatch in `SPEC.md` §4 the way
+Workable/Personio have) — the user chose to do the other 5 now and leave Workday for
+later. `SPEC.md` §4 (Workable/Personio rejections reopened, Recruitee/Workday untouched)
+and §9 (5 new provider sections) updated and shown as a diff before committing, per
+protocol.
+
+An implementation plan was written (`docs/superpowers/plans/2026-09-24-m2-ats-adapters.md`,
+12 tasks) and executed inline, strict TDD throughout (RED confirmed before every
+implementation, GREEN confirmed after):
+
+- `src/ats_common.py` — shared `AdapterResult` envelope and `parse_iso_or_epoch_ms`
+  (handles Lever's epoch-ms, everyone else's ISO-8601, Workable's date-only strings).
+- `src/ats_greenhouse.py`, `src/ats_lever.py`, `src/ats_ashby.py` — the original 3,
+  rebuilt against fresh live fixtures and the official docs fetched this session, not
+  reused verbatim from the September spikes.
+- `src/ats_rippling.py`, `src/ats_bamboohr.py`, `src/ats_workable.py`,
+  `src/ats_personio.py`, `src/ats_breezy.py` — the 5 new providers.
+- 342 tests total (up from ~305 before this session), all passing with the network
+  disabled; fixtures under `tests/fixtures/ats/<provider>/` recorded from real live
+  responses on 2026-09-24, not carried over from the September spikes.
+- `CRITERIA.md` C-2.1 – C-2.12 checked, each with the real command/output that satisfies
+  it, including a live run of every adapter against a real `FetchClient` (no fixtures)
+  against the M1 watchlist's real companies plus a few more real companies for the 4
+  providers the watchlist doesn't cover yet.
+
+### Real findings from re-verifying live rather than trusting September's notes or memory
+- **Appcues' Lever board (M1's "mapped, zero postings" ground-truth entry, written
+  2026-09-23) is now a genuine 404** — the board was removed entirely within one day of
+  that DEVLOG entry, not just emptied. Confirmed twice (building the Lever fixtures, and
+  again in the live watchlist run). **M1's watchlist needs Appcues re-verified or
+  swapped before M3 uses it as ground truth.**
+- **BambooHR does not 404 on an invalid subdomain** — it 302-redirects to
+  `www.bamboohr.com`'s marketing homepage, itself a 200 HTML response. `src/http.py`'s
+  `FetchClient` follows the redirect, so the adapter never sees a 404; the
+  unexpected-shape branch is what actually catches a bad token. Documented in the
+  adapter's docstring and the test fixture is a 200 HTML body, not a 404 status.
+- **BambooHR's list endpoint has no per-job URL and no date field at all** (confirmed by
+  reading the full live response, not a truncated sample). The adapter constructs the URL
+  from the known `{token}.bamboohr.com/careers/{id}` pattern (confirmed live, 200);
+  `posted_at` stays `None` — there is nothing to read it from.
+- **Workable's public widget endpoint has no compensation field**, unlike the documented,
+  authenticated admin API's `salary` object — confirmed by reading the full live response.
+- **Personio is genuinely inconsistent across tenants, confirmed live in real time**: one
+  tenant 200s with real XML, one 404s, one rate-limits (429), and the original
+  spot-check's "client-rendered shell" tenant (`nexwafe`) now 307-redirects to
+  `personio.com` — a *third* distinct failure shape for that one tenant since the earlier
+  spot-check, re-checked live while building this task rather than assumed stable.
+- **Personio has real structured per-position compensation** (`<salaryInformation>`:
+  min/max/currencyCode/type) on tenants where the feed works — richer than any of the
+  other 4 new providers, and worth noting since `SPEC.md` §4's original Workable/
+  Personio rejection was framed around "near-zero expected yield," not data richness.
+- **Rippling's `payRangeDetails` is a list of range objects, not a single dict** — the
+  plan's draft code treated it as a dict (`.get(key)` on the object directly), which
+  would have silently left every real disclosed-comp posting classified `NONE`. Caught
+  before shipping by testing against real fixture data (a real posting on `adiabatic`'s
+  board) instead of the plan's constructed example, which happened to be a job with
+  `payRangeDetails: []` and wouldn't have caught the bug.
+- **A pre-commit hook block during this session caught a real recruiting-team email
+  address embedded in a live Lever fixture's description fields**, and a
+  separate manual read (not caught by the hook, which only pattern-matches emails) found
+  a real recruiter's name and WhatsApp number in a live Personio fixture's description.
+  Neither adapter reads description fields at all; both fixtures were trimmed to only the
+  fields each adapter actually parses before committing. Worth generalizing: **any fixture
+  recorded from a live ATS response should be trimmed to adapter-relevant fields before
+  committing, not just scanned for the hook's narrow email regex** — job descriptions
+  routinely name real recruiters.
+
+### Decisions made this session
+- **Comp handling for all 8 adapters is deliberately shallow**: `comp_data_quality`
+  (structured/parsed/none) and, where available, a human-readable `comp_raw_summary`
+  string. No `CompTier` rows are constructed (no Decimal parsing, no period-enum mapping,
+  no annualization) — that is explicitly `SPEC.md` §11 / M5's job per `BUILD.md`, and
+  `CRITERIA.md`'s M2 block doesn't test compensation at all. Chosen for uniformity across
+  9 providers in one milestone rather than partially building comp for some and not
+  others.
+- **Token resolution (finding which token a company's careers page actually uses) stays
+  out of every adapter** — Rippling's multi-shape token resolution and any future
+  discovery-side work belongs to M3's mapping cascade. Every adapter here takes an
+  already-known token (or, for Personio, a full known-working hostname — see below).
+- **Personio's adapter takes a full `host`, not a bare `token`**, unlike the other 7 —
+  the TLD genuinely varies per tenant (`.com` and `.de` both confirmed live), so the
+  caller (eventually M3) is the one that resolves which TLD actually works, rather than
+  this adapter guessing.
+- **Fixtures were live-refetched this session rather than reused from the September
+  spikes**, even where a spike had already captured similar data, per `SPEC.md` §9's own
+  instruction and `C-2.7`/`C-2.12`'s explicit ask. This is what caught the Rippling
+  `payRangeDetails` shape bug and the Appcues/Personio/BambooHR behavior changes above.
+
+### Deviations from SPEC
+- `SPEC.md` §4: Workable and Personio rejections reopened (diff shown, approved,
+  committed). Recruitee and Workday untouched.
+- `SPEC.md` §9: 5 new provider sections added (diff shown, approved, committed).
+- None beyond what's recorded in SPEC.md itself — every adapter behavior described above
+  as a "finding" is now also documented in that provider's own module docstring.
+
+### Criteria checked
+C-2.1 through C-2.12, each with real command output pasted into `CRITERIA.md` itself
+rather than summarized. Two honest gaps flagged inline rather than glossed over:
+Ashby's watchlist coverage is 3 real tokens, not 5 (a gap in M1's watchlist, not this
+adapter), and Rippling's `department_raw` has an adapter but no dedicated unit test
+(exercised only implicitly by the live watchlist run).
+
+### Least confident about
+- **Whether the 8-adapter scope jump in one milestone was the right call versus
+  splitting it** — nothing broke, but M2's original 3-4h estimate was sized for 3
+  providers, not 8, and the next milestone (M3, mapping cascade) now needs to validate
+  against 8 providers' worth of real-world quirks instead of 3.
+- **Lever's `salaryRange` sub-field names** (`min`/`max`/`currency`/`interval`) are
+  carried over from `SPEC.md` §9's existing text, not independently re-verified live this
+  session — none of the fixtures captured happened to have a disclosed `salaryRange`.
+  Low risk given comp isn't normalized this milestone anyway, but worth a fresh check
+  before M5 builds real `CompTier` rows against it.
+- **Whether trimming fixtures to "only what the adapter reads" is sufficient hygiene
+  long-term**, or whether recording live fixtures at all is inherently risky enough that
+  this project wants a stronger rule (e.g., always run a human-name/phone-number check,
+  not just the pre-commit hook's email regex) before the next provider gets added.
+
+### Next session
+**M3 — Mapping cascade and validation. BUILD.md recommends Opus 5, plan mode.**
+Highest-risk correctness work per `BUILD.md`'s own framing, now scoped against 8
+providers instead of 3. Before starting: re-verify or swap Appcues in
+`config/watchlist.yml` (see the finding above), and decide whether the watchlist needs
+more Ashby/BambooHR/Workable/Personio/Breezy-HR entries added so C-3.1's "zero false
+positives" check has real ground truth for all 8 providers, not just the original 4.
