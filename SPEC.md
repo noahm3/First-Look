@@ -496,16 +496,29 @@ pages still yield company names via `__NEXT_DATA__`; nothing else about this sou
 changes. If you see references to a `getro` posting path or a `source_path` column
 elsewhere, they are stale — see §6.
 
-**Domain resolution gap, confirmed 2026-09-20, not yet solved.** Getro does *not*
-expose a company's own domain directly — only a slug, plus each job's external
-application URL, whose host is usually a *third-party ATS's* subdomain
-(`renewco2.breezy.hr`, `rift.recruitee.com`, `carbonengineering.applytojob.com`), not
-the company's own site. `canonical_domain` dedupe (§6) needs a real domain, and this
-source can't reliably supply one on its own. This needs a resolution hop — same shape
-as the one §7.7 already budgets for Wellfound (an extra request per new company,
-cold-path, so the cost is acceptable), just not currently written into the pipeline for
-Getro. Add it once this holds up across more than the one board sampled so far.
+**Domain resolution gap, confirmed 2026-09-20, not yet solved via `/jobs`.** Getro's
+per-job `organization` object does *not* expose a company's own domain directly — only
+a slug, plus each job's external application URL, whose host is usually a
+*third-party ATS's* subdomain (`renewco2.breezy.hr`, `rift.recruitee.com`,
+`carbonengineering.applytojob.com`), not the company's own site. `canonical_domain`
+dedupe (§6) needs a real domain, and `/jobs` alone can't reliably supply one.
 **Contrast with §7.6**: Consider doesn't have this problem at all.
+
+**A promising fix exists but is unbuilt: Getro's own `/companies` directory page.**
+Confirmed live 2026-09-24 — every Getro network also serves `{board}/companies`
+(e.g. `jobs.climatedraft.org/companies`), whose `__NEXT_DATA__` carries
+`props.pageProps.initialState.companies.found[]`, and **every entry has a `domain`
+field populated directly** (confirmed 12/12 on three different networks:
+Climate Draft, Breakthrough Energy Ventures, Blue Bear Capital). This looks like the
+resolution hop §7.7 already budgets for Wellfound, except free — no extra per-company
+request, since the domain rides along with the same page that would otherwise only be
+scraped for its slug. **Not yet built or even fully scoped**: the initial page load
+only returns 12 of the network's companies (`companies.total` was 767, 79, and 28 on
+the three networks sampled — `/jobs`'s `found` array is complete, but `/companies`'s
+is not); getting the rest almost certainly needs a client-side search API the same way
+Consider's `/api-boards/search-jobs` was found (§7.6) — a real devtools session against
+a live board, not more URL guessing. Worth a future spike before committing to it as
+the real fix for this gap.
 
 ### 7.3 ClimateBase organization directory
 `climatebase.org/organizations`, ~7,250 orgs, server-rendered, one-time crawl. **Sole
@@ -1471,12 +1484,16 @@ week — and at that point the dead-man's switch has already fired regardless.
 4. **SmartRecruiters volume** — decides whether the adapter is written.
 5. **Real `location_raw` and `department_raw` distributions** — determines §12.3 rules and
    seeds §12.4 aliases. Feeds measurement #4 in §18.
-6. **Getro `__NEXT_DATA__` shape** — confirmed on one real board (§7.2); still needs
-   checking against the rest of `config/getro_boards.yml`, since one candidate already
-   turned out to look structurally different. **New sub-question, not yet answered:**
-   does the domain-resolution gap noted in §7.2 hold up across more boards, and if so,
-   what does the resolution hop look like — is it even solvable in general, given the
-   external URL is often a third-party ATS rather than the company's own site?
+6. ~~**Getro `__NEXT_DATA__` shape** — confirmed on one real board (§7.2); still needs
+   checking against the rest of `config/getro_boards.yml`~~ **Substantially answered
+   2026-09-24 (M6, `CRITERIA.md` C-6.1):** holds up across 4 real boards now
+   (`config/getro_boards.yml`), and the domain-resolution gap via `/jobs` is confirmed
+   real, not a one-board fluke — no resolution hop currently in the pipeline.
+   **New sub-question, not yet answered:** does Getro's separate `/companies` directory
+   page (§7.2 — confirmed live 2026-09-24 to expose `domain` directly, 12/12 on three
+   networks, but only the first 12 companies per network without a known way to fetch
+   the rest) turn out to be the actual fix once its pagination/search API is found the
+   same way Consider's was (§7.6)? Worth a future spike before scoping real work here.
 7. **Built In Boston anti-bot posture** at crawl volume — 20–50 requests first.
 8. **Real comp disclosure rate.** Pay transparency laws in Massachusetts, Colorado, New
    York, California and Washington suggest most remote US postings disclose, but the
