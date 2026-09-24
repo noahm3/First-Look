@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<workzag-jobs>
+
+<position>
+    <id>2732558</id>
+    <subcompany>Strohm B.V.</subcompany>
+    <office>HQ - IJmuiden - NL</office>
+    <department>Projects</department>
+    <recruitingCategory>Permanent contract</recruitingCategory>
+    <name>Document Controller</name>
+    <employmentType>permanent</employmentType>
+    <seniority>experienced</seniority>
+    <schedule>full-or-part-time</schedule>
+    <yearsOfExperience>5-7</yearsOfExperience>
+    <keywords>document controller,sales support,projects,engineering,Master Document Registers ,administrative,administration</keywords>
+    <occupation>administrative</occupation>
+    <occupationCategory>administrative_and_clerical</occupationCategory>
+    <createdAt>2026-07-28T16:27:43+00:00</createdAt>
+    <salaryInformation>
+        <min>3000.00</min>
+        <max>4000.00</max>
+        <currencySymbol>€</currencySymbol>
+        <currencyCode>EUR</currencyCode>
+        <type>monthly</type>
+    </salaryInformation>
+</position>
+
+<position>
+    <id>2653084</id>
+    <subcompany>Strohm B.V.</subcompany>
+    <office>HQ - IJmuiden - NL</office>
+    <department>Asset mgt &amp; Maintenance</department>
+    <recruitingCategory>Permanent contract</recruitingCategory>
+    <name>Electrical Technician</name>
+    <employmentType>fixed_term</employmentType>
+    <seniority>experienced</seniority>
+    <schedule>full-time</schedule>
+    <yearsOfExperience>5-7</yearsOfExperience>
+    <keywords>electrical,technician,production,Electrical Engineering,industrial</keywords>
+    <occupation>scientific_and_technical_production</occupation>
+    <occupationCategory>production_and_operations</occupationCategory>
+    <createdAt>2026-06-01T10:52:51+00:00</createdAt>
+    <salaryInformation>
+        <min>3500.00</min>
+        <max>5000.00</max>
+        <currencySymbol>€</currencySymbol>
+        <currencyCode>EUR</currencyCode>
+        <type>monthly</type>
+    </salaryInformation>
+</position>
+
+</workzag-jobs>
