@@ -2232,3 +2232,55 @@ Not decided by this session — M6 was a parallel-safe track (BUILD.md §0.3a), 
 main sequential build. Whoever picks up the primary track next should check BUILD.md's
 milestone order (M3 was M2's own stated next step) rather than treating this entry as
 that pointer.
+
+---
+
+## 2026-09-24 — Iteration 15: Consider adapter spike, effort estimate only
+**Model:** Sonnet 5 · **Plan mode:** no
+
+Not a milestone. SPEC.md §18 item #4 and BUILD.md §5 still gate a real Consider adapter
+behind the M7 measurement gate, which hasn't run — this is exploration to inform that
+future decision, requested explicitly as a spike, same posture as
+`spikes/iteration2_consider_spike.py` before it.
+
+### Built
+- `spikes/iteration15_consider_spike.py` — re-verifies `spikes/iteration2_consider_spike.py`'s
+  confirmed flow (session GET → CSRF token → `POST /api-boards/search-jobs`) live today,
+  against 4 real boards instead of the 1 SPEC.md §7.6 already had, plus a pagination
+  check walking the `meta.sequence` cursor across 3 pages.
+- `spikes/iteration15_consider_notes.md` — findings and an effort estimate for a real
+  `src/consider.py`, structured as a comparison against `src/getro.py` (M6).
+
+### Decisions made this session
+None — no code shipped to `src/`, no `config/consider_boards.yml`, nothing gated by
+SPEC.md §18 was reopened. Purely exploratory, per the user's own framing of the request.
+
+### Deviations from SPEC
+None.
+
+### Criteria checked
+None — Consider has no assigned `C-` criterion yet (unlike Getro's C-6.1); it isn't
+scheduled.
+
+### Least confident about
+- **Rate budget for a large board.** Bessemer Venture Partners has 7,318 total jobs —
+  fully paginating that at `size=50` is ~150 requests, untested against SPEC.md §9's 2-5
+  req/sec-per-host budget. Not stress-tested this session, just flagged as a real cost
+  Getro's single-request-per-board shape doesn't have.
+- **Whether `atsJobs` is ever populated.** Empty on every one of the ~30 job records
+  sampled across 4 boards today. If it's populated on some board not sampled here, it
+  would be a stronger resolution signal than `companyDomain` — no evidence either way
+  from this session.
+- **My own pagination probe briefly misread a real, correct finding as a bug** —
+  flagging company-slug reappearance across pages as "overlap" before checking `jobId`
+  specifically, which showed zero duplicates. Caught and corrected before committing the
+  script; recorded in the notes file as a general lesson about testing pagination
+  claims precisely, not just superficially.
+
+### Next session
+Not decided — depends on whether/when the M7 measurement gate runs and what it shows.
+If Consider ever gets scheduled for real, `spikes/iteration15_consider_notes.md`'s
+Getro-comparison table is the starting point, and `config/consider_boards.yml` would
+need real per-board confirmation the same way `config/getro_boards.yml` did, not a
+straight promotion of the fingerprint-flagged candidate list in
+`spikes/investor_sources.csv`.
