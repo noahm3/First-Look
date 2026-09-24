@@ -155,9 +155,10 @@ class TestNotAccepted:
         )
         assert not outcome.result.accepted
 
-    def test_homepage_redirect_to_a_differently_named_domain_is_not_evidence(self):
-        """capsule8.com -> sophos.com (acquired), 300-domain dry run: Sophos's
-        Lever board was being credited to Capsule8."""
+    def test_homepage_redirect_to_an_acquirer_is_followed_and_labelled(self):
+        """capsule8.com -> sophos.com (acquired). User's call 2026-09-24: an
+        acquisition is let in -- the acquirer's board is where that company's
+        roles now live -- but the method says so, so it's visible in review."""
         outcome = run(
             {
                 "https://capsule8.com/": redirect("https://www.sophos.com/en-us"),
@@ -169,9 +170,42 @@ class TestNotAccepted:
             name="capsule8",
             domain="capsule8.com",
         )
-        assert not outcome.result.accepted
-        assert outcome.result.failure_reason == MappingFailureReason.NO_CAREERS_PAGE
-        assert outcome.result.method == "careers_page_redirected_offsite"
+        assert outcome.result.confidence is MappingConfidence.VERIFIED
+        assert outcome.result.token == "sophos"
+        assert outcome.result.method == "careers_page+redirected_domain"
+
+    def test_rebrand_redirect_is_followed_too(self):
+        """voltacharging.com -> joltcharge.com: the watchlist's Volta case."""
+        outcome = run(
+            {
+                "https://voltacharging.com/": redirect("https://joltcharge.com/us/"),
+                "https://joltcharge.com/us/": page(f'<a href="/careers">Careers</a>{LONG_TEXT}'),
+                "https://joltcharge.com/careers": page(
+                    '<a href="https://jobs.lever.co/joltcharge">x</a>' + LONG_TEXT
+                ),
+                LEVER.format("joltcharge"): respond(200, json=[]),
+            },
+            name="Volta",
+            domain="voltacharging.com",
+        )
+        assert outcome.result.confidence is MappingConfidence.VERIFIED
+        assert outcome.result.token == "joltcharge"
+        assert outcome.result.method == "careers_page+redirected_domain"
+
+    def test_same_brand_redirect_keeps_the_plain_method(self):
+        outcome = run(
+            {
+                "https://galileohealth.com/": redirect("https://galileo.io/"),
+                "https://galileo.io/": page(
+                    f'<a href="https://boards.greenhouse.io/galileo">x</a>{LONG_TEXT}'
+                ),
+                GH_BOARD.format("galileo"): respond(200, json={"name": "Galileo"}),
+            },
+            name="galileohealth",
+            domain="galileohealth.com",
+        )
+        assert outcome.result.confidence is MappingConfidence.VERIFIED
+        assert outcome.result.method == "careers_page"
 
     def test_homepage_redirect_to_the_same_brand_on_another_tld_is_still_own(self):
         """algorand.com -> algorand.co: same brand, and its careers page is the

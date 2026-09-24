@@ -107,7 +107,6 @@ class CareersPage(StrEnum):
     NO_DOMAIN = "no_domain"
     JS_RENDERED = "js_rendered"
     PARKED = "parked"
-    REDIRECTED_OFFSITE = "redirected_offsite"  # homepage -> a differently named domain
     INCONCLUSIVE = "inconclusive"
 
 
@@ -296,7 +295,6 @@ def decide(ev: Evidence) -> MappingResult:
     if live_slugs:
         method = {
             CareersPage.PARKED: "parked_domain",
-            CareersPage.REDIRECTED_OFFSITE: "redirected_offsite",
         }.get(ev.careers_page, "slug_guess")
         return _failure(
             MappingFailureReason.WEAK_ONLY.value, f"{method}_uncorroborated", weak=live_slugs[0]
@@ -308,12 +306,7 @@ def decide(ev: Evidence) -> MappingResult:
     match ev.careers_page:
         case CareersPage.JS_RENDERED:
             return _failure(MappingFailureReason.JS_RENDERED.value, "careers_page_js_rendered")
-        case (
-            CareersPage.NONE
-            | CareersPage.NO_DOMAIN
-            | CareersPage.PARKED
-            | CareersPage.REDIRECTED_OFFSITE
-        ):
+        case CareersPage.NONE | CareersPage.NO_DOMAIN | CareersPage.PARKED:
             return _failure(
                 MappingFailureReason.NO_CAREERS_PAGE.value, f"careers_page_{ev.careers_page}"
             )

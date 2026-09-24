@@ -26,7 +26,7 @@ import re
 import sys
 from collections import Counter
 from collections.abc import Iterable, Sequence
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from urllib.parse import urljoin, urlsplit
 
 import yaml
@@ -241,13 +241,12 @@ def gather_careers_evidence(
     roots = [domain]
     redirected_root = _strip_www(_host(home.final_url))
     if redirected_root and not _is_own(redirected_root, roots):
-        # The homepage left the company's domain. Same brand on another TLD
-        # (algorand.com -> algorand.co) is still the company. A different name
-        # usually means an acquisition (capsule8.com -> sophos.com, 300-domain
-        # dry run): the acquirer's board is not this company's, so nothing
-        # found there is evidence.
-        if _ATS_HOST.search(redirected_root) or not _same_brand(redirected_root, domain):
-            return CareersPage.REDIRECTED_OFFSITE, []
+        # The homepage left the company's domain -- the company controls that
+        # redirect, so where it lands is the company's site now. That covers the
+        # same brand on another TLD (algorand.com -> algorand.co), a rebrand
+        # (voltacharging.com -> joltcharge.com) and an acquisition (capsule8.com
+        # -> sophos.com). User's call 2026-09-24: acquisitions are let in; a
+        # differently named landing domain is labelled in the method instead.
         roots.append(redirected_root)
     pages = _PageSet(own_roots=roots)
     pages.pages.append((home.requested_url, home.final_url or home.requested_url, home_text))
@@ -336,7 +335,12 @@ def _map_company(client: FetchClient, name: str, domain: str | None) -> MappingO
         unsupported=tuple(unsupported),
     )
     careers_urls = tuple(final for _u, final, _h in pages[1:])
-    return MappingOutcome(result=decide(evidence), evidence=evidence, careers_urls=careers_urls)
+    result = decide(evidence)
+    landed = _strip_www(_host(pages[0][1])) if pages else ""
+    if result.accepted and landed and not _same_brand(landed, domain):
+        # Rebrand or acquisition: accepted, but visible as such in review.
+        result = replace(result, method=f"{result.method}+redirected_domain")
+    return MappingOutcome(result=result, evidence=evidence, careers_urls=careers_urls)
 
 
 def order_for_mapping(companies: Iterable[Company]) -> list[Company]:
