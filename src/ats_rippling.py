@@ -18,8 +18,20 @@ Paginated: `totalPages` in the list response is followed until exhausted
 `spikes/iteration11_rippling_full_results.json` has boards with 33-112
 postings). Fixed at a defensive `MAX_PAGES` cap rather than trusting
 `totalPages` unconditionally.
+
+`detail_job_ids` (M4 kickoff decision, DEVLOG): a poll fetching every job's
+detail on every run was ~778 requests across a full mapped set, 4x/day
+(M2 review). SPEC.md §10's general lifecycle only needs the detail call
+once, at insert, plus a bounded comp-backfill retry -- so the caller (the
+M4 polling loop) passes the exact set of job ids that still need a detail
+call (new postings, plus backfill-eligible ones); everything else is
+listed but not detail-fetched. `None` (the default) means "fetch detail
+for every job," which is what M2's checked criteria and this module's own
+tests exercise -- a one-shot mapping/spike caller with no DB history to
+diff against.
 """
 
+from collections.abc import Collection
 from datetime import datetime
 
 from src.ats_common import AdapterResult, as_dict, parse_iso_or_epoch_ms
@@ -35,7 +47,13 @@ API_BASE = "https://api.rippling.com/platform/api/ats/v2/board"
 MAX_PAGES = 50
 
 
-def fetch_postings(client: FetchClient, company_id: int, token: str) -> AdapterResult:
+def fetch_postings(
+    client: FetchClient,
+    company_id: int,
+    token: str,
+    *,
+    detail_job_ids: Collection[str] | None = None,
+) -> AdapterResult:
     items = []
     page = 0
     total_pages = 1
@@ -70,9 +88,14 @@ def fetch_postings(client: FetchClient, company_id: int, token: str) -> AdapterR
                 if isinstance(loc, dict) and loc.get("workplaceType")
             }
         )
-        posted_at, comp_quality, comp_summary, detail_ok = _fetch_detail(client, token, job_id)
-        if not detail_ok:
-            degraded_count += 1
+        if detail_job_ids is None or job_id in detail_job_ids:
+            posted_at, comp_quality, comp_summary, detail_ok = _fetch_detail(client, token, job_id)
+            if not detail_ok:
+                degraded_count += 1
+        else:
+            # Not new and not backfill-eligible: SPEC.md §10 already has this
+            # posting's detail on file, so skipping is expected, not a failure.
+            posted_at, comp_quality, comp_summary = None, CompDataQuality.NONE, None
         postings.append(
             Posting(
                 company_id=company_id,

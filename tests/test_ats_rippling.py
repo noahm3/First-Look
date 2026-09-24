@@ -165,3 +165,74 @@ def test_404_is_a_classified_failure_never_retried():
 
     assert result.ok is False
     assert len(attempts) == 1
+
+
+# ---------------------------------------------------------------------------
+# `detail_job_ids` -- M4 kickoff decision (DEVLOG): the poller passes only the
+# job ids that actually need a detail call (new + backfill-eligible), instead
+# of this adapter re-fetching detail for every posting on every poll.
+# ---------------------------------------------------------------------------
+
+
+def test_detail_job_ids_none_still_fetches_every_job_detail():
+    list_body = read_fixture("rippling", "list_normal.json")
+    detail_body = read_fixture("rippling", "detail_normal.json")
+    detail_requests = []
+
+    def handler(request):
+        url = str(request.url)
+        if "/jobs/" in url.rsplit("/board/", 1)[-1]:
+            detail_requests.append(request)
+            return respond(200, content=detail_body)
+        return respond(200, content=list_body)
+
+    with fake_client(handler) as client:
+        result = fetch_postings(client, company_id=1, token="adiabatic")
+
+    assert result.ok
+    assert len(detail_requests) == len(result.postings)
+
+
+def test_detail_job_ids_restricts_detail_calls_to_the_given_set():
+    list_body = read_fixture("rippling", "list_normal.json")
+    detail_body = read_fixture("rippling", "detail_normal.json")
+    detail_requests = []
+
+    def handler(request):
+        url = str(request.url)
+        if "/jobs/" in url.rsplit("/board/", 1)[-1]:
+            detail_requests.append(url)
+            return respond(200, content=detail_body)
+        return respond(200, content=list_body)
+
+    with fake_client(handler) as client:
+        all_result = fetch_postings(client, company_id=1, token="adiabatic")
+        job_ids = [p.ats_job_id for p in all_result.postings]
+
+    with fake_client(handler) as client:
+        result = fetch_postings(
+            client, company_id=1, token="adiabatic", detail_job_ids={job_ids[0]}
+        )
+
+    assert result.ok
+    assert len(result.postings) == len(job_ids)
+    kept = [p for p in result.postings if p.ats_job_id == job_ids[0]]
+    skipped = [p for p in result.postings if p.ats_job_id != job_ids[0]]
+    assert kept[0].posted_at is not None
+    assert all(p.posted_at is None for p in skipped)
+    assert all(p.comp_data_quality == CompDataQuality.NONE for p in skipped)
+
+
+def test_skipped_detail_calls_do_not_count_as_degraded():
+    list_body = read_fixture("rippling", "list_normal.json")
+    detail_body = read_fixture("rippling", "detail_normal.json")
+
+    with fake_client(_handler(list_body, detail_body)) as client:
+        result = fetch_postings(client, company_id=1, token="adiabatic", detail_job_ids=set())
+
+    # Every job was skipped on purpose -- that is not a failed detail call,
+    # so degraded_count (SPEC.md §3.8's "visible, not silent" signal) must
+    # stay at zero rather than flagging every posting as degraded.
+    assert result.ok
+    assert result.degraded_count == 0
+    assert all(p.posted_at is None for p in result.postings)
