@@ -3,65 +3,50 @@
 # set (BUILD.md M1) -- so entries here should be companies whose ATS you
 # already know, not just whatever an automated cascade already flagged.
 #
-# This first batch of 23 was selected from spikes/discovered_companies.csv's
-# `verified` mapping tier plus spikes/iteration11_rippling_tokens.csv, spread
-# across the four ATS providers that already have live-tested parsers in
-# spikes/ (Greenhouse, Ashby, Lever, Rippling). Hand-checked against the
-# spike's own known false-positive shapes (DEVLOG.md, iterations 3 and 6):
-# excludes VC/PE-fund domains, CDN/asset subdomains, and parked or dead
-# domains that turned up elsewhere in that data. More to be added -- see
-# DEVLOG.md's session notes for this milestone.
+# This batch (13) comes from the user's own multi-year, hand-compiled company
+# list (kept outside the repo, never committed as-is -- only company name and
+# domain are pulled from it here). Each careers-page link was independently
+# re-verified live via spikes/iteration13_personal_list_verify.py (a fresh
+# HTTP fetch + ATS fingerprint, not a reuse of the mapping-cascade spike's own
+# output), so this is doubly-anchored: personally known, and freshly
+# confirmed still live and still on the same ATS today. Replaces an earlier
+# batch drawn from the automated discovery spikes' "verified" tier -- that
+# data was the mapping cascade's own output, which made it a weaker ground
+# truth for the very cascade M3 exists to test.
+#
+# One candidate deliberately excluded pending a manual check: Spiro
+# Technologies' careers link now redirects to a Greenhouse board under the
+# token `cordance`, not `spiro` -- looks like an acquisition or rebrand, not
+# confirmed.
 
 # -- Greenhouse ---------------------------------------------------------
-- name: Rondo Energy
-  domain: rondo.com
-- name: Dragos
-  domain: dragos.com
-- name: Nozomi Networks
-  domain: nozominetworks.com
-- name: Kodiak Robotics
-  domain: kodiak.ai
-- name: Ginkgo Bioworks
-  domain: ginkgobioworks.com
-- name: C3 AI
-  domain: c3.ai
-
-# -- Ashby ----------------------------------------------------------------
-- name: Crusoe Energy
-  domain: crusoe.ai
-- name: Ramp
-  domain: ramp.com
-- name: Carta
-  domain: carta.com
-- name: Aurora Solar
-  domain: aurorasolar.com
-- name: Abridge
-  domain: abridge.com
-- name: Replit
-  domain: replit.com
+- name: Owl Labs
+  domain: owllabs.com
+- name: Machine Metrics
+  domain: machinemetrics.com
+- name: CircleCI
+  domain: circleci.com
+- name: Mark Forged
+  domain: markforged.com
+- name: Brandwatch
+  domain: brandwatch.com
+- name: Vestmark
+  domain: vestmark.com
+- name: Pixability
+  domain: pixability.com
+- name: 3Play Media
+  domain: 3playmedia.com
 
 # -- Lever ------------------------------------------------------------------
-- name: Palantir Technologies
-  domain: palantir.com
-- name: Ro
-  domain: ro.co
-- name: Luminar Technologies
-  domain: luminartech.com
-- name: Velo3D
-  domain: velo3d.com
-- name: Loadsmart
-  domain: loadsmart.com
+- name: Appcues
+  domain: appcues.com
+- name: LogRocket
+  domain: logrocket.com
+- name: Commonwealth Fusion Systems
+  domain: cfs.energy
 
-# -- Rippling -----------------------------------------------------------
-- name: Stem
-  domain: stem.com
-- name: Algorand
-  domain: algorand.com
-- name: Shippo
-  domain: goshippo.com
-- name: goTenna
-  domain: gotenna.com
-- name: Zumper
-  domain: zumper.com
-- name: Boom Supersonic
-  domain: boomsupersonic.com
+# -- Ashby ----------------------------------------------------------------
+- name: Help Scout
+  domain: helpscout.com
+- name: Wistia
+  domain: wistia.com

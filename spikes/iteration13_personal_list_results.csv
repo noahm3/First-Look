@@ -1,0 +1,165 @@
+name,original_url,final_url,status,redirected,ats_guess
+Neurable,http://neurable.com/about/careers,https://www.neurable.com/careers,200,True,
+Chewy,https://careers.chewy.com/us/en/corporate-careers,https://careers.chewy.com/us/en/corporate-careers,200,False,
+Appcues,https://www.appcues.com/careers#work-with-us,https://www.appcues.com/careers#work-with-us,200,False,lever
+Soofa,http://www.soofa.co/careers,https://soofadigital.com/careers,404,True,
+FareHarbor,https://fareharbor.com/jobs/,https://fareharbor.com/careers/,200,True,
+Spiro Technologies,https://spiro.ai/careers/,https://job-boards.greenhouse.io/cordance,200,True,greenhouse
+Privy,https://www.privy.com/careers,https://www.privy.com/careers,200,False,workable
+Berkshire Grey,https://www.berkshiregrey.com/careers/,https://www.berkshiregrey.com/careers/,403,False,
+Thrive Hive,https://jobs.dayforcehcm.com/gannett/LocalIQ,https://jobs.dayforcehcm.com/gannett/LocalIQ,200,False,dayforce
+Zaius,https://careers.optimizely.com/?_gl=1*47he21*_gcl_au*MTg2MzgyMzYxMS4xNzkwMjA3MTky,https://careers.optimizely.com/?_gl=1*47he21*_gcl_au*MTg2MzgyMzYxMS4xNzkwMjA3MTky,200,False,
+Smartsheet,https://www.smartsheet.com/careers-list,https://www.smartsheet.com/careers-list,200,False,
+Log Rocket,https://jobs.logrocket.com/,https://logrocket.com/careers,200,True,lever
+Commonwealth Fusion Systems,https://jobs.lever.co/cfsenergy,https://jobs.lever.co/cfsenergy,200,False,lever
+AugmentX,https://hostalabs.com/beta/,,ERROR:ConnectError,False,
+WaveSense,https://careers.tellent.com/open-positions,https://careers.tellent.com/open-positions,200,False,tellent
+Owl Labs,https://owllabs.com/careers,https://owllabs.com/careers,200,False,greenhouse
+Bento,https://www.bento.net/careers/,https://bento.net/careers/,200,True,
+Zapata Computing,https://zapata.bamboohr.com/jobs/,https://www.bamboohr.com/,200,True,bamboohr
+Humon,https://humon.io/careers/,https://humon.io/careers/,200,False,
+Raptor Maps,https://raptormaps.com/jobs/,https://raptormaps.com/jobs/,404,False,
+Blueday,https://www.blueday.com/careers/,,ERROR:ConnectTimeout,False,
+Armored Things,https://www.armoredthings.com/careers.html,https://lambentspaces.com,403,True,
+Asimov,https://hire.withgoogle.com/public/jobs/asimovio,https://hire.google.com/jobs/,200,True,google_hire_defunct
+CIVIQ Smartscapes,http://civiqsmartscapes.com/careers,http://civiqsmartscapes.com/careers,403,False,
+Suvie,https://www.suvie.com/jobs,https://www.suvie.com/jobs/,404,True,
+Lightmatter,https://lightmatter.co/careers.php,https://lightmatter.co/careers.php,404,False,
+PathAI,https://www.pathai.com/careers/,https://www.pathai.com/careers,200,True,
+MobileMonkey,https://mobilemonkey.com/jobs,https://customers.ai/jobs,200,True,
+figur8,https://figur8tech.com/pages/career,https://www.figur8tech.com/pages/career,404,True,
+Clora,https://angel.co/company/clora/jobs,https://wellfound.com/company/clora/jobs,403,True,angellist_wellfound
+Ampion,https://ampion.net/careers/,https://ampion.net/careers,200,True,
+Veo Robotics,https://www.veobot.com/jobs/,https://www.veobot.com/jobs/,403,False,
+Atlas5D,http://www.atlas5d.com/careers/,https://atlas5d.com/careers/,200,True,
+WatchTower Robotics,https://www.wtrco.com/jobs,https://www.wtrco.com/jobs,404,False,
+Day Zero Diagnostics,https://www.dayzerodiagnostics.com/careers,https://www.biomerieux.com/us/en.html,200,True,
+Thought Industries,https://www.thoughtindustries.com/careers,https://www.thoughtindustries.com/about-us/careers/,200,True,
+Revulytics,https://www.revulytics.com/about/careers,https://www.revenera.com/about-us/careers,200,True,workday
+Great Horn,https://www.greathorn.com/careers-at-gh/,https://www.greathorn.com/careers-at-gh/,404,False,
+Cuseum,https://cuseum.com/careers,https://cuseum.com/careers,200,False,
+SimpliSafe,https://careers.simplisafe.com/,https://careers.simplisafe.com/,200,False,
+Lola.com,https://www.lola.com/careers,https://lola.com/careers,404,True,
+Toast,https://careers.toasttab.com/,https://careers.toasttab.com/,200,False,
+Recorded Future,https://www.recordedfuture.com/jobs/,https://www.recordedfuture.com/work-with-us/jobs,200,True,
+Rapid7,https://www.rapid7.com/careers/,https://careers.rapid7.com/,200,True,
+EzCater,https://www.ezcater.com/company/careers/,https://www.ezcater.com/company/about-us/careers/,200,True,
+Wayfair,https://www.wayfaircareers.com/jobs/4312126002?lang=en-us,,ERROR:ConnectError,False,
+Vistaprint,https://jobs.vistaprint.com/Vistaprint/go/Waltham-MA%2C-USA/7790700/?q=&sortColumn=referencedate&sortDirection=desc,https://jobs.vista.com/errorpage/?errortype=Exception,200,True,
+Enel X,https://www.enelx.com/n-a/en/work-with-us,https://www.enelnorthamerica.com/careers/life-at-enel,200,True,
+Interactions LLC,https://www.interactions.com/about-us/careers/open-positions/,https://www.soundhound.com/resource/interactions-now-part-of-soundhound-ai,200,True,
+Machine Metrics,https://www.machinemetrics.com/careers,https://www.machinemetrics.com/careers,200,False,greenhouse
+TJX,https://jobs.tjx.com/,https://jobs.tjx.com/global/en,200,True,
+IRobot,https://www.irobot.com/about-irobot/careers,https://careers.irobot.com/,200,True,
+Circle CI,https://circleci.com/careers/,https://circleci.com/careers/,200,False,greenhouse
+Cybba,https://cybba.com/about/careers/,https://cybba.com/about/careers/,404,False,
+Close.com,https://jobs.lever.co/close.io/,https://jobs.lever.co/close.io/,404,False,lever
+Rave Mobile Safety,https://www.ravemobilesafety.com/careers,https://www.motorolasolutions.com/en_us/products/command-center-software/rave.html,200,True,
+Ten Percent Happier,http://jobs.10percenthappier.com/,http://jobs.tenpercent.com,403,True,
+Jibo,https://www.jibo.com/jobs/,,ERROR:ConnectError,False,
+Pickle Robot Co,https://www.picklerobot.com/jobs,https://www.picklerobot.com/jobs,404,False,
+Blueconic,https://www.blueconic.com/about/careers/,https://www.blueconic.com/about/careers,200,True,
+Ace Up,https://www.ace-up.com/jobs,,ERROR:ConnectTimeout,False,
+Rifinity,https://rifiniti.com/careers/,,ERROR:ConnectError,False,
+Buoy Health,https://www.buoyhealth.com/careers/,https://www.buoyhealth.com/careers,200,True,bamboohr
+Mark Forged,https://boards.greenhouse.io/markforged,https://job-boards.greenhouse.io/markforged,200,True,greenhouse
+Evolv Technology,https://chp.tbe.taleo.net/chp01/ats/careers/requisition.jsp?org=EVOLV&cws=1&rid=73,https://chp.tbe.taleo.net/chp01/ats/careers/requisition.jsp?org=EVOLV&cws=1&rid=73,500,False,taleo
+Brandwatch,https://www.brandwatch.com/careers/,https://www.brandwatch.com/company/careers/,200,True,greenhouse
+Clear Company,https://www.clearcompany.com/careers,https://clearcompany.com/about/work-with-clearco,200,True,
+Word Stream,https://www.wordstream.com/jobs#workable-api,https://www.wordstream.com/jobs#workable-api,403,False,
+Botkeeper,https://www.botkeeper.com/botkeeper-careers,https://www.botkeeper.com/careers,200,True,
+Sonder,https://www.sonder.com/careers,https://sonder.com/careers,403,True,
+Vestmark,https://www.vestmark.com/careers,https://www.vestmark.com/careers,200,False,greenhouse
+Teradyne,https://www.teradyne.com/careers,https://www.teradyne.com/careers,403,False,
+Arcbazar,https://www.arcbazar.com/jobs,https://www.arcbazar.com/jobs,404,False,
+WeSpire,https://www.wespire.com/careers/,https://www.bonterratech.com/product/cybergrants?utm_source=wespire&utm_medium=redirect,403,True,
+Privy,https://www.privy.com/careers,https://www.privy.com/careers,200,False,workable
+Yesware,https://www.yesware.com/company/#current-openings,https://www.yesware.com/company#current-openings,200,True,
+Shareaholic,https://www.shareaholic.com/careers,https://www.shareaholic.com/careers,200,False,
+Traackr,https://www.traackr.com/careers,https://www.traackr.com/careers,200,False,
+Cambridge Semantics,https://www.cambridgesemantics.com/about-us/careers/,https://www.cambridgesemantics.com/about-us/careers/,403,False,
+Pixability,https://www.pixability.com/careers-culture/,https://www.pixability.com/careers-culture/,200,False,greenhouse
+BetterLesson,https://betterlesson.com/about-us/#jobs,https://betterlesson.com/about-us/#jobs,403,False,
+TurningArt,https://www.turningart.com/careers,https://www.turningart.com/careers,200,False,
+EverTrue,https://www.evertrue.com/company/careers/,https://www.evertrue.com/careers/,200,True,
+Ginger,https://www.ginger.io/apply,https://organizations.headspace.com,200,True,
+Promoboxx,https://promoboxx.com/careers/,https://promoboxx.com/careers/,200,False,
+Placester,https://placester.com/careers/,https://placester.com/contact,200,True,
+Help Scout,https://www.helpscout.com/company/careers/,https://www.helpscout.com/company/careers/,200,False,ashby
+Abine,https://www.abine.com/about.html#careers,https://abine.com#careers,200,True,
+Cangrade,https://www.cangrade.com/jobs,https://www.cangrade.com/jobs,404,False,
+ThinkLite USA,https://www.thinklite.com/careers/,https://thinklite.com/careers/,200,True,
+netBlazr,https://www.netblazr.com/careers/,https://www.netblazr.com/careers/,403,False,
+Actifio,https://www.actifio.com/company/careers/,https://www.actifio.com/company/careers/,404,False,
+Groupize,https://www.groupize.com/careers/,https://groupize.ai/company/careers/,200,True,
+Uber,https://www.uber.com/us/en/careers/,https://www.uber.com/us/en/careers/,406,False,
+Lyft,https://www.lyft.com/careers,https://www.lyft.com/careers,200,False,
+Flywire,https://www.flywire.com/careers/,https://www.flywire.com/company/careers,200,True,
+3Play Media,https://www.3playmedia.com/company/jobs/,https://experience.3playmedia.com/careers/,200,True,greenhouse
+Curata,http://www.curata.com/careers,https://curata.com/careers/,200,True,
+Rejoiner,https://rejoiner.com/careers,https://www.rejoiner.com/careers,200,True,
+SiteSpec,https://www.sitespect.com/company/careers/,https://monetate.com/maestro/,200,True,
+Jebbit,https://www.jebbit.com/careers,https://www.blueconic.com/about/careers,200,True,
+PatientsLikeMe,https://www.patientslikeme.com/about/careers,https://www.patientslikeme.com/about/careers,404,False,
+GaggleAMP,https://gaggleamp.workable.com/,https://apply.workable.com/gaggleamp/,200,True,workable
+Everage,https://www.evergage.com/careers/,https://www.salesforce.com/marketing/personalization/,200,True,
+TraceLink,https://careers-tracelink.icims.com/jobs/intro?hashed=-435618459&mobile=false&width=1400&height=500&bga=true&needsRedirect=false&jan1offset=-300&jun1offset=-240,https://careers-tracelink.icims.com/jobs/intro?hashed=-435618459&mobile=false&width=1400&height=500&bga=true&needsRedirect=false&jan1offset=-300&jun1offset=-240,404,False,icims
+Wistia,https://wistia.com/jobs,https://wistia.com/jobs,200,False,ashby
+Digital Lumens,https://www.digitallumens.com/company/careers/,https://www.digitallumens.com/company/careers/,403,False,
+Modo Labs,https://www.modolabs.com/about/careers/,https://modolabs.com/about/careers/,404,True,
+Fitbit,https://www.fitbit.com/careers,https://www.google.com/about/careers/applications/jobs/results/?company=Fitbit,200,True,
+BuySellAds,https://hire.withgoogle.com/public/jobs/buyselladscom,https://hire.google.com/jobs/,200,True,google_hire_defunct
+Kyruus,https://www.kyruus.com/careers,https://www.kyruus.com/careers,403,False,
+MC10 Inc,https://www.mc10inc.com/careers,https://www.medidata.com/en/patient-experience/wearable-sensors/,200,True,
+Apptopia,https://apptopia.com/jobs,https://apptopia.com/careers,200,True,
+EyeNetra,https://www.eyenetra.com/aboutus-joinus.html,https://eyenetra.com/aboutus-joinus.html,200,True,
+GreatHorn,https://www.greathorn.com/careers-at-gh/,https://www.greathorn.com/careers-at-gh/,404,False,
+Algorand,https://www.algorand.com/work-with-us/careers,https://algorand.co/work-with-us/careers,404,True,
+Edgewise,https://www.edgewise.net/careers,,ERROR:ConnectError,False,
+Alyce,https://www.alyce.com/careers/,,ERROR:ConnectError,False,
+FamilyID,https://www.familyid.com/pages/the-team/careers,https://hello.students.arbitersports.com/the-team,404,True,
+InsightSquared,https://www.insightsquared.com/careers/,https://www.insightsquared.com/about/#team,200,True,
+The Grommet,https://grommet.applytojob.com/,https://www.jazzhr.com/job-seekers,200,True,applytojob
+MineralTree,https://www.mineraltree.com/about-us/careers/,https://www.mineraltree.com/about-us/careers/,403,False,
+Session M,https://www.sessionm.com/company/careers/,https://www.sessionm.com/company/careers/,403,False,
+BISON,https://www.bison.co/careers/,,ERROR:ConnectError,False,
+KleerMail,https://kleermail.workable.com/#jobs,https://apply.workable.com/kleermail/#jobs,200,True,workable
+par8o,https://par8o.workable.com/,https://apply.workable.com/par8o/,200,True,workable
+TruMedia Networks,http://www.trumedianetworks.com/careers,https://www.trumedianetworks.com/careers,200,True,
+Dribbble,https://dribbble.com/careers,https://dribbble.com/careers,200,False,bamboohr
+Nanigans,https://www.nanigans.com/careers/,,ERROR:ConnectError,False,
+Yotaa,https://www.yottaa.com/company/careers/,https://www.yottaa.com/careers/,200,True,
+Hopper,https://www.hopper.com/careers,https://www.hopper.com/careers,200,False,
+VoltDB,https://www.voltdb.com/company/careers/,https://www.voltactivedata.com/company/careers/,200,True,
+Lose It!,https://www.loseit.com/jobs/,https://www.loseit.com/jobs/,200,False,
+Zagster,https://www.zagster.com/careers,https://www.zagster.com/careers,200,False,
+SAM Labs,https://boards.greenhouse.io/samlabs,https://job-boards.greenhouse.io/samlabs,404,True,greenhouse
+Testive,https://testive.workable.com/,https://apply.workable.com/oops,200,True,workable
+Formlabs,https://careers.formlabs.com/,https://careers.formlabs.com/,200,False,
+Cyfe,https://www.cyfe.com/jobs,https://www.cyfe.com/jobs,403,False,
+Iora Health,https://www.iorahealth.com/join-team/search-jobs/,,ERROR:ConnectError,False,
+Luminoso,https://luminoso.com/about/work-here,https://luminoso.com/about/work-here,404,False,
+Pantheer,https://patheer.com/jobs.html,https://patheer.com/jobs.html,200,False,
+NuoDB,https://www.nuodb.com/company/careers,https://www.3ds.com/nuodb-distributed-sql-database/,200,True,
+Ekotrope,https://ekotrope.com/careers/,https://www.ekotrope.com/careers/,200,True,
+CoachUp,https://www.coachup.com/careers,https://www.coachup.com/careers,200,False,
+Paradigm4,https://www.paradigm4.com/about/careers/,https://paradigm4.com/about/careers/,404,True,
+Cybereason,https://www.cybereason.com/,https://www.levelblue.com/cybereason-is-now-levelblue,200,True,
+Autodesk,https://www.autodesk.com/careers,https://www.autodesk.com/careers/overview,200,True,workday
+Splunk,https://www.splunk.com/en_us/careers.html,https://careers.cisco.com/global/en/splunk,200,True,
+Mimecast,https://www.mimecast.com/company/mimecast-careers/,https://www.mimecast.com/company/mimecast-careers/,404,False,
+Brightcove,https://www.brightcove.com/en/company/careers,https://www.brightcove.com/company/careers,200,True,
+Brainshark,https://www.brainshark.com/company/careers,https://www.bigtincan.com/readiness/,200,True,
+Forrester,https://go.forrester.com/careers/,https://go.forrester.com/careers/,200,False,workday
+Intrepid,https://www.intrepid.io/careers,,ERROR:ConnectError,False,
+Americas Test Kitchen,https://www.americastestkitchen.com/jobs,https://www.americastestkitchen.com/jobs,404,False,
+ClimaCell,https://www.climacell.co/careers/,https://www.tomorrow.io/careers/,200,True,
+Energy Sage,https://www.energysage.com/about/careers,https://www.energysage.com/about-us/,200,True,
+Hometap,https://www.hometap.com/,https://www.hometap.com/,200,False,
+Embark,https://embarkvet.com/,https://embarkvet.com/,200,False,
+PillPack,https://www.pillpack.com/,https://www.pillpack.com/,200,False,
+BookBub,https://www.bookbub.com/welcome,https://www.bookbub.com/welcome,403,False,
+VIrgin Pulse,https://www.virginpulse.com/,,ERROR:ConnectError,False,
+Athena Health,https://www.athenahealth.com/,https://www.athenahealth.com/,200,False,
+Carbonite,https://www.carbonite.com/,https://www.carbonite.com/,403,False,
+EF Education First,https://careers.ef.com/search/,https://jobs.ef.com/en/sites/ef/jobs,200,True,

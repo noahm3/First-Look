@@ -62,7 +62,13 @@ def steps(workflow: dict) -> list[dict]:
 
 def test_the_expected_workflows_exist():
     names = {p.name for p in WORKFLOW_FILES}
-    assert names == {"test.yml", "monitor.yml", "discover.yml", "migrate.yml"}, names
+    assert names == {
+        "test.yml",
+        "monitor.yml",
+        "discover.yml",
+        "migrate.yml",
+        "watchlist.yml",
+    }, names
 
 
 @pytest.mark.parametrize("path", WORKFLOW_FILES, ids=lambda p: p.name)

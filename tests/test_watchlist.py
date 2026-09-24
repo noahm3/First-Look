@@ -158,9 +158,12 @@ class TestLoadWatchlist:
         with pytest.raises(ValueError):
             load_watchlist(path)
 
-    def test_the_real_committed_watchlist_has_20_to_30_entries(self):
+    def test_the_real_committed_watchlist_is_a_small_hand_verified_set(self):
+        """A deliberately small, hand-verified ground-truth set (BUILD.md M1) --
+        not a fixed count. See config/watchlist.yml's own header for provenance."""
         entries = load_watchlist(pathlib.Path("config/watchlist.yml"))
-        assert 20 <= len(entries) <= 30
+        assert len(entries) >= 10
+        assert all(e.domain for e in entries)
 
 
 class TestIngestWatchlist:
