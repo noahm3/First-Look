@@ -63,6 +63,14 @@ DEFAULT_RATE_PER_SECOND = 3.0
 DEFAULT_TIMEOUT_SECONDS = 20.0
 DEFAULT_MAX_ATTEMPTS = 3
 DEFAULT_BACKOFF_BASE = 0.5
+DEFAULT_COOLDOWN_SECONDS = 25 * 60.0
+
+# apply.workable.com: 3 req/sec (the old uniform default) triggered a sustained
+# ~20min 429 during M3's 300-domain cascade. A live probe (DEVLOG, M4 kickoff)
+# found 1-2 req/sec clean with no rate-limit response headers at either rate.
+DEFAULT_RATE_OVERRIDES: dict[str, float] = {
+    "apply.workable.com": 1.0,
+}
 
 ALLOWED_SCHEMES = frozenset({"http", "https"})
 
@@ -85,6 +93,7 @@ class FetchErrorKind(StrEnum):
     TIMEOUT = "timeout"
     CONNECTION_ERROR = "connection_error"
     HTTP_ERROR = "http_error"
+    RATE_LIMITED = "rate_limited"
 
     @property
     def is_transient(self) -> bool:
@@ -93,6 +102,7 @@ class FetchErrorKind(StrEnum):
             FetchErrorKind.TIMEOUT,
             FetchErrorKind.CONNECTION_ERROR,
             FetchErrorKind.DNS_FAILURE,
+            FetchErrorKind.RATE_LIMITED,
         )
 
 
@@ -220,6 +230,8 @@ class FetchClient:
         *,
         user_agent: str = DEFAULT_USER_AGENT,
         rate_per_second: float = DEFAULT_RATE_PER_SECOND,
+        rate_overrides: Mapping[str, float] | None = None,
+        cooldown_seconds: float = DEFAULT_COOLDOWN_SECONDS,
         burst: int = 1,
         max_redirects: int = MAX_REDIRECTS,
         max_response_bytes: int = MAX_RESPONSE_BYTES,
@@ -234,6 +246,10 @@ class FetchClient:
     ) -> None:
         self._user_agent = user_agent
         self._rate = rate_per_second
+        self._rate_overrides = (
+            dict(DEFAULT_RATE_OVERRIDES) if rate_overrides is None else dict(rate_overrides)
+        )
+        self._cooldown_seconds = cooldown_seconds
         self._burst = burst
         self._max_redirects = max_redirects
         self._max_response_bytes = max_response_bytes
@@ -244,6 +260,7 @@ class FetchClient:
         self._sleep = sleep
         self._monotonic = monotonic
         self._buckets: dict[str, TokenBucket] = {}
+        self._cooldowns: dict[str, float] = {}
 
         if self._cache_dir is not None:
             self._cache_dir.mkdir(parents=True, exist_ok=True)
@@ -353,7 +370,19 @@ class FetchClient:
                 continue
 
             error = None
-            if not 200 <= status < 300:
+            if status == 429:
+                host = (urlsplit(current).hostname or "").lower()
+                self._cooldowns[host] = self._monotonic() + self._cooldown_seconds
+                log.warning(
+                    "HTTP 429 from %s: cooling down %s for %.0fs",
+                    current,
+                    host,
+                    self._cooldown_seconds,
+                )
+                error = FetchError(
+                    FetchErrorKind.RATE_LIMITED, f"HTTP 429 from {current}, cooling down {host}"
+                )
+            elif not 200 <= status < 300:
                 error = FetchError(FetchErrorKind.HTTP_ERROR, f"HTTP {status} from {current}")
 
             return FetchResult(
@@ -386,6 +415,24 @@ class FetchClient:
         if not host:
             log.warning("blocked fetch of %s (requested as %s): no host", url, requested_url)
             return FetchError(FetchErrorKind.BLOCKED_SCHEME, f"no host in {url}")
+
+        cooldown_until = self._cooldowns.get(host.lower())
+        if cooldown_until is not None:
+            remaining = cooldown_until - self._monotonic()
+            if remaining > 0:
+                log.warning(
+                    "skipping fetch of %s (requested as %s): %s is cooling down after a 429 "
+                    "for another %.0fs",
+                    url,
+                    requested_url,
+                    host,
+                    remaining,
+                )
+                return FetchError(
+                    FetchErrorKind.RATE_LIMITED,
+                    f"{host} is cooling down for another {remaining:.0f}s",
+                )
+            del self._cooldowns[host.lower()]
 
         literal = _literal_ip(host)
         if literal is not None:
@@ -559,7 +606,8 @@ class FetchClient:
         host = (urlsplit(url).hostname or "").lower()
         bucket = self._buckets.get(host)
         if bucket is None:
-            bucket = TokenBucket(self._rate, self._burst, self._monotonic)
+            rate = self._rate_overrides.get(host, self._rate)
+            bucket = TokenBucket(rate, self._burst, self._monotonic)
             self._buckets[host] = bucket
 
         wait = bucket.time_until_token()

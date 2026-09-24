@@ -519,6 +519,123 @@ class TestPerHostPacing:
 
 
 # ---------------------------------------------------------------------------
+# Per-host rate overrides — M4 kickoff: apply.workable.com's uniform 3 req/sec
+# triggered a sustained 429 in M3; a live probe found 1-2 req/sec clean.
+# ---------------------------------------------------------------------------
+
+
+class TestRateOverrides:
+    def test_a_host_with_an_override_is_paced_at_its_own_rate(self):
+        sleeps: list[float] = []
+        fetcher, _ = client(
+            sleeps=sleeps,
+            rate_per_second=1000.0,
+            rate_overrides={"slow.example.com": 2.0},
+            resolves_to=PUBLIC_IP,
+        )
+
+        fetcher.get("https://slow.example.com/a")
+        fetcher.get("https://slow.example.com/b")
+
+        assert any(s > 0 for s in sleeps), "the override rate should govern this host"
+
+    def test_a_host_without_an_override_uses_the_default_rate(self):
+        sleeps: list[float] = []
+        # burst=2 so both calls draw from the initial bucket with zero wait,
+        # same trick TestRetryPolicy uses to isolate what's being measured
+        # from real-clock jitter between two same-host calls.
+        fetcher, _ = client(
+            sleeps=sleeps,
+            rate_per_second=1000.0,
+            burst=2,
+            rate_overrides={"slow.example.com": 2.0},
+            resolves_to=PUBLIC_IP,
+        )
+
+        fetcher.get("https://fast.example.com/a")
+        fetcher.get("https://fast.example.com/b")
+
+        assert not any(s > 0 for s in sleeps)
+
+    def test_apply_workable_com_is_overridden_by_default(self):
+        sleeps: list[float] = []
+        fetcher, _ = client(
+            sleeps=sleeps,
+            rate_per_second=1000.0,
+            resolves_to=PUBLIC_IP,
+        )
+
+        fetcher.get("https://apply.workable.com/api/v1/widget/accounts/a")
+        fetcher.get("https://apply.workable.com/api/v1/widget/accounts/b")
+
+        assert any(s > 0 for s in sleeps), "the shipped default should pace Workable at 1 req/sec"
+
+
+# ---------------------------------------------------------------------------
+# Per-host cooldown after a 429 — M4 kickoff, same finding: Workable gave no
+# rate-limit headers on success, so there is no signal to back off from except
+# the 429 itself.
+# ---------------------------------------------------------------------------
+
+
+class TestRateLimitCooldown:
+    def test_a_429_is_reported_as_rate_limited_and_is_transient(self):
+        fetcher, recorder = client(lambda _r: httpx.Response(429), rate_per_second=1000.0)
+        result = fetcher.get("https://example.com/x")
+
+        assert result.error.kind is FetchErrorKind.RATE_LIMITED
+        assert result.error.kind.is_transient
+        assert recorder.count == 1
+
+    def test_a_429_starts_a_cooldown_that_short_circuits_later_requests(self):
+        now = {"t": 0.0}
+        fetcher, recorder = client(
+            lambda _r: httpx.Response(429),
+            rate_per_second=1000.0,
+            cooldown_seconds=60.0,
+            monotonic=lambda: now["t"],
+        )
+
+        first = fetcher.get("https://example.com/x")
+        second = fetcher.get("https://example.com/y")
+
+        assert first.error.kind is FetchErrorKind.RATE_LIMITED
+        assert second.error.kind is FetchErrorKind.RATE_LIMITED
+        assert recorder.count == 1, "the second request should never reach the network"
+
+    def test_the_cooldown_expires_and_the_host_is_retried(self):
+        now = {"t": 0.0}
+        fetcher, recorder = client(
+            lambda _r: httpx.Response(429),
+            rate_per_second=1000.0,
+            cooldown_seconds=60.0,
+            monotonic=lambda: now["t"],
+        )
+
+        fetcher.get("https://example.com/x")
+        now["t"] += 61.0
+        fetcher.get("https://example.com/y")
+
+        assert recorder.count == 2, "past the cooldown window, the host should be tried again"
+
+    def test_a_cooldown_on_one_host_does_not_affect_another(self):
+        now = {"t": 0.0}
+        fetcher, recorder = client(
+            lambda r: httpx.Response(429 if "a.example.com" in str(r.url) else 200),
+            rate_per_second=1000.0,
+            cooldown_seconds=60.0,
+            monotonic=lambda: now["t"],
+            resolves_to={"a.example.com": PUBLIC_IP, "b.example.com": PUBLIC_IP},
+        )
+
+        fetcher.get("https://a.example.com/x")
+        result = fetcher.get("https://b.example.com/y")
+
+        assert result.ok
+        assert recorder.count == 2
+
+
+# ---------------------------------------------------------------------------
 # Optional dev disk cache
 # ---------------------------------------------------------------------------
 
