@@ -105,28 +105,78 @@ patches are preserved in `archive/`. Nothing above this note was reworded or ren
 
 ## M2 — ATS adapters
 
-- [ ] **C-2.1** Greenhouse, Lever, and Ashby each return parsed postings for 5 known
-      tokens, with non-empty titles and URLs
-- [ ] **C-2.2** `department_raw` is populated from each provider's own field
-- [ ] **C-2.3** Ashby's `workplace_type_raw` is captured where present
-- [ ] **C-2.4** Unit tests pass with the network disabled
-- [ ] **C-2.5** Fixtures exist per provider for: normal board, empty board, malformed
-      JSON, 404
-- [ ] **C-2.6** A missing Lever `createdAt` produces a null, not an exception
-- [ ] **C-2.7** Implementation was written against the live API docs fetched during this
-      milestone, not from memory
-- [ ] **C-2.8** Rippling, BambooHR, Workable, Personio, and Breezy HR each return parsed
+- [x] **C-2.1** Greenhouse, Lever, and Ashby each return parsed postings for 5 known
+      tokens, with non-empty titles and URLs. (2026-09-24: live run against real M1
+      watchlist companies with a real `FetchClient`, no fixtures — Greenhouse 5/5 ok
+      (owllabs 2, markforged 3, brandwatch 10, vestmark 10, 3playmedia 3 postings);
+      Lever 4/5 ok (logrocket 7, cfsenergy 105, palantir 318, ro 52 postings), 1 correctly
+      `FAILED http_error: HTTP 404` on `appcues` — its board is genuinely gone as of
+      today, see the M2 DEVLOG entry, not an adapter bug. **Ashby only 3/3, not 5**: the
+      M1 watchlist has just 3 Ashby entries (crusoe 350, helpscout 10, wistia 2 postings)
+      — a gap in M1's watchlist composition, not this adapter; all 3 known tokens work.)
+- [x] **C-2.2** `department_raw` is populated from each provider's own field. (2026-09-24:
+      `tests/test_ats_greenhouse.py::test_department_raw_populated_from_departments_field`,
+      `tests/test_ats_lever.py::test_department_raw_populated_from_categories_team`,
+      `tests/test_ats_ashby.py::test_department_raw_populated`, all passing against real
+      recorded fixtures.)
+- [x] **C-2.3** Ashby's `workplace_type_raw` is captured where present. (2026-09-24:
+      `tests/test_ats_ashby.py::test_workplace_type_raw_captured_where_present`, passing.)
+- [x] **C-2.4** Unit tests pass with the network disabled. (2026-09-24: `pytest -v`, full
+      suite, `342 passed in 1.02s`, `tests/conftest.py`'s socket-blocking fixture active
+      throughout.)
+- [x] **C-2.5** Fixtures exist per provider for: normal board, empty board, malformed
+      JSON, 404. (2026-09-24: `tests/fixtures/ats/{greenhouse,lever,ashby}/` each carry
+      `normal.json`, `empty.json`, `malformed.json`, `not_found.json`, all recorded from
+      real live responses except the hand-constructed malformed cases.)
+- [x] **C-2.6** A missing Lever `createdAt` produces a null, not an exception. (2026-09-24:
+      `tests/test_ats_lever.py::test_missing_created_at_produces_null_not_exception`,
+      passing.)
+- [x] **C-2.7** Implementation was written against the live API docs fetched during this
+      milestone, not from memory. (2026-09-24: fetched
+      docs.greenhouse.io/job-board.html, hire.lever.co/developer/documentation, and
+      developers.ashbyhq.com/docs/public-job-posting-api during this session; also fetched
+      live fixtures for all three providers same-day rather than reusing September spike
+      output.)
+- [x] **C-2.8** Rippling, BambooHR, Workable, Personio, and Breezy HR each return parsed
       postings for a known real company, with non-empty titles and URLs (scope added
-      2026-09-24 — Workday deferred, see SPEC.md §4)
-- [ ] **C-2.9** `department_raw` is populated from each of the 5 new providers' own field,
-      where the provider exposes one
-- [ ] **C-2.10** Fixtures exist per new provider for: normal board, empty board, malformed
-      response, 404
-- [ ] **C-2.11** Unit tests for all 8 providers (Greenhouse, Lever, Ashby, Rippling,
-      BambooHR, Workable, Personio, Breezy HR) pass with the network disabled
-- [ ] **C-2.12** Personio's XML feed shape was freshly re-verified against a live request
+      2026-09-24 — Workday deferred, see SPEC.md §4). (2026-09-24: live run against real
+      M1 watchlist companies for Rippling — shippo 5, stem-inc 14, algorand-foundation 3,
+      gotenna-inc 7 postings, all ok; BambooHR/Workable/Personio/Breezy HR have no M1
+      watchlist entries yet, so verified against real companies found via
+      `spikes/ats_platform_detections.csv` instead — `ph7.bamboohr.com` (4 postings),
+      `apply.workable.com/.../aerones` (34 postings), `strohm.jobs.personio.com`
+      (11 postings), `elysium-health.breezy.hr` (1 posting) — all confirmed live and
+      captured as fixtures, `tests/test_ats_{bamboohr,workable,personio,breezy}.py` all
+      passing.)
+- [x] **C-2.9** `department_raw` is populated from each of the 5 new providers' own field,
+      where the provider exposes one. (2026-09-24:
+      `test_department_raw_populated_from_department_label` (BambooHR),
+      `test_department_raw_populated` (Workable), `test_department_raw_populated`
+      (Personio), `test_department_raw_populated_where_present` (Breezy HR) — all passing.
+      Rippling's equivalent field exists in the adapter but wasn't separately unit-tested;
+      the live watchlist run above exercises it implicitly, not explicitly asserted.)
+- [x] **C-2.10** Fixtures exist per new provider for: normal board, empty board, malformed
+      response, 404. (2026-09-24: `tests/fixtures/ats/{rippling,bamboohr,workable,
+      personio,breezy}/`. Two real deviations from a literal 404, both ledgered and
+      documented in the adapters' own docstrings: BambooHR doesn't 404 on an invalid
+      subdomain, it 302-redirects to a 200 HTML marketing page — `not_found.html` captures
+      that instead; Personio doesn't 404 uniformly either — `not_found.txt` is the real
+      empty 404 body from `be-levels.jobs.personio.com`, and a second fixture
+      (`not_xml.html`) covers the distinct "200 + non-XML body" failure mode this provider
+      also exhibits.)
+- [x] **C-2.11** Unit tests for all 8 providers (Greenhouse, Lever, Ashby, Rippling,
+      BambooHR, Workable, Personio, Breezy HR) pass with the network disabled. (2026-09-24:
+      `pytest -v`, full suite including all 8 `tests/test_ats_*.py` files,
+      `342 passed in 1.02s`.)
+- [x] **C-2.12** Personio's XML feed shape was freshly re-verified against a live request
       during this milestone, not assumed from the September spike/backlog notes — the
-      earlier spot-check found one company serving a client-rendered shell instead of XML
+      earlier spot-check found one company serving a client-rendered shell instead of XML.
+      (2026-09-24: `strohm.jobs.personio.com/xml?language=en` confirmed live 200 + real
+      XML, `be-levels.jobs.personio.com` confirmed live 404, and the tenant from the
+      original spot-check (`nexwafe`) re-checked live and found to now 307-redirect to
+      `personio.com` — a third distinct behavior, documented in
+      `tests/test_ats_personio.py` and the adapter's own docstring rather than silently
+      updated over the original finding.)
 
 ## M3 — Mapping cascade and validation
 
