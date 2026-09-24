@@ -1,0 +1,13 @@
+{
+  "createdOn": "2026-08-21T15:55:46.130000-07:00",
+  "payRangeDetails": [
+    {
+      "location": "Somerville, MA",
+      "currency": "USD",
+      "frequency": "YEAR",
+      "rangeStart": 110000.0,
+      "rangeEnd": 170000.0,
+      "isRemote": false
+    }
+  ]
+}
