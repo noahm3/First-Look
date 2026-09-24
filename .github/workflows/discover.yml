@@ -13,8 +13,13 @@ name: discover
 # M6 wires in the first two crawlers: Getro/VC portfolio boards (SPEC.md §7.2)
 # and Consider (SPEC.md §7.6, pulled forward ahead of §18's original
 # sequencing — see BUILD.md's M6 section), both discovery only, no posting
-# path. The mapping retry (M3) and the larger one-time crawls (M8) still have
-# nothing here.
+# path. The larger one-time crawls (M8) still have nothing here.
+#
+# M4 kickoff adds the mapping retry (M3's `src/mapping.py` against the DB) as
+# a manual-dispatch-only step, gated behind its own input rather than folded
+# into the monthly schedule — unlike getro/consider's dry_run, mapping's DB
+# mode always writes ats_status, so it stays opt-in until M4 decides its real
+# recurring cadence.
 # ---------------------------------------------------------------------------
 on:
   schedule:
@@ -27,6 +32,14 @@ on:
         description: "Crawl and report without writing to the database"
         type: boolean
         default: true
+      run_mapping:
+        description: "Also retry ATS mapping (src/mapping.py). Always writes ats_status."
+        type: boolean
+        default: false
+      map_limit:
+        description: "Limit how many companies the mapping retry processes (blank = all pending)"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -74,4 +87,15 @@ jobs:
             uv run python -m src.consider --dry-run
           else
             uv run python -m src.consider
+          fi
+
+      - name: Retry ATS mapping (M3 cascade)
+        if: github.event_name == 'workflow_dispatch' && inputs.run_mapping
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          if [ -n "${{ inputs.map_limit }}" ]; then
+            uv run python -m src.mapping --limit "${{ inputs.map_limit }}"
+          else
+            uv run python -m src.mapping
           fi
