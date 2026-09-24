@@ -2225,3 +2225,82 @@ sampled; a few test-assertion-specificity gaps; two now-stale docstring citation
 
 Full test suite after the fix pass: **356 passed** (up from 342 before final review).
 `ruff check .` and `ruff format --check .` both clean, repo-wide.
+
+---
+
+## 2026-09-24 — M6 closed: Getro discovery, parsed and wired into the pipeline
+**Model:** Sonnet 5 · **Plan mode:** no
+
+Run in its own git worktree/branch (`m6-getro-discovery`), parallel to M2 per BUILD.md
+§0.3a — M2 closed on `main` during this same window (see the entry above); rebased onto
+it cleanly before landing, no file conflicts (M2 never touched `src/db.py`,
+`src/watchlist.py`, `tests/test_watchlist.py`, or `.github/workflows/discover.yml`).
+
+### Built
+- `src/getro.py` — parses `__NEXT_DATA__` out of a Getro board's HTML
+  (`props.pageProps.initialState.jobs.found`), extracts distinct companies (name + slug
+  only), feeds them into `Database.ingest_manual_company`. `--dry-run` crawls and reports
+  without touching the database at all (no `SUPABASE_DB_URL` needed) — what
+  `discover.yml`'s existing `dry_run` input now actually drives.
+- `config/getro_boards.yml` — 3 real boards confirmed live today (Breakthrough Energy
+  Ventures, Blue Bear Capital, Convective Capital). Several other "getro (likely)"
+  candidates surfaced by earlier VC-board-discovery spikes (Energy Impact Partners,
+  Prelude Ventures, Energize Capital) returned 0 open jobs on today's crawl and were left
+  out — a board that currently has nothing to discover isn't evidence the parser works.
+- `tests/test_getro.py` (17 tests) + `tests/fixtures/getro/` — fixtures trimmed from the
+  same live responses used to confirm the 3 boards above, plus a synthetic
+  shape-drift fixture reproducing SPEC.md §7.2's documented `jobs.a16z.com` case (App
+  Router streaming, no `__NEXT_DATA__` tag) to prove that failure mode is caught and
+  classified, not crashed on.
+- `.github/workflows/discover.yml` — wired to `src.getro`; its M0-era placeholder step
+  said "discovery runs from M6 onward," so this closes that out rather than adding new
+  scope to the workflow.
+
+### Decisions made this session
+- **`Database.ingest_manual_company` gained a `source: str = "manual"` parameter**
+  instead of the hardcoded `'manual'` it shipped with at M1 — flagged to the user before
+  touching it, per this session's own instructions that any `src/db.py` change needs
+  reconciling first. Default preserves M1's watchlist behavior exactly; Getro is the
+  second caller, passing `source='getro'`, so `company_sources.source` stays an honest
+  multi-source signal (SPEC.md §7) instead of every company reading as hand-entered.
+- **No domain resolution attempted.** SPEC.md §7.2 already documents this as a real,
+  unsolved gap — Getro exposes a slug and each job's *external application* URL, whose
+  host is almost always a third-party ATS subdomain (`renewco2.breezy.hr`,
+  `jobs.lever.co`, `ats.rippling.com`), not the company's own domain. Confirmed again on
+  today's 3 boards: of ~27 distinct companies, maybe 3-4 job-URL hosts looked like they
+  could plausibly be the company's own site, the rest were unambiguously third-party.
+  Getro-discovered companies land with `canonical_domain=None`, the same no-domain case
+  M1's watchlist already handles (C-1.8) — not a new code path.
+
+### Deviations from SPEC
+None. `config/getro_boards.yml`'s board count (3, not the "~10-15" SPEC.md §7.2
+describes for the eventual full source) matches BUILD.md M6's own scope ("two or three
+real Getro boards"), not a full production board list — that's future work, same as M8
+is for Built In Boston.
+
+### Criteria checked
+- **C-6.1** — 3/3 real boards parsed successfully from `__NEXT_DATA__`, live, twice:
+  once via `python -m src.getro --dry-run` (no writes), and once via a real
+  `workflow_dispatch` of `discover.yml` against production (run `35954998865`):
+  `getro: 3/3 boards parsed (0 failed) -> 26 companies created, 1 already present`. The
+  "1 already present" is a real cross-board dedup hit (one company, same Getro slug,
+  listed on two different boards), not a fixture artifact.
+
+### Least confident about
+- Whether 3 boards is enough diversity to trust the parser against boards not yet seen —
+  all 3 confirmed today share the same classic Next.js Pages Router shape SPEC.md §7.2
+  already had one example of. The App Router / streamed-RSC drift case is only exercised
+  against a synthetic fixture here, not a second real board caught in the wild — SPEC.md
+  names `jobs.a16z.com` as that case but it was never re-confirmed this session.
+- The handful of job-URL hosts that looked like a company's own domain (not an ATS
+  subdomain) were not used anywhere — deliberately, since distinguishing "this host is
+  probably the company's own site" from "this host is some other third-party service"
+  automatically is exactly the unsolved resolution-hop problem SPEC.md §7.2 flags, and
+  guessing wrong would put a false `canonical_domain` on a company, which is worse than
+  `None`.
+
+### Next session
+Not decided by this session — M6 was a parallel-safe track (BUILD.md §0.3a), not the
+main sequential build. Whoever picks up the primary track next should check BUILD.md's
+milestone order (M3 was M2's own stated next step) rather than treating this entry as
+that pointer.

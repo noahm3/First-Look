@@ -446,11 +446,23 @@ class Database:
     # -- companies (SPEC.md §7.1, watchlist ingest -- BUILD.md M1) ----------
 
     def ingest_manual_company(
-        self, *, name: str, canonical_domain: str | None, source_id: str
+        self,
+        *,
+        name: str,
+        canonical_domain: str | None,
+        source_id: str,
+        source: str = "manual",
     ) -> tuple[int, bool]:
-        """Idempotently attach one `manual`-source company. Returns (company_id, created).
+        """Idempotently attach one company under `source`. Returns (company_id, created).
 
-        Looked up first by `company_sources.source_id` under the `manual` source,
+        `source` defaults to `'manual'` (M1's watchlist, the original and still
+        only caller of that default). BUILD.md M6 is the second caller, passing
+        `source='getro'` -- SPEC.md §7 treats `company_sources.source` as a real
+        multi-source signal ("appearing in multiple sources is a mild positive
+        signal"), so a company discovered via Getro must not be recorded as if a
+        human had hand-entered it.
+
+        Looked up first by `company_sources.source_id` under the given source,
         because `canonical_domain` can't serve as the identity key for a company
         with none (C-1.8) -- NULL never equals NULL under a UNIQUE constraint, so
         re-running the ingest against a no-domain entry would otherwise insert a
@@ -459,8 +471,8 @@ class Database:
         via another source rather than creating a duplicate row for it.
         """
         row = self.fetch_one(
-            "SELECT company_id FROM company_sources WHERE source = 'manual' AND source_id = %s",
-            (source_id,),
+            "SELECT company_id FROM company_sources WHERE source = %s AND source_id = %s",
+            (source, source_id),
         )
         if row:
             return int(row[0]), False
@@ -485,8 +497,8 @@ class Database:
 
         self.execute(
             "INSERT INTO company_sources (company_id, source, source_id) "
-            "VALUES (%s, 'manual', %s) ON CONFLICT (company_id, source) DO NOTHING",
-            (company_id, source_id),
+            "VALUES (%s, %s, %s) ON CONFLICT (company_id, source) DO NOTHING",
+            (company_id, source, source_id),
         )
         self.commit()
         return company_id, created

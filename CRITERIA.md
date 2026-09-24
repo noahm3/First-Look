@@ -236,7 +236,12 @@ patches are preserved in `archive/`. Nothing above this note was reworded or ren
 
 ## M6 — Getro
 
-- [ ] **C-6.1** At least two Getro boards parse successfully from `__NEXT_DATA__`
+- [x] **C-6.1** At least two Getro boards parse successfully from `__NEXT_DATA__` --
+      3/3 confirmed live 2026-09-24 (Breakthrough Energy Ventures, Blue Bear Capital,
+      Convective Capital), both via `python -m src.getro --dry-run` and via a real
+      `workflow_dispatch` of `discover.yml` against production
+      (github.com/noahm3/First-Look/actions/runs/35954998865): "getro: 3/3 boards
+      parsed (0 failed) -> 26 companies created, 1 already present"
 - [ ] ~~C-6.2 A company present in both Getro and an ATS board produces one posting row,
       sourced `'ats'`~~ (superseded 2026-09-17: Getro no longer produces posting rows at
       all — `SPEC-REVISION-01` §R0 made it a company source only. See `SPEC.md` §7.2.)

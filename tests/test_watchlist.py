@@ -54,9 +54,9 @@ class FakeCompaniesDb:
 
     def router(self, sql: str, params: tuple):
         if sql.startswith("SELECT company_id FROM company_sources"):
-            (source_id,) = params
-            for (company_id, source), sid in self.sources.items():
-                if source == "manual" and sid == source_id:
+            source, source_id = params
+            for (company_id, src), sid in self.sources.items():
+                if src == source and sid == source_id:
                     return [(company_id,)]
             return []
         if sql.startswith("SELECT id FROM companies WHERE canonical_domain"):
@@ -72,8 +72,8 @@ class FakeCompaniesDb:
             self.companies[company_id] = (name, domain)
             return [(company_id,)]
         if sql.startswith("INSERT INTO company_sources"):
-            company_id, source_id = params
-            self.sources.setdefault((company_id, "manual"), source_id)
+            company_id, source, source_id = params
+            self.sources.setdefault((company_id, source), source_id)
             return []
         raise AssertionError(f"unexpected SQL in fake router: {sql}")
 
