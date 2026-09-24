@@ -534,6 +534,23 @@ class TestIteration16Fixes:
         outcome = run({"https://acmewidgets.com/": respond(status)})
         assert outcome.result.failure_reason == MappingFailureReason.BLOCKED
 
+    def test_blocked_homepage_still_tries_the_careers_paths(self):
+        """stem.com, watchlist re-run: Cloudflare challenged the homepage (403)
+        while /careers/ answered 200 -- the careers page is the evidence."""
+        outcome = run(
+            {
+                "https://acmewidgets.com/": respond(403),
+                "https://acmewidgets.com/careers": page(
+                    '<a href="https://ats.rippling.com/acme-inc/jobs">x</a>' + LONG_TEXT
+                ),
+                "https://api.rippling.com/platform/api/ats/v2/board/acme-inc/jobs": respond(
+                    200, json={"items": [], "totalItems": 0}
+                ),
+            }
+        )
+        assert outcome.result.confidence is MappingConfidence.VERIFIED
+        assert outcome.result.token == "acme-inc"
+
     @pytest.mark.parametrize(
         ("label", "href"),
         [

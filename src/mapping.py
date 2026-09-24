@@ -276,6 +276,11 @@ def _homepage(client: FetchClient, domain: str) -> FetchResult:
 BLOCKED_STATUSES = frozenset({401, 403, 429})
 
 
+def _fallback_urls(root: str) -> list[str]:
+    urls = [f"https://{root}{path}" for path in FALLBACK_PATHS]
+    return urls + [f"https://{sub}.{root}/" for sub in FALLBACK_SUBDOMAINS]
+
+
 def gather_careers_evidence(
     client: FetchClient, domain: str
 ) -> tuple[CareersPage, list[tuple[str, str, str, bool]]]:
@@ -291,6 +296,12 @@ def gather_careers_evidence(
         if home.status is not None and home.status >= 500:
             return CareersPage.INCONCLUSIVE, []
         if home.status in BLOCKED_STATUSES:
+            # Bot walls are often per-page: stem.com's homepage was challenged
+            # (403) while /careers/ answered 200. Try the careers paths first.
+            pages = _PageSet(own_roots=[domain])
+            for url in _fallback_urls(domain):
+                if pages.accept(client.get(url)):
+                    return CareersPage.FOUND, pages.pages
             return CareersPage.BLOCKED, []
         return CareersPage.NONE, []
 
@@ -329,10 +340,7 @@ def gather_careers_evidence(
                 followed += 1
 
     if not followed:
-        root = _strip_www(_host(base)) or domain
-        fallbacks = [f"https://{root}{path}" for path in FALLBACK_PATHS]
-        fallbacks += [f"https://{sub}.{root}/" for sub in FALLBACK_SUBDOMAINS]
-        for url in fallbacks:
+        for url in _fallback_urls(_strip_www(_host(base)) or domain):
             if pages.accept(client.get(url)):
                 followed += 1
                 break
