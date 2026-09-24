@@ -2137,3 +2137,19 @@ providers instead of 3. Before starting: re-verify or swap Appcues in
 `config/watchlist.yml` (see the finding above), and decide whether the watchlist needs
 more Ashby/BambooHR/Workable/Personio/Breezy-HR entries added so C-3.1's "zero false
 positives" check has real ground truth for all 8 providers, not just the original 4.
+
+### A concurrent-session note, same shape as the 2026-09-22 M-1 entry's correction
+While Task 11 was running (between this session's own `fc372ef` and `aa6faf9` commits,
+23:52–23:56 local time), a commit not made by this session landed directly on `main`:
+`1e64063`, "BUILD.md: supersede the parallel-tracks rejection in §0.3, add §0.3a policy"
+— it strikes §0.3's single-track rationale and adds a new §0.3a permitting parallel
+git-worktree tracks under specific conditions. Same commit-identity convention as every
+commit in this repo, so it isn't distinguishable in `git log` from this session's own
+work, but the content (a reasoned policy change, `Co-Authored-By: Claude Sonnet 5`) reads
+like another concurrent Claude Code session, not a manual edit — the same situation the
+2026-09-22 M-1 entry already documented once. This session's own ledger had already ruled
+to skip git-worktree isolation for M2, reasoning from §0.3's *pre-strike* text; that
+ruling stands (no file conflicts occurred — the concurrent commit touched only
+`BUILD.md`), but is now reasoning from a policy that changed under it mid-session. Flagged
+here rather than silently reconciled, per this project's own convention for exactly this
+situation.
