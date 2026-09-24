@@ -282,7 +282,10 @@ def decide(ev: Evidence) -> MappingResult:
         return _failure(unsupported_ats(ev.unsupported[0]), "careers_page_unsupported_ats")
 
     if live_slugs:
-        method = "parked_domain" if ev.careers_page is CareersPage.PARKED else "slug_guess"
+        method = {
+            CareersPage.PARKED: "parked_domain",
+            CareersPage.REDIRECTED_OFFSITE: "redirected_offsite",
+        }.get(ev.careers_page, "slug_guess")
         return _failure(
             MappingFailureReason.WEAK_ONLY.value, f"{method}_uncorroborated", weak=live_slugs[0]
         )

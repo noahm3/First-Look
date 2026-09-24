@@ -421,6 +421,19 @@ class TestFailures:
         result = decide(evidence(unsupported=("icims",), slug_probes=(live(LEVER, "acmewidgets"),)))
         assert_failure(result, "unsupported_ats:icims")
 
+    def test_offsite_redirect_with_a_weak_slug_hit_says_so(self):
+        """voltacharging.com -> joltcharge.com: the redirect is the diagnostic
+        fact, not the uncorroborated guess."""
+        result = decide(
+            evidence(
+                name="Volta",
+                careers_page=CareersPage.REDIRECTED_OFFSITE,
+                slug_probes=(live(ASHBY, "volta"),),
+            )
+        )
+        assert_failure(result, MappingFailureReason.WEAK_ONLY)
+        assert result.method == "redirected_offsite_uncorroborated"
+
     def test_js_rendered_page(self):
         result = decide(evidence(careers_page=CareersPage.JS_RENDERED))
         assert_failure(result, MappingFailureReason.JS_RENDERED)
