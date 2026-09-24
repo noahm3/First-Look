@@ -475,7 +475,7 @@ later.
 ---
 
 ### M6 — Getro (company source, discovery only)
-**Model:** Sonnet 5 · **Plan mode:** no · **Est:** 2–3h · **Criteria:** C-6.1
+**Model:** Sonnet 5 · **Plan mode:** no · **Est:** 2–3h · **Criteria:** C-6.1, C-6.4
 *(C-6.2 and C-6.3 are struck in `CRITERIA.md` — Getro no longer has a monitoring role.)*
 
 **One role only: discovery.** The original design gave Getro boards a second job, polling
@@ -484,6 +484,19 @@ removed that (`SPEC.md` §5, §7.2) — every posting now comes from a mapped co
 ATS. This milestone is just: parse `__NEXT_DATA__` from two or three Getro boards, extract
 company name and domain, feed them into the same discovery pipeline as the other sources
 in `SPEC.md` §7. No posting rows, no `source_path`, no independent monitoring path.
+
+**Consider (`src/consider.py`, C-6.4) folded in here 2026-09-24, ahead of `SPEC.md` §18's
+stated sequencing.** Consider (`SPEC.md` §7.6) was originally item #4 in §18's post-gate
+sequence, deferred behind the M7 measurement gate below. A spike
+(`spikes/iteration15_consider_spike.py`, `spikes/iteration15_consider_notes.md`)
+de-risked the unknowns — confirmed the session+CSRF+pagination flow live against 4 real
+boards, confirmed `companyDomain` closes Getro's domain-resolution gap for free — and the
+user then explicitly decided to build it now rather than wait for the gate. Same shape as
+Getro (company source, discovery only, no posting path), so it's recorded as a new
+criterion under this milestone rather than a new milestone number. This is a one-off pull-
+forward, not a precedent for skipping the gate on the *other* §18 items (Wellfound, YC,
+Built In national, observed comp history) without an equivalent explicit decision each
+time.
 
 ---
 

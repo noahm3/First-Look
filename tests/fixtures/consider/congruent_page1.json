@@ -1,0 +1,129 @@
+{
+  "jobs": [
+    {
+      "jobId": "38024d14-db4c-4e3a-b240-d7ec96135126",
+      "companyName": "SPAN",
+      "companySlug": "span",
+      "companyDomain": "span.io",
+      "companyStaffCount": 407,
+      "title": "Service Engineer",
+      "markets": [
+        {
+          "id": "Electrical/Electronic Manufacturing",
+          "label": "Electrical/Electronic Manufacturing",
+          "value": "Electrical/Electronic Manufacturing"
+        },
+        {
+          "id": "Energy Transition",
+          "label": "Energy Transition",
+          "value": "Energy Transition"
+        }
+      ],
+      "scores": {
+        "score": 1001.1671974267196,
+        "matchScore": 0,
+        "ageScore": 0.9671974267195216,
+        "richnessScore": 2
+      },
+      "skills": [
+        {
+          "id": "resume:Energy Storage",
+          "label": "Energy Storage",
+          "value": "resume:Energy Storage"
+        },
+        {
+          "id": "resume:Greenhouse",
+          "label": "Greenhouse",
+          "value": "resume:Greenhouse"
+        },
+        {
+          "id": "resume:Networking",
+          "label": "Networking Technologies",
+          "value": "resume:Networking"
+        },
+        {
+          "id": "resume:Vehicles",
+          "label": "Vehicles",
+          "value": "resume:Vehicles"
+        },
+        {
+          "id": "resume:Attention to Detail",
+          "label": "Attention to Detail",
+          "value": "resume:Attention to Detail"
+        },
+        {
+          "id": "resume:Climate Change",
+          "label": "Climate Change",
+          "value": "resume:Climate Change"
+        },
+        {
+          "id": "resume:Zendesk",
+          "label": "Zendesk",
+          "value": "resume:Zendesk"
+        },
+        {
+          "id": "resume:Internet of Things",
+          "label": "Internet of Things",
+          "value": "resume:Internet of Things"
+        },
+        {
+          "id": "resume:Linux",
+          "label": "Linux",
+          "value": "resume:Linux"
+        },
+        {
+          "id": "resume:Service",
+          "label": "Service",
+          "value": "resume:Service"
+        },
+        {
+          "id": "resume:SQL",
+          "label": "SQL",
+          "value": "resume:SQL"
+        },
+        {
+          "id": "resume:Power Electronics",
+          "label": "Power Electronics",
+          "value": "resume:Power Electronics"
+        },
+        {
+          "id": "resume:Troubleshooting",
+          "label": "Troubleshooting",
+          "value": "resume:Troubleshooting"
+        },
+        {
+          "id": "resume:Jira",
+          "label": "Jira",
+          "value": "resume:Jira"
+        },
+        {
+          "id": "resume:Salesforce",
+          "label": "Salesforce",
+          "value": "resume:Salesforce"
+        },
+        {
+          "id": "resume:Escalation",
+          "label": "Escalation",
+          "value": "resume:Escalation"
+        },
+        {
+          "id": "resume:Databases",
+          "label": "Databases",
+          "value": "resume:Databases"
+        },
+        {
+          "id": "resume:Python",
+          "label": "Python",
+          "value": "resume:Python"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "size": 1,
+    "sequence": "eyJfaWQiOiAiNTM3NmZlNjMyNmY2NzY4MTM4NmY0OWY1YTZkMDllY2UiLCAic2NvcmUiOiAxMDAxLjE2NzE5NzQyNjcxOTZ9"
+  },
+  "total": 456,
+  "errors": [],
+  "debug": []
+}

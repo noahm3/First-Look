@@ -592,6 +592,15 @@ for free doesn't change that.
 One parser unlocks many accelerator and VC boards, same leverage pattern as Getro.
 Greentown Labs is the first board to add. (`SPEC-REVISION-01` §R5)
 
+**Built 2026-09-24** (`src/consider.py`, `config/consider_boards.yml`, `CRITERIA.md`
+C-6.4), ahead of §18's original sequencing — see BUILD.md's M6 section and §18 for why.
+Pagination via `meta.sequence` confirmed working at the job level (zero duplicate
+`jobId`s across pages); bounded by `MAX_PAGES` (`src/consider.py`), so a board larger
+than `MAX_PAGES × PAGE_SIZE` jobs will not have every company discovered in one run —
+recorded as a known limitation, not solved here. 4 boards confirmed live and committed to
+`config/consider_boards.yml`: Greentown Labs, Congruent Ventures, Bessemer Venture
+Partners, MCJ Collective.
+
 ### 7.7 Wellfound
 `wellfound.com/role/{role}`, `/role/r/{role}`, `/role/l/{role}/{city}`. Public,
 server-rendered, `?page=N`. Next.js — check for `__NEXT_DATA__` before parsing HTML.
@@ -1533,7 +1542,11 @@ real ceiling.
 1. M-1 → M4 as specced. Seed from watchlist + ClimateTechList + ClimateBase orgs.
 2. **This measurement gate.**
 3. M10, M8 — unattended monitor emailing new postings.
-4. Consider parser (§7.6), Wellfound company source (§7.7) — cheap, cold-path.
+4. ~~Consider parser (§7.6)~~, Wellfound company source (§7.7) — cheap, cold-path.
+   **Consider built 2026-09-24 (`src/consider.py`, `CRITERIA.md` C-6.4), ahead of this
+   gate, by explicit user decision after a de-risking spike
+   (`spikes/iteration15_consider_notes.md`) — not a gate-driven promotion. Wellfound
+   remains gated here as originally sequenced.**
 5. Run live against real criteria for three months even if not actively applying. This
    is the only honest way to answer coverage, and the only way to learn whether the
    interesting product is this or something adjacent.

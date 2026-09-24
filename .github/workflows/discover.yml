@@ -10,9 +10,11 @@ name: discover
 # which changes without notice; monitoring reads documented ATS APIs. Putting
 # them in one workflow would let the fragile half stop the reliable half.
 #
-# M6 wires in the first crawler: Getro/VC portfolio boards (SPEC.md §7.2),
-# discovery only, no posting path. The mapping retry (M3) and the larger
-# one-time crawls (M8) still have nothing here.
+# M6 wires in the first two crawlers: Getro/VC portfolio boards (SPEC.md §7.2)
+# and Consider (SPEC.md §7.6, pulled forward ahead of §18's original
+# sequencing — see BUILD.md's M6 section), both discovery only, no posting
+# path. The mapping retry (M3) and the larger one-time crawls (M8) still have
+# nothing here.
 # ---------------------------------------------------------------------------
 on:
   schedule:
@@ -62,4 +64,14 @@ jobs:
             uv run python -m src.getro --dry-run
           else
             uv run python -m src.getro
+          fi
+
+      - name: Discover (Consider boards)
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            uv run python -m src.consider --dry-run
+          else
+            uv run python -m src.consider
           fi

@@ -1,0 +1,22 @@
+{
+  "jobs": [
+    {
+      "jobId": "1001",
+      "companyName": "Delos",
+      "companySlug": "delos-2",
+      "companyDomain": "delos.com",
+      "companyStaffCount": 2,
+      "title": "Engineer",
+      "markets": [],
+      "scores": {"score": 1.0},
+      "skills": []
+    }
+  ],
+  "meta": {
+    "size": 1,
+    "sequence": "fake-sequence-token-page2"
+  },
+  "total": 2,
+  "errors": [],
+  "debug": []
+}

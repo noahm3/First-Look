@@ -1,0 +1,22 @@
+{
+  "jobs": [
+    {
+      "jobId": "1002",
+      "companyName": "Delos",
+      "companySlug": "delos-2",
+      "companyDomain": "delos.com",
+      "companyStaffCount": 2,
+      "title": "Recruiter",
+      "markets": [],
+      "scores": {"score": 0.9},
+      "skills": []
+    }
+  ],
+  "meta": {
+    "size": 1,
+    "sequence": null
+  },
+  "total": 2,
+  "errors": [],
+  "debug": []
+}
