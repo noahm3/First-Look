@@ -1,6 +1,7 @@
 company,domain,provider,token,confidence,method
 instacart,instacart.com,greenhouse,instacart,probable,slug_guess+name_match
 multiplylabs,multiplylabs.com,lever,multiplylabs,verified,slug_guess+careers_page
+gritt,gritt.ai,ashby,gritt,verified,slug_guess+careers_page
 eavor,eavor.com,bamboohr,eavortechnologies,verified,careers_page
 swiftcomply,swiftcomply.com,rippling,swiftcomply,verified,careers_page
 lumenaza,lumenaza.de,personio,lumenaza.jobs.personio.de,verified,careers_page
@@ -11,6 +12,7 @@ bostonmetal,bostonmetal.com,workable,boston-metal,verified,careers_page
 zivianhealth,zivianhealth.com,rippling,zivian-health-inc,verified,careers_page
 bitgo,bitgo.com,greenhouse,bitgo,verified,slug_guess+careers_page
 hermeus,hermeus.com,lever,hermeus,verified,slug_guess+careers_page
+forto,forto.com,ashby,forto,probable,slug_guess+domain_in_postings
 loyalfordogs,loyalfordogs.com,greenhouse,loyal36,verified,careers_page
 etched,etched.com,ashby,etched,verified,slug_guess+careers_page
 xcimer,xcimer.energy,lever,xcimer,verified,slug_guess+careers_page
@@ -33,14 +35,17 @@ noteworthy,noteworthy.ai,rippling,noteworthy-ai-inc,verified,careers_page
 zwitterco,zwitterco.com,breezy_hr,zwitterco,verified,careers_page
 capsule8,capsule8.com,lever,sophos,verified,careers_page+redirected_domain
 tanso,tanso.io,personio,tanso.jobs.personio.de,verified,careers_page
+bolster,bolster.ai,lever,bolster,probable,slug_guess+domain_in_postings
 salesloft,salesloft.com,greenhouse,salesloft,probable,slug_guess+name_match
 delinea,delinea.com,ashby,delinea,verified,slug_guess+careers_page
+elicit,elicit.com,ashby,elicit,probable,slug_guess+domain_in_postings
 tala,tala.co,lever,tala,verified,slug_guess+careers_page
 isee,isee.ai,lever,isee,verified,slug_guess+careers_page
 noredink,noredink.com,greenhouse,noredink,verified,slug_guess+careers_page
 zenos,zenos.com,ashby,zenos,verified,slug_guess+careers_page
 regscale,regscale.com,ashby,regscale,verified,slug_guess+careers_page
 viam,viam.com,greenhouse,viamrobotics,verified,careers_page
+fluorok,fluorok.com,workable,fluorok-limited,verified,careers_page
 creditgenie,creditgenie.com,ashby,creditgenie,verified,slug_guess+careers_page
 galileohealth,galileohealth.com,greenhouse,galileo,verified,careers_page
 clarostechnologies,clarostechnologies.com,breezy_hr,claros-technologies,verified,careers_page
@@ -49,6 +54,7 @@ twelve,twelve.co,ashby,twelve,verified,slug_guess+careers_page
 journeyclinical,journeyclinical.com,lever,JourneyClinical,verified,careers_page
 equilibriumenergy,equilibriumenergy.com,greenhouse,equilibriumenergy,verified,slug_guess+careers_page
 velo3d,velo3d.com,lever,velo3d,verified,slug_guess+careers_page
+beamery,beamery.com,ashby,beamery,probable,slug_guess+domain_in_postings
 kinexon,kinexon.com,greenhouse,kinexon,probable,slug_guess+name_match
 bennie,bennie.com,greenhouse,bennie,verified,slug_guess+careers_page
 manypets,manypets.com,greenhouse,manygroup,verified,careers_page

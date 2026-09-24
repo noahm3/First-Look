@@ -2591,3 +2591,78 @@ Run on 20 domains first, then all 300.
 - The 403 bucket is misfiled: a blocked homepage lands in `no_careers_page` when it
   should be `unknown`. That doesn't change coverage, but it skews the §8.4 distribution.
   Not fixed yet.
+
+### Addendum 2: iteration 16 fixes built (user-approved), final numbers
+The user approved four fixes from the spike, plus a new failure reason:
+- **Domain-in-postings corroboration.** A guessed Lever/Ashby board whose own postings
+  contain the company's exact domain is `probable` (`slug_guess+domain_in_postings`).
+  On that exact match only, this overrides the short-slug guard (user's call).
+- **`blocked`** is a new failure reason for a homepage that answers 401/403/429. The
+  user wanted a self-explanatory reason, not `unknown`.
+- **Careers links are found by anchor text** as well as path. The company's own careers
+  link to another domain is followed (`+offsite_careers_link`). Profile sites (LinkedIn,
+  Wellfound, Glassdoor, Built In) are never followed. Collage was added to the
+  unsupported list.
+- **`not_a_company_domain`**: `src/domain_quality.py` plus
+  `config/non_company_domains.yml`. Subdomain inputs and listed media/aggregator domains
+  fail before any request, and the summary now also reports coverage over valid inputs.
+- **The browser User-Agent was declined** (user's call). The honest UA stays.
+
+Found by reading the re-runs, and fixed:
+- **stem.com**, a watchlist entry: Cloudflare challenged the homepage (403) while
+  `/careers/` answered 200. A blocked homepage now tries the careers paths before
+  failing as `blocked`.
+- **shield.ai → Greenhouse `shield`: false positive.** The homepage was blocked, so the
+  careers page was never read, and Greenhouse `shield` is a *demo board named
+  "S.H.I.E.L.D."* (one job, "Copy of Avenger"). Stripping punctuation made the name
+  "shield", which matched. A spelled-out single-letter name now only matches another
+  spelled-out name.
+- **My over-correction, reverted.** I also barred name-match `probable` on blocked
+  sites. That cost Mark Forged (CloudFront 403s every page for our UA; its Greenhouse
+  board names it), and it was inconsistent with companies that have no careers page. The
+  acronym rule alone closes the S.H.I.E.L.D. case.
+
+**Final numbers on final code (`9b92ced`):**
+- **C-3.1:** `--check-watchlist` → `verdicts: TP=31 FP=0 FN=0 TN=0`, exit 0.
+- **300-domain dry run:**
+  - Coverage 64/300 (21.3%); **64/277 (23.1%) of valid inputs**. This is up from 58.
+  - Slug hit rate 54/300 (18.0%). 37 accepted via `slug_guess*`: 28 corroborated by the
+    careers page, 5 name match, 4 domain-in-postings.
+  - Confidence: verified 55, probable 9, weak 12, none 224.
+  - Accepted by provider: greenhouse 15, ashby 14, lever 14, rippling 8, breezy_hr 5,
+    workable 4, bamboohr 2, personio 2.
+  - Failure reasons (236):
+
+    | Reason | Count |
+    |---|---|
+    | unknown | 87 |
+    | no_careers_page | 68 |
+    | not_a_company_domain | 23 |
+    | weak_only | 20 |
+    | js_rendered | 9 |
+    | blocked | 8 |
+    | unsupported_ats (21 total, below) | 21 |
+
+    Unsupported by platform: workday 4, teamtailor 4, jazzhr 2, ukg 2, and 1 each for
+    icims, trinet, careers-page, gem, factorial, smartrecruiters, collage,
+    wordpress-job-plugin, comeet.
+- `data/mapping_review.csv`: 64 rows. The 6 new rows (gritt, forto, bolster, elicit,
+  beamery, fluorok) were each read and look right. The S.H.I.E.L.D. row is absent.
+- The 23 `not_a_company_domain` rejections were all listed and read. All are genuine
+  (CDN/storage hosts, product subdomains, corporate business units, media sites, a VC job
+  board). One is borderline: `makersitegmbh.recruitee.com` is a company's Recruitee
+  board fed in as a domain.
+
+**Pending:** the SPEC.md diff for §8.1/§8.2/§8.4 (these rules plus the two new reasons)
+has been shown to the user and is not yet committed, per CLAUDE.md.
+
+### Least confident about (addendum 2)
+- **Cloudflare/CloudFront sites map nondeterministically.** Across today's runs Stem,
+  RegScale, LevelTen and shield.ai each flipped between blocked and mapped. Each single
+  run's coverage figure carries roughly ±2 of noise from this. The §8.5 monthly retry is
+  the backstop, but a site that always 403s our UA (Mark Forged now) can only ever reach
+  `probable`.
+- **Run-to-run review turned up a new false positive twice** (shield.ai via an
+  acquisition board, then via the S.H.I.E.L.D. demo board). Zero FP on the watchlist is
+  holding; zero FP on the population is not proven. Greenhouse demo/test boards are a
+  class worth a guard of their own (e.g. a board whose jobs link to `github.io`).
