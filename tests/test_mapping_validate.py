@@ -137,6 +137,10 @@ class TestFuzzyNameMatch:
         ("company", "returned"),
         [
             ("Arc", "Arcadia"),  # substring of a different word is not a match
+            # 300-domain re-run: Greenhouse `shield` is a demo board named
+            # "S.H.I.E.L.D." -- squashing single letters must not make "shield".
+            ("Shield AI", "S.H.I.E.L.D."),
+            ("shield", "S.H.I.E.L.D."),
             ("OhmConnect", "Renew Home"),
             ("Acme", None),
             ("Acme", ""),
@@ -145,6 +149,20 @@ class TestFuzzyNameMatch:
     )
     def test_different_or_missing_names_do_not_match(self, company, returned):
         assert not fuzzy_name_match(company, returned)
+
+    def test_two_dotted_acronyms_still_match_each_other(self):
+        assert fuzzy_name_match("I.B.M.", "IBM Corp") is False  # letters vs a word
+        assert fuzzy_name_match("I.B.M.", "I.B.M. Inc")
+
+    def test_shield_demo_board_is_not_probable(self):
+        result = decide(
+            evidence(
+                name="Shield AI",
+                careers_page=CareersPage.BLOCKED,
+                slug_probes=(live(GH, "shield", name="S.H.I.E.L.D."),),
+            )
+        )
+        assert not result.accepted
 
 
 # -- token sanity -------------------------------------------------------------
@@ -591,6 +609,16 @@ class TestBlockedAndBadInputs:
             )
         )
         assert result.confidence is MappingConfidence.PROBABLE
+
+    def test_a_name_match_alone_is_not_enough_on_a_blocked_site(self):
+        result = decide(
+            evidence(
+                name="Mark Forged",
+                careers_page=CareersPage.BLOCKED,
+                slug_probes=(live(GH, "markforged", name="Markforged"),),
+            )
+        )
+        assert_failure(result, MappingFailureReason.BLOCKED)
 
     def test_not_a_company_domain(self):
         result = decide(evidence(careers_page=CareersPage.NOT_A_COMPANY))

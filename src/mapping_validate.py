@@ -184,6 +184,10 @@ def _name_words(name: str) -> list[str]:
     return [w for w in _WORD_RE.findall(name.lower()) if w not in _NAME_NOISE]
 
 
+def _is_spelled_out(words: list[str]) -> bool:
+    return len(words) >= 2 and all(len(w) == 1 for w in words)
+
+
 def fuzzy_name_match(company_name: str, returned_name: str | None) -> bool:
     """Do these two strings name the same organisation?
 
@@ -198,6 +202,11 @@ def fuzzy_name_match(company_name: str, returned_name: str | None) -> bool:
         return False
     a, b = _name_words(company_name), _name_words(returned_name)
     if not a or not b:
+        return False
+    # A name spelled as single letters ("S.H.I.E.L.D.") only matches another
+    # spelled the same way: squashed, it would equal an ordinary word -- the
+    # 300-domain re-run matched shield.ai to Greenhouse's "S.H.I.E.L.D." demo board.
+    if _is_spelled_out(a) != _is_spelled_out(b):
         return False
     if "".join(a) == "".join(b):
         return True
@@ -290,6 +299,9 @@ def decide(ev: Evidence) -> MappingResult:
             if p.provider in NAME_BEARING_PROVIDERS
             and fuzzy_name_match(ev.company_name, p.org_name)
             and not guard_requires_verified(p.token)
+            # A blocked homepage hides the careers page that could contradict a
+            # name match (shield.ai's page would have shown it was ambiguous).
+            and ev.careers_page is not CareersPage.BLOCKED
         ]
         probable = _distinct(by_domain + by_name)
         if len(probable) == 1:
