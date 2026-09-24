@@ -23,6 +23,13 @@ class AtsProvider(StrEnum):
     ASHBY = "ashby"
     # Detection from day one; the polling adapter waits on §18's measurement (SPEC §9).
     SMARTRECRUITERS = "smartrecruiters"
+    # Added 2026-09-24, M2 scope expansion (SPEC.md §4/§9). Workday deliberately
+    # excluded — deferred, see SPEC.md §4's Workday row.
+    RIPPLING = "rippling"
+    BAMBOOHR = "bamboohr"
+    WORKABLE = "workable"
+    PERSONIO = "personio"
+    BREEZY_HR = "breezy_hr"
 
 
 class AtsStatus(StrEnum):
