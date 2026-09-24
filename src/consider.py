@@ -57,9 +57,7 @@ DEFAULT_BOARDS_PATH = pathlib.Path("config/consider_boards.yml")
 PAGE_SIZE = 50
 MAX_PAGES = 20  # see module docstring's "Known limitation"
 
-_SERVER_INITIAL_DATA_RE = re.compile(
-    r"window\.serverInitialData\s*=\s*(\{.*?\})\s*;", re.S
-)
+_SERVER_INITIAL_DATA_RE = re.compile(r"window\.serverInitialData\s*=\s*(\{.*?\})\s*;", re.S)
 
 # Consider's own derived/inferred output, never the employer's raw posting --
 # never store or surface these (SPEC.md §3.6: no classifiers; §4: no scoring
