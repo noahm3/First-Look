@@ -1,0 +1,172 @@
+{
+  "jobs": [
+    {
+      "jobId": "4468901645",
+      "companyName": "Energy Dome",
+      "companySlug": "energy-dome",
+      "companyDomain": "energydome.com",
+      "companyStaffCount": 110,
+      "title": "Land Origination & Site Acquisition Manager",
+      "markets": [
+        {
+          "id": "Electricity",
+          "label": "Electricity",
+          "value": "Electricity"
+        }
+      ],
+      "scores": {
+        "score": 1001.1567780069495,
+        "matchScore": 0,
+        "ageScore": 0.9567780069494599,
+        "richnessScore": 2
+      },
+      "skills": [
+        {
+          "id": "resume:Energy Storage",
+          "label": "Energy Storage",
+          "value": "resume:Energy Storage"
+        },
+        {
+          "id": "resume:Storage Solutions",
+          "label": "Storage Solutions",
+          "value": "resume:Storage Solutions"
+        },
+        {
+          "id": "resume:Renewable Energy",
+          "label": "Renewable Energy",
+          "value": "resume:Renewable Energy"
+        },
+        {
+          "id": "resume:GIS",
+          "label": "GIS",
+          "value": "resume:GIS"
+        },
+        {
+          "id": "resume:Attention to Detail",
+          "label": "Attention to Detail",
+          "value": "resume:Attention to Detail"
+        },
+        {
+          "id": "resume:Energy Industry",
+          "label": "Energy Industry",
+          "value": "resume:Energy Industry"
+        },
+        {
+          "id": "resume:Real Estate",
+          "label": "Real Estate",
+          "value": "resume:Real Estate"
+        },
+        {
+          "id": "resume:Infrastructure",
+          "label": "Infrastructure",
+          "value": "resume:Infrastructure"
+        },
+        {
+          "id": "resume:Batteries",
+          "label": "Batteries",
+          "value": "resume:Batteries"
+        },
+        {
+          "id": "resume:Project Delivery",
+          "label": "Project Delivery",
+          "value": "resume:Project Delivery"
+        },
+        {
+          "id": "resume:Press Releases",
+          "label": "Press Releases",
+          "value": "resume:Press Releases"
+        },
+        {
+          "id": "resume:Contract Negotiation",
+          "label": "Contract Negotiation",
+          "value": "resume:Contract Negotiation"
+        },
+        {
+          "id": "resume:Public Affairs",
+          "label": "Public Affairs",
+          "value": "resume:Public Affairs"
+        },
+        {
+          "id": "resume:Finance",
+          "label": "Finance",
+          "value": "resume:Finance"
+        }
+      ]
+    },
+    {
+      "jobId": "9afb3de1-25e8-4767-a27e-a04c39eb677b",
+      "companyName": "Phoenix Tailings",
+      "companySlug": "phoenix-tailings",
+      "companyDomain": "phoenixtailings.com",
+      "companyStaffCount": 117,
+      "title": "8.2. Senior Associate-Corporate Development",
+      "markets": [
+        {
+          "id": "Manufacturing",
+          "label": "Manufacturing",
+          "value": "Manufacturing"
+        }
+      ],
+      "scores": {
+        "score": 1001.1297647861905,
+        "matchScore": 0,
+        "ageScore": 0.9297647861905864,
+        "richnessScore": 2
+      },
+      "skills": [
+        {
+          "id": "resume:Corporate Development",
+          "label": "Corporate Development",
+          "value": "resume:Corporate Development"
+        },
+        {
+          "id": "resume:Learning and Development",
+          "label": "Learning and Development",
+          "value": "resume:Learning and Development"
+        },
+        {
+          "id": "resume:Attention to Detail",
+          "label": "Attention to Detail",
+          "value": "resume:Attention to Detail"
+        },
+        {
+          "id": "resume:Private Equity",
+          "label": "Private Equity",
+          "value": "resume:Private Equity"
+        },
+        {
+          "id": "resume:Equity",
+          "label": "Equity",
+          "value": "resume:Equity"
+        },
+        {
+          "id": "resume:Strategic Partnerships",
+          "label": "Strategic Partnerships",
+          "value": "resume:Strategic Partnerships"
+        },
+        {
+          "id": "resume:Investment Banking",
+          "label": "Investment Banking",
+          "value": "resume:Investment Banking"
+        },
+        {
+          "id": "resume:Strategic Finance",
+          "label": "Strategic Finance",
+          "value": "resume:Strategic Finance"
+        },
+        {
+          "id": "resume:Cross-functional Team Leadership",
+          "label": "Cross-functional Team Leadership",
+          "value": "resume:Cross-functional Team Leadership"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "size": 2,
+    "sequence": "eyJfaWQiOiAiNWI3NWQ0NDQ4YWVlYjVlODM5OGEzYWVlMGY3YTJkOGUiLCAic2NvcmUiOiAxMDAxLjEyOTc2NDc4NjE5MDV9"
+  },
+  "total": 580,
+  "errors": [],
+  "debug": []
+}

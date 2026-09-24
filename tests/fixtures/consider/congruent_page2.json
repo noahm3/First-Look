@@ -1,0 +1,144 @@
+{
+  "jobs": [
+    {
+      "jobId": "4520336",
+      "companyName": "Fervo Energy",
+      "companySlug": "fervo-energy",
+      "companyDomain": "fervoenergy.com",
+      "companyStaffCount": 288,
+      "title": "Reservoir Engineer, Production Forecasting & Reserves",
+      "markets": [
+        {
+          "id": "Electrical/Electronic Manufacturing",
+          "label": "Electrical/Electronic Manufacturing",
+          "value": "Electrical/Electronic Manufacturing"
+        },
+        {
+          "id": "Energy Transition",
+          "label": "Energy Transition",
+          "value": "Energy Transition"
+        },
+        {
+          "id": "Manufacturing",
+          "label": "Manufacturing",
+          "value": "Manufacturing"
+        },
+        {
+          "id": "Semiconductors",
+          "label": "Semiconductors",
+          "value": "Semiconductors"
+        }
+      ],
+      "scores": {
+        "score": 1001.1575638564328,
+        "matchScore": 0,
+        "ageScore": 0.9575638564328703,
+        "richnessScore": 2
+      },
+      "skills": [
+        {
+          "id": "resume:Cash Flow",
+          "label": "Cash Flow",
+          "value": "resume:Cash Flow"
+        },
+        {
+          "id": "resume:Scripting",
+          "label": "Scripting",
+          "value": "resume:Scripting"
+        },
+        {
+          "id": "resume:NPV",
+          "label": "NPV",
+          "value": "resume:NPV"
+        },
+        {
+          "id": "resume:Systems Programming",
+          "label": "Systems Programming",
+          "value": "resume:Systems Programming"
+        },
+        {
+          "id": "resume:Forecasting",
+          "label": "Forecasting",
+          "value": "resume:Forecasting"
+        },
+        {
+          "id": "resume:Automation",
+          "label": "Automation",
+          "value": "resume:Automation"
+        },
+        {
+          "id": "resume:IRR",
+          "label": "IRR",
+          "value": "resume:IRR"
+        },
+        {
+          "id": "resume:Equity",
+          "label": "Equity",
+          "value": "resume:Equity"
+        },
+        {
+          "id": "resume:Power Plants",
+          "label": "Power Plants",
+          "value": "resume:Power Plants"
+        },
+        {
+          "id": "resume:Petroleum",
+          "label": "Petroleum",
+          "value": "resume:Petroleum"
+        },
+        {
+          "id": "resume:Python",
+          "label": "Python",
+          "value": "resume:Python"
+        },
+        {
+          "id": "resume:Capital Markets",
+          "label": "Capital Markets",
+          "value": "resume:Capital Markets"
+        },
+        {
+          "id": "resume:Operational Excellence",
+          "label": "Operational Excellence",
+          "value": "resume:Operational Excellence"
+        },
+        {
+          "id": "resume:Technical Analysis",
+          "label": "Technical Analysis",
+          "value": "resume:Technical Analysis"
+        },
+        {
+          "id": "resume:Analytics",
+          "label": "Analytics",
+          "value": "resume:Analytics"
+        },
+        {
+          "id": "resume:Corporate Finance",
+          "label": "Corporate Finance",
+          "value": "resume:Corporate Finance"
+        },
+        {
+          "id": "resume:Financial Modeling",
+          "label": "Financial Modeling",
+          "value": "resume:Financial Modeling"
+        },
+        {
+          "id": "resume:Investor Relations",
+          "label": "Investor Relations",
+          "value": "resume:Investor Relations"
+        },
+        {
+          "id": "resume:FPA",
+          "label": "FP&A",
+          "value": "resume:FPA"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "size": 1,
+    "sequence": "eyJfaWQiOiAiYmU5MGM3ODk2ZTgwZTBhYTE5NjdmOWZmOTQ3ZDJiNTUiLCAic2NvcmUiOiAxMDAxLjE1NzU2Mzg1NjQzMjh9"
+  },
+  "total": 456,
+  "errors": [],
+  "debug": []
+}

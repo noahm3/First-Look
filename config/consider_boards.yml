@@ -1,0 +1,23 @@
+# config/consider_boards.yml -- SPEC.md §7.6: Consider board platform, discovery
+# only (CRITERIA.md C-6.4). Company source, not a posting source -- same rule
+# as everywhere in SPEC.md §7 and §4.
+#
+# Pulled forward ahead of SPEC.md §18's stated sequencing by explicit user
+# decision 2026-09-24 -- see DEVLOG.
+#
+# Every board below was individually confirmed live 2026-09-24
+# (spikes/iteration15_consider_spike.py, spikes/iteration15_consider_notes.md):
+# real session cookie + CSRF token from window.serverInitialData, a working
+# POST /api-boards/search-jobs, companyDomain populated on every sampled job.
+# A fingerprint-flagged candidate is not a confirmed board -- SOSV
+# (techjobs.sosv.com/jobs) 404s outright despite being flagged "consider" by
+# spikes/iteration3_vc_board_discovery.py's heuristic, and was excluded.
+
+- name: Greentown Labs
+  url: https://jobs.greentownlabs.com/jobs
+- name: Congruent Ventures
+  url: https://jobs.congruentvc.com/jobs
+- name: Bessemer Venture Partners
+  url: https://jobs.bvp.com/jobs
+- name: MCJ Collective
+  url: https://jobs.mcj.vc/jobs

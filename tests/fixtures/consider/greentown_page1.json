@@ -1,0 +1,162 @@
+{
+  "jobs": [
+    {
+      "jobId": "41234",
+      "companyName": "Upstream Tech",
+      "companySlug": "upstream-tech",
+      "companyDomain": "upstream.tech",
+      "companyStaffCount": 37,
+      "title": "Technical Account Manager, HydroForecast",
+      "markets": [
+        {
+          "id": "Resiliency Adaptation",
+          "label": "Resiliency + Adaptation",
+          "value": "Resiliency Adaptation"
+        }
+      ],
+      "scores": {
+        "score": 1001.1834715165718,
+        "matchScore": 0,
+        "ageScore": 0.9834715165717592,
+        "richnessScore": 2
+      },
+      "skills": [
+        {
+          "id": "resume:Hydrology",
+          "label": "Hydrology",
+          "value": "resume:Hydrology"
+        },
+        {
+          "id": "resume:Modeling",
+          "label": "Modeling",
+          "value": "resume:Modeling"
+        },
+        {
+          "id": "resume:Sales & Marketing",
+          "label": "Sales & Marketing",
+          "value": "resume:Sales & Marketing"
+        },
+        {
+          "id": "resume:Sales Compensation",
+          "label": "Sales Compensation",
+          "value": "resume:Sales Compensation"
+        },
+        {
+          "id": "resume:SaaS",
+          "label": "Software as a Service",
+          "value": "resume:SaaS"
+        },
+        {
+          "id": "resume:Onboarding",
+          "label": "Onboarding",
+          "value": "resume:Onboarding"
+        },
+        {
+          "id": "resume:Forecasting",
+          "label": "Forecasting",
+          "value": "resume:Forecasting"
+        },
+        {
+          "id": "resume:Service",
+          "label": "Service",
+          "value": "resume:Service"
+        },
+        {
+          "id": "resume:Federal Government",
+          "label": "Federal Government",
+          "value": "resume:Federal Government"
+        },
+        {
+          "id": "resume:Machine Learning",
+          "label": "Machine Learning",
+          "value": "resume:Machine Learning"
+        },
+        {
+          "id": "resume:Artificial Intelligence",
+          "label": "Artificial Intelligence",
+          "value": "resume:Artificial Intelligence"
+        },
+        {
+          "id": "resume:User Scenarios",
+          "label": "User Scenarios",
+          "value": "resume:User Scenarios"
+        },
+        {
+          "id": "resume:Power Generation",
+          "label": "Power Generation",
+          "value": "resume:Power Generation"
+        }
+      ]
+    },
+    {
+      "jobId": "4730132005",
+      "companyName": "Electric Hydrogen",
+      "companySlug": "electric-hydrogen",
+      "companyDomain": "eh2.com",
+      "companyStaffCount": 337,
+      "title": "Development Engineer",
+      "markets": [
+        {
+          "id": "Electricity",
+          "label": "Electricity",
+          "value": "Electricity"
+        }
+      ],
+      "scores": {
+        "score": 1001.1624808251436,
+        "matchScore": 0,
+        "ageScore": 0.9624808251435185,
+        "richnessScore": 2
+      },
+      "skills": [
+        {
+          "id": "resume:Financial Analysis",
+          "label": "Financial Analysis",
+          "value": "resume:Financial Analysis"
+        },
+        {
+          "id": "resume:Budgeting",
+          "label": "Budgeting",
+          "value": "resume:Budgeting"
+        },
+        {
+          "id": "resume:Supply Chain Management",
+          "label": "Supply Chain Management",
+          "value": "resume:Supply Chain Management"
+        },
+        {
+          "id": "resume:Infrastructure",
+          "label": "Infrastructure",
+          "value": "resume:Infrastructure"
+        },
+        {
+          "id": "resume:Project Management",
+          "label": "Project Management",
+          "value": "resume:Project Management"
+        },
+        {
+          "id": "resume:Risk Analysis",
+          "label": "Risk Analysis",
+          "value": "resume:Risk Analysis"
+        },
+        {
+          "id": "resume:Storage",
+          "label": "Storage",
+          "value": "resume:Storage"
+        },
+        {
+          "id": "resume:Finance",
+          "label": "Finance",
+          "value": "resume:Finance"
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "size": 2,
+    "sequence": "eyJfaWQiOiAiNjhjMzBhYjhlNzhkMmE1NmIxYjlmYjcxMjE3MmJkYzciLCAic2NvcmUiOiAxMDAxLjE2MjQ4MDgyNTE0MzZ9"
+  },
+  "total": 580,
+  "errors": [],
+  "debug": []
+}
