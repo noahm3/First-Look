@@ -244,6 +244,22 @@ class TestNotAccepted:
         assert outcome.result.method == "cascade_error:RuntimeError"
 
 
+class TestSlugGuessProviders:
+    def test_workable_is_never_guessed(self):
+        """Guessing tripped a sustained 429 on apply.workable.com in the first
+        dry run, which then blocked probing real careers-page tokens."""
+        seen = []
+
+        def record(request):
+            seen.append(request.url.host)
+            return respond(404)
+
+        with fake_client(record, max_attempts=1) as client:
+            map_company(client, "Acme Widgets", None)
+        assert "apply.workable.com" not in seen
+        assert {"boards-api.greenhouse.io", "api.lever.co", "api.ashbyhq.com"} <= set(seen)
+
+
 class TestSlugCandidates:
     @pytest.mark.parametrize(
         ("domain", "label"),

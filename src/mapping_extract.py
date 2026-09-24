@@ -41,6 +41,9 @@ _NON_TENANT = {
         {"www", "app", "api", "marketing", "help", "assets", "attachments", "developer", "blog"}
     ),
 }
+# Numbered/CDN asset hosts on tenant-subdomain providers -- `images4.bamboohr.com`
+# was read as a tenant in the first 50-domain dry run.
+_ASSET_LABEL = re.compile(r"(?:images?|img|cdn|static|assets?|media|files?)\d*")
 # apply.workable.com/j/{shortcode} is a single job, not an account.
 _WORKABLE_NON_ACCOUNT_PATHS = frozenset({"j", "api", "careers", "jobs"})
 
@@ -161,7 +164,9 @@ def extract(raw_html: str) -> Extracted:
     for provider, pattern, exclude in _TOKEN_PATTERNS:
         for match in pattern.finditer(text):
             token = match.group(1).lower()
-            if token in exclude or not is_valid_token(provider, token):
+            if token in exclude or (provider in _NON_TENANT and _ASSET_LABEL.fullmatch(token)):
+                continue
+            if not is_valid_token(provider, token):
                 continue
             found.setdefault((provider, token), None)
 

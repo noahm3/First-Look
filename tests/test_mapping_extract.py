@@ -108,6 +108,9 @@ class TestNonTokens:
             '<a href="https://apply.workable.com/j/C5AA4AA02F">',
             # Asset and marketing hosts are not tenants.
             '<script src="https://staticfe.bamboohr.com/assets/x.js">',
+            # 3yourmind.com, first 50-domain dry run: a numbered image host.
+            '<img src="https://images4.bamboohr.com/123/logo.png">',
+            '<img src="https://cdn2.breezy.hr/x.png">',
             '<a href="https://www.bamboohr.com/">',
             '<a href="https://www.workable.com/">',
             '<a href="https://jobs.workable.com/search">',

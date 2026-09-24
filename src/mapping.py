@@ -3,7 +3,7 @@
 Gathers evidence for one company and hands it to src/mapping_validate.py's
 `decide()` -- nothing in this module decides confidence itself.
 
-1. **Slug guessing** against Greenhouse, Lever, Ashby and Workable, from the
+1. **Slug guessing** against Greenhouse, Lever and Ashby, from the
    company name and the domain's second-level label.
 2. **Apply-redirect** -- a deliberate no-op until M8 supplies Built In apply
    links; there is no input for it to follow yet.
@@ -39,11 +39,16 @@ from src.models import AtsProvider, Company, MappingFailureReason, MappingResult
 
 log = logging.getLogger(__name__)
 
+# Workable was in this list until the first 50-domain dry run (2026-09-24):
+# three guesses per company tripped a sustained HTTP 429 on
+# apply.workable.com (Retry-After: 0, still throttled minutes later), which
+# then made real Workable tokens found on careers pages probe as
+# `inconclusive`. Guessing cost more verified mappings than it could add, so
+# Workable is probed only when a careers page names a token.
 SLUG_GUESS_PROVIDERS = (
     AtsProvider.GREENHOUSE,
     AtsProvider.LEVER,
     AtsProvider.ASHBY,
-    AtsProvider.WORKABLE,
 )
 MAX_SLUG_CANDIDATES = 3
 MAX_CAREERS_LINKS = 2
@@ -486,9 +491,11 @@ def _read_domains_csv(path: pathlib.Path, limit: int | None, seed: int) -> list[
 
     from src.watchlist import canonicalize_domain
 
+    watchlist = set(load_expected())  # measured separately by --check-watchlist
     with path.open(encoding="utf-8", newline="") as fh:
         domains = sorted(
             {d for row in csv.DictReader(fh) if (d := canonicalize_domain(row["company_domain"]))}
+            - watchlist
         )
     random.Random(seed).shuffle(domains)
     if limit is not None:
