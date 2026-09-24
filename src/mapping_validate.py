@@ -100,6 +100,7 @@ class CareersPage(StrEnum):
     NO_DOMAIN = "no_domain"
     JS_RENDERED = "js_rendered"
     PARKED = "parked"
+    REDIRECTED_OFFSITE = "redirected_offsite"  # homepage -> a differently named domain
     INCONCLUSIVE = "inconclusive"
 
 
@@ -212,13 +213,27 @@ def decide(ev: Evidence) -> MappingResult:
     page_pairs = [pair for pair in _distinct(ev.page_tokens) if is_valid_token(*pair)]
     live_page = [pair for pair in page_pairs if pair in page_probes and page_probes[pair].live]
 
+    # A page token we couldn't judge -- probe inconclusive, or never probed --
+    # might be the company's real board. It can't be ignored just because the
+    # probe failed: shield.ai's real Lever board was too big to download, and
+    # dropping it left an acquired subsidiary's live board looking unambiguous.
+    unresolved = [
+        pair
+        for pair in page_pairs
+        if pair not in page_probes or page_probes[pair].outcome is ProbeOutcome.INCONCLUSIVE
+    ]
+
     # -- verified: the company's own careers page names a live board ----------
     if ev.careers_page is CareersPage.FOUND and live_page:
-        if len(live_page) == 1:
+        if len(live_page) + len(unresolved) == 1:
             chosen = live_page[0]
         else:
             corroborated = [pair for pair in live_page if pair in live_slug_pairs]
             if len(corroborated) != 1:
+                if unresolved:
+                    return _failure(
+                        MappingFailureReason.UNKNOWN.value, "careers_page_probe_inconclusive"
+                    )
                 return _failure(
                     MappingFailureReason.WEAK_ONLY.value,
                     f"careers_page_ambiguous:{len(live_page)}",
@@ -278,7 +293,12 @@ def decide(ev: Evidence) -> MappingResult:
     match ev.careers_page:
         case CareersPage.JS_RENDERED:
             return _failure(MappingFailureReason.JS_RENDERED.value, "careers_page_js_rendered")
-        case CareersPage.NONE | CareersPage.NO_DOMAIN | CareersPage.PARKED:
+        case (
+            CareersPage.NONE
+            | CareersPage.NO_DOMAIN
+            | CareersPage.PARKED
+            | CareersPage.REDIRECTED_OFFSITE
+        ):
             return _failure(
                 MappingFailureReason.NO_CAREERS_PAGE.value, f"careers_page_{ev.careers_page}"
             )

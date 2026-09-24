@@ -267,6 +267,41 @@ class TestVerified:
         )
         assert result.confidence is MappingConfidence.VERIFIED
 
+    def test_shield_ai_an_inconclusive_second_token_still_makes_it_ambiguous(self):
+        """shield.ai, 300-domain dry run: the page linked Lever `shieldai` (its
+        real board, too big to download -> inconclusive) and Greenhouse
+        `aechelontechnology` (an acquired subsidiary's board, live). Ignoring the
+        inconclusive token "verified" the wrong company."""
+        result = decide(
+            evidence(
+                name="shield",
+                page_tokens=((LEVER, "shieldai"), (GH, "aechelontechnology")),
+                page_probes=(flaky(LEVER, "shieldai"), live(GH, "aechelontechnology")),
+            )
+        )
+        assert not result.accepted
+        assert result.failure_reason == MappingFailureReason.UNKNOWN
+
+    def test_an_unprobed_page_token_also_counts_toward_ambiguity(self):
+        result = decide(
+            evidence(
+                page_tokens=((GH, "acmewidgets"), (LEVER, "neverprobed")),
+                page_probes=(live(GH, "acmewidgets"),),
+            )
+        )
+        assert not result.accepted
+
+    def test_a_slug_corroborated_token_still_wins_over_an_inconclusive_one(self):
+        result = decide(
+            evidence(
+                page_tokens=((GH, "acmewidgets"), (LEVER, "otherco")),
+                page_probes=(live(GH, "acmewidgets"), flaky(LEVER, "otherco")),
+                slug_probes=(live(GH, "acmewidgets", name="Acme Widgets"),),
+            )
+        )
+        assert result.confidence is MappingConfidence.VERIFIED
+        assert result.token == "acmewidgets"
+
     def test_a_dead_second_token_does_not_make_the_live_one_ambiguous(self):
         result = decide(
             evidence(

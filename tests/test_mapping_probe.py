@@ -187,7 +187,7 @@ class TestSafety:
         ("provider", "token", "url"),
         [
             (P.GREENHOUSE, "t", "https://boards-api.greenhouse.io/v1/boards/t"),
-            (P.LEVER, "t", "https://api.lever.co/v0/postings/t?mode=json"),
+            (P.LEVER, "t", "https://api.lever.co/v0/postings/t?mode=json&limit=1"),
             (P.ASHBY, "t", "https://api.ashbyhq.com/posting-api/job-board/t"),
             (P.RIPPLING, "t", "https://api.rippling.com/platform/api/ats/v2/board/t/jobs"),
             (P.BAMBOOHR, "t", "https://t.bamboohr.com/careers/list"),

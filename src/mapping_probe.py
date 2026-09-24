@@ -31,7 +31,10 @@ def probe_url(provider: AtsProvider, token: str) -> str:
             # `probable` signal) and stays tiny however many jobs there are.
             return f"https://boards-api.greenhouse.io/v1/boards/{token}"
         case AtsProvider.LEVER:
-            return f"https://api.lever.co/v0/postings/{token}?mode=json"
+            # limit=1: existence is all a probe needs, and shield.ai's full
+            # board (8.5 MB) blew the response cap and probed inconclusive.
+            # posting_count is therefore 0 or 1 for Lever -- "empty or not".
+            return f"https://api.lever.co/v0/postings/{token}?mode=json&limit=1"
         case AtsProvider.ASHBY:
             return f"https://api.ashbyhq.com/posting-api/job-board/{token}"
         case AtsProvider.RIPPLING:

@@ -48,7 +48,7 @@ def redirect(to: str):
 
 GH_BOARD = "https://boards-api.greenhouse.io/v1/boards/{}"
 WORKABLE = "https://apply.workable.com/api/v1/widget/accounts/{}"
-LEVER = "https://api.lever.co/v0/postings/{}?mode=json"
+LEVER = "https://api.lever.co/v0/postings/{}?mode=json&limit=1"
 LONG_TEXT = "We build widgets for everyone. " * 20
 
 
@@ -154,6 +154,64 @@ class TestNotAccepted:
             }
         )
         assert not outcome.result.accepted
+
+    def test_homepage_redirect_to_a_differently_named_domain_is_not_evidence(self):
+        """capsule8.com -> sophos.com (acquired), 300-domain dry run: Sophos's
+        Lever board was being credited to Capsule8."""
+        outcome = run(
+            {
+                "https://capsule8.com/": redirect("https://www.sophos.com/en-us"),
+                "https://www.sophos.com/en-us": page(
+                    '<a href="https://jobs.lever.co/sophos">Careers</a>' + LONG_TEXT
+                ),
+                LEVER.format("sophos"): respond(200, json=[{"id": "1"}]),
+            },
+            name="capsule8",
+            domain="capsule8.com",
+        )
+        assert not outcome.result.accepted
+        assert outcome.result.failure_reason == MappingFailureReason.NO_CAREERS_PAGE
+        assert outcome.result.method == "careers_page_redirected_offsite"
+
+    def test_homepage_redirect_to_the_same_brand_on_another_tld_is_still_own(self):
+        """algorand.com -> algorand.co: same brand, and its careers page is the
+        watchlist's ground truth (Rippling `algorand-foundation`)."""
+        outcome = run(
+            {
+                "https://algorand.com/": redirect("https://algorand.co/"),
+                "https://algorand.co/": page(f'<a href="/careers">Careers</a>{LONG_TEXT}'),
+                "https://algorand.co/careers": page(
+                    '<a href="https://ats.rippling.com/algorand-foundation/jobs">x</a>' + LONG_TEXT
+                ),
+                "https://api.rippling.com/platform/api/ats/v2/board/algorand-foundation/jobs": (
+                    respond(200, json={"items": [], "totalItems": 0})
+                ),
+            },
+            name="Algorand",
+            domain="algorand.com",
+        )
+        assert outcome.result.confidence is MappingConfidence.VERIFIED
+        assert outcome.result.token == "algorand-foundation"
+
+    def test_shield_ai_huge_real_board_plus_subsidiary_board_is_not_accepted(self):
+        """The page links the real (huge) board and an acquired subsidiary's
+        board; if the real one can't be probed, nothing is accepted."""
+        outcome = run(
+            {
+                "https://shield.ai/": page(f'<a href="/careers/">Careers</a>{LONG_TEXT}'),
+                "https://shield.ai/careers/": page(
+                    '<a href="https://jobs.lever.co/shieldai">a</a>'
+                    '<a href="https://job-boards.greenhouse.io/aechelontechnology">b</a>'
+                    + LONG_TEXT
+                ),
+                LEVER.format("shieldai"): respond(503),
+                GH_BOARD.format("aechelontechnology"): respond(200, json={"name": "Aechelon"}),
+            },
+            name="shield",
+            domain="shield.ai",
+        )
+        assert not outcome.result.accepted
+        assert outcome.result.failure_reason == MappingFailureReason.UNKNOWN
 
     def test_a_careers_link_serving_the_homepage_is_ignored(self):
         """loamist.com: the careers link returned a byte-identical homepage."""

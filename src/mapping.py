@@ -230,8 +230,17 @@ def gather_careers_evidence(
 
     roots = [domain]
     redirected_root = _strip_www(_host(home.final_url))
-    if redirected_root and redirected_root not in roots and not _ATS_HOST.search(redirected_root):
-        roots.append(redirected_root)  # the company's own domain redirecting is company-controlled
+    if redirected_root and not _is_own(redirected_root, roots):
+        # The homepage left the company's domain. Same brand on another TLD
+        # (algorand.com -> algorand.co) is still the company. A different name
+        # usually means an acquisition (capsule8.com -> sophos.com, 300-domain
+        # dry run): the acquirer's board is not this company's, so nothing
+        # found there is evidence.
+        if _ATS_HOST.search(redirected_root) or domain_label(redirected_root) != domain_label(
+            domain
+        ):
+            return CareersPage.REDIRECTED_OFFSITE, []
+        roots.append(redirected_root)
     pages = _PageSet(own_roots=roots)
     pages.pages.append((home.requested_url, home.final_url or home.requested_url, home_text))
     pages.homepage = home_text
