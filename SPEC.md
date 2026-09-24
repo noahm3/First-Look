@@ -504,21 +504,38 @@ a slug, plus each job's external application URL, whose host is usually a
 dedupe (§6) needs a real domain, and `/jobs` alone can't reliably supply one.
 **Contrast with §7.6**: Consider doesn't have this problem at all.
 
-**A promising fix exists but is unbuilt: Getro's own `/companies` directory page.**
-Confirmed live 2026-09-24 — every Getro network also serves `{board}/companies`
-(e.g. `jobs.climatedraft.org/companies`), whose `__NEXT_DATA__` carries
-`props.pageProps.initialState.companies.found[]`, and **every entry has a `domain`
-field populated directly** (confirmed 12/12 on three different networks:
-Climate Draft, Breakthrough Energy Ventures, Blue Bear Capital). This looks like the
-resolution hop §7.7 already budgets for Wellfound, except free — no extra per-company
-request, since the domain rides along with the same page that would otherwise only be
-scraped for its slug. **Not yet built or even fully scoped**: the initial page load
-only returns 12 of the network's companies (`companies.total` was 767, 79, and 28 on
-the three networks sampled — `/jobs`'s `found` array is complete, but `/companies`'s
-is not); getting the rest almost certainly needs a client-side search API the same way
-Consider's `/api-boards/search-jobs` was found (§7.6) — a real devtools session against
-a live board, not more URL guessing. Worth a future spike before committing to it as
-the real fix for this gap.
+**A promising fix exists but is unbuilt, and blocked on a bigger problem than first
+thought: Getro's own `/companies` directory page.** Confirmed live 2026-09-24 — every
+Getro network also serves `{board}/companies` (e.g. `jobs.climatedraft.org/companies`),
+whose `__NEXT_DATA__` carries `props.pageProps.initialState.companies.found[]`, and
+**every entry has a `domain` field populated directly** (confirmed 12/12 on three
+different networks: Climate Draft, Breakthrough Energy Ventures, Blue Bear Capital).
+This looks like the resolution hop §7.7 already budgets for Wellfound, except free — no
+extra per-company request, since the domain rides along with the same page that would
+otherwise only be scraped for its slug.
+
+**Correction, from a follow-up spike (2026-09-24,
+`spikes/iteration16_getro_companies_notes.md`): the "only the first page" limitation is
+not unique to `/companies`, and `/jobs` is not "complete" the way an earlier version of
+this paragraph assumed.** `/jobs`'s own `initialState.jobs.total` field reveals the same
+gap: Climate Draft reports `total = 11474` against `found.length = 20`; even
+Breakthrough Energy Ventures — the smallest, most-checked board in
+`config/getro_boards.yml` — is `total = 106` against `found.length = 20`. **This means
+`src/getro.py` (M6, `CRITERIA.md` C-6.1), already shipped, has always seen a slice of
+each board's real company list, not the whole thing** — not a correctness bug (every
+company it sees is real), but an unmeasured completeness gap that predates this spike.
+Confirmed the Next.js SSR data route ignores every pagination-shaped query param tried
+(`page`, `offset`, `skip`, `cursor`, `after`) — "Load more" (the UI element on both
+`/jobs` and `/companies`) is a client-side fetch this project hasn't found yet, not
+server-side pagination via a query string. Static analysis of every JS chunk the build
+manifest lists for `/companies` (~14 files) found no fetch call site for it — most
+likely behind the button's own dynamically-imported chunk, invisible to anything that
+doesn't click it in a real browser. Finding it for real needs the same devtools-session
+method that found Consider's endpoint (§7.6), not more URL guessing from the terminal.
+**Two separate pieces of future work, not one**: fixing `src/getro.py`'s jobs undercount
+(a correctness-adjacent completeness fix to already-shipped code) and building the
+`/companies`-based domain resolution (new functionality) — both blocked on the same
+undiscovered endpoint, worth solving together once someone does the devtools session.
 
 ### 7.3 ClimateBase organization directory
 `climatebase.org/organizations`, ~7,250 orgs, server-rendered, one-time crawl. **Sole
@@ -1536,11 +1553,14 @@ week — and at that point the dead-man's switch has already fired regardless.
    2026-09-24 (M6, `CRITERIA.md` C-6.1):** holds up across 4 real boards now
    (`config/getro_boards.yml`), and the domain-resolution gap via `/jobs` is confirmed
    real, not a one-board fluke — no resolution hop currently in the pipeline.
-   **New sub-question, not yet answered:** does Getro's separate `/companies` directory
-   page (§7.2 — confirmed live 2026-09-24 to expose `domain` directly, 12/12 on three
-   networks, but only the first 12 companies per network without a known way to fetch
-   the rest) turn out to be the actual fix once its pagination/search API is found the
-   same way Consider's was (§7.6)? Worth a future spike before scoping real work here.
+   **Sub-question resolved differently than expected, same day
+   (`spikes/iteration16_getro_companies_notes.md`):** Getro's separate `/companies`
+   directory page does expose `domain` directly (12/12 on three networks) but is capped
+   at the first page the same way `/jobs` turns out to be — and `/jobs`'s own `total`
+   field proves `src/getro.py` has always undercounted every board it's run against,
+   not just this one page. Both are blocked on the same undiscovered client-side
+   endpoint (§7.2); a real devtools session against a live board, the same method that
+   found Consider's endpoint (§7.6), is the next step, not more URL guessing.
 7. **Built In Boston anti-bot posture** at crawl volume — 20–50 requests first.
 8. **Real comp disclosure rate.** Pay transparency laws in Massachusetts, Colorado, New
    York, California and Washington suggest most remote US postings disclose, but the
