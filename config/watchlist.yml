@@ -17,10 +17,24 @@
 # cover Ashby and Rippling, which barely appear in that older list -- also
 # hand-confirmed live, same as the rest.
 #
-# Appcues' Lever board is live and correctly mapped but has 0 open roles as
-# of 2026-09-23 -- kept anyway: a mapped board with zero current postings is
-# still a real, useful ground-truth case (the cascade should say "mapped,
-# zero jobs," not "unmapped" or "weak").
+# 2026-09-24 (M3 prep): Appcues removed -- its Lever board went from "live,
+# 0 open roles" on 2026-09-23 to a genuine 404 a day later (re-checked live
+# again before removal). Volta (Lever `joltcharge`) replaces it.
+#
+# Also added 2026-09-24, so C-3.1 has ground truth for all 8 M2 providers,
+# not just the original four: 3 BambooHR, 4 Workable, 3 Personio, 4 Breezy
+# HR. Candidates came from spikes/ats_platform_detections.csv, were run
+# through the real src/ats_*.py adapters live, and were then hand-checked by
+# the user (company site -> board, board lists real roles).
+#
+# Deliberate hard cases -- token does not match the domain or brand:
+#   - Volta (voltacharging.com) -> Lever `joltcharge`
+#   - OhmConnect (ohmconnect.com) -> Workable `renewhome` (acquired; its
+#     careers page redirects there, found by the user during hand-checking)
+#
+# Cofactor Genomics' Breezy board is live with 0 open roles as of
+# 2026-09-24 -- the "mapped, zero jobs" case Appcues used to be: the cascade
+# should say "mapped, zero jobs," not "unmapped" or "weak".
 
 # -- Greenhouse ---------------------------------------------------------
 - name: Owl Labs
@@ -39,8 +53,8 @@
   domain: logrocket.com
 - name: Commonwealth Fusion Systems
   domain: cfs.energy
-- name: Appcues
-  domain: appcues.com
+- name: Volta
+  domain: voltacharging.com
 - name: Palantir Technologies
   domain: palantir.com
 - name: Ro
@@ -63,3 +77,39 @@
   domain: algorand.com
 - name: goTenna
   domain: gotenna.com
+
+# -- BambooHR -----------------------------------------------------------
+- name: PH7 Technologies
+  domain: ph7technologies.com
+- name: Svante
+  domain: svanteinc.com
+- name: Virtual Peaker
+  domain: virtual-peaker.com
+
+# -- Workable -----------------------------------------------------------
+- name: Aerones
+  domain: aerones.com
+- name: Seeq
+  domain: seeq.com
+- name: Terabase Energy
+  domain: terabase.energy
+- name: OhmConnect
+  domain: ohmconnect.com
+
+# -- Personio -----------------------------------------------------------
+- name: Strohm
+  domain: strohm.eu
+- name: Planet A Foods
+  domain: planet-a-foods.com
+- name: LiveEO
+  domain: live-eo.com
+
+# -- Breezy HR ----------------------------------------------------------
+- name: Forge Nano
+  domain: forgenano.com
+- name: Sabanto
+  domain: sabantoag.com
+- name: RightHand Robotics
+  domain: righthandrobotics.com
+- name: Cofactor Genomics
+  domain: cofactorgenomics.com
