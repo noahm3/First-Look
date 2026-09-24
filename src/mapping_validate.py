@@ -299,9 +299,6 @@ def decide(ev: Evidence) -> MappingResult:
             if p.provider in NAME_BEARING_PROVIDERS
             and fuzzy_name_match(ev.company_name, p.org_name)
             and not guard_requires_verified(p.token)
-            # A blocked homepage hides the careers page that could contradict a
-            # name match (shield.ai's page would have shown it was ambiguous).
-            and ev.careers_page is not CareersPage.BLOCKED
         ]
         probable = _distinct(by_domain + by_name)
         if len(probable) == 1:

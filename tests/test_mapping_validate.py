@@ -610,7 +610,10 @@ class TestBlockedAndBadInputs:
         )
         assert result.confidence is MappingConfidence.PROBABLE
 
-    def test_a_name_match_alone_is_not_enough_on_a_blocked_site(self):
+    def test_a_blocked_site_can_still_be_probable_on_a_name_match(self):
+        """markforged.com: CloudFront 403s every page for our UA, but its
+        Greenhouse board names the company -- same standard as a company with no
+        careers page at all."""
         result = decide(
             evidence(
                 name="Mark Forged",
@@ -618,7 +621,7 @@ class TestBlockedAndBadInputs:
                 slug_probes=(live(GH, "markforged", name="Markforged"),),
             )
         )
-        assert_failure(result, MappingFailureReason.BLOCKED)
+        assert result.confidence is MappingConfidence.PROBABLE
 
     def test_not_a_company_domain(self):
         result = decide(evidence(careers_page=CareersPage.NOT_A_COMPANY))
