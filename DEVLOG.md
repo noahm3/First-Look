@@ -1888,3 +1888,117 @@ None — pre-M2 spike work, no `CRITERIA.md` items apply yet.
   iteration here and is worth porting deliberately rather than re-discovering.
 - Continue applying `spikes/ats_platform_census.py` after each future discovery source
   lands, per the standing methodology (iteration 11, the platform census, from the previous session).
+
+---
+
+## 2026-09-23 — M1 closed: watchlist ingest and dedupe, ground truth built by hand
+**Model:** Sonnet 5 · **Plan mode:** no
+
+### Built
+- `src/watchlist.py` — loads `config/watchlist.yml`, canonicalizes a domain (bare host or
+  full URL, `www.` stripped, port stripped) down to one comparable form, and ingests each
+  entry idempotently.
+- `Database.ingest_manual_company` (`src/db.py`) — keys on `company_sources.source_id`
+  (the canonical domain, or a name-derived slug when there is none) rather than on
+  `canonical_domain` alone, because a nullable-and-`UNIQUE` column can't dedupe two
+  no-domain entries against each other (NULL never equals NULL). A domain match against a
+  company already known via another source attaches the `manual` source instead of
+  creating a duplicate row.
+- `.github/workflows/watchlist.yml` — a fifth workflow, `workflow_dispatch` only, modeled
+  directly on `migrate.yml`'s already-audited posture (secret scoped to one step, pinned
+  SHAs). Needed because `SUPABASE_DB_URL` only ever decrypts inside a running Action —
+  there is no local `.env`, and GitHub secrets cannot be read back by any CLI, a real
+  platform limitation rather than a project choice. SPEC.md §5 updated to document it.
+- `tests/test_watchlist.py` (20 tests) — a small in-memory fake of the `companies` +
+  `company_sources` tables (not a mock of `ingest_manual_company` itself) so C-1.6, C-1.7,
+  and C-1.8 are exercised against the real dedupe logic, including cross-call idempotency.
+- `config/watchlist.yml` — 17 companies, the actual deliverable of this milestone.
+
+### Decisions made this session
+- **The watchlist has exactly one job: be an independent answer key for M3, not a bigger
+  production company list.** Surfaced when the user asked "what is the watchlist actually
+  for" and I'd initially seeded it from the discovery spikes' own `verified`-confidence
+  tier. That was circular: M3 will grade a cascade built from the same kind of logic that
+  produced that tier, so grading it against that tier's own output can't catch the cascade
+  being confidently wrong, only catch it disagreeing with an earlier version of itself. The
+  user's own multi-year, hand-compiled company list (kept outside the repo — Downloads,
+  never committed as-is) is the real independent source; broader production coverage from
+  the discovery spikes (the 584 `verified`/`probable`-mapped companies from iteration 6)
+  is a separate, still-open task via a different `company_sources.source`, not this file.
+- **String-matching an ATS's name in page HTML is not verification.** The first pass
+  (`spikes/iteration13_personal_list_verify.py`) fingerprinted by searching fetched HTML
+  for `greenhouse.io`/`lever.co`/etc. The user manually clicked "Apply" on Machine Metrics
+  and landed on Indeed, not Greenhouse — real signal that something was wrong. Investigating
+  found the string match was real but stale (a leftover embed script pointing at a token
+  that 404s on Greenhouse's own API) and, separately, that CircleCI's only "greenhouse"
+  mention was a cookie-consent/CSP allowlist entry with zero connection to any real job
+  data. Rewrote the check (`spikes/iteration14_api_verify.py`) to hit each ATS's real
+  public jobs API for the extracted token and require a real, parseable response —
+  Pixability also dropped this way (403s a plain fetch, unconfirmable either way).
+- **A mapped board with zero current postings is still a valid ground-truth entry.**
+  Appcues' Lever token is live and correct but returns 0 jobs right now — kept rather than
+  swapped out, since the cascade should report "mapped, zero jobs," not "unmapped" or
+  "weak," and that is itself worth being able to check.
+- **Every entry in the final 17 was independently hand-clicked and confirmed live by the
+  user**, not just API-checked by Claude — the user's own words: "I clicked through and
+  confirmed all of these links and ATS are accurate as of right now."
+- Spiro Technologies (from the personal list) was excluded rather than silently swapped: its
+  careers link now redirects to a Greenhouse board under the token `cordance`, not `spiro` —
+  looks like an acquisition or rebrand, left for the user to confirm on their own time
+  rather than guessed at.
+
+### Deviations from SPEC
+- SPEC.md §5 gained a fifth workflow, `watchlist.yml` (diff shown, approved, committed) —
+  same manual-only posture as `migrate.yml`, for the reason above.
+
+### A live, unrelated finding worth recording
+- The user's personal company-tracking CSV (outside the repo, in Downloads) carries a
+  `Contact / Connection` column of real people's names and a plaintext password reused
+  across several numbered Gmail accounts used for a monitoring tool. Only `Name` and
+  `Careers Page`/`Home Page` were ever read out of it into this session; nothing from those
+  other columns touched the repo or got printed more than once. Flagged to the user
+  directly as worth rotating — not otherwise acted on, since it's outside this project's
+  scope.
+
+### Criteria checked
+- **C-1.6** — two live `watchlist.yml` GitHub Actions dispatches against the real
+  database, back to back, both reporting zero newly-created duplicates (real run IDs and
+  output quoted in `CRITERIA.md`).
+- **C-1.7** — `tests/test_watchlist.py::TestIngestWatchlist::
+  test_c_1_7_a_url_variant_and_a_bare_host_resolve_to_one_company`, against the real code.
+- **C-1.8** — the two `test_c_1_8_*` tests in the same file, against the real code.
+  C-1.7 and C-1.8 are unit-test evidence, not a live Supabase dispatch: the committed
+  watchlist has no URL-variant-duplicate or no-domain entry to force either case for real,
+  and manufacturing one just to exercise it live was judged not worth polluting the
+  production ground-truth set.
+
+### Least confident about
+- Whether 17 companies (5 Greenhouse, 5 Lever, 3 Ashby, 4 Rippling) is enough diversity for
+  M3's false-positive check, or whether it's worth growing further before M3 actually
+  starts — nothing forces the number, and the user can add more at any time.
+- C-1.7 and C-1.8 resting on unit-test evidence alone. The logic under test is the same
+  `ingest_manual_company`/`canonicalize_domain` code the live-verified C-1.6 runs exercise,
+  just not the exact input shapes those two criteria describe, so this is a real gap in
+  live coverage, not just a formality — flagged to the user before checking either box.
+- Whether the API-based verification method (`iteration14`) itself has a blind spot
+  symmetric to the one it just fixed — it trusts a 200 + non-empty JSON response from the
+  provider's real API, which is a much stronger signal than a string match, but still
+  assumes the token-extraction regex found the *company's own* board rather than an
+  unrelated one that happens to share a guessable token. Not hit in practice this session,
+  but not proven impossible either.
+
+### Next session
+**M2 — ATS adapters. BUILD.md recommends Sonnet 5, no plan mode.** Fetch the real API docs
+linked in `SPEC.md` §9 during this milestone rather than building from memory — Lever's v0
+and Getro have no authoritative documentation, which is why recorded fixtures are the real
+contract. Prompt to paste:
+
+> Read CLAUDE.md, then the last two DEVLOG entries. We just closed M1 — confirm the
+> milestone header says M2 and tell me the recommended model and plan-mode setting from
+> BUILD.md, then wait for me to confirm before starting. M2 is ATS adapters (C-2.1 –
+> C-2.7): Greenhouse, Lever, and Ashby adapters that fetch and parse real postings,
+> reusing `spikes/iteration1_ats_spike.py` and `spikes/iteration7_live_postings_spike.py`'s
+> already-proven fetch/parse logic rather than rebuilding it from scratch, plus fixtures
+> recorded from live responses in `tests/fixtures/`. Fetch the real API docs linked in
+> SPEC.md §9 first rather than building from memory. Commit at each criterion, not once at
+> the end.
