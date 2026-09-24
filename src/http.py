@@ -404,7 +404,12 @@ class FetchClient:
 
         addresses = list(addresses)
         if not addresses:
-            log.warning("blocked fetch of %s: host %s resolved to nothing", url, host)
+            log.warning(
+                "blocked fetch of %s (requested as %s): host %s resolved to nothing",
+                url,
+                requested_url,
+                host,
+            )
             return FetchError(FetchErrorKind.DNS_FAILURE, f"{host} resolved to no addresses")
 
         forbidden = [a for a in addresses if _is_forbidden_address(a)]
