@@ -2131,12 +2131,24 @@ adapter), and Rippling's `department_raw` has an adapter but no dedicated unit t
   not just the pre-commit hook's email regex) before the next provider gets added.
 
 ### Next session
+**Before M3: reconcile with `origin/main`.** This session's local `main` (4 commits: the
+final-review fix pass) and `origin/main` (3 commits: M6, pushed by a concurrent session)
+have diverged but merge cleanly (`git merge-tree` shows zero conflicts) — neither was
+merged or pushed this session; that's the user's call, not this session's to make
+unilaterally.
+
 **M3 — Mapping cascade and validation. BUILD.md recommends Opus 5, plan mode.**
 Highest-risk correctness work per `BUILD.md`'s own framing, now scoped against 8
 providers instead of 3. Before starting: re-verify or swap Appcues in
 `config/watchlist.yml` (see the finding above), and decide whether the watchlist needs
 more Ashby/BambooHR/Workable/Personio/Breezy-HR entries added so C-3.1's "zero false
 positives" check has real ground truth for all 8 providers, not just the original 4.
+
+**Also before M4 builds the polling loop:** decide how Rippling's per-job detail call
+should be scoped during a real recurring poll (once per new posting? backfill window
+only?) rather than the current fetch-once-per-company shape's implicit "detail call every
+posting, every run" — flagged but deliberately not solved in this session, see the final
+review's Rippling ruling above.
 
 ### A concurrent-session note, same shape as the 2026-09-22 M-1 entry's correction
 While Task 11 was running (between this session's own `fc372ef` and `aa6faf9` commits,
@@ -2153,3 +2165,63 @@ ruling stands (no file conflicts occurred — the concurrent commit touched only
 `BUILD.md`), but is now reasoning from a policy that changed under it mid-session. Flagged
 here rather than silently reconciled, per this project's own convention for exactly this
 situation.
+
+**Confirmed after this session finished its own work**: that concurrent session went on
+to build and push an entire milestone — `origin/main` carries 3 commits this session's
+local checkout never pulled: `03518c5` "M6: Getro discovery", `da11f1d` "CRITERIA: check
+C-6.1", `7ca804c` "DEVLOG: M6 closed, Getro discovery". `git merge-tree` shows a clean,
+conflict-free merge between this session's local `main` (4 commits ahead, the final-review
+fix pass) and `origin/main` (3 commits ahead, M6). Neither branch was merged or pushed by
+this session — left for the user to decide how to reconcile, since a push to the public
+remote is exactly the kind of shared-state action this project's own instructions say to
+confirm first, not decide unilaterally.
+
+### Final review (fresh Opus reviewer, dispatched after Task 11)
+Reviewed the full branch (`78d5754..2d1d83f`, excluding the concurrent session's
+`1e64063`) against the plan, `SPEC.md`, `CRITERIA.md`, and this session's own ledger.
+**One Critical, confirmed independently before fixing:** `src/ats_rippling.py` only
+fetched page 0 of a paginated board, silently capping any board over 20 postings at 20
+while still reporting `ok=True` — 9 of the 62 companies in `spikes/
+iteration11_rippling_full_results.json` exceed that. Fixed: loops `totalPages` with a
+defensive cap.
+
+**Five Important findings, all confirmed independently and fixed in one pass:**
+- 7 of 8 adapters (all but Workable) could raise `AttributeError`/`LookupError` if a
+  provider's nested field (location, categories, compensation, department) drifted to a
+  bare string — a real risk given none of these 8 endpoints are documented. Fixed with
+  new `as_dict()`/`as_list()` helpers in `src/ats_common.py`; Personio's XML parsing now
+  also catches `LookupError`/`ValueError` (an unrecognized `<?xml encoding?>` raises
+  `LookupError`, not `ParseError` — confirmed live).
+- All 8 `tests/test_ats_*.py` files imported `httpx` directly, which `pyproject.toml`'s
+  `TID251` rule bans outside `src/http.py` — this would have failed CI's `ruff check .`
+  on push. Fixed with a shared `respond()` helper in `tests/ats_fixtures.py` and a
+  matching per-file-ignore; also fixed a pre-existing `test_watchlist.py` format issue
+  and excluded `docs/superpowers/plans/` from ruff's scope (it formats markdown code
+  fences, and a point-in-time plan isn't source to keep in sync with the formatter).
+- Greenhouse never implemented the `content=true` size-cap fallback this project already
+  decided on in September (DEVLOG's iteration7 entry: "Recovered 618 postings on the one
+  board that hit it"). Fixed: retry without `content=true` on `RESPONSE_TOO_LARGE`.
+- `C-2.1` was checked without literally meeting "5 known tokens" for Lever (4/5 —
+  Appcues' 404) and Ashby (3/5 — the watchlist only has 3 Ashby entries). Fixed by finding
+  and live-verifying 2 more real tokens per gap (Lever `joltcharge`, Ashby `cambium` +
+  `stillbright`) via the actual adapters. `CRITERIA.md` corrected, appended not reworded.
+- Rippling's per-job detail-call failures were silent and uncounted. Fixed:
+  `AdapterResult.degraded_count`.
+
+**One Important finding, ruled rather than fixed:** Rippling's per-poll detail-call
+volume (~778 requests across a full mapped set, 4x/day) is a real cost, but it's an M4
+polling-loop design question — how often to re-fetch detail for an already-seen posting —
+not an M2 adapter defect, since M2 fetches once, it doesn't poll repeatedly. Deferred to
+M4; see Next session.
+
+**9 Minor findings, deferred per this project's own review-process rule** (never enter
+the fix pass): token/host string-injection validation in 3 adapters (low risk today —
+`src/http.py` already blocks private-address SSRF — real risk is data-integrity once M3
+feeds in scraped tokens, not a security hole); Workable's `ats_job_id` missing an explicit
+`str()`; Ashby's `comp_raw_summary` falling back to a Python `repr()` of a list; an
+empty-but-technically-`STRUCTURED` comp edge case in Rippling/Lever; BambooHR's
+`isRemote`/`locationType` fields being effectively always-null in the one real board
+sampled; a few test-assertion-specificity gaps; two now-stale docstring citations.
+
+Full test suite after the fix pass: **356 passed** (up from 342 before final review).
+`ruff check .` and `ruff format --check .` both clean, repo-wide.
