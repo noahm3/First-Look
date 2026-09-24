@@ -2356,3 +2356,84 @@ Getro-comparison table is the starting point, and `config/consider_boards.yml` w
 need real per-board confirmation the same way `config/getro_boards.yml` did, not a
 straight promotion of the fingerprint-flagged candidate list in
 `spikes/investor_sources.csv`.
+
+---
+
+## 2026-09-24 — Consider adapter built, C-6.4 closed (pulled forward ahead of §18)
+**Model:** Sonnet 5 · **Plan mode:** no
+
+Direct follow-on from the same session's Iteration 15 spike, above. User's own words:
+"Let's make this easy. We should build it" — an explicit decision to pull `src/consider.py`
+forward ahead of `SPEC.md` §18's stated sequencing (Consider was item #4, gated behind
+the M7 measurement gate, which hasn't run). Confirmed the reordering and its scope (fold
+into M6 as a new criterion, not a new milestone number) before writing any code.
+
+### Built
+- `src/consider.py` — mirrors `src/getro.py`'s shape (parse → extract distinct
+  companies → `ingest_manual_company(source='consider')`), plus what Getro doesn't need:
+  a session/CSRF fetch and a pagination loop over `meta.sequence`, bounded by
+  `MAX_PAGES` (20 pages × `PAGE_SIZE` 50 — a documented, not-solved limitation for
+  boards larger than that, e.g. Bessemer's 7,318 jobs). Confirmed live before writing the
+  adapter that `FetchClient` already carries the session cookie across a `get()` then
+  `post_json()` call on the same instance — no `src/http.py` change needed.
+- `config/consider_boards.yml` — the 4 boards confirmed live in the Iteration 15 spike
+  (Greentown Labs, Congruent Ventures, Bessemer Venture Partners, MCJ Collective).
+- `tests/test_consider.py` (17 tests) + `tests/fixtures/consider/` — real trimmed
+  responses from 2 of the 4 boards, with a placeholder `csrfToken` in the page fixtures
+  (no real session artifact committed to a public repo). Covers pagination/dedup
+  (including a real cross-page duplicate-company case), the derived-fields-to-ignore
+  list, and the same fault-isolation shape `src/getro.py`'s tests already established.
+- `.github/workflows/discover.yml` — a second `Discover (Consider boards)` step,
+  alongside Getro's, honoring the same `dry_run` input.
+
+### Decisions made this session
+- **Pulled Consider forward ahead of `SPEC.md` §18's gate, by explicit user decision, not
+  a gate-driven promotion.** Documented in three places rather than silently reordered:
+  `BUILD.md`'s M6 section (why + an explicit note this isn't a precedent for skipping the
+  gate on Wellfound/YC/Built In national/comp history), `SPEC.md` §7.6 and §18 (struck the
+  sequencing item, noted what actually happened), and `CRITERIA.md` C-6.4 (append-only,
+  per its own rules).
+- **Folded into M6 as C-6.4, not a new milestone number.** Same shape as Getro — company
+  source, discovery only, no posting path — so a new criterion under the existing
+  milestone was a closer fit than inventing e.g. "M6b."
+- **Rebasing onto `main` mid-session surfaced a real convention I'd already violated
+  without knowing it.** Between this session's earlier Getro push and this one, the M2
+  session's own final-review pass (`2fe20c1`) added a `respond()` helper to
+  `tests/ats_fixtures.py` so no test file outside it imports `httpx` directly
+  (`pyproject.toml`'s `TID251` ban, previously only inconsistently enforced — flagged as
+  a pre-existing gap in the prior DEVLOG entry). `tests/test_getro.py` auto-merged onto
+  the new convention cleanly during the rebase; `tests/test_consider.py`, written after
+  that commit but before I'd seen it, still imported `httpx` directly and needed a
+  follow-up fix (`81ac290`) before `ruff check .` passed clean across the whole repo.
+
+### Deviations from SPEC
+- `SPEC.md` §18's sequencing changed (diff shown before commit, per this project's own
+  rule) — Consider struck from the gated item #4, a note added explaining why. Not a
+  correction of something wrong; a recorded, deliberate reordering.
+
+### Criteria checked
+- **C-6.4** — 4/4 real boards parsed successfully, live, twice: once via
+  `python -m src.consider --dry-run` (no writes), and once via a real
+  `workflow_dispatch` of `discover.yml` against production (run `36022852266`):
+  `consider: 4/4 boards parsed (0 failed) -> 278 companies created, 16 already present`.
+  The 16 are a real cross-source dedup hit against `canonical_domain` (a company already
+  known via a domain-bearing source, now also seen via Consider) — the concrete value of
+  Consider's domain field showing up in production data, not just in a fixture assertion.
+
+### Least confident about
+- **The `MAX_PAGES=20` cap is arbitrary, not measured.** It bounds worst-case request
+  volume per board but wasn't checked against `SPEC.md` §9's actual per-host rate budget
+  for a board the size of Bessemer's — a real board that size will silently miss
+  companies ranked past page 20 on every run, indefinitely, unless the underlying
+  ranking shifts enough to surface them. Flagged in both `src/consider.py`'s docstring
+  and `SPEC.md` §7.6, not hidden, but not solved either.
+- **Whether every VC-board candidate surfaced by
+  `spikes/iteration3_vc_board_discovery.py`'s heuristic should now get the same
+  live-confirmation treatment**, given Consider turned out cheap to build once spiked —
+  or whether 4 boards is enough for now and a broader board list is separate work.
+
+### Next session
+Not decided by this session. Whoever picks up the primary sequential track next should
+note that `SPEC.md` §18's gate (M7) is still unrun, and Consider being built early doesn't
+change the decision that gate exists to make for Wellfound, YC, Built In national, or
+observed comp history.
