@@ -2747,3 +2747,79 @@ has been shown to the user and is not yet committed, per CLAUDE.md.
   acquisition board, then via the S.H.I.E.L.D. demo board). Zero FP on the watchlist is
   holding; zero FP on the population is not proven. Greenhouse demo/test boards are a
   class worth a guard of their own (e.g. a board whose jobs link to `github.io`).
+
+---
+
+## 2026-09-24 — Climate Draft board added; Getro's real jobs-undercount found and recorded
+**Model:** Sonnet 5 · **Plan mode:** no
+
+Session-closing continuation of the same day's M6/Consider work above. Two asks: add a
+new Getro board the user had noticed (`jobs.climatedraft.org`), and spike whether the
+`/companies` directory page's "Load more" button could be sourced for a bigger company
+list — which surfaced something more consequential than either ask on its own.
+
+### Built
+- `config/getro_boards.yml` — added Climate Draft (`jobs.climatedraft.org/jobs`),
+  confirmed live before adding (real `__NEXT_DATA__`, real org sample: Relativity
+  Space). 4/4 boards now parse via `python -m src.getro --dry-run`.
+- `spikes/iteration16_getro_companies_spike.py` +
+  `spikes/iteration16_getro_companies_notes.md` — tried to find the client-side
+  endpoint behind "Load more" without a browser: ruled out the Next.js SSR data route
+  (`/_next/data/{buildId}/companies.json` ignores every pagination query param tried —
+  `page`, `offset`, `skip`, `cursor`, `after`), statically scanned every JS chunk the
+  build manifest lists for `/companies` (~14 files, using the build manifest itself to
+  make sure nothing was missed) with no fetch call site found.
+
+### Decisions made this session
+- **Did not attempt to fix `src/getro.py`'s jobs undercount this session**, even though
+  it's a real, arguably more urgent finding than the original `/companies` question —
+  it's a code change to already-shipped, already-checked (C-6.1) code, not a spike, and
+  the user's ask was explicitly "spike sourcing the companies... and then wrap up."
+  Recorded for deliberate pickup later rather than slipped in under a different label.
+- **Concluded the endpoint search rather than continuing to guess REST paths from the
+  terminal.** Same discipline this project already applies to Consider (`SPEC.md` §7.6:
+  "a 200 is not evidence of a real endpoint") — after checking the SSR route and every
+  eagerly-loaded JS chunk, the honest conclusion is that the feature is very likely
+  behind the button's own dynamically-imported chunk, which nothing headless will ever
+  see. Said so plainly instead of continuing to spend requests against a live third-party
+  site on low-probability guesses.
+
+### Deviations from SPEC
+- `SPEC.md` §7.2's `/companies` paragraph (added last session) contained a claim this
+  session's spike disproved: that `/jobs`'s `found` array was "complete." It is not —
+  corrected, diff shown before commit, per this project's own rule.
+
+### Criteria checked
+None. `config/getro_boards.yml`'s new entry doesn't need a new criterion — C-6.1 already
+covers "at least two Getro boards," which still holds with 4 — and the jobs-undercount
+finding isn't a criterion at all, just a recorded limitation.
+
+### Least confident about
+- **Whether the jobs-undercount finding should have been enough to reopen C-6.1 or at
+  least annotate it**, rather than only correcting `SPEC.md`. C-6.1's literal wording
+  ("boards parse successfully from `__NEXT_DATA__`") still holds — nothing about parsing
+  failed — but a reader skimming `CRITERIA.md` alone would not learn that
+  `src/getro.py`'s company list is a slice, not the whole board. Left as a `SPEC.md`/
+  DEVLOG-only finding rather than touching `CRITERIA.md`'s wording, per its own
+  never-reword rule, but flagging the judgment call rather than assuming it's obviously
+  right.
+- **Real cost of the static JS-bundle analysis approach as a general technique.** It
+  worked well enough to reach a confident negative result here (checked every chunk the
+  build manifest actually lists, not just the eagerly-loaded ones), but it required
+  fetching and grepping ~14 files across two exploratory sessions' worth of guessing
+  before concluding — worth remembering as a real cost the next time a client-side-only
+  endpoint needs finding without a browser.
+
+### Next session
+Not decided by this session — two independent, real pieces of follow-up work now
+exist, not addressed here on purpose:
+1. **Fix `src/getro.py`'s jobs undercount** (a real gap in already-shipped code, higher
+   priority than #2 since it affects data quality on every board already configured).
+2. **A real devtools session against a live Getro board**, watching the network tab
+   while clicking "Load more" — the only reliable way either #1 or the `/companies`
+   domain-resolution idea moves forward. Same method that found Consider's real
+   endpoint (`spikes/iteration2_consider_spike.py`).
+
+Session closed here per the user: "We've covered a lot of ground!" M6 and Consider
+(pulled forward ahead of `SPEC.md` §18) both closed with live evidence this session; M2 is
+still in flight in its own worktree; M7's measurement gate remains unrun.
