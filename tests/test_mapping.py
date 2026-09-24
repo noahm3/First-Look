@@ -193,6 +193,20 @@ class TestNotAccepted:
         assert outcome.result.confidence is MappingConfidence.VERIFIED
         assert outcome.result.token == "algorand-foundation"
 
+    @pytest.mark.parametrize(
+        ("a", "b", "same"),
+        [
+            ("algorand.com", "algorand.co", True),
+            ("galileohealth.com", "galileo.io", True),
+            ("loyalfordogs.com", "loyal.com", True),
+            ("capsule8.com", "sophos.com", False),
+            ("voltacharging.com", "joltcharge.com", False),
+            ("gobrightside.com", "go.com", False),  # too short to be a brand prefix
+        ],
+    )
+    def test_same_brand(self, a, b, same):
+        assert mapping._same_brand(a, b) is same
+
     def test_shield_ai_huge_real_board_plus_subsidiary_board_is_not_accepted(self):
         """The page links the real (huge) board and an acquired subsidiary's
         board; if the real one can't be probed, nothing is accepted."""

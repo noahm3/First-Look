@@ -156,6 +156,16 @@ def _is_own(host: str, own_roots: Iterable[str]) -> bool:
     return any(host == root or host.endswith("." + root) for root in own_roots)
 
 
+def _same_brand(a: str, b: str) -> bool:
+    """Do two domains plausibly belong to one brand? Equal labels, or one a
+    prefix of the other (galileohealth.com -> galileo.io, loyalfordogs.com ->
+    loyal.com). capsule8.com -> sophos.com and voltacharging.com ->
+    joltcharge.com share nothing and are not."""
+    la, lb = domain_label(a), domain_label(b)
+    short, long_ = sorted((la, lb), key=len)
+    return la == lb or (len(short) >= 4 and long_.startswith(short))
+
+
 def _visible_text_len(html: str) -> int:
     return len(" ".join(_TAG.sub(" ", _SCRIPT_OR_STYLE.sub(" ", html)).split()))
 
@@ -236,9 +246,7 @@ def gather_careers_evidence(
         # usually means an acquisition (capsule8.com -> sophos.com, 300-domain
         # dry run): the acquirer's board is not this company's, so nothing
         # found there is evidence.
-        if _ATS_HOST.search(redirected_root) or domain_label(redirected_root) != domain_label(
-            domain
-        ):
+        if _ATS_HOST.search(redirected_root) or not _same_brand(redirected_root, domain):
             return CareersPage.REDIRECTED_OFFSITE, []
         roots.append(redirected_root)
     pages = _PageSet(own_roots=roots)
