@@ -10,9 +10,9 @@ name: discover
 # which changes without notice; monitoring reads documented ATS APIs. Putting
 # them in one workflow would let the fragile half stop the reliable half.
 #
-# Nothing to discover yet — the crawlers arrive at M6 and M8, and the mapping
-# retry at M3. The workflow exists now so the trigger and secret split are
-# settled before there is code depending on them.
+# M6 wires in the first crawler: Getro/VC portfolio boards (SPEC.md §7.2),
+# discovery only, no posting path. The mapping retry (M3) and the larger
+# one-time crawls (M8) still have nothing here.
 # ---------------------------------------------------------------------------
 on:
   schedule:
@@ -54,9 +54,12 @@ jobs:
       - name: Install from the locked, hashed dependency set
         run: uv sync --locked
 
-      - name: Discover
+      - name: Discover (Getro / VC portfolio boards)
         env:
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
         run: |
-          echo "discovery runs from M6 onward; nothing to crawl yet."
-          echo "dry_run=${{ inputs.dry_run }}"
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            uv run python -m src.getro --dry-run
+          else
+            uv run python -m src.getro
+          fi

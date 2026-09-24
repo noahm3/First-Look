@@ -1,0 +1,17 @@
+# config/getro_boards.yml -- SPEC.md §7.2: Getro / VC portfolio boards, discovery
+# only (BUILD.md M6). Company source, not a posting source -- SPEC-REVISION-01
+# §R0/§R5 removed Getro's independent monitoring role entirely.
+#
+# Shape is community-derived, not documented, and confirmed to drift between
+# boards (SPEC.md §7.2: jobs.a16z.com turned out to be Next.js App Router with a
+# streamed RSC payload, not a __NEXT_DATA__ script tag, and wasn't even confirmed
+# to be Getro under the hood). Every board below was individually confirmed live
+# 2026-09-24 -- classic __NEXT_DATA__ present, jobs.found non-empty, real
+# companies resolved -- not assumed from the one board SPEC.md already had.
+
+- name: Breakthrough Energy Ventures
+  url: https://breakthroughenergy.getro.com/jobs
+- name: Blue Bear Capital
+  url: https://jobs.bluebearcap.com/jobs
+- name: Convective Capital
+  url: https://jobs.convectivecapital.com/jobs
