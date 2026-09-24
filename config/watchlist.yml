@@ -3,50 +3,63 @@
 # set (BUILD.md M1) -- so entries here should be companies whose ATS you
 # already know, not just whatever an automated cascade already flagged.
 #
-# This batch (13) comes from the user's own multi-year, hand-compiled company
-# list (kept outside the repo, never committed as-is -- only company name and
-# domain are pulled from it here). Each careers-page link was independently
-# re-verified live via spikes/iteration13_personal_list_verify.py (a fresh
-# HTTP fetch + ATS fingerprint, not a reuse of the mapping-cascade spike's own
-# output), so this is doubly-anchored: personally known, and freshly
-# confirmed still live and still on the same ATS today. Replaces an earlier
-# batch drawn from the automated discovery spikes' "verified" tier -- that
-# data was the mapping cascade's own output, which made it a weaker ground
-# truth for the very cascade M3 exists to test.
+# Every entry below was confirmed against the ATS's real public jobs API
+# (not a string match in page HTML -- see spikes/iteration14_api_verify.py,
+# built after a page-content check produced two false positives: CircleCI's
+# only "greenhouse" mention was a cookie-consent allowlist entry, and Machine
+# Metrics had a dead, leftover Greenhouse embed pointing at a 404 token), and
+# then hand-clicked and confirmed live by the user.
 #
-# One candidate deliberately excluded pending a manual check: Spiro
-# Technologies' careers link now redirects to a Greenhouse board under the
-# token `cordance`, not `spiro` -- looks like an acquisition or rebrand, not
-# confirmed.
+# 8 of these (5 Greenhouse, 3 Lever) came from the user's own multi-year,
+# hand-compiled company list (kept outside the repo -- only name and domain
+# are pulled from it here). The rest (Crusoe on Ashby; Palantir and Ro on
+# Lever; all four Rippling entries) are spike-sourced supplements added to
+# cover Ashby and Rippling, which barely appear in that older list -- also
+# hand-confirmed live, same as the rest.
+#
+# Appcues' Lever board is live and correctly mapped but has 0 open roles as
+# of 2026-09-23 -- kept anyway: a mapped board with zero current postings is
+# still a real, useful ground-truth case (the cascade should say "mapped,
+# zero jobs," not "unmapped" or "weak").
 
 # -- Greenhouse ---------------------------------------------------------
 - name: Owl Labs
   domain: owllabs.com
-- name: Machine Metrics
-  domain: machinemetrics.com
-- name: CircleCI
-  domain: circleci.com
 - name: Mark Forged
   domain: markforged.com
 - name: Brandwatch
   domain: brandwatch.com
 - name: Vestmark
   domain: vestmark.com
-- name: Pixability
-  domain: pixability.com
 - name: 3Play Media
   domain: 3playmedia.com
 
 # -- Lever ------------------------------------------------------------------
-- name: Appcues
-  domain: appcues.com
 - name: LogRocket
   domain: logrocket.com
 - name: Commonwealth Fusion Systems
   domain: cfs.energy
+- name: Appcues
+  domain: appcues.com
+- name: Palantir Technologies
+  domain: palantir.com
+- name: Ro
+  domain: ro.co
 
 # -- Ashby ----------------------------------------------------------------
+- name: Crusoe Energy
+  domain: crusoe.ai
 - name: Help Scout
   domain: helpscout.com
 - name: Wistia
   domain: wistia.com
+
+# -- Rippling -----------------------------------------------------------
+- name: Stem
+  domain: stem.com
+- name: Shippo
+  domain: goshippo.com
+- name: Algorand
+  domain: algorand.com
+- name: goTenna
+  domain: gotenna.com
