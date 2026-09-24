@@ -10,7 +10,7 @@ is the provider's own flag and tracks this exactly, but is not stored here
 (M5's normalization territory).
 """
 
-from src.ats_common import AdapterResult, parse_iso_or_epoch_ms
+from src.ats_common import AdapterResult, as_dict, parse_iso_or_epoch_ms
 from src.http import FetchClient
 from src.models import CompDataQuality, Posting
 
@@ -50,7 +50,7 @@ def fetch_postings(client: FetchClient, company_id: int, token: str) -> AdapterR
 
 
 def _comp(job: dict) -> tuple[CompDataQuality, str | None]:
-    comp = job.get("compensation") or {}
+    comp = as_dict(job.get("compensation"))
     tiers = comp.get("compensationTiers")
     summary = comp.get("compensationTierSummary")
     if tiers:

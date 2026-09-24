@@ -33,7 +33,10 @@ def fetch_postings(client: FetchClient, company_id: int, host: str) -> AdapterRe
 
     try:
         root = ET.fromstring(result.body)
-    except ET.ParseError as exc:
+    except (ET.ParseError, LookupError, ValueError) as exc:
+        # LookupError: an <?xml encoding="..."?> declaration naming an
+        # encoding Python doesn't recognize -- confirmed live 2026-09-24,
+        # ET.fromstring raises this instead of ParseError for that case.
         return AdapterResult(ok=False, error=f"not valid XML: {exc}")
 
     if root.tag != "workzag-jobs":
@@ -75,9 +78,7 @@ def _comp(position: ET.Element) -> tuple[CompDataQuality, str | None]:
     if salary is None:
         return CompDataQuality.NONE, None
     parts = [
-        _text(salary, key)
-        for key in ("min", "max", "currencyCode", "type")
-        if _text(salary, key)
+        _text(salary, key) for key in ("min", "max", "currencyCode", "type") if _text(salary, key)
     ]
     if parts:
         return CompDataQuality.STRUCTURED, " ".join(parts)

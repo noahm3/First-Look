@@ -16,7 +16,7 @@ for a bad token; the "unexpected shape" branch below is what actually
 catches it.
 """
 
-from src.ats_common import AdapterResult
+from src.ats_common import AdapterResult, as_dict
 from src.http import FetchClient
 from src.models import CompDataQuality, Posting
 
@@ -38,7 +38,7 @@ def fetch_postings(client: FetchClient, company_id: int, token: str) -> AdapterR
         if not isinstance(job, dict) or job.get("id") is None:
             continue
         job_id = str(job["id"])
-        location = job.get("location") or {}
+        location = as_dict(job.get("location"))
         location_parts = [location.get("city"), location.get("state")]
         postings.append(
             Posting(

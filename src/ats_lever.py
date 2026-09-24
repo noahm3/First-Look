@@ -17,7 +17,7 @@ rather than parsed into CompTier rows, per this plan's Global Constraints
 (CompTier construction is M5's job).
 """
 
-from src.ats_common import AdapterResult, parse_iso_or_epoch_ms
+from src.ats_common import AdapterResult, as_dict, parse_iso_or_epoch_ms
 from src.http import FetchClient
 from src.models import CompDataQuality, Posting
 
@@ -38,7 +38,7 @@ def fetch_postings(client: FetchClient, company_id: int, token: str) -> AdapterR
     for job in body:
         if not isinstance(job, dict) or job.get("id") is None:
             continue
-        cats = job.get("categories") or {}
+        cats = as_dict(job.get("categories"))
         comp_quality, comp_summary = _comp(job)
         postings.append(
             Posting(

@@ -9,17 +9,15 @@ entry was written) — a real, fast-moving finding worth a DEVLOG note, not a
 bug in this test.
 """
 
-import httpx
-
 from src.ats_lever import fetch_postings
-from tests.ats_fixtures import fake_client, read_fixture
+from tests.ats_fixtures import fake_client, read_fixture, respond
 
 
 def test_normal_board_returns_parsed_postings_with_titles_and_urls():
     body = read_fixture("lever", "normal.json")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="ro")
@@ -34,8 +32,8 @@ def test_normal_board_returns_parsed_postings_with_titles_and_urls():
 def test_department_raw_populated_from_categories_team():
     body = read_fixture("lever", "normal.json")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="ro")
@@ -46,8 +44,8 @@ def test_department_raw_populated_from_categories_team():
 def test_workplace_type_raw_captured():
     body = read_fixture("lever", "normal.json")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="ro")
@@ -58,8 +56,8 @@ def test_workplace_type_raw_captured():
 def test_constructed_empty_board_is_ok_with_zero_postings():
     body = read_fixture("lever", "empty.json")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="some-empty-board")
@@ -75,8 +73,8 @@ def test_missing_created_at_produces_null_not_exception():
     jobs[0].pop("createdAt", None)
     body = json.dumps(jobs).encode()
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="ro")
@@ -85,11 +83,24 @@ def test_missing_created_at_produces_null_not_exception():
     assert result.postings[0].posted_at is None
 
 
+def test_categories_as_a_bare_string_does_not_crash_the_fetch():
+    # The public v0 API is undocumented (SPEC.md §9) -- a `categories`
+    # field that isn't the usual object must degrade, never raise.
+    def handler(_request):
+        return respond(200, content=b'[{"id": "1", "text": "T", "categories": "Engineering"}]')
+
+    with fake_client(handler) as client:
+        result = fetch_postings(client, company_id=1, token="drifted")
+
+    assert result.ok
+    assert result.postings[0].department_raw is None
+
+
 def test_malformed_json_is_a_classified_failure_not_a_crash():
     body = read_fixture("lever", "malformed.json")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="broken")
@@ -99,8 +110,8 @@ def test_malformed_json_is_a_classified_failure_not_a_crash():
 
 def test_unexpected_top_level_shape_is_a_classified_failure():
     # Lever's board is a bare JSON array; an object at the top level is invalid.
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=b'{"not": "an array"}')
+    def handler(_request):
+        return respond(200, content=b'{"not": "an array"}')
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="broken")
@@ -112,9 +123,9 @@ def test_404_is_a_classified_failure_never_retried():
     body = read_fixture("lever", "not_found.json")
     attempts = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request):
         attempts.append(request)
-        return httpx.Response(404, content=body)
+        return respond(404, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="no-such-site")

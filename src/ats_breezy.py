@@ -11,7 +11,7 @@ True case is mapped, so an unremarked absence is never guessed as "remote"
 (mirrors SPEC.md §12.3's "UNKNOWN stays visible" caution).
 """
 
-from src.ats_common import AdapterResult, parse_iso_or_epoch_ms
+from src.ats_common import AdapterResult, as_dict, parse_iso_or_epoch_ms
 from src.http import FetchClient
 from src.models import CompDataQuality, Posting
 
@@ -32,7 +32,7 @@ def fetch_postings(client: FetchClient, company_id: int, token: str) -> AdapterR
     for job in body:
         if not isinstance(job, dict) or not job.get("id"):
             continue
-        location = job.get("location") or {}
+        location = as_dict(job.get("location"))
         comp_quality, comp_summary = _comp(job)
         postings.append(
             Posting(

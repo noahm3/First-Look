@@ -9,18 +9,16 @@ with a populated department and an empty salary string, one with a null
 department and a real salary string.
 """
 
-import httpx
-
 from src.ats_breezy import fetch_postings
 from src.models import CompDataQuality
-from tests.ats_fixtures import fake_client, read_fixture
+from tests.ats_fixtures import fake_client, read_fixture, respond
 
 
 def test_normal_board_returns_parsed_postings_with_titles_and_urls():
     body = read_fixture("breezy", "normal.json")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="elysium-health")
@@ -35,8 +33,8 @@ def test_normal_board_returns_parsed_postings_with_titles_and_urls():
 def test_department_raw_populated_where_present():
     body = read_fixture("breezy", "normal.json")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="elysium-health")
@@ -48,8 +46,8 @@ def test_department_raw_populated_where_present():
 def test_free_text_salary_string_is_parsed_not_structured():
     body = read_fixture("breezy", "normal.json")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="elysium-health")
@@ -65,8 +63,8 @@ def test_free_text_salary_string_is_parsed_not_structured():
 def test_is_remote_false_never_mapped_to_remote():
     body = read_fixture("breezy", "normal.json")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="elysium-health")
@@ -75,11 +73,25 @@ def test_is_remote_false_never_mapped_to_remote():
     assert all(p.workplace_type_raw != "remote" for p in result.postings)
 
 
+def test_location_as_a_bare_string_does_not_crash_the_fetch():
+    # Undocumented public board endpoint -- a `location` field that isn't
+    # the usual {"name", "is_remote"} object must degrade, never raise.
+    def handler(_request):
+        return respond(200, content=b'[{"id": "1", "name": "T", "location": "Remote"}]')
+
+    with fake_client(handler) as client:
+        result = fetch_postings(client, company_id=1, token="drifted")
+
+    assert result.ok
+    assert result.postings[0].location_raw is None
+    assert result.postings[0].workplace_type_raw is None
+
+
 def test_empty_board_is_ok_with_zero_postings():
     body = read_fixture("breezy", "empty.json")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="empty-co")
@@ -91,8 +103,8 @@ def test_empty_board_is_ok_with_zero_postings():
 def test_malformed_json_is_a_classified_failure_not_a_crash():
     body = read_fixture("breezy", "malformed.json")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="broken")
@@ -104,9 +116,9 @@ def test_404_is_a_classified_failure_never_retried():
     body = read_fixture("breezy", "not_found.json")
     attempts = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request):
         attempts.append(request)
-        return httpx.Response(404, content=body)
+        return respond(404, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="no-such-company")

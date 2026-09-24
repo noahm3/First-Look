@@ -14,18 +14,16 @@ distinguishable, correctly-classified AdapterResult, never a crash from
 feeding non-XML content to the XML parser.
 """
 
-import httpx
-
 from src.ats_personio import fetch_postings
 from src.models import CompDataQuality
-from tests.ats_fixtures import fake_client, read_fixture
+from tests.ats_fixtures import fake_client, read_fixture, respond
 
 
 def test_normal_tenant_returns_parsed_postings_with_titles_and_urls():
     body = read_fixture("personio", "normal.xml")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, host="strohm.jobs.personio.com")
@@ -40,8 +38,8 @@ def test_normal_tenant_returns_parsed_postings_with_titles_and_urls():
 def test_structured_salary_information_is_structured_quality():
     body = read_fixture("personio", "normal.xml")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, host="strohm.jobs.personio.com")
@@ -52,8 +50,8 @@ def test_structured_salary_information_is_structured_quality():
 def test_department_raw_populated():
     body = read_fixture("personio", "normal.xml")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, host="strohm.jobs.personio.com")
@@ -64,8 +62,8 @@ def test_department_raw_populated():
 def test_empty_tenant_is_ok_with_zero_postings():
     body = read_fixture("personio", "empty.xml")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, host="empty.jobs.personio.com")
@@ -77,8 +75,8 @@ def test_empty_tenant_is_ok_with_zero_postings():
 def test_malformed_xml_is_a_classified_failure_not_a_crash():
     body = read_fixture("personio", "malformed.xml")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, host="broken.jobs.personio.com")
@@ -92,11 +90,27 @@ def test_client_rendered_html_instead_of_xml_is_a_classified_failure():
     # reproducible live example.
     body = read_fixture("personio", "not_xml.html")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, host="nexwafe.jobs.personio.com")
+
+    assert result.ok is False
+    assert result.error
+
+
+def test_unparseable_encoding_declaration_is_a_classified_failure_not_a_crash():
+    # xml.etree.ElementTree raises LookupError (not ET.ParseError) for an
+    # XML declaration naming an encoding Python doesn't recognize -- a
+    # narrower except clause would let this escape the fetch entirely.
+    body = b"<?xml version='1.0' encoding='bogus-encoding-xyz'?><workzag-jobs></workzag-jobs>"
+
+    def handler(_request):
+        return respond(200, content=body)
+
+    with fake_client(handler) as client:
+        result = fetch_postings(client, company_id=1, host="broken.jobs.personio.com")
 
     assert result.ok is False
     assert result.error
@@ -106,9 +120,9 @@ def test_404_is_a_classified_failure_never_retried():
     body = read_fixture("personio", "not_found.txt")
     attempts = []
 
-    def handler(request: httpx.Request) -> httpx.Response:
+    def handler(request):
         attempts.append(request)
-        return httpx.Response(404, content=body)
+        return respond(404, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, host="be-levels.jobs.personio.com")

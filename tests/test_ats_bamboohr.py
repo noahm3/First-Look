@@ -15,17 +15,15 @@ exactly the "unexpected shape" failure path, not a distinct 404 path — there
 is no 404 case to test for this provider.
 """
 
-import httpx
-
 from src.ats_bamboohr import fetch_postings
-from tests.ats_fixtures import fake_client, read_fixture
+from tests.ats_fixtures import fake_client, read_fixture, respond
 
 
 def test_normal_board_returns_parsed_postings_with_titles_and_constructed_urls():
     body = read_fixture("bamboohr", "normal.json")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="ph7")
@@ -40,8 +38,8 @@ def test_normal_board_returns_parsed_postings_with_titles_and_constructed_urls()
 def test_posted_at_stays_none_no_date_field_exists():
     body = read_fixture("bamboohr", "normal.json")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="ph7")
@@ -52,8 +50,8 @@ def test_posted_at_stays_none_no_date_field_exists():
 def test_department_raw_populated_from_department_label():
     body = read_fixture("bamboohr", "normal.json")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="ph7")
@@ -61,11 +59,27 @@ def test_department_raw_populated_from_department_label():
     assert any(p.department_raw for p in result.postings)
 
 
+def test_location_as_a_bare_string_does_not_crash_the_fetch():
+    # No authoritative docs (SPEC.md §9) -- a `location` field that isn't
+    # the usual {"city", "state"} object must degrade, never raise.
+    def handler(_request):
+        return respond(
+            200,
+            content=b'{"meta":{"totalCount":1},"result":[{"id":"1","jobOpeningName":"T","location":"Remote"}]}',
+        )
+
+    with fake_client(handler) as client:
+        result = fetch_postings(client, company_id=1, token="drifted")
+
+    assert result.ok
+    assert result.postings[0].location_raw is None
+
+
 def test_empty_board_is_ok_with_zero_postings():
     body = read_fixture("bamboohr", "empty.json")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="some-empty-board")
@@ -77,8 +91,8 @@ def test_empty_board_is_ok_with_zero_postings():
 def test_malformed_json_is_a_classified_failure_not_a_crash():
     body = read_fixture("bamboohr", "malformed.json")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, content=body)
+    def handler(_request):
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="broken")
@@ -89,10 +103,10 @@ def test_malformed_json_is_a_classified_failure_not_a_crash():
 def test_invalid_subdomain_redirect_to_marketing_html_is_a_classified_failure():
     body = read_fixture("bamboohr", "not_found.html")
 
-    def handler(_request: httpx.Request) -> httpx.Response:
+    def handler(_request):
         # Real behavior confirmed live: this is what the adapter sees after
         # src.http.FetchClient follows BambooHR's 302 to www.bamboohr.com.
-        return httpx.Response(200, content=body)
+        return respond(200, content=body)
 
     with fake_client(handler) as client:
         result = fetch_postings(client, company_id=1, token="no-such-company")
