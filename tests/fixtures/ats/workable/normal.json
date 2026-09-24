@@ -1,0 +1,44 @@
+{
+  "name": "Aerones",
+  "jobs": [
+    {
+      "title": "Rope Access Technician",
+      "shortcode": "C5AA4AA02F",
+      "telecommuting": true,
+      "department": "Operations",
+      "url": "https://apply.workable.com/j/C5AA4AA02F",
+      "application_url": "https://apply.workable.com/j/C5AA4AA02F/apply",
+      "published_on": "2025-04-30",
+      "created_at": "2025-04-30",
+      "country": "Germany",
+      "city": "",
+      "state": ""
+    },
+    {
+      "title": "Account Executive",
+      "shortcode": "869DAEB14F",
+      "telecommuting": false,
+      "department": "Sales & Marketing",
+      "url": "https://apply.workable.com/j/869DAEB14F",
+      "application_url": "https://apply.workable.com/j/869DAEB14F/apply",
+      "published_on": "2026-09-21",
+      "created_at": "2026-08-19",
+      "country": "United States",
+      "city": "Denton",
+      "state": "Texas"
+    },
+    {
+      "title": "AI Native DevOps Engineer",
+      "shortcode": "C843C5DA71",
+      "telecommuting": false,
+      "department": "Research & Development",
+      "url": "https://apply.workable.com/j/C843C5DA71",
+      "application_url": "https://apply.workable.com/j/C843C5DA71/apply",
+      "published_on": "2025-09-09",
+      "created_at": "2025-09-09",
+      "country": "Latvia",
+      "city": "Riga",
+      "state": "Riga"
+    }
+  ]
+}
