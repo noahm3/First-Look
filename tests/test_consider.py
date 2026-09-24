@@ -11,7 +11,6 @@ fixture.
 
 import pathlib
 
-import httpx
 import pytest
 import yaml
 
@@ -27,7 +26,7 @@ from src.consider import (
     parse_session,
 )
 from src.db import Database
-from tests.ats_fixtures import fake_client
+from tests.ats_fixtures import fake_client, respond
 
 FIXTURES_DIR = pathlib.Path(__file__).parent / "fixtures" / "consider"
 
@@ -113,12 +112,12 @@ class TestFetchBoardCompanies:
         board = ConsiderBoard(name="Greentown Labs", url="https://jobs.greentownlabs.com/jobs")
         calls = {"n": 0}
 
-        def handler(request: httpx.Request) -> httpx.Response:
+        def handler(request):
             if request.method == "GET":
-                return httpx.Response(200, content=read_fixture("greentown_page.html").encode())
+                return respond(200, content=read_fixture("greentown_page.html").encode())
             calls["n"] += 1
             body = read_fixture(f"greentown_page{calls['n']}.json").encode()
-            return httpx.Response(200, content=body)
+            return respond(200, content=body)
 
         with fake_client(handler) as client:
             companies = fetch_board_companies(client, board, page_size=2, max_pages=2)
@@ -130,12 +129,12 @@ class TestFetchBoardCompanies:
         board = ConsiderBoard(name="Dup Board", url="https://dup.example.com/jobs")
         calls = {"n": 0}
 
-        def handler(request: httpx.Request) -> httpx.Response:
+        def handler(request):
             if request.method == "GET":
-                return httpx.Response(200, content=read_fixture("greentown_page.html").encode())
+                return respond(200, content=read_fixture("greentown_page.html").encode())
             calls["n"] += 1
             body = read_fixture(f"dup_page{calls['n']}.json").encode()
-            return httpx.Response(200, content=body)
+            return respond(200, content=body)
 
         with fake_client(handler) as client:
             companies = fetch_board_companies(client, board, page_size=1, max_pages=5)
@@ -146,10 +145,10 @@ class TestFetchBoardCompanies:
     def test_a_real_zero_jobs_board_yields_zero_companies_not_an_error(self):
         board = ConsiderBoard(name="Empty Board", url="https://empty.example.com/jobs")
 
-        def handler(request: httpx.Request) -> httpx.Response:
+        def handler(request):
             if request.method == "GET":
-                return httpx.Response(200, content=read_fixture("greentown_page.html").encode())
-            return httpx.Response(200, content=read_fixture("empty_page1.json").encode())
+                return respond(200, content=read_fixture("greentown_page.html").encode())
+            return respond(200, content=read_fixture("empty_page1.json").encode())
 
         with fake_client(handler) as client:
             companies = fetch_board_companies(client, board)
@@ -160,13 +159,13 @@ class TestFetchBoardCompanies:
         board = ConsiderBoard(name="Greentown Labs", url="https://jobs.greentownlabs.com/jobs")
         calls = {"n": 0}
 
-        def handler(request: httpx.Request) -> httpx.Response:
+        def handler(request):
             if request.method == "GET":
-                return httpx.Response(200, content=read_fixture("greentown_page.html").encode())
+                return respond(200, content=read_fixture("greentown_page.html").encode())
             calls["n"] += 1
             # page1 has a real sequence token -- pagination *could* continue,
             # but max_pages=1 must stop it here regardless.
-            return httpx.Response(200, content=read_fixture("greentown_page1.json").encode())
+            return respond(200, content=read_fixture("greentown_page1.json").encode())
 
         with fake_client(handler) as client:
             companies = fetch_board_companies(client, board, page_size=2, max_pages=1)
@@ -177,8 +176,8 @@ class TestFetchBoardCompanies:
     def test_a_session_fetch_404_raises_a_classified_error_not_a_crash(self):
         board = ConsiderBoard(name="Dead Board", url="https://dead.example.com/jobs")
 
-        def handler(_request: httpx.Request) -> httpx.Response:
-            return httpx.Response(404, content=b"not found")
+        def handler(_request):
+            return respond(404, content=b"not found")
 
         with fake_client(handler) as client, pytest.raises(ConsiderParseError):
             fetch_board_companies(client, board)
@@ -273,14 +272,14 @@ class TestDiscoverBoards:
     def test_c_6_4_two_real_boards_are_ingested_as_consider_sourced_with_real_domains(self):
         db, backend = make_db()
 
-        def handler(request: httpx.Request) -> httpx.Response:
+        def handler(request):
             if request.method == "GET":
                 if "greentownlabs" in str(request.url):
-                    return httpx.Response(200, content=read_fixture("greentown_page.html").encode())
-                return httpx.Response(200, content=read_fixture("congruent_page.html").encode())
+                    return respond(200, content=read_fixture("greentown_page.html").encode())
+                return respond(200, content=read_fixture("congruent_page.html").encode())
             if "greentownlabs" in str(request.url):
-                return httpx.Response(200, content=read_fixture("empty_page1.json").encode())
-            return httpx.Response(200, content=read_fixture("congruent_page1.json").encode())
+                return respond(200, content=read_fixture("empty_page1.json").encode())
+            return respond(200, content=read_fixture("congruent_page1.json").encode())
 
         boards = [
             ConsiderBoard(name="Greentown Labs", url="https://jobs.greentownlabs.com/jobs"),
@@ -300,12 +299,12 @@ class TestDiscoverBoards:
     def test_one_bad_board_does_not_stop_the_others(self):
         db, backend = make_db()
 
-        def handler(request: httpx.Request) -> httpx.Response:
+        def handler(request):
             if "greentownlabs" in str(request.url):
                 if request.method == "GET":
-                    return httpx.Response(200, content=read_fixture("greentown_page.html").encode())
-                return httpx.Response(200, content=read_fixture("greentown_page1.json").encode())
-            return httpx.Response(404, content=b"not found")
+                    return respond(200, content=read_fixture("greentown_page.html").encode())
+                return respond(200, content=read_fixture("greentown_page1.json").encode())
+            return respond(404, content=b"not found")
 
         boards = [
             ConsiderBoard(name="Greentown Labs", url="https://jobs.greentownlabs.com/jobs"),
@@ -323,10 +322,10 @@ class TestDiscoverBoards:
     def test_re_running_discovery_creates_zero_duplicate_companies(self):
         db, backend = make_db()
 
-        def handler(request: httpx.Request) -> httpx.Response:
+        def handler(request):
             if request.method == "GET":
-                return httpx.Response(200, content=read_fixture("greentown_page.html").encode())
-            return httpx.Response(200, content=read_fixture("greentown_page1.json").encode())
+                return respond(200, content=read_fixture("greentown_page.html").encode())
+            return respond(200, content=read_fixture("greentown_page1.json").encode())
 
         boards = [ConsiderBoard(name="Greentown Labs", url="https://jobs.greentownlabs.com/jobs")]
 
