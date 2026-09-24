@@ -21,7 +21,9 @@ def read_fixture(provider: str, name: str) -> bytes:
 
 def fake_client(handler, *, resolves_to: str = PUBLIC_IP, **kwargs) -> FetchClient:
     """Build a FetchClient wired to a fake transport. `handler(request) ->
-    httpx.Response`."""
+    httpx.Response` — build that response with `respond()` below, so
+    individual test files never need to import httpx themselves (banned
+    outside src/http.py and this file, see pyproject.toml's TID251 rule)."""
 
     def resolver(_host: str) -> list[str]:
         return [resolves_to]
@@ -32,3 +34,11 @@ def fake_client(handler, *, resolves_to: str = PUBLIC_IP, **kwargs) -> FetchClie
         transport=httpx.MockTransport(handler),
         **kwargs,
     )
+
+
+def respond(status: int, *, content: bytes | None = None, json: object = None) -> httpx.Response:
+    """Build the response a `fake_client` handler returns, without the
+    caller needing its own `import httpx`."""
+    if json is not None:
+        return httpx.Response(status, json=json)
+    return httpx.Response(status, content=content or b"")

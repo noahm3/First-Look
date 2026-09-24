@@ -140,9 +140,7 @@ class TestSlugify:
 class TestLoadWatchlist:
     def test_parses_name_and_domain(self, tmp_path: pathlib.Path):
         path = tmp_path / "watchlist.yml"
-        path.write_text(
-            yaml.safe_dump([{"name": "Acme", "domain": "acme.com"}]), encoding="utf-8"
-        )
+        path.write_text(yaml.safe_dump([{"name": "Acme", "domain": "acme.com"}]), encoding="utf-8")
         entries = load_watchlist(path)
         assert entries == [WatchlistEntry(name="Acme", domain="acme.com")]
 

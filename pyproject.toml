@@ -43,8 +43,12 @@ line-length = 100
 # archive/ is superseded documents kept verbatim for history and is never edited
 # (BUILD.md §0.1). spikes/ is exploratory throwaway code driven interactively; holding
 # it to the pipeline's lint rules would mean rewriting someone's in-flight experiment
-# to satisfy a formatter. Nothing in either directory is imported by src/.
-extend-exclude = ["archive", "spikes"]
+# to satisfy a formatter. docs/superpowers/plans/ holds point-in-time implementation
+# plans (superpowers:writing-plans) with embedded Python code blocks -- ruff formats
+# code fences in markdown, but a plan is a historical record of what was proposed, not
+# source to keep in sync with the formatter as it evolves. Nothing in any of these three
+# directories is imported by src/.
+extend-exclude = ["archive", "spikes", "docs/superpowers/plans"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "B", "SIM", "TID"]
@@ -59,3 +63,6 @@ select = ["E", "F", "W", "I", "UP", "B", "SIM", "TID"]
 # The chokepoint's own tests need httpx.MockTransport to fake the network at the
 # transport layer. Narrow on purpose: this single file, not tests/ generally.
 "tests/test_http.py" = ["TID251"]
+# The one shared fake-transport helper the 8 tests/test_ats_*.py files import
+# instead of each importing httpx themselves. Same narrow reasoning as above.
+"tests/ats_fixtures.py" = ["TID251"]
