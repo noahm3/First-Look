@@ -24,11 +24,15 @@ from urllib.parse import urlsplit, urlunsplit
 import psycopg
 
 from src.models import (
+    AtsProvider,
+    AtsStatus,
     Company,
     CompDataQuality,
     CompPeriod,
     CompTier,
     LocationClass,
+    MappingConfidence,
+    MappingResult,
     Posting,
 )
 
@@ -502,6 +506,91 @@ class Database:
         )
         self.commit()
         return company_id, created
+
+    # -- mapping (SPEC.md §8, BUILD.md M3) -----------------------------------
+
+    _MAPPING_COLUMNS = (
+        "id, name, canonical_domain, has_open_roles_signal, ats_provider, ats_token, "
+        "ats_status, mapping_confidence, mapping_method, mapping_failure_reason, "
+        "mapping_last_attempt_at"
+    )
+
+    @staticmethod
+    def _company_from_mapping_row(row: tuple) -> Company:
+        return Company(
+            id=row[0],
+            name=row[1],
+            canonical_domain=row[2],
+            has_open_roles_signal=bool(row[3]),
+            ats_provider=AtsProvider(row[4]) if row[4] else None,
+            ats_token=row[5],
+            ats_status=AtsStatus(row[6]) if row[6] else AtsStatus.UNMAPPED,
+            mapping_confidence=MappingConfidence(row[7]) if row[7] else None,
+            mapping_method=row[8],
+            mapping_failure_reason=row[9],
+            mapping_last_attempt_at=row[10],
+        )
+
+    def companies_to_map(self, limit: int | None = None) -> list[Company]:
+        """Companies without an accepted mapping, in SPEC §8.3 priority order:
+        open-roles signal first, never-attempted first, then oldest attempt --
+        which is also the order §8.5's monthly retry wants."""
+        sql = (
+            f"SELECT {self._MAPPING_COLUMNS} FROM companies "
+            "WHERE mapping_confidence IS NULL "
+            "OR mapping_confidence NOT IN ('verified', 'probable') "
+            "ORDER BY has_open_roles_signal DESC, mapping_last_attempt_at ASC NULLS FIRST, id"
+        )
+        params: tuple = ()
+        if limit is not None:
+            sql += " LIMIT %s"
+            params = (limit,)
+        return [self._company_from_mapping_row(r) for r in self.fetch_all(sql, params)]
+
+    def record_mapping(
+        self, company_id: int, result: MappingResult, attempted_at: datetime
+    ) -> None:
+        """Persist one cascade outcome.
+
+        Accepted (`verified`/`probable`) -> `ats_status='ok'`, reason cleared.
+        Anything else -> `ats_status='unmappable'` with its §8.4 reason; a `weak`
+        provider/token is kept for diagnosis, but its confidence keeps it out of
+        `pollable_companies()` (C-3.2). Failure is not permanent: §8.5's retry
+        picks it up again by `mapping_last_attempt_at`.
+        """
+        if not result.accepted and not result.failure_reason:
+            raise ValueError("a failed mapping must carry a failure reason (C-3.4)")
+        status = AtsStatus.OK if result.accepted else AtsStatus.UNMAPPABLE
+        self.execute(
+            "UPDATE companies SET ats_provider = %s, ats_token = %s, ats_status = %s, "
+            "mapping_confidence = %s, mapping_method = %s, mapping_failure_reason = %s, "
+            "mapping_last_attempt_at = %s WHERE id = %s",
+            (
+                result.provider.value if result.provider else None,
+                result.token,
+                status.value,
+                result.confidence.value if result.confidence else None,
+                result.method,
+                None if result.accepted else result.failure_reason,
+                attempted_at,
+                company_id,
+            ),
+        )
+        self.commit()
+
+    def pollable_companies(self) -> list[Company]:
+        """What the monitoring loop polls (M4). Filtered in SQL *and* by
+        `Company.is_pollable`, so a `weak` mapping cannot reach the loop even
+        if one of the two checks is ever loosened (C-3.2)."""
+        rows = self.fetch_all(
+            f"SELECT {self._MAPPING_COLUMNS} FROM companies "
+            "WHERE ats_provider IS NOT NULL AND ats_token IS NOT NULL "
+            "AND ats_status IN ('ok', 'unmapped') "
+            "AND mapping_confidence IN ('verified', 'probable') "
+            "ORDER BY id"
+        )
+        companies = [self._company_from_mapping_row(r) for r in rows]
+        return [c for c in companies if c.is_pollable]
 
     # -- schema posture (SETUP-PLATFORM.md §7, live half of the RLS check) ---
 
