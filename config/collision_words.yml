@@ -1,0 +1,16 @@
+# config/collision_words.yml -- SPEC.md §8.2's negative guard.
+#
+# A slug-guess token listed here (or under six characters) can return a
+# different company's real board, so it may only ever be accepted at
+# `verified` (the company's own careers page names the same token) and never
+# at `probable` on a name match alone. C-3.3.
+#
+# Lowercase. Append freely; removing a word loosens the guard.
+- atlas
+- square
+- ramp
+- notion
+- arc
+- level
+- front
+- scale
