@@ -24,6 +24,27 @@ class AdapterResult:
     ok: bool
     postings: tuple[Posting, ...] = ()
     error: str | None = None
+    # A per-job sub-fetch failed (e.g. Rippling's detail call) but the
+    # posting itself was still returned, degraded rather than dropped. Kept
+    # separate from `error` because the overall fetch is still `ok`.
+    degraded_count: int = 0
+
+
+def as_dict(value: object) -> dict:
+    """Return value if it's a dict, else an empty dict. Never raises.
+
+    Every adapter reads at least one nested provider field (a location,
+    department, or compensation object) with `.get()`. A provider whose
+    shape drifts to a bare string or null there must degrade that field,
+    not crash the whole company's fetch (BUILD.md §3: no exception escapes
+    a per-company operation).
+    """
+    return value if isinstance(value, dict) else {}
+
+
+def as_list(value: object) -> list:
+    """Return value if it's a list, else an empty list. Never raises."""
+    return value if isinstance(value, list) else []
 
 
 def parse_iso_or_epoch_ms(value: object) -> datetime | None:
