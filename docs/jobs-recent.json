@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-25T01:17:01.776035+00:00",
-  "last_successful_run": "2026-09-24T22:09:11.003175+00:00",
-  "run_id": 14,
+  "generated_at": "2026-09-25T15:45:50.731297+00:00",
+  "last_successful_run": "2026-09-25T01:17:02.113187+00:00",
+  "run_id": 15,
   "stale": false,
   "counts": {
     "postings": 0,
